@@ -1,0 +1,25 @@
+{
+    "name": "globalcollect/sdk-php",
+    "type": "library",
+    "description": "PHP SDK to communicate with the GlobalCollect](http://www.globalcollect.com/) Server API",
+    "homepage": "https://developer.globalcollect.com/",
+    "keywords": ["SDK"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Global Collect Services B.V.",
+            "homepage": "https://developer.globalcollect.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4"
+    },
+    "autoload": {
+        "psr-0": {
+            "GCS_": ["src", "lib"]
+        }
+    }
+}

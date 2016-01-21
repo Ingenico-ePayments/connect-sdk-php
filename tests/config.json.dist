@@ -1,0 +1,9 @@
+{
+    "api_key":        "API_KEY_ID",
+    "api_secret":     "API_SECRET",
+    "base_uri":       "BASE_URI",
+    "proxy_host":     "HOST_OR_EMPTY",
+    "proxy_port":     "PORT_OR_EMPTY",
+    "proxy_username": "USERNAME_OR_EMPTY",
+    "proxy_password": "PASSWORD_OR_EMPTY"
+}
