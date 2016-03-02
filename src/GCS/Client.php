@@ -12,7 +12,7 @@ class GCS_Client extends GCS_Resource
     private $clientMetaInfo;
 
     /**
-     * Construct a new GlobalCollect server-to-server API client.
+     * Construct a new GlobalCollect platform server-to-server API client.
      *
      * @param GCS_Communicator $communicator
      * @param string $clientMetaInfo

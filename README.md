@@ -1,8 +1,8 @@
-# GlobalCollect PHP SDK
+# Ingenico Connect PHP SDK
 
 ## Introduction
 
-The GlobalCollect PHP SDK helps you to communicate with the [GlobalCollect](http://www.globalcollect.com/) Server API. Its primary features are:
+The Ingenico Connect PHP SDK helps you to communicate with the [Ingenico Connect](http://www.globalcollect.com/) Server API. Its primary features are:
 
 * convenient PHP wrapper around the API calls and responses:
   * marshalls PHP request objects to HTTP requests
@@ -12,7 +12,7 @@ The GlobalCollect PHP SDK helps you to communicate with the [GlobalCollect](http
 
 Its use is demonstrated by an example for most calls. The examples execute a call using the provided API keys.
 
-See the [GlobalCollect Developer Portal](https://developers.globalcollect.com/documentation/sdk/server/) for more information on how to use the API.
+See the [Ingenico Connect Developer Hub](https://developer.globalcollect.com/documentation/sdk/php/) for more information on how to use the API.
 
 ## Structure of this repository
 
@@ -27,7 +27,7 @@ PHP 5.4 or above is required. No additional packages are needed.
 
 ## Installation
 
-1. Download the latest version of the PHP SDK from the [GlobalCollect Developer Portal](https://developers.globalcollect.com/documentation/sdk/server/).
+1. Download the latest version of the PHP SDK from the [Ingenico Connect Developer Hub](https://developer.globalcollect.com/documentation/sdk/server/) or download it from GitHub.
 2. Add the contents of the tar.gz file to your project. The content of the `/src` and `/lib` folders may be combined, if this is required by the project.
 3. Add all classes from the `/src` and `/lib` folders to your autoloader; all classes have prefix `GCS_` and can be loaded by any implementation of [PSR-0](http://www.php-fig.org/psr/psr-0/).
 

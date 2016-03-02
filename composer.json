@@ -1,7 +1,7 @@
 {
-    "name": "globalcollect/sdk-php",
+    "name": "globalcollect/connect-sdk-php",
     "type": "library",
-    "description": "PHP SDK to communicate with the GlobalCollect](http://www.globalcollect.com/) Server API",
+    "description": "PHP SDK to communicate with the GlobalCollect platform server-to-server API",
     "homepage": "https://developer.globalcollect.com/",
     "keywords": ["SDK"],
     "license": "MIT",

@@ -10,6 +10,11 @@ class GCS_payout_CreatePayoutRequest extends GCS_DataObject
     public $amountOfMoney = null;
 
     /**
+     * @var GCS_fei_definitions_BankAccountBban
+     */
+    public $bankAccountBban = null;
+
+    /**
      * @var GCS_fei_definitions_BankAccountIban
      */
     public $bankAccountIban = null;
@@ -53,6 +58,13 @@ class GCS_payout_CreatePayoutRequest extends GCS_DataObject
             }
             $value = new GCS_fei_definitions_AmountOfMoney();
             $this->amountOfMoney = $value->fromObject($object->amountOfMoney);
+        }
+        if (property_exists($object, 'bankAccountBban')) {
+            if (!is_object($object->bankAccountBban)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->bankAccountBban, true) . '\' is not an object');
+            }
+            $value = new GCS_fei_definitions_BankAccountBban();
+            $this->bankAccountBban = $value->fromObject($object->bankAccountBban);
         }
         if (property_exists($object, 'bankAccountIban')) {
             if (!is_object($object->bankAccountIban)) {
