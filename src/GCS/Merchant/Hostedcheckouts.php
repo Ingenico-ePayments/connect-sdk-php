@@ -1,10 +1,10 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
-use GCS\hostedcheckout\CreateHostedCheckoutRequest;
-use GCS\hostedcheckout\CreateHostedCheckoutResponse;
-use GCS\hostedcheckout\GetHostedCheckoutResponse;
+use GCS\Errors\ErrorResponse;
+use GCS\HostedCheckout\CreateHostedCheckoutRequest;
+use GCS\HostedCheckout\CreateHostedCheckoutResponse;
+use GCS\HostedCheckout\GetHostedCheckoutResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
 
@@ -31,7 +31,7 @@ class Hostedcheckouts extends Resource
     public function create($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\GCS\hostedcheckout\CreateHostedCheckoutResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\HostedCheckout\CreateHostedCheckoutResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/hostedcheckouts'),
@@ -54,7 +54,7 @@ class Hostedcheckouts extends Resource
     {
         $this->context['hostedCheckoutId'] = $hostedCheckoutId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\hostedcheckout\GetHostedCheckoutResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\HostedCheckout\GetHostedCheckoutResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),

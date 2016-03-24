@@ -1,12 +1,12 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
+use GCS\Errors\ErrorResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
-use GCS\riskassessments\RiskAssessmentBankAccount;
-use GCS\riskassessments\RiskAssessmentCard;
-use GCS\riskassessments\RiskAssessmentResponse;
+use GCS\RiskAssessments\RiskAssessmentBankAccount;
+use GCS\RiskAssessments\RiskAssessmentCard;
+use GCS\RiskAssessments\RiskAssessmentResponse;
 
 /**
  * Class Riskassessments
@@ -30,7 +30,7 @@ class Riskassessments extends Resource
     public function cards($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\riskassessments\RiskAssessmentResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\RiskAssessments\RiskAssessmentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/riskassessments/cards'),
@@ -52,7 +52,7 @@ class Riskassessments extends Resource
     public function bankaccounts($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\riskassessments\RiskAssessmentResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\RiskAssessments\RiskAssessmentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/riskassessments/bankaccounts'),

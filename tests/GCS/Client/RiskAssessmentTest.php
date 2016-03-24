@@ -3,19 +3,19 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\fei\definitions\AdditionalOrderInputAirlineData;
-use GCS\fei\definitions\Address;
-use GCS\fei\definitions\AirlineData;
-use GCS\fei\definitions\AirlineFlightLeg;
-use GCS\fei\definitions\AmountOfMoney;
-use GCS\fei\definitions\BankAccountBban;
-use GCS\fei\definitions\Card;
-use GCS\fei\definitions\ResultDoRiskAssessment;
-use GCS\riskassessments\definitions\CustomerRiskAssessment;
-use GCS\riskassessments\definitions\OrderRiskAssessment;
-use GCS\riskassessments\RiskAssessmentBankAccount;
-use GCS\riskassessments\RiskAssessmentCard;
-use GCS\riskassessments\RiskAssessmentResponse;
+use GCS\Fei\Definitions\AdditionalOrderInputAirlineData;
+use GCS\Fei\Definitions\Address;
+use GCS\Fei\Definitions\AirlineData;
+use GCS\Fei\Definitions\AirlineFlightLeg;
+use GCS\Fei\Definitions\AmountOfMoney;
+use GCS\Fei\Definitions\BankAccountBban;
+use GCS\Fei\Definitions\Card;
+use GCS\Fei\Definitions\ResultDoRiskAssessment;
+use GCS\RiskAssessments\Definitions\CustomerRiskAssessment;
+use GCS\RiskAssessments\Definitions\OrderRiskAssessment;
+use GCS\RiskAssessments\RiskAssessmentBankAccount;
+use GCS\RiskAssessments\RiskAssessmentCard;
+use GCS\RiskAssessments\RiskAssessmentResponse;
 
 /**
  * Class RiskAssessmentTest

@@ -3,14 +3,14 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\fei\definitions\AmountOfMoney;
-use GCS\fei\definitions\BankAccountIban;
-use GCS\refund\ApproveRefundRequest;
-use GCS\refund\definitions\BankRefundMethodSpecificInput;
-use GCS\refund\definitions\RefundReferences;
-use GCS\refund\RefundErrorResponse;
-use GCS\refund\RefundRequest;
-use GCS\refund\RefundResponse;
+use GCS\Fei\Definitions\AmountOfMoney;
+use GCS\Fei\Definitions\BankAccountIban;
+use GCS\Refund\ApproveRefundRequest;
+use GCS\Refund\Definitions\BankRefundMethodSpecificInput;
+use GCS\Refund\Definitions\RefundReferences;
+use GCS\Refund\RefundErrorResponse;
+use GCS\Refund\RefundRequest;
+use GCS\Refund\RefundResponse;
 
 /**
  * Class RefundTest

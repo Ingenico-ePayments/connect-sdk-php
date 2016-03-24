@@ -1,11 +1,11 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
-use GCS\payout\ApprovePayoutRequest;
-use GCS\payout\CreatePayoutRequest;
-use GCS\payout\PayoutErrorResponse;
-use GCS\payout\PayoutResponse;
+use GCS\Errors\ErrorResponse;
+use GCS\Payout\ApprovePayoutRequest;
+use GCS\Payout\CreatePayoutRequest;
+use GCS\Payout\PayoutErrorResponse;
+use GCS\Payout\PayoutResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
 
@@ -33,7 +33,7 @@ class Payouts extends Resource
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(402, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(402, '\GCS\Errors\ErrorResponse');
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -56,8 +56,8 @@ class Payouts extends Resource
     public function create($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(400, '\GCS\payout\PayoutErrorResponse');
-        $responseClassMap->addResponseClassName(201, '\GCS\payout\PayoutResponse');
+        $responseClassMap->addResponseClassName(400, '\GCS\Payout\PayoutErrorResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\Payout\PayoutResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts'),
@@ -81,8 +81,8 @@ class Payouts extends Resource
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payout\PayoutResponse');
-        $responseClassMap->addResponseClassName(402, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payout\PayoutResponse');
+        $responseClassMap->addResponseClassName(402, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts/{payoutId}/approve'),
@@ -106,7 +106,7 @@ class Payouts extends Resource
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
-        $responseClassMap->addResponseClassName(405, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(405, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts/{payoutId}/cancelapproval'),
@@ -128,8 +128,8 @@ class Payouts extends Resource
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payout\PayoutResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payout\PayoutResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts/{payoutId}'),

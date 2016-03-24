@@ -6,9 +6,9 @@ use GCS\ClientTestCase;
 use GCS\Merchant\Products\FindParams;
 use GCS\Merchant\Products\GetParams;
 use GCS\Merchant\Products\PaymentProduct\DirectoryParams;
-use GCS\product\Directory;
-use GCS\product\PaymentProductResponse;
-use GCS\product\PaymentProducts;
+use GCS\Product\Directory;
+use GCS\Product\PaymentProductResponse;
+use GCS\Product\PaymentProducts;
 
 /**
  * Class ProductTest

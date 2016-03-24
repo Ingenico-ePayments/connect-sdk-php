@@ -3,12 +3,12 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\fei\definitions\BankAccountBban;
+use GCS\Fei\Definitions\BankAccountBban;
 use GCS\Merchant\Services\ConvertAmountParams;
-use GCS\services\BankDetailsRequest;
-use GCS\services\BINLookupRequest;
-use GCS\services\ConvertAmount;
-use GCS\services\TestConnection;
+use GCS\Services\BankDetailsRequest;
+use GCS\Services\BINLookupRequest;
+use GCS\Services\ConvertAmount;
+use GCS\Services\TestConnection;
 
 /**
  * Class ServicesTest

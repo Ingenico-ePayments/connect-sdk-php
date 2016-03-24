@@ -1,14 +1,14 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
+use GCS\Errors\ErrorResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
-use GCS\token\ApproveTokenRequest;
-use GCS\token\CreateTokenRequest;
-use GCS\token\CreateTokenResponse;
-use GCS\token\TokenResponse;
-use GCS\token\UpdateTokenRequest;
+use GCS\Token\ApproveTokenRequest;
+use GCS\Token\CreateTokenRequest;
+use GCS\Token\CreateTokenResponse;
+use GCS\Token\TokenResponse;
+use GCS\Token\UpdateTokenRequest;
 
 /**
  * Class Tokens
@@ -33,9 +33,9 @@ class Tokens extends Resource
     public function create($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(201, '\GCS\token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(403, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Token\CreateTokenResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\Token\CreateTokenResponse');
+        $responseClassMap->addResponseClassName(403, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens'),
@@ -106,8 +106,8 @@ class Tokens extends Resource
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\token\TokenResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Token\TokenResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
@@ -131,7 +131,7 @@ class Tokens extends Resource
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->delete(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),

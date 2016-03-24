@@ -3,14 +3,14 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\fei\definitions\Address;
-use GCS\fei\definitions\AmountOfMoney;
-use GCS\hostedcheckout\CreateHostedCheckoutRequest;
-use GCS\hostedcheckout\CreateHostedCheckoutResponse;
-use GCS\hostedcheckout\definitions\HostedCheckoutSpecificInput;
-use GCS\hostedcheckout\GetHostedCheckoutResponse;
-use GCS\payment\definitions\Customer;
-use GCS\payment\definitions\Order;
+use GCS\Fei\Definitions\Address;
+use GCS\Fei\Definitions\AmountOfMoney;
+use GCS\HostedCheckout\CreateHostedCheckoutRequest;
+use GCS\HostedCheckout\CreateHostedCheckoutResponse;
+use GCS\HostedCheckout\Definitions\HostedCheckoutSpecificInput;
+use GCS\HostedCheckout\GetHostedCheckoutResponse;
+use GCS\Payment\Definitions\Customer;
+use GCS\Payment\Definitions\Order;
 
 /**
  * Class HostedCheckoutTest

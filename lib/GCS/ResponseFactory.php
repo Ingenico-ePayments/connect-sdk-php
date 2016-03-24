@@ -59,7 +59,7 @@ class ResponseFactory
             if ($httpStatusCode < 400) {
                 return null;
             }
-            $responseClassName = '\GCS\errors\ErrorResponse';
+            $responseClassName = '\GCS\Errors\ErrorResponse';
         }
         if (!class_exists($responseClassName)) {
             throw new \UnexpectedValueException("class '$responseClassName' does not exist");

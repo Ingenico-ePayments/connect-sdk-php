@@ -1,9 +1,9 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
-use GCS\refund\ApproveRefundRequest;
-use GCS\refund\RefundResponse;
+use GCS\Errors\ErrorResponse;
+use GCS\Refund\ApproveRefundRequest;
+use GCS\Refund\RefundResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
 
@@ -99,7 +99,7 @@ class Refunds extends Resource
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\refund\RefundResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Refund\RefundResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/refunds/{refundId}'),

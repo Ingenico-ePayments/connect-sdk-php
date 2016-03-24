@@ -1,22 +1,22 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
-use GCS\payment\ApprovePaymentRequest;
-use GCS\payment\CancelApprovalPaymentResponse;
-use GCS\payment\CancelPaymentResponse;
-use GCS\payment\CreatePaymentRequest;
-use GCS\payment\CreatePaymentResponse;
-use GCS\payment\PaymentApprovalResponse;
-use GCS\payment\PaymentErrorResponse;
-use GCS\payment\PaymentResponse;
-use GCS\payment\TokenizePaymentRequest;
-use GCS\refund\RefundErrorResponse;
-use GCS\refund\RefundRequest;
-use GCS\refund\RefundResponse;
+use GCS\Errors\ErrorResponse;
+use GCS\Payment\ApprovePaymentRequest;
+use GCS\Payment\CancelApprovalPaymentResponse;
+use GCS\Payment\CancelPaymentResponse;
+use GCS\Payment\CreatePaymentRequest;
+use GCS\Payment\CreatePaymentResponse;
+use GCS\Payment\PaymentApprovalResponse;
+use GCS\Payment\PaymentErrorResponse;
+use GCS\Payment\PaymentResponse;
+use GCS\Payment\TokenizePaymentRequest;
+use GCS\Refund\RefundErrorResponse;
+use GCS\Refund\RefundRequest;
+use GCS\Refund\RefundResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
-use GCS\token\CreateTokenResponse;
+use GCS\Token\CreateTokenResponse;
 
 /**
  * Class Payments
@@ -44,9 +44,9 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(400, '\GCS\refund\RefundErrorResponse');
-        $responseClassMap->addResponseClassName(201, '\GCS\refund\RefundResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\refund\RefundErrorResponse');
+        $responseClassMap->addResponseClassName(400, '\GCS\Refund\RefundErrorResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\Refund\RefundResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Refund\RefundErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/refund'),
@@ -69,9 +69,9 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payment\PaymentResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
-        $responseClassMap->addResponseClassName(405, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payment\PaymentResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(405, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/processchallenged'),
@@ -93,7 +93,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payment\PaymentResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payment\PaymentResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}'),
@@ -115,12 +115,12 @@ class Payments extends Resource
     public function create($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(400, '\GCS\payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(402, '\GCS\payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(403, '\GCS\payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(502, '\GCS\payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(503, '\GCS\payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(201, '\GCS\payment\CreatePaymentResponse');
+        $responseClassMap->addResponseClassName(400, '\GCS\Payment\PaymentErrorResponse');
+        $responseClassMap->addResponseClassName(402, '\GCS\Payment\PaymentErrorResponse');
+        $responseClassMap->addResponseClassName(403, '\GCS\Payment\PaymentErrorResponse');
+        $responseClassMap->addResponseClassName(502, '\GCS\Payment\PaymentErrorResponse');
+        $responseClassMap->addResponseClassName(503, '\GCS\Payment\PaymentErrorResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\Payment\CreatePaymentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments'),
@@ -144,9 +144,9 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(201, '\GCS\token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Token\CreateTokenResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\Token\CreateTokenResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/tokenize'),
@@ -169,8 +169,8 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payment\CancelPaymentResponse');
-        $responseClassMap->addResponseClassName(402, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payment\CancelPaymentResponse');
+        $responseClassMap->addResponseClassName(402, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/cancel'),
@@ -193,9 +193,9 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payment\PaymentApprovalResponse');
-        $responseClassMap->addResponseClassName(402, '\GCS\errors\ErrorResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payment\PaymentApprovalResponse');
+        $responseClassMap->addResponseClassName(402, '\GCS\Errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/approve'),
@@ -218,8 +218,8 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\payment\CancelApprovalPaymentResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Payment\CancelApprovalPaymentResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/cancelapproval'),

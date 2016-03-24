@@ -9,17 +9,17 @@ namespace GCS;
 class DeclinedPaymentException extends ResponseException
 {
     /**
-     * @return payment\definitions\CreatePaymentResult
+     * @return Payment\Definitions\CreatePaymentResult
      */
     public function getPaymentResult()
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('paymentResult', $responseVariables)) {
-            return new payment\definitions\CreatePaymentResult();
+            return new Payment\Definitions\CreatePaymentResult();
         }
         $paymentResult = $responseVariables['paymentResult'];
-        if (!($paymentResult instanceof payment\definitions\CreatePaymentResult)) {
-            return new payment\definitions\CreatePaymentResult();
+        if (!($paymentResult instanceof Payment\Definitions\CreatePaymentResult)) {
+            return new Payment\Definitions\CreatePaymentResult();
         }
         return $paymentResult;
     }

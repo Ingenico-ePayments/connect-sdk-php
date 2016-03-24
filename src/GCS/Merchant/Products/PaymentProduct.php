@@ -1,7 +1,7 @@
 <?php
 namespace GCS\Merchant\Products;
 
-use GCS\product\Directory;
+use GCS\Product\Directory;
 use GCS\Resource;
 use GCS\ResponseClassMap;
 
@@ -20,13 +20,13 @@ class PaymentProduct extends Resource
      *
      * @return Directory
      *
-     * @throws \GCS\errors\ErrorResponse
+     * @throws \GCS\Errors\ErrorResponse
      */
     public function directory($query)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\product\Directory');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Product\Directory');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products/{paymentProductId}/directory'),

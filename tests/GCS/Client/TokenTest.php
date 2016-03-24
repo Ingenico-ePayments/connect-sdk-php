@@ -3,27 +3,27 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\fei\definitions\Address;
-use GCS\fei\definitions\BankAccountBban;
-use GCS\fei\definitions\BankAccountIban;
-use GCS\fei\definitions\CompanyInformation;
+use GCS\Fei\Definitions\Address;
+use GCS\Fei\Definitions\BankAccountBban;
+use GCS\Fei\Definitions\BankAccountIban;
+use GCS\Fei\Definitions\CompanyInformation;
 use GCS\Merchant\Tokens\DeleteParams;
-use GCS\payment\definitions\PersonalInformation;
-use GCS\token\ApproveTokenRequest;
-use GCS\token\CreateTokenRequest;
-use GCS\token\CreateTokenResponse;
-use GCS\token\definitions\ContactDetailsToken;
-use GCS\token\definitions\CustomerToken;
-use GCS\token\definitions\CustomerTokenWithContactDetails;
-use GCS\token\definitions\Debtor;
-use GCS\token\definitions\MandateNonSepaDirectDebit;
-use GCS\token\definitions\MandateSepaDirectDebit;
-use GCS\token\definitions\PersonalInformationToken;
-use GCS\token\definitions\PersonalNameToken;
-use GCS\token\definitions\TokenNonSepaDirectDebit;
-use GCS\token\definitions\TokenNonSepaDirectDebitPaymentProduct705SpecificData;
-use GCS\token\definitions\TokenSepaDirectDebitWithoutCreditor;
-use GCS\token\UpdateTokenRequest;
+use GCS\Payment\Definitions\PersonalInformation;
+use GCS\Token\ApproveTokenRequest;
+use GCS\Token\CreateTokenRequest;
+use GCS\Token\CreateTokenResponse;
+use GCS\Token\Definitions\ContactDetailsToken;
+use GCS\Token\Definitions\CustomerToken;
+use GCS\Token\Definitions\CustomerTokenWithContactDetails;
+use GCS\Token\Definitions\Debtor;
+use GCS\Token\Definitions\MandateNonSepaDirectDebit;
+use GCS\Token\Definitions\MandateSepaDirectDebit;
+use GCS\Token\Definitions\PersonalInformationToken;
+use GCS\Token\Definitions\PersonalNameToken;
+use GCS\Token\Definitions\TokenNonSepaDirectDebit;
+use GCS\Token\Definitions\TokenNonSepaDirectDebitPaymentProduct705SpecificData;
+use GCS\Token\Definitions\TokenSepaDirectDebitWithoutCreditor;
+use GCS\Token\UpdateTokenRequest;
 
 /**
  * Class TokenTest

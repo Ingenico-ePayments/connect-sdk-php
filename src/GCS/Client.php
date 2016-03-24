@@ -64,7 +64,7 @@ class Client extends Resource
      *
      * @return Merchant
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function merchant($merchantId)
     {

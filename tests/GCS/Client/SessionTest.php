@@ -3,8 +3,8 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\sessions\SessionRequest;
-use GCS\sessions\SessionResponse;
+use GCS\Sessions\SessionRequest;
+use GCS\Sessions\SessionResponse;
 
 /**
  * Class SessionTest

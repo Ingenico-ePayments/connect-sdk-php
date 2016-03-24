@@ -14,7 +14,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Payouts
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function payouts()
     {
@@ -27,7 +27,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Refunds
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function refunds()
     {
@@ -40,7 +40,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Sessions
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function sessions()
     {
@@ -53,7 +53,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Tokens
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function tokens()
     {
@@ -66,7 +66,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Hostedcheckouts
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function hostedcheckouts()
     {
@@ -79,7 +79,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Products
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function products()
     {
@@ -92,7 +92,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Payments
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function payments()
     {
@@ -105,7 +105,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Services
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function services()
     {
@@ -118,7 +118,7 @@ class Merchant extends Resource
      *
      * @return Merchant\Riskassessments
      *
-     * @throws errors\ErrorResponse
+     * @throws Errors\ErrorResponse
      */
     public function riskassessments()
     {

@@ -3,18 +3,18 @@ namespace GCS\Client;
 
 use GCS\ApiException;
 use GCS\ClientTestCase;
-use GCS\errors\ErrorResponse;
-use GCS\fei\definitions\Address;
-use GCS\fei\definitions\AmountOfMoney;
-use GCS\fei\definitions\BankAccountIban;
-use GCS\fei\definitions\CompanyInformation;
-use GCS\fei\definitions\ContactDetailsBase;
-use GCS\payment\definitions\PersonalName;
-use GCS\payout\ApprovePayoutRequest;
-use GCS\payout\CreatePayoutRequest;
-use GCS\payout\definitions\PayoutCustomer;
-use GCS\payout\definitions\PayoutReferences;
-use GCS\payout\PayoutResponse;
+use GCS\Errors\ErrorResponse;
+use GCS\Fei\Definitions\Address;
+use GCS\Fei\Definitions\AmountOfMoney;
+use GCS\Fei\Definitions\BankAccountIban;
+use GCS\Fei\Definitions\CompanyInformation;
+use GCS\Fei\Definitions\ContactDetailsBase;
+use GCS\Payment\Definitions\PersonalName;
+use GCS\Payout\ApprovePayoutRequest;
+use GCS\Payout\CreatePayoutRequest;
+use GCS\Payout\Definitions\PayoutCustomer;
+use GCS\Payout\Definitions\PayoutReferences;
+use GCS\Payout\PayoutResponse;
 
 /**
  * Class PayoutTest

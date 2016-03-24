@@ -1,9 +1,9 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
-use GCS\product\PaymentProductResponse;
-use GCS\product\PaymentProducts;
+use GCS\Errors\ErrorResponse;
+use GCS\Product\PaymentProductResponse;
+use GCS\Product\PaymentProducts;
 use GCS\Resource;
 
 /**
@@ -45,7 +45,7 @@ class Products extends Resource
     public function find($query)
     {
         $responseClassMap = new \GCS\ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\product\PaymentProducts');
+        $responseClassMap->addResponseClassName(200, '\GCS\Product\PaymentProducts');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products'),
@@ -69,7 +69,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new \GCS\ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\product\PaymentProductResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Product\PaymentProductResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products/{paymentProductId}'),

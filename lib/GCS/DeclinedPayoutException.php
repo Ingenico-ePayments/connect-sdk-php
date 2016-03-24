@@ -9,17 +9,17 @@ namespace GCS;
 class DeclinedPayoutException extends ResponseException
 {
     /**
-     * @return payout\definitions\PayoutResult
+     * @return Payout\Definitions\PayoutResult
      */
     public function getPayoutResult()
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('payoutResult', $responseVariables)) {
-            return new payout\definitions\PayoutResult();
+            return new Payout\Definitions\PayoutResult();
         }
         $payoutResult = $responseVariables['payoutResult'];
-        if (!($payoutResult instanceof payout\definitions\PayoutResult)) {
-            return new payout\definitions\PayoutResult();
+        if (!($payoutResult instanceof Payout\Definitions\PayoutResult)) {
+            return new Payout\Definitions\PayoutResult();
         }
         return $payoutResult;
     }

@@ -1,15 +1,15 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
+use GCS\Errors\ErrorResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
-use GCS\services\BankDetailsRequest;
-use GCS\services\BankDetailsResponse;
-use GCS\services\BINLookupRequest;
-use GCS\services\BINLookupResponse;
-use GCS\services\ConvertAmount;
-use GCS\services\TestConnection;
+use GCS\Services\BankDetailsRequest;
+use GCS\Services\BankDetailsResponse;
+use GCS\Services\BINLookupRequest;
+use GCS\Services\BINLookupResponse;
+use GCS\Services\ConvertAmount;
+use GCS\Services\TestConnection;
 
 /**
  * Class Services
@@ -34,7 +34,7 @@ class Services extends Resource
     public function bankaccount($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\services\BankDetailsResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Services\BankDetailsResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/convert/bankaccount'),
@@ -54,8 +54,8 @@ class Services extends Resource
     public function testconnection()
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\services\TestConnection');
-        $responseClassMap->addResponseClassName(403, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Services\TestConnection');
+        $responseClassMap->addResponseClassName(403, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/testconnection'),
@@ -76,8 +76,8 @@ class Services extends Resource
     public function getIINdetails($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\services\BINLookupResponse');
-        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Services\BINLookupResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/getIINdetails'),
@@ -99,7 +99,7 @@ class Services extends Resource
     public function convertAmount($query)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\services\ConvertAmount');
+        $responseClassMap->addResponseClassName(200, '\GCS\Services\ConvertAmount');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/convert/amount'),

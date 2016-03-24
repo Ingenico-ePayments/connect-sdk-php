@@ -1,11 +1,11 @@
 <?php
 namespace GCS\Merchant;
 
-use GCS\errors\ErrorResponse;
+use GCS\Errors\ErrorResponse;
 use GCS\Resource;
 use GCS\ResponseClassMap;
-use GCS\sessions\SessionRequest;
-use GCS\sessions\SessionResponse;
+use GCS\Sessions\SessionRequest;
+use GCS\Sessions\SessionResponse;
 
 /**
  * Class Sessions
@@ -30,7 +30,7 @@ class Sessions extends Resource
     public function create($body)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\GCS\sessions\SessionResponse');
+        $responseClassMap->addResponseClassName(200, '\GCS\Sessions\SessionResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/sessions'),

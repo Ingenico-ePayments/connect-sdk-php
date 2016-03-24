@@ -9,17 +9,17 @@ namespace GCS;
 class DeclinedRefundException extends ResponseException
 {
     /**
-     * @return refund\definitions\RefundResult
+     * @return Refund\Definitions\RefundResult
      */
     public function getRefundResult()
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('refundResult', $responseVariables)) {
-            return new refund\definitions\RefundResult();
+            return new Refund\Definitions\RefundResult();
         }
         $refundResult = $responseVariables['refundResult'];
-        if (!($refundResult instanceof refund\definitions\RefundResult)) {
-            return new refund\definitions\RefundResult();
+        if (!($refundResult instanceof Refund\Definitions\RefundResult)) {
+            return new Refund\Definitions\RefundResult();
         }
         return $refundResult;
     }

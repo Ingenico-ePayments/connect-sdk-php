@@ -77,7 +77,7 @@ class ResponseException extends \RuntimeException
     }
 
     /**
-     * @return errors\definitions\APIError[]
+     * @return Errors\Definitions\APIError[]
      */
     public function getErrors()
     {
@@ -90,7 +90,7 @@ class ResponseException extends \RuntimeException
             return array();
         }
         foreach ($errors as $error) {
-            if (!($error instanceof errors\definitions\APIError)) {
+            if (!($error instanceof Errors\Definitions\APIError)) {
                 return array();
             }
         }
