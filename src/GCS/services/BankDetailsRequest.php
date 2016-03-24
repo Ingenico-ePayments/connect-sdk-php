@@ -1,13 +1,19 @@
 <?php
+namespace GCS\services;
+
 /**
- * class BankDetailsRequest
+ * Class BankDetailsRequest
+ *
+ * @package GCS\services
  */
-class GCS_services_BankDetailsRequest extends GCS_services_definitions_BankDetails
+class BankDetailsRequest extends definitions\BankDetails
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

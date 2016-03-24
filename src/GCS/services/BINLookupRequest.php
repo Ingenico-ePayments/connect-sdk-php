@@ -1,8 +1,14 @@
 <?php
+namespace GCS\services;
+
+use GCS\DataObject;
+
 /**
- * class BINLookupRequest
+ * Class BINLookupRequest
+ *
+ * @package GCS\services
  */
-class GCS_services_BINLookupRequest extends GCS_DataObject
+class BINLookupRequest extends DataObject
 {
     /**
      * @var string
@@ -11,8 +17,10 @@ class GCS_services_BINLookupRequest extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

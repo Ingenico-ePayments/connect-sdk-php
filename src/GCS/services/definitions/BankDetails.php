@@ -1,36 +1,53 @@
 <?php
-class GCS_services_definitions_BankDetails extends GCS_DataObject
+namespace GCS\services\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\BankAccountBban;
+use GCS\fei\definitions\BankAccountIban;
+
+/**
+ * Class BankDetails
+ *
+ * @package GCS\services\definitions
+ */
+class BankDetails extends DataObject
 {
     /**
-     * @var GCS_fei_definitions_BankAccountBban
+     * @var BankAccountBban
      */
     public $bankAccountBban = null;
 
     /**
-     * @var GCS_fei_definitions_BankAccountIban
+     * @var BankAccountIban
      */
     public $bankAccountIban = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {
             if (!is_object($object->bankAccountBban)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->bankAccountBban, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->bankAccountBban, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_BankAccountBban();
+            $value = new BankAccountBban();
             $this->bankAccountBban = $value->fromObject($object->bankAccountBban);
         }
         if (property_exists($object, 'bankAccountIban')) {
             if (!is_object($object->bankAccountIban)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->bankAccountIban, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->bankAccountIban, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_BankAccountIban();
+            $value = new BankAccountIban();
             $this->bankAccountIban = $value->fromObject($object->bankAccountIban);
         }
         return $this;

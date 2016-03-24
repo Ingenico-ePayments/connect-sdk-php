@@ -1,8 +1,14 @@
 <?php
+namespace GCS\services;
+
+use GCS\DataObject;
+
 /**
- * class TestConnection
+ * Class TestConnection
+ *
+ * @package GCS\services
  */
-class GCS_services_TestConnection extends GCS_DataObject
+class TestConnection extends DataObject
 {
     /**
      * @var string
@@ -11,8 +17,10 @@ class GCS_services_TestConnection extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

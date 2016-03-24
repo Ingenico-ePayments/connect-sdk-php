@@ -1,5 +1,14 @@
 <?php
-class GCS_services_definitions_BankData extends GCS_DataObject
+namespace GCS\services\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class BankData
+ *
+ * @package GCS\services\definitions
+ */
+class BankData extends DataObject
 {
     /**
      * @var string
@@ -23,8 +32,10 @@ class GCS_services_definitions_BankData extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

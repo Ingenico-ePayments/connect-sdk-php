@@ -1,8 +1,14 @@
 <?php
+namespace GCS\services;
+
+use GCS\DataObject;
+
 /**
- * class ConvertAmount
+ * Class ConvertAmount
+ *
+ * @package GCS\services
  */
-class GCS_services_ConvertAmount extends GCS_DataObject
+class ConvertAmount extends DataObject
 {
     /**
      * @var int
@@ -11,8 +17,10 @@ class GCS_services_ConvertAmount extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
