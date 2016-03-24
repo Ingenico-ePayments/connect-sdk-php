@@ -1,13 +1,19 @@
 <?php
+namespace GCS\token;
+
 /**
- * class ApproveTokenRequest
+ * Class ApproveTokenRequest
+ *
+ * @package GCS\token
  */
-class GCS_token_ApproveTokenRequest extends GCS_token_definitions_MandateApproval
+class ApproveTokenRequest extends definitions\MandateApproval
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,5 +1,14 @@
 <?php
-class GCS_token_definitions_Debtor extends GCS_DataObject
+namespace GCS\token\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class Debtor
+ *
+ * @package GCS\token\definitions
+ */
+class Debtor extends DataObject
 {
     /**
      * @var string
@@ -58,8 +67,10 @@ class GCS_token_definitions_Debtor extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,5 +1,14 @@
 <?php
-class GCS_token_definitions_MandateApproval extends GCS_DataObject
+namespace GCS\token\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class MandateApproval
+ *
+ * @package GCS\token\definitions
+ */
+class MandateApproval extends DataObject
 {
     /**
      * @var string
@@ -18,8 +27,10 @@ class GCS_token_definitions_MandateApproval extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

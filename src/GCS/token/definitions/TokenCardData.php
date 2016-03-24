@@ -1,8 +1,18 @@
 <?php
-class GCS_token_definitions_TokenCardData extends GCS_DataObject
+namespace GCS\token\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\CardWithoutCvv;
+
+/**
+ * Class TokenCardData
+ *
+ * @package GCS\token\definitions
+ */
+class TokenCardData extends DataObject
 {
     /**
-     * @var GCS_fei_definitions_CardWithoutCvv
+     * @var CardWithoutCvv
      */
     public $cardWithoutCvv = null;
 
@@ -18,17 +28,21 @@ class GCS_token_definitions_TokenCardData extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardWithoutCvv')) {
             if (!is_object($object->cardWithoutCvv)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->cardWithoutCvv, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->cardWithoutCvv, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_CardWithoutCvv();
+            $value = new CardWithoutCvv();
             $this->cardWithoutCvv = $value->fromObject($object->cardWithoutCvv);
         }
         if (property_exists($object, 'firstTransactionDate')) {

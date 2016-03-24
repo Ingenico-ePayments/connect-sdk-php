@@ -1,36 +1,49 @@
 <?php
-class GCS_token_definitions_TokenNonSepaDirectDebit extends GCS_token_definitions_AbstractToken
+namespace GCS\token\definitions;
+
+/**
+ * Class TokenNonSepaDirectDebit
+ *
+ * @package GCS\token\definitions
+ */
+class TokenNonSepaDirectDebit extends AbstractToken
 {
     /**
-     * @var GCS_token_definitions_CustomerToken
+     * @var CustomerToken
      */
     public $customer = null;
 
     /**
-     * @var GCS_token_definitions_MandateNonSepaDirectDebit
+     * @var MandateNonSepaDirectDebit
      */
     public $mandate = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'customer')) {
             if (!is_object($object->customer)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->customer, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->customer, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_CustomerToken();
+            $value = new CustomerToken();
             $this->customer = $value->fromObject($object->customer);
         }
         if (property_exists($object, 'mandate')) {
             if (!is_object($object->mandate)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->mandate, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->mandate, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_MandateNonSepaDirectDebit();
+            $value = new MandateNonSepaDirectDebit();
             $this->mandate = $value->fromObject($object->mandate);
         }
         return $this;

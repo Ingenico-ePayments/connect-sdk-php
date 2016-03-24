@@ -1,5 +1,15 @@
 <?php
-class GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData extends GCS_DataObject
+namespace GCS\token\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\BankAccountBban;
+
+/**
+ * Class TokenNonSepaDirectDebitPaymentProduct705SpecificData
+ *
+ * @package GCS\token\definitions
+ */
+class TokenNonSepaDirectDebitPaymentProduct705SpecificData extends DataObject
 {
     /**
      * @var string
@@ -7,14 +17,14 @@ class GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData
     public $authorisationId = null;
 
     /**
-     * @var GCS_fei_definitions_BankAccountBban
+     * @var BankAccountBban
      */
     public $bankAccountBban = null;
 
     /**
      * @param object $object
      * @return $this
-     * @throws UnexpectedValueException
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -24,9 +34,11 @@ class GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData
         }
         if (property_exists($object, 'bankAccountBban')) {
             if (!is_object($object->bankAccountBban)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->bankAccountBban, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->bankAccountBban, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_BankAccountBban();
+            $value = new BankAccountBban();
             $this->bankAccountBban = $value->fromObject($object->bankAccountBban);
         }
         return $this;

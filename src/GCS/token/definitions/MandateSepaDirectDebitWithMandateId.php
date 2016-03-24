@@ -1,5 +1,12 @@
 <?php
-class GCS_token_definitions_MandateSepaDirectDebitWithMandateId extends GCS_token_definitions_MandateSepaDirectDebitWithoutCreditor
+namespace GCS\token\definitions;
+
+/**
+ * Class MandateSepaDirectDebitWithMandateId
+ *
+ * @package GCS\token\definitions
+ */
+class MandateSepaDirectDebitWithMandateId extends MandateSepaDirectDebitWithoutCreditor
 {
     /**
      * @var string
@@ -8,8 +15,10 @@ class GCS_token_definitions_MandateSepaDirectDebitWithMandateId extends GCS_toke
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

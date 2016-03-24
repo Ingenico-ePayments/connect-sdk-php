@@ -1,8 +1,14 @@
 <?php
+namespace GCS\token;
+
+use GCS\DataObject;
+
 /**
- * class CreateTokenResponse
+ * Class CreateTokenResponse
+ *
+ * @package GCS\token
  */
-class GCS_token_CreateTokenResponse extends GCS_DataObject
+class CreateTokenResponse extends DataObject
 {
     /**
      * @var bool
@@ -16,8 +22,10 @@ class GCS_token_CreateTokenResponse extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

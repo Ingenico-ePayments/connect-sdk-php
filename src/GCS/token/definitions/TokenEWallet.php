@@ -1,36 +1,49 @@
 <?php
-class GCS_token_definitions_TokenEWallet extends GCS_token_definitions_AbstractToken
+namespace GCS\token\definitions;
+
+/**
+ * Class TokenEWallet
+ *
+ * @package GCS\token\definitions
+ */
+class TokenEWallet extends AbstractToken
 {
     /**
-     * @var GCS_token_definitions_CustomerToken
+     * @var CustomerToken
      */
     public $customer = null;
 
     /**
-     * @var GCS_token_definitions_TokenEWalletData
+     * @var TokenEWalletData
      */
     public $data = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'customer')) {
             if (!is_object($object->customer)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->customer, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->customer, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_CustomerToken();
+            $value = new CustomerToken();
             $this->customer = $value->fromObject($object->customer);
         }
         if (property_exists($object, 'data')) {
             if (!is_object($object->data)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->data, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->data, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_TokenEWalletData();
+            $value = new TokenEWalletData();
             $this->data = $value->fromObject($object->data);
         }
         return $this;

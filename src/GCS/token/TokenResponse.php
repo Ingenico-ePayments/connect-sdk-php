@@ -1,21 +1,27 @@
 <?php
+namespace GCS\token;
+
+use GCS\DataObject;
+
 /**
- * class TokenResponse
+ * Class TokenResponse
+ *
+ * @package GCS\token
  */
-class GCS_token_TokenResponse extends GCS_DataObject
+class TokenResponse extends DataObject
 {
     /**
-     * @var GCS_token_definitions_TokenCard
+     * @var definitions\TokenCard
      */
     public $card = null;
 
     /**
-     * @var GCS_token_definitions_TokenEWallet
+     * @var definitions\TokenEWallet
      */
     public $eWallet = null;
 
     /**
-     * @var GCS_token_definitions_TokenNonSepaDirectDebit
+     * @var definitions\TokenNonSepaDirectDebit
      */
     public $nonSepaDirectDebit = null;
 
@@ -25,37 +31,45 @@ class GCS_token_TokenResponse extends GCS_DataObject
     public $paymentProductId = null;
 
     /**
-     * @var GCS_token_definitions_TokenSepaDirectDebit
+     * @var definitions\TokenSepaDirectDebit
      */
     public $sepaDirectDebit = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {
             if (!is_object($object->card)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->card, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->card, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_TokenCard();
+            $value = new definitions\TokenCard();
             $this->card = $value->fromObject($object->card);
         }
         if (property_exists($object, 'eWallet')) {
             if (!is_object($object->eWallet)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->eWallet, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->eWallet, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_TokenEWallet();
+            $value = new definitions\TokenEWallet();
             $this->eWallet = $value->fromObject($object->eWallet);
         }
         if (property_exists($object, 'nonSepaDirectDebit')) {
             if (!is_object($object->nonSepaDirectDebit)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->nonSepaDirectDebit, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->nonSepaDirectDebit, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_TokenNonSepaDirectDebit();
+            $value = new definitions\TokenNonSepaDirectDebit();
             $this->nonSepaDirectDebit = $value->fromObject($object->nonSepaDirectDebit);
         }
         if (property_exists($object, 'paymentProductId')) {
@@ -63,9 +77,11 @@ class GCS_token_TokenResponse extends GCS_DataObject
         }
         if (property_exists($object, 'sepaDirectDebit')) {
             if (!is_object($object->sepaDirectDebit)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->sepaDirectDebit, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->sepaDirectDebit, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_TokenSepaDirectDebit();
+            $value = new definitions\TokenSepaDirectDebit();
             $this->sepaDirectDebit = $value->fromObject($object->sepaDirectDebit);
         }
         return $this;

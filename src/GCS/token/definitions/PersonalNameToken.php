@@ -1,10 +1,21 @@
 <?php
-class GCS_token_definitions_PersonalNameToken extends GCS_fei_definitions_PersonalNameBase
+namespace GCS\token\definitions;
+
+use GCS\fei\definitions\PersonalNameBase;
+
+/**
+ * Class PersonalNameToken
+ *
+ * @package GCS\token\definitions
+ */
+class PersonalNameToken extends PersonalNameBase
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

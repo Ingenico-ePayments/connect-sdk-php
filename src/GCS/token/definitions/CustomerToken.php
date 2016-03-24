@@ -1,36 +1,52 @@
 <?php
-class GCS_token_definitions_CustomerToken extends GCS_fei_definitions_CustomerBase
+namespace GCS\token\definitions;
+
+use GCS\fei\definitions\Address;
+use GCS\fei\definitions\CustomerBase;
+
+/**
+ * Class CustomerToken
+ *
+ * @package GCS\token\definitions
+ */
+class CustomerToken extends CustomerBase
 {
     /**
-     * @var GCS_fei_definitions_Address
+     * @var Address
      */
     public $billingAddress = null;
 
     /**
-     * @var GCS_token_definitions_PersonalInformationToken
+     * @var PersonalInformationToken
      */
     public $personalInformation = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'billingAddress')) {
             if (!is_object($object->billingAddress)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->billingAddress, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->billingAddress, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_Address();
+            $value = new Address();
             $this->billingAddress = $value->fromObject($object->billingAddress);
         }
         if (property_exists($object, 'personalInformation')) {
             if (!is_object($object->personalInformation)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->personalInformation, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->personalInformation, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_token_definitions_PersonalInformationToken();
+            $value = new PersonalInformationToken();
             $this->personalInformation = $value->fromObject($object->personalInformation);
         }
         return $this;

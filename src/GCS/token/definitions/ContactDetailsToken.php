@@ -1,10 +1,21 @@
 <?php
-class GCS_token_definitions_ContactDetailsToken extends GCS_fei_definitions_ContactDetailsBase
+namespace GCS\token\definitions;
+
+use GCS\fei\definitions\ContactDetailsBase;
+
+/**
+ * Class ContactDetailsToken
+ *
+ * @package GCS\token\definitions
+ */
+class ContactDetailsToken extends ContactDetailsBase
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
