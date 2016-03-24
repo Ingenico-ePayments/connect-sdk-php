@@ -1,23 +1,32 @@
 <?php
+namespace GCS\Merchant\Products;
+
+use GCS\product\Directory;
+use GCS\Resource;
+use GCS\ResponseClassMap;
 
 /**
+ * Class PaymentProduct
+ *
+ * @package GCS\Merchant\Products
  */
-class GCS_Merchant_Products_PaymentProduct extends GCS_Resource
+class PaymentProduct extends Resource
 {
     /**
      * Resource /{merchantId}/products/{paymentProductId}/directory
      * Retrieve payment product directory
      *
-     * @param GCS_Merchant_Products_PaymentProduct_DirectoryParams $query
-     * @return GCS_product_Directory
-     * 
-     * @throws GCS_errors_ErrorResponse
+     * @param PaymentProduct\DirectoryParams $query
+     *
+     * @return Directory
+     *
+     * @throws \GCS\errors\ErrorResponse
      */
     public function directory($query)
     {
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_product_Directory');
-        $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\product\Directory');
+        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products/{paymentProductId}/directory'),

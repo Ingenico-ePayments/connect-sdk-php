@@ -1,19 +1,27 @@
 <?php
+namespace GCS\Merchant\Services;
 
-class GCS_Merchant_Services_ConvertAmountParams extends GCS_RequestObject
+use GCS\RequestObject;
+
+/**
+ * Class ConvertAmountParams
+ *
+ * @package GCS\Merchant\Services
+ */
+class ConvertAmountParams extends RequestObject
 {
     /**
-     * @var string source
+     * @var string
      */
     public $source;
 
     /**
-     * @var int amount
+     * @var int
      */
     public $amount;
 
     /**
-     * @var string target
+     * @var string
      */
     public $target;
 

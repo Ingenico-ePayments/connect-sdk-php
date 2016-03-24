@@ -1,25 +1,39 @@
 <?php
+namespace GCS\Merchant;
+
+use GCS\errors\ErrorResponse;
+use GCS\payout\ApprovePayoutRequest;
+use GCS\payout\CreatePayoutRequest;
+use GCS\payout\PayoutErrorResponse;
+use GCS\payout\PayoutResponse;
+use GCS\Resource;
+use GCS\ResponseClassMap;
 
 /**
+ * Class Payouts
+ *
  * Payouts client.
  * Create, cancel and approve payouts
+ *
+ * @package GCS\Merchant
  */
-class GCS_Merchant_Payouts extends GCS_Resource
+class Payouts extends Resource
 {
     /**
      * Resource /{merchantId}/payouts/{payoutId}/cancel
      * Cancel payout
      *
      * @param string $payoutId
+     *
      * @return null
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @throws ErrorResponse
      */
     public function cancel($payoutId)
     {
         $this->context['payoutId'] = $payoutId;
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(402, 'GCS_errors_ErrorResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(402, '\GCS\errors\ErrorResponse');
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -32,17 +46,18 @@ class GCS_Merchant_Payouts extends GCS_Resource
      * Resource /{merchantId}/payouts
      * Create payout
      *
-     * @param GCS_payout_CreatePayoutRequest $body
-     * @return GCS_payout_PayoutResponse
-     * 
-     * @throws GCS_payout_PayoutErrorResponse
-     * @throws GCS_errors_ErrorResponse
+     * @param CreatePayoutRequest $body
+     *
+     * @return PayoutResponse
+     *
+     * @throws PayoutErrorResponse
+     * @throws ErrorResponse
      */
     public function create($body)
     {
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(400, 'GCS_payout_PayoutErrorResponse');
-        $responseClassMap->addResponseClassName(201, 'GCS_payout_PayoutResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(400, '\GCS\payout\PayoutErrorResponse');
+        $responseClassMap->addResponseClassName(201, '\GCS\payout\PayoutResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts'),
@@ -56,17 +71,18 @@ class GCS_Merchant_Payouts extends GCS_Resource
      * Approve payout
      *
      * @param string $payoutId
-     * @param GCS_payout_ApprovePayoutRequest $body
-     * @return GCS_payout_PayoutResponse
-     * 
-     * @throws GCS_errors_ErrorResponse
+     * @param ApprovePayoutRequest $body
+     *
+     * @return PayoutResponse
+     *
+     * @throws ErrorResponse
      */
     public function approve($payoutId, $body)
     {
         $this->context['payoutId'] = $payoutId;
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_payout_PayoutResponse');
-        $responseClassMap->addResponseClassName(402, 'GCS_errors_ErrorResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\payout\PayoutResponse');
+        $responseClassMap->addResponseClassName(402, '\GCS\errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts/{payoutId}/approve'),
@@ -80,16 +96,17 @@ class GCS_Merchant_Payouts extends GCS_Resource
      * Undo approve payout
      *
      * @param string $payoutId
+     *
      * @return null
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @throws ErrorResponse
      */
     public function cancelapproval($payoutId)
     {
         $this->context['payoutId'] = $payoutId;
-        $responseClassMap = new GCS_ResponseClassMap();
+        $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
-        $responseClassMap->addResponseClassName(405, 'GCS_errors_ErrorResponse');
+        $responseClassMap->addResponseClassName(405, '\GCS\errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts/{payoutId}/cancelapproval'),
@@ -102,16 +119,17 @@ class GCS_Merchant_Payouts extends GCS_Resource
      * Retrieve payout
      *
      * @param string $payoutId
-     * @return GCS_payout_PayoutResponse
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @return PayoutResponse
+     *
+     * @throws ErrorResponse
      */
     public function get($payoutId)
     {
         $this->context['payoutId'] = $payoutId;
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_payout_PayoutResponse');
-        $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\payout\PayoutResponse');
+        $responseClassMap->addResponseClassName(404, '\GCS\errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payouts/{payoutId}'),
