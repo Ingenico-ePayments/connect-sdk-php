@@ -1,5 +1,12 @@
 <?php
-class GCS_fei_definitions_CardWithoutCvv extends GCS_fei_definitions_CardEssentials
+namespace GCS\fei\definitions;
+
+/**
+ * Class CardWithoutCvv
+ *
+ * @package GCS\fei\definitions
+ */
+class CardWithoutCvv extends CardEssentials
 {
     /**
      * @var string
@@ -13,8 +20,10 @@ class GCS_fei_definitions_CardWithoutCvv extends GCS_fei_definitions_CardEssenti
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

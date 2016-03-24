@@ -1,5 +1,14 @@
 <?php
-class GCS_fei_definitions_FraudResults extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class FraudResults
+ *
+ * @package GCS\fei\definitions
+ */
+class FraudResults extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_fei_definitions_FraudResults extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,5 +1,12 @@
 <?php
-class GCS_fei_definitions_BankAccountIban extends GCS_fei_definitions_BankAccount
+namespace GCS\fei\definitions;
+
+/**
+ * Class BankAccountIban
+ *
+ * @package GCS\fei\definitions
+ */
+class BankAccountIban extends BankAccount
 {
     /**
      * @var string
@@ -8,8 +15,10 @@ class GCS_fei_definitions_BankAccountIban extends GCS_fei_definitions_BankAccoun
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

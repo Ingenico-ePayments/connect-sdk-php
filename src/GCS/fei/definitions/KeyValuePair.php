@@ -1,5 +1,14 @@
 <?php
-class GCS_fei_definitions_KeyValuePair extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class KeyValuePair
+ *
+ * @package GCS\fei\definitions
+ */
+class KeyValuePair extends DataObject
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_fei_definitions_KeyValuePair extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

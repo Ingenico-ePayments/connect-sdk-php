@@ -1,8 +1,17 @@
 <?php
-class GCS_fei_definitions_ValidationBankAccountOutput extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class ValidationBankAccountOutput
+ *
+ * @package GCS\fei\definitions
+ */
+class ValidationBankAccountOutput extends DataObject
 {
     /**
-     * @var GCS_fei_definitions_ValidationBankAccountCheck[]
+     * @var ValidationBankAccountCheck[]
      */
     public $checks = null;
 
@@ -28,19 +37,23 @@ class GCS_fei_definitions_ValidationBankAccountOutput extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'checks')) {
             if (!is_array($object->checks) && !is_object($object->checks)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->checks, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->checks, true) . '\' is not an array or object'
+                );
             }
             $this->checks = [];
             foreach ($object->checks as $checksElementObject) {
-                $checksElement = new GCS_fei_definitions_ValidationBankAccountCheck();
+                $checksElement = new ValidationBankAccountCheck();
                 $this->checks[] = $checksElement->fromObject($checksElementObject);
             }
         }

@@ -1,8 +1,18 @@
 <?php
-class GCS_fei_definitions_OrderStatusOutput extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+use GCS\errors\definitions\APIError;
+
+/**
+ * Class OrderStatusOutput
+ *
+ * @package GCS\fei\definitions
+ */
+class OrderStatusOutput extends DataObject
 {
     /**
-     * @var GCS_errors_definitions_APIError[]
+     * @var APIError[]
      */
     public $errors = null;
 
@@ -23,19 +33,23 @@ class GCS_fei_definitions_OrderStatusOutput extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'errors')) {
             if (!is_array($object->errors) && !is_object($object->errors)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->errors, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->errors, true) . '\' is not an array or object'
+                );
             }
             $this->errors = [];
             foreach ($object->errors as $errorsElementObject) {
-                $errorsElement = new GCS_errors_definitions_APIError();
+                $errorsElement = new APIError();
                 $this->errors[] = $errorsElement->fromObject($errorsElementObject);
             }
         }

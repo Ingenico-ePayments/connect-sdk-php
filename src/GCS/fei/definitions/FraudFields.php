@@ -1,5 +1,14 @@
 <?php
-class GCS_fei_definitions_FraudFields extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class FraudFields
+ *
+ * @package GCS\fei\definitions
+ */
+class FraudFields extends DataObject
 {
     /**
      * @var string
@@ -63,8 +72,10 @@ class GCS_fei_definitions_FraudFields extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -101,7 +112,9 @@ class GCS_fei_definitions_FraudFields extends GCS_DataObject
         }
         if (property_exists($object, 'userData')) {
             if (!is_array($object->userData) && !is_object($object->userData)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->userData, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->userData, true) . '\' is not an array or object'
+                );
             }
             $this->userData = [];
             foreach ($object->userData as $userDataElementObject) {

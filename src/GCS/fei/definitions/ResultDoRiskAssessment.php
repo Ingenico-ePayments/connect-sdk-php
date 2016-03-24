@@ -1,5 +1,14 @@
 <?php
-class GCS_fei_definitions_ResultDoRiskAssessment extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class ResultDoRiskAssessment
+ *
+ * @package GCS\fei\definitions
+ */
+class ResultDoRiskAssessment extends DataObject
 {
     /**
      * @var string
@@ -12,19 +21,21 @@ class GCS_fei_definitions_ResultDoRiskAssessment extends GCS_DataObject
     public $result = null;
 
     /**
-     * @var GCS_fei_definitions_RetailDecisionsCCFraudCheckOutput
+     * @var RetailDecisionsCCFraudCheckOutput
      */
     public $retaildecisionsCCFraudCheckOutput = null;
 
     /**
-     * @var GCS_fei_definitions_ValidationBankAccountOutput
+     * @var ValidationBankAccountOutput
      */
     public $validationBankAccountOutput = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -37,16 +48,20 @@ class GCS_fei_definitions_ResultDoRiskAssessment extends GCS_DataObject
         }
         if (property_exists($object, 'retaildecisionsCCFraudCheckOutput')) {
             if (!is_object($object->retaildecisionsCCFraudCheckOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->retaildecisionsCCFraudCheckOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->retaildecisionsCCFraudCheckOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_RetailDecisionsCCFraudCheckOutput();
+            $value = new RetailDecisionsCCFraudCheckOutput();
             $this->retaildecisionsCCFraudCheckOutput = $value->fromObject($object->retaildecisionsCCFraudCheckOutput);
         }
         if (property_exists($object, 'validationBankAccountOutput')) {
             if (!is_object($object->validationBankAccountOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->validationBankAccountOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->validationBankAccountOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_ValidationBankAccountOutput();
+            $value = new ValidationBankAccountOutput();
             $this->validationBankAccountOutput = $value->fromObject($object->validationBankAccountOutput);
         }
         return $this;

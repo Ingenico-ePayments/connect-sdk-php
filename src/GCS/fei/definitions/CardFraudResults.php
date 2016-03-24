@@ -1,5 +1,12 @@
 <?php
-class GCS_fei_definitions_CardFraudResults extends GCS_fei_definitions_FraudResults
+namespace GCS\fei\definitions;
+
+/**
+ * Class CardFraudResults
+ *
+ * @package GCS\fei\definitions
+ */
+class CardFraudResults extends FraudResults
 {
     /**
      * @var string
@@ -12,14 +19,16 @@ class GCS_fei_definitions_CardFraudResults extends GCS_fei_definitions_FraudResu
     public $cvvResult = null;
 
     /**
-     * @var GCS_fei_definitions_FraudResultsRetailDecisions
+     * @var FraudResultsRetailDecisions
      */
     public $retailDecisions = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -32,9 +41,11 @@ class GCS_fei_definitions_CardFraudResults extends GCS_fei_definitions_FraudResu
         }
         if (property_exists($object, 'retailDecisions')) {
             if (!is_object($object->retailDecisions)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->retailDecisions, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->retailDecisions, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_FraudResultsRetailDecisions();
+            $value = new FraudResultsRetailDecisions();
             $this->retailDecisions = $value->fromObject($object->retailDecisions);
         }
         return $this;

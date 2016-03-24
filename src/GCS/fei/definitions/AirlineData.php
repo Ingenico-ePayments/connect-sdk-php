@@ -1,5 +1,14 @@
 <?php
-class GCS_fei_definitions_AirlineData extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class AirlineData
+ *
+ * @package GCS\fei\definitions
+ */
+class AirlineData extends DataObject
 {
     /**
      * @var string
@@ -17,7 +26,7 @@ class GCS_fei_definitions_AirlineData extends GCS_DataObject
     public $flightDate = null;
 
     /**
-     * @var GCS_fei_definitions_AirlineFlightLeg[]
+     * @var AirlineFlightLeg[]
      */
     public $flightLegs = null;
 
@@ -98,8 +107,10 @@ class GCS_fei_definitions_AirlineData extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -115,11 +126,13 @@ class GCS_fei_definitions_AirlineData extends GCS_DataObject
         }
         if (property_exists($object, 'flightLegs')) {
             if (!is_array($object->flightLegs) && !is_object($object->flightLegs)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->flightLegs, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->flightLegs, true) . '\' is not an array or object'
+                );
             }
             $this->flightLegs = [];
             foreach ($object->flightLegs as $flightLegsElementObject) {
-                $flightLegsElement = new GCS_fei_definitions_AirlineFlightLeg();
+                $flightLegsElement = new AirlineFlightLeg();
                 $this->flightLegs[] = $flightLegsElement->fromObject($flightLegsElementObject);
             }
         }

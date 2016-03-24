@@ -1,5 +1,14 @@
 <?php
-class GCS_fei_definitions_Address extends GCS_DataObject
+namespace GCS\fei\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class Address
+ *
+ * @package GCS\fei\definitions
+ */
+class Address extends DataObject
 {
     /**
      * @var string
@@ -43,8 +52,10 @@ class GCS_fei_definitions_Address extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
