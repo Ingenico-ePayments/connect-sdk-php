@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-class GCS_ResponseClassMap
+/**
+ * Class ResponseClassMap
+ *
+ * @package GCS
+ */
+class ResponseClassMap
 {
     /** @var string[]  */
     protected $responseClassNamesByHttpStatusCode = array();
@@ -8,6 +14,7 @@ class GCS_ResponseClassMap
     /**
      * @param int $httpStatusCode
      * @param string $responseClassName
+     *
      * @return $this
      */
     public function addResponseClassName($httpStatusCode, $responseClassName)
@@ -18,6 +25,7 @@ class GCS_ResponseClassMap
 
     /**
      * @param int $httpStatusCode
+     *
      * @return string
      */
     public function getResponseClassName($httpStatusCode)

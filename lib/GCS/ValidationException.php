@@ -1,5 +1,11 @@
 <?php
+namespace GCS;
 
-class GCS_ValidationException extends GCS_ReferenceException
+/**
+ * Class ValidationException
+ *
+ * @package GCS
+ */
+class ValidationException extends ReferenceException
 {
 }

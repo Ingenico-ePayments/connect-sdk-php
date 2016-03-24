@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-class GCS_CommunicatorConfiguration
+/**
+ * Class CommunicatorConfiguration
+ *
+ * @package GCS
+ */
+class CommunicatorConfiguration
 {
     /**
      * @var string
@@ -18,7 +24,7 @@ class GCS_CommunicatorConfiguration
     protected $baseUri;
 
     /**
-     * @var GCS_ProxyConfiguration|null
+     * @var ProxyConfiguration|null
      */
     protected $proxyConfiguration = null;
 
@@ -26,9 +32,9 @@ class GCS_CommunicatorConfiguration
      * @param string $apiKeyId
      * @param string $apiSecret
      * @param string $baseUri
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
+     * @param ProxyConfiguration|null $proxyConfiguration
      */
-    public function __construct($apiKeyId, $apiSecret, $baseUri, GCS_ProxyConfiguration $proxyConfiguration = null)
+    public function __construct($apiKeyId, $apiSecret, $baseUri, ProxyConfiguration $proxyConfiguration = null)
     {
         $this->apiKeyId = $apiKeyId;
         $this->apiSecret = $apiSecret;
@@ -85,7 +91,7 @@ class GCS_CommunicatorConfiguration
     }
 
     /**
-     * @return GCS_ProxyConfiguration|null
+     * @return ProxyConfiguration|null
      */
     public function getProxyConfiguration()
     {
@@ -93,9 +99,9 @@ class GCS_CommunicatorConfiguration
     }
 
     /**
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
+     * @param ProxyConfiguration|null $proxyConfiguration
      */
-    public function setProxyConfiguration(GCS_ProxyConfiguration $proxyConfiguration = null)
+    public function setProxyConfiguration(ProxyConfiguration $proxyConfiguration = null)
     {
         $this->proxyConfiguration = $proxyConfiguration;
     }

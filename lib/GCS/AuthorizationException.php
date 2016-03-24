@@ -1,5 +1,11 @@
 <?php
+namespace GCS;
 
-class GCS_AuthorizationException extends GCS_ReferenceException
+/**
+ * Class AuthorizationException
+ *
+ * @package GCS
+ */
+class AuthorizationException extends ReferenceException
 {
 }

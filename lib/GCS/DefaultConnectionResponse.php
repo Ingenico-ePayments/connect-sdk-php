@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
+/**
+ * Class DefaultConnectionResponse
+ *
+ * @package GCS
+ */
+class DefaultConnectionResponse implements ConnectionResponse
 {
     protected $contentType = '';
 
@@ -11,7 +17,6 @@ class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
     /**
      * @param string $content
      * @param string[] $contentInfo
-     *
      */
     public function __construct($content, $contentInfo)
     {
@@ -47,5 +52,4 @@ class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
     {
         return $this->httpStatusCode;
     }
-
 }

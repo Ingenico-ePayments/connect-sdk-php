@@ -1,49 +1,57 @@
 <?php
+namespace GCS;
 
-class GCS_Communicator
+/**
+ * Class Communicator
+ *
+ * @package GCS
+ */
+class Communicator
 {
 
     const VERSION_PREFIX = '/v1';
 
     /**
-     * @var GCS_CommunicatorConfiguration
+     * @var CommunicatorConfiguration
      */
     protected $communicatorConfiguration;
 
-    /** @var GCS_ResponseFactory|null */
+    /** @var ResponseFactory|null */
     protected $responseFactory = null;
 
     /**
-     * @var GCS_Connection
+     * @var Connection
      */
     protected $connection;
 
     /**
-     * @param GCS_Connection $connection
-     * @param GCS_CommunicatorConfiguration $communicatorConfiguration
+     * @param Connection $connection
+     * @param CommunicatorConfiguration $communicatorConfiguration
      */
     public function __construct(
-        GCS_Connection $connection,
-        GCS_CommunicatorConfiguration $communicatorConfiguration
+        Connection $connection,
+        CommunicatorConfiguration $communicatorConfiguration
     ) {
         $this->connection = $connection;
         $this->communicatorConfiguration = $communicatorConfiguration;
     }
 
     /**
-     * @param GCS_ResponseClassMap $responseClassMap
+     * @param ResponseClassMap $responseClassMap
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param GCS_RequestObject|null $requestParameters
-     * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
+     * @param RequestObject|null $requestParameters
+     *
+     * @return DataObject
+     *
+     * @throws InvalidResponseException
+     * @throws ResponseException
      */
     public function get(
-        GCS_ResponseClassMap $responseClassMap,
+        ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
-        GCS_RequestObject $requestParameters = null
+        RequestObject $requestParameters = null
     ) {
         $response = $this->getConnection()->get(
             $this->getRequestUri($relativeUriPath, $requestParameters),
@@ -54,19 +62,21 @@ class GCS_Communicator
     }
 
     /**
-     * @param GCS_ResponseClassMap $responseClassMap
+     * @param ResponseClassMap $responseClassMap
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param GCS_RequestObject $requestParameters
-     * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
+     * @param RequestObject $requestParameters
+     *
+     * @return DataObject
+     *
+     * @throws InvalidResponseException
+     * @throws ResponseException
      */
     public function delete(
-        GCS_ResponseClassMap $responseClassMap,
+        ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
-        GCS_RequestObject $requestParameters = null
+        RequestObject $requestParameters = null
     ) {
         $response = $this->getConnection()->delete(
             $this->getRequestUri($relativeUriPath, $requestParameters),
@@ -77,21 +87,23 @@ class GCS_Communicator
     }
 
     /**
-     * @param GCS_ResponseClassMap $responseClassMap
+     * @param ResponseClassMap $responseClassMap
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param GCS_DataObject|null $body
-     * @param GCS_RequestObject|null $requestParameters
-     * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
+     * @param DataObject|null $body
+     * @param RequestObject|null $requestParameters
+     *
+     * @return DataObject
+     *
+     * @throws InvalidResponseException
+     * @throws ResponseException
      */
     public function post(
-        GCS_ResponseClassMap $responseClassMap,
+        ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
-        GCS_DataObject $body = null,
-        GCS_RequestObject $requestParameters = null
+        DataObject $body = null,
+        RequestObject $requestParameters = null
     ) {
         $response = $this->getConnection()->post(
             $this->getRequestUri($relativeUriPath, $requestParameters),
@@ -103,21 +115,23 @@ class GCS_Communicator
     }
 
     /**
-     * @param GCS_ResponseClassMap $responseClassMap
+     * @param ResponseClassMap $responseClassMap
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param GCS_DataObject|null $body
-     * @param GCS_RequestObject|null $requestParameters
-     * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
+     * @param DataObject|null $body
+     * @param RequestObject|null $requestParameters
+     *
+     * @return DataObject
+     *
+     * @throws InvalidResponseException
+     * @throws ResponseException
      */
     public function put(
-        GCS_ResponseClassMap $responseClassMap,
+        ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
-        GCS_DataObject $body = null,
-        GCS_RequestObject $requestParameters = null
+        DataObject $body = null,
+        RequestObject $requestParameters = null
     ) {
         $response = $this->getConnection()->put(
             $this->getRequestUri($relativeUriPath, $requestParameters),
@@ -129,18 +143,18 @@ class GCS_Communicator
     }
 
     /**
-     * @return GCS_ResponseFactory
+     * @return ResponseFactory
      */
     protected function getResponseFactory()
     {
         if (is_null($this->responseFactory)) {
-            $this->responseFactory = new GCS_ResponseFactory();
+            $this->responseFactory = new ResponseFactory();
         }
         return $this->responseFactory;
     }
 
     /**
-     * @return GCS_Connection
+     * @return Connection
      */
     public function getConnection()
     {
@@ -148,15 +162,15 @@ class GCS_Communicator
     }
 
     /**
-     * @param GCS_Connection $connection
+     * @param Connection $connection
      */
-    public function setConnection(GCS_Connection $connection)
+    public function setConnection(Connection $connection)
     {
         $this->connection = $connection;
     }
 
     /**
-     * @return GCS_CommunicatorConfiguration
+     * @return CommunicatorConfiguration
      */
     protected function getCommunicatorConfiguration()
     {
@@ -164,10 +178,11 @@ class GCS_Communicator
     }
 
     /**
-     * @param GCS_CommunicatorConfiguration
-     * @return GCS_Communicator
+     * @param CommunicatorConfiguration
+     *
+     * @return Communicator
      */
-    public function setCommunicatorConfiguration(GCS_CommunicatorConfiguration $communicatorConfiguration)
+    public function setCommunicatorConfiguration(CommunicatorConfiguration $communicatorConfiguration)
     {
         $this->communicatorConfiguration = $communicatorConfiguration;
         return $this;
@@ -175,11 +190,13 @@ class GCS_Communicator
 
     /**
      * @param $relativeUriPath
-     * @param GCS_RequestObject|null $requestParameters
+     * @param RequestObject|null $requestParameters
+     *
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
-    protected function getRequestUri($relativeUriPath, GCS_RequestObject $requestParameters = null)
+    protected function getRequestUri($relativeUriPath, RequestObject $requestParameters = null)
     {
         return
             $this->communicatorConfiguration->getBaseUri() .
@@ -189,17 +206,17 @@ class GCS_Communicator
     /**
      * @param string $httpMethod
      * @param string $relativeUriPath
-     * @param GCS_RequestObject|null $requestParameters
+     * @param RequestObject|null $requestParameters
      * @param string $clientMetaInfo
      * @return string[]
      */
     protected function getRequestHeaders(
         $httpMethod,
         $relativeUriPath,
-        GCS_RequestObject $requestParameters = null,
+        RequestObject $requestParameters = null,
         $clientMetaInfo = ''
     ) {
-        $requestHeaderGenerator = new GCS_RequestHeaderGenerator(
+        $requestHeaderGenerator = new RequestHeaderGenerator(
             $this->communicatorConfiguration,
             $httpMethod,
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters),
@@ -210,20 +227,22 @@ class GCS_Communicator
 
     /**
      * @param $relativeUriPath
-     * @param GCS_RequestObject|null $requestParameters
+     * @param RequestObject|null $requestParameters
      * @return string
      */
     protected function getRelativeUriPathWithRequestParameters(
         $relativeUriPath,
-        GCS_RequestObject $requestParameters = null
+        RequestObject $requestParameters = null
     ) {
         if (is_null($requestParameters)) {
             return self::VERSION_PREFIX . $relativeUriPath;
         }
         $requestParameterObjectVars = get_object_vars($requestParameters);
+
         if (count($requestParameterObjectVars) == 0) {
             return self::VERSION_PREFIX . $relativeUriPath;
         }
+
         return self::VERSION_PREFIX . $relativeUriPath . '?' . http_build_query($requestParameterObjectVars);
     }
 }

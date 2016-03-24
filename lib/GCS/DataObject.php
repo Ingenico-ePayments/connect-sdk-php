@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-abstract class GCS_DataObject
+/**
+ * Class DataObject
+ *
+ * @package GCS
+ */
+abstract class DataObject
 {
     /**
      * @return string
@@ -13,13 +19,15 @@ abstract class GCS_DataObject
     /**
      * @param string $value
      * @return $this
-     * @throws UnexpectedValueException
+     * @throws \UnexpectedValueException
      */
     public function fromJson($value)
     {
         $object = json_decode($value);
         if (json_last_error()) {
-            throw new UnexpectedValueException('Invalid JSON value: '. $this->getLastJsonDecodeErrorString());
+            throw new \UnexpectedValueException(
+                'Invalid JSON value: '. $this->getLastJsonDecodeErrorString()
+            );
         }
         return $this->fromObject($object);
     }
@@ -59,12 +67,12 @@ abstract class GCS_DataObject
      */
     public function toObject()
     {
-        $object = new stdClass();
+        $object = new \stdClass();
         foreach ($this as $propertyName => $propertyValue) {
             if (is_null($propertyValue)) {
                 continue;
             }
-            if ($propertyValue instanceof GCS_DataObject) {
+            if ($propertyValue instanceof DataObject) {
                 $object->$propertyName = $propertyValue->toObject();
             } else {
                 $object->$propertyName = $propertyValue;
@@ -76,12 +84,13 @@ abstract class GCS_DataObject
     /**
      * @param object $object
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         if (!is_object($object)) {
-            throw new UnexpectedValueException('Expected object, got ' . gettype($object));
+            throw new \UnexpectedValueException('Expected object, got ' . gettype($object));
         }
         return $this;
     }

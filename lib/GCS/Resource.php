@@ -1,9 +1,15 @@
 <?php
+namespace GCS;
 
-class GCS_Resource
+/**
+ * Class Resource
+ *
+ * @package GCS
+ */
+class Resource
 {
     /**
-     * @var GCS_Resource
+     * @var Resource
      */
     private $parent;
 
@@ -15,10 +21,10 @@ class GCS_Resource
     /**
      * Creates a new proxy object for a RAML resource.
      *
-     * @param GCS_Resource $parent The parent resource.
+     * @param Resource $parent The parent resource.
      * @param array $context An associative array that maps URI parameters to values.
      */
-    public function __construct(GCS_Resource $parent = null, $context = array())
+    public function __construct(Resource $parent = null, $context = array())
     {
         $this->parent = $parent;
         $this->context = $context;
@@ -27,7 +33,7 @@ class GCS_Resource
     /**
      * Returns the connection associated with this resource.
      *
-     * @return GCS_Communicator
+     * @return Communicator
      */
     protected function getCommunicator()
     {
@@ -50,6 +56,7 @@ class GCS_Resource
      * $this->context.
      *
      * @param string $template The URL template to instantiate.
+     *
      * @return string The URL in which the URI parameters have been replaced.
      */
     public function instantiateUri($template)

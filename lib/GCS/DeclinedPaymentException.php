@@ -1,19 +1,25 @@
 <?php
+namespace GCS;
 
-class GCS_DeclinedPaymentException extends GCS_ResponseException
+/**
+ * Class DeclinedPaymentException
+ *
+ * @package GCS
+ */
+class DeclinedPaymentException extends ResponseException
 {
     /**
-     * @return GCS_payment_definitions_CreatePaymentResult
+     * @return payment\definitions\CreatePaymentResult
      */
     public function getPaymentResult()
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('paymentResult', $responseVariables)) {
-            return new GCS_payment_definitions_CreatePaymentResult();
+            return new payment\definitions\CreatePaymentResult();
         }
         $paymentResult = $responseVariables['paymentResult'];
-        if (!($paymentResult instanceof GCS_payment_definitions_CreatePaymentResult)) {
-            return new GCS_payment_definitions_CreatePaymentResult();
+        if (!($paymentResult instanceof payment\definitions\CreatePaymentResult)) {
+            return new payment\definitions\CreatePaymentResult();
         }
         return $paymentResult;
     }

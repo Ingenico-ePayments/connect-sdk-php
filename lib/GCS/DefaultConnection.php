@@ -1,9 +1,12 @@
 <?php
+namespace GCS;
 
 /**
- * Class GCS_Connection
+ * Class DefaultConnection
+ *
+ * @package GCS
  */
-class GCS_DefaultConnection implements GCS_Connection
+class DefaultConnection implements Connection
 {
     /** @var null|resource */
     protected $multiHandle = null;
@@ -22,10 +25,11 @@ class GCS_DefaultConnection implements GCS_Connection
     /**
      * @param string $requestUri
      * @param string[] $requestHeaders
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
-     * @return GCS_DefaultConnectionResponse
+     * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @return DefaultConnectionResponse
      */
-    public function get($requestUri, $requestHeaders, GCS_ProxyConfiguration $proxyConfiguration = null)
+    public function get($requestUri, $requestHeaders, ProxyConfiguration $proxyConfiguration = null)
     {
         return $this->executeRequest('GET', $requestUri, $requestHeaders, '', $proxyConfiguration);
     }
@@ -33,10 +37,11 @@ class GCS_DefaultConnection implements GCS_Connection
     /**
      * @param string $requestUri
      * @param string[] $requestHeaders
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
-     * @return GCS_DefaultConnectionResponse
+     * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @return DefaultConnectionResponse
      */
-    public function delete($requestUri, $requestHeaders, GCS_ProxyConfiguration $proxyConfiguration = null)
+    public function delete($requestUri, $requestHeaders, ProxyConfiguration $proxyConfiguration = null)
     {
         return $this->executeRequest('DELETE', $requestUri, $requestHeaders, '', $proxyConfiguration);
     }
@@ -45,10 +50,11 @@ class GCS_DefaultConnection implements GCS_Connection
      * @param string $requestUri
      * @param string[] $requestHeaders
      * @param string $body
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
-     * @return GCS_DefaultConnectionResponse
+     * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @return DefaultConnectionResponse
      */
-    public function post($requestUri, $requestHeaders, $body, GCS_ProxyConfiguration $proxyConfiguration = null)
+    public function post($requestUri, $requestHeaders, $body, ProxyConfiguration $proxyConfiguration = null)
     {
         return $this->executeRequest('POST', $requestUri, $requestHeaders, $body, $proxyConfiguration);
     }
@@ -57,10 +63,11 @@ class GCS_DefaultConnection implements GCS_Connection
      * @param string $requestUri
      * @param string[] $requestHeaders
      * @param string $body
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
-     * @return GCS_DefaultConnectionResponse
+     * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @return DefaultConnectionResponse
      */
-    public function put($requestUri, $requestHeaders, $body, GCS_ProxyConfiguration $proxyConfiguration = null)
+    public function put($requestUri, $requestHeaders, $body, ProxyConfiguration $proxyConfiguration = null)
     {
         return $this->executeRequest('PUT', $requestUri, $requestHeaders, $body, $proxyConfiguration);
     }
@@ -70,19 +77,23 @@ class GCS_DefaultConnection implements GCS_Connection
      * @param string $requestUri
      * @param string[] $requestHeaders
      * @param string $body
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
-     * @return GCS_DefaultConnectionResponse
-     * @throws ErrorException
+     * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @return DefaultConnectionResponse
+     *
+     * @throws \ErrorException
      */
     protected function executeRequest(
         $httpMethod,
         $requestUri,
         $requestHeaders,
         $body,
-        GCS_ProxyConfiguration $proxyConfiguration = null
+        ProxyConfiguration $proxyConfiguration = null
     ) {
         if (!in_array($httpMethod, array('GET', 'DELETE', 'POST', 'PUT'))) {
-            throw new UnexpectedValueException(sprintf('Http method \'%s\' is not supported', $httpMethod));
+            throw new \UnexpectedValueException(
+                sprintf('Http method \'%s\' is not supported', $httpMethod)
+            );
         }
         $curlHandle = $this->getCurlHandle();
         $this->setCurlOptions($curlHandle, $httpMethod, $requestUri, $requestHeaders, $body, $proxyConfiguration);
@@ -91,20 +102,23 @@ class GCS_DefaultConnection implements GCS_Connection
 
     /**
      * @return resource
-     * @throws ErrorException
+     *
+     * @throws \ErrorException
      */
     protected function getCurlHandle()
     {
         if (!$curlHandle = curl_init()) {
-            throw new ErrorException(sprintf('Cannot initialize cUrl curlHandle'));
+            throw new \ErrorException(sprintf('Cannot initialize cUrl curlHandle'));
         }
         return $curlHandle;
     }
 
     /**
      * @param resource $curlHandle
-     * @return GCS_DefaultConnectionResponse
-     * @throws Exception
+     *
+     * @return DefaultConnectionResponse
+     *
+     * @throws \Exception
      */
     private function executeCurlHandle($curlHandle)
     {
@@ -119,7 +133,7 @@ class GCS_DefaultConnection implements GCS_Connection
         $content = curl_multi_getcontent($curlHandle);
         $contentInfo = curl_getinfo($curlHandle);
         curl_multi_remove_handle($multiHandle, $curlHandle);
-        return new GCS_DefaultConnectionResponse($content, $contentInfo);
+        return new DefaultConnectionResponse($content, $contentInfo);
     }
 
     /**
@@ -128,7 +142,9 @@ class GCS_DefaultConnection implements GCS_Connection
      * @param string $requestUri
      * @param string[] $requestHeaders
      * @param string $body
-     * @param GCS_ProxyConfiguration|null $proxyConfiguration
+     * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @throws \UnexpectedValueException
      */
     protected function setCurlOptions(
         $curlHandle,
@@ -136,10 +152,10 @@ class GCS_DefaultConnection implements GCS_Connection
         $requestUri,
         $requestHeaders,
         $body,
-        GCS_ProxyConfiguration $proxyConfiguration = null
+        ProxyConfiguration $proxyConfiguration = null
     ) {
         if (!is_array($requestHeaders)) {
-            throw new UnexpectedValueException('Invalid request headers; expected array');
+            throw new \UnexpectedValueException('Invalid request headers; expected array');
         }
         curl_setopt($curlHandle, CURLOPT_HEADER, false);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
@@ -165,14 +181,15 @@ class GCS_DefaultConnection implements GCS_Connection
 
     /**
      * @return resource
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     private function getCurlMultiHandle()
     {
         if (is_null($this->multiHandle)) {
             $multiHandle = curl_multi_init();
             if ($multiHandle === false) {
-                throw new Exception('Failed to initialize cURL multi curlHandle');
+                throw new \Exception('Failed to initialize cURL multi curlHandle');
             };
             $this->multiHandle = $multiHandle;
         }

@@ -1,18 +1,24 @@
 <?php
+namespace GCS;
 
-class GCS_InvalidResponseException extends RuntimeException
+/**
+ * Class InvalidResponseException
+ *
+ * @package GCS
+ */
+class InvalidResponseException extends \RuntimeException
 {
 
     /**
-     * @var GCS_ConnectionResponse
+     * @var ConnectionResponse
      */
     public $response;
 
     /**
-     * @param GCS_ConnectionResponse $response
+     * @param ConnectionResponse $response
      * @param string $message
      */
-    public function __construct(GCS_ConnectionResponse $response, $message = null)
+    public function __construct(ConnectionResponse $response, $message = null)
     {
         if (is_null($message)) {
             $message = 'The server returned an invalid response.';
@@ -22,7 +28,7 @@ class GCS_InvalidResponseException extends RuntimeException
     }
 
     /**
-     * @return GCS_ConnectionResponse
+     * @return ConnectionResponse
      */
     public function getResponse()
     {

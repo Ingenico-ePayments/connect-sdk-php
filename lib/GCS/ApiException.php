@@ -1,5 +1,11 @@
 <?php
+namespace GCS;
 
-class GCS_ApiException extends GCS_ResponseException
+/**
+ * Class ApiException
+ *
+ * @package GCS
+ */
+class ApiException extends ResponseException
 {
 }
