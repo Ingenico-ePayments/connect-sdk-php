@@ -1,5 +1,14 @@
 <?php
-class GCS_errors_definitions_APIError extends GCS_DataObject
+namespace GCS\errors\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class APIError
+ *
+ * @package GCS\errors\definitions
+ */
+class APIError extends DataObject
 {
     /**
      * @var string
@@ -23,8 +32,10 @@ class GCS_errors_definitions_APIError extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,8 +1,14 @@
 <?php
+namespace GCS\errors;
+
+use GCS\DataObject;
+
 /**
- * class ErrorResponse
+ * Class ErrorResponse
+ *
+ * @package GCS\errors
  */
-class GCS_errors_ErrorResponse extends GCS_DataObject
+class ErrorResponse extends DataObject
 {
     /**
      * @var string
@@ -10,14 +16,16 @@ class GCS_errors_ErrorResponse extends GCS_DataObject
     public $errorId = null;
 
     /**
-     * @var GCS_errors_definitions_APIError[]
+     * @var definitions\APIError[]
      */
     public $errors = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -27,11 +35,13 @@ class GCS_errors_ErrorResponse extends GCS_DataObject
         }
         if (property_exists($object, 'errors')) {
             if (!is_array($object->errors) && !is_object($object->errors)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->errors, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->errors, true) . '\' is not an array or object'
+                );
             }
             $this->errors = [];
             foreach ($object->errors as $errorsElementObject) {
-                $errorsElement = new GCS_errors_definitions_APIError();
+                $errorsElement = new definitions\APIError();
                 $this->errors[] = $errorsElement->fromObject($errorsElementObject);
             }
         }
