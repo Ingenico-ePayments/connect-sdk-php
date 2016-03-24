@@ -1,5 +1,14 @@
 <?php
-class GCS_hostedcheckout_definitions_HostedCheckoutSpecificInput extends GCS_DataObject
+namespace GCS\hostedcheckout\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class HostedCheckoutSpecificInput
+ *
+ * @package GCS\hostedcheckout\definitions
+ */
+class HostedCheckoutSpecificInput extends DataObject
 {
     /**
      * @var bool
@@ -33,8 +42,10 @@ class GCS_hostedcheckout_definitions_HostedCheckoutSpecificInput extends GCS_Dat
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,5 +1,15 @@
 <?php
-class GCS_hostedcheckout_definitions_DisplayedData extends GCS_DataObject
+namespace GCS\hostedcheckout\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\KeyValuePair;
+
+/**
+ * Class DisplayedData
+ *
+ * @package GCS\hostedcheckout\definitions
+ */
+class DisplayedData extends DataObject
 {
     /**
      * @var string
@@ -12,14 +22,16 @@ class GCS_hostedcheckout_definitions_DisplayedData extends GCS_DataObject
     public $renderingData = null;
 
     /**
-     * @var GCS_fei_definitions_KeyValuePair[]
+     * @var KeyValuePair[]
      */
     public $showData = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -32,11 +44,13 @@ class GCS_hostedcheckout_definitions_DisplayedData extends GCS_DataObject
         }
         if (property_exists($object, 'showData')) {
             if (!is_array($object->showData) && !is_object($object->showData)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->showData, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->showData, true) . '\' is not an array or object'
+                );
             }
             $this->showData = [];
             foreach ($object->showData as $showDataElementObject) {
-                $showDataElement = new GCS_fei_definitions_KeyValuePair();
+                $showDataElement = new KeyValuePair();
                 $this->showData[] = $showDataElement->fromObject($showDataElementObject);
             }
         }

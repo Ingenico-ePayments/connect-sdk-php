@@ -1,8 +1,14 @@
 <?php
+namespace GCS\hostedcheckout;
+
+use GCS\DataObject;
+
 /**
- * class CreateHostedCheckoutResponse
+ * Class CreateHostedCheckoutResponse
+ *
+ * @package GCS\hostedcheckout
  */
-class GCS_hostedcheckout_CreateHostedCheckoutResponse extends GCS_DataObject
+class CreateHostedCheckoutResponse extends DataObject
 {
     /**
      * @var string
@@ -21,8 +27,10 @@ class GCS_hostedcheckout_CreateHostedCheckoutResponse extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
