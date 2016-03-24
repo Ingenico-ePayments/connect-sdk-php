@@ -1,5 +1,14 @@
 <?php
-class GCS_refund_definitions_BankAccountBbanRefund extends GCS_fei_definitions_BankAccountBban
+namespace GCS\refund\definitions;
+
+use GCS\fei\definitions\BankAccountBban;
+
+/**
+ * Class BankAccountBbanRefund
+ *
+ * @package GCS\refund\definitions
+ */
+class BankAccountBbanRefund extends BankAccountBban
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_refund_definitions_BankAccountBbanRefund extends GCS_fei_definitions_B
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

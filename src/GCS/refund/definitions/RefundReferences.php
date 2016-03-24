@@ -1,5 +1,14 @@
 <?php
-class GCS_refund_definitions_RefundReferences extends GCS_DataObject
+namespace GCS\refund\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class RefundReferences
+ *
+ * @package GCS\refund\definitions
+ */
+class RefundReferences extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_refund_definitions_RefundReferences extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,8 +1,14 @@
 <?php
+namespace GCS\refund;
+
+use GCS\DataObject;
+
 /**
- * class ApproveRefundRequest
+ * Class ApproveRefundRequest
+ *
+ * @package GCS\refund
  */
-class GCS_refund_ApproveRefundRequest extends GCS_DataObject
+class ApproveRefundRequest extends DataObject
 {
     /**
      * @var int
@@ -11,8 +17,10 @@ class GCS_refund_ApproveRefundRequest extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,13 +1,19 @@
 <?php
+namespace GCS\refund;
+
 /**
- * class RefundResponse
+ * Class RefundResponse
+ *
+ * @package GCS\refund
  */
-class GCS_refund_RefundResponse extends GCS_refund_definitions_RefundResult
+class RefundResponse extends definitions\RefundResult
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
