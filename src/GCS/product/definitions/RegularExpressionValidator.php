@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_RegularExpressionValidator extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class RegularExpressionValidator
+ *
+ * @package GCS\product\definitions
+ */
+class RegularExpressionValidator extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_product_definitions_RegularExpressionValidator extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

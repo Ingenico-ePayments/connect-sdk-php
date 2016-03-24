@@ -1,13 +1,19 @@
 <?php
+namespace GCS\product;
+
 /**
- * class PaymentProductResponse
+ * Class PaymentProductResponse
+ *
+ * @package GCS\product
  */
-class GCS_product_PaymentProductResponse extends GCS_product_definitions_PaymentProduct
+class PaymentProductResponse extends definitions\PaymentProduct
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

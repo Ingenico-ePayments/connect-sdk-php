@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_DirectoryEntry extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class DirectoryEntry
+ *
+ * @package GCS\product\definitions
+ */
+class DirectoryEntry extends DataObject
 {
     /**
      * @var string[]
@@ -23,15 +32,19 @@ class GCS_product_definitions_DirectoryEntry extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'countryNames')) {
             if (!is_array($object->countryNames) && !is_object($object->countryNames)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->countryNames, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->countryNames, true) . '\' is not an array or object'
+                );
             }
             $this->countryNames = [];
             foreach ($object->countryNames as $countryNamesElementObject) {

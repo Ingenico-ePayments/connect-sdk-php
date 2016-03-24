@@ -1,10 +1,21 @@
 <?php
-class GCS_product_definitions_EmptyValidator extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class EmptyValidator
+ *
+ * @package GCS\product\definitions
+ */
+class EmptyValidator extends DataObject
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

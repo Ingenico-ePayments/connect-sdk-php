@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_AccountOnFileAttribute extends GCS_fei_definitions_KeyValuePair
+namespace GCS\product\definitions;
+
+use GCS\fei\definitions\KeyValuePair;
+
+/**
+ * Class AccountOnFileAttribute
+ *
+ * @package GCS\product\definitions
+ */
+class AccountOnFileAttribute extends KeyValuePair
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_product_definitions_AccountOnFileAttribute extends GCS_fei_definitions
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

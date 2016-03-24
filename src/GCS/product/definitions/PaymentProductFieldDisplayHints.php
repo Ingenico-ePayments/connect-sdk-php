@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_PaymentProductFieldDisplayHints extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProductFieldDisplayHints
+ *
+ * @package GCS\product\definitions
+ */
+class PaymentProductFieldDisplayHints extends DataObject
 {
     /**
      * @var bool
@@ -12,7 +21,7 @@ class GCS_product_definitions_PaymentProductFieldDisplayHints extends GCS_DataOb
     public $displayOrder = null;
 
     /**
-     * @var GCS_product_definitions_PaymentProductFieldFormElement
+     * @var PaymentProductFieldFormElement
      */
     public $formElement = null;
 
@@ -42,14 +51,16 @@ class GCS_product_definitions_PaymentProductFieldDisplayHints extends GCS_DataOb
     public $preferredInputType = null;
 
     /**
-     * @var GCS_product_definitions_PaymentProductFieldTooltip
+     * @var PaymentProductFieldTooltip
      */
     public $tooltip = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -62,9 +73,11 @@ class GCS_product_definitions_PaymentProductFieldDisplayHints extends GCS_DataOb
         }
         if (property_exists($object, 'formElement')) {
             if (!is_object($object->formElement)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->formElement, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->formElement, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_product_definitions_PaymentProductFieldFormElement();
+            $value = new PaymentProductFieldFormElement();
             $this->formElement = $value->fromObject($object->formElement);
         }
         if (property_exists($object, 'label')) {
@@ -84,9 +97,11 @@ class GCS_product_definitions_PaymentProductFieldDisplayHints extends GCS_DataOb
         }
         if (property_exists($object, 'tooltip')) {
             if (!is_object($object->tooltip)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->tooltip, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->tooltip, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_product_definitions_PaymentProductFieldTooltip();
+            $value = new PaymentProductFieldTooltip();
             $this->tooltip = $value->fromObject($object->tooltip);
         }
         return $this;

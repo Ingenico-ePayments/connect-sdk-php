@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_PaymentProductFieldDataRestrictions extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProductFieldDataRestrictions
+ *
+ * @package GCS\product\definitions
+ */
+class PaymentProductFieldDataRestrictions extends DataObject
 {
     /**
      * @var bool
@@ -7,14 +16,16 @@ class GCS_product_definitions_PaymentProductFieldDataRestrictions extends GCS_Da
     public $isRequired = null;
 
     /**
-     * @var GCS_product_definitions_PaymentProductFieldValidators
+     * @var PaymentProductFieldValidators
      */
     public $validators = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -24,9 +35,11 @@ class GCS_product_definitions_PaymentProductFieldDataRestrictions extends GCS_Da
         }
         if (property_exists($object, 'validators')) {
             if (!is_object($object->validators)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->validators, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->validators, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_product_definitions_PaymentProductFieldValidators();
+            $value = new PaymentProductFieldValidators();
             $this->validators = $value->fromObject($object->validators);
         }
         return $this;

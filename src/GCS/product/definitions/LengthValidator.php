@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_LengthValidator extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class LengthValidator
+ *
+ * @package GCS\product\definitions
+ */
+class LengthValidator extends DataObject
 {
     /**
      * @var int
@@ -13,8 +22,10 @@ class GCS_product_definitions_LengthValidator extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

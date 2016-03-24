@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_PaymentProductDisplayHints extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProductDisplayHints
+ *
+ * @package GCS\product\definitions
+ */
+class PaymentProductDisplayHints extends DataObject
 {
     /**
      * @var int
@@ -18,8 +27,10 @@ class GCS_product_definitions_PaymentProductDisplayHints extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

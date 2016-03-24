@@ -1,8 +1,17 @@
 <?php
-class GCS_product_definitions_PaymentProduct extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProduct
+ *
+ * @package GCS\product\definitions
+ */
+class PaymentProduct extends DataObject
 {
     /**
-     * @var GCS_product_definitions_AccountOnFile[]
+     * @var AccountOnFile[]
      */
     public $accountsOnFile = null;
 
@@ -22,12 +31,12 @@ class GCS_product_definitions_PaymentProduct extends GCS_DataObject
     public $autoTokenized = null;
 
     /**
-     * @var GCS_product_definitions_PaymentProductDisplayHints
+     * @var PaymentProductDisplayHints
      */
     public $displayHints = null;
 
     /**
-     * @var GCS_product_definitions_PaymentProductField[]
+     * @var PaymentProductField[]
      */
     public $fields = null;
 
@@ -58,19 +67,23 @@ class GCS_product_definitions_PaymentProduct extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountsOnFile')) {
             if (!is_array($object->accountsOnFile) && !is_object($object->accountsOnFile)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->accountsOnFile, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->accountsOnFile, true) . '\' is not an array or object'
+                );
             }
             $this->accountsOnFile = [];
             foreach ($object->accountsOnFile as $accountsOnFileElementObject) {
-                $accountsOnFileElement = new GCS_product_definitions_AccountOnFile();
+                $accountsOnFileElement = new AccountOnFile();
                 $this->accountsOnFile[] = $accountsOnFileElement->fromObject($accountsOnFileElementObject);
             }
         }
@@ -85,18 +98,22 @@ class GCS_product_definitions_PaymentProduct extends GCS_DataObject
         }
         if (property_exists($object, 'displayHints')) {
             if (!is_object($object->displayHints)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->displayHints, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->displayHints, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_product_definitions_PaymentProductDisplayHints();
+            $value = new PaymentProductDisplayHints();
             $this->displayHints = $value->fromObject($object->displayHints);
         }
         if (property_exists($object, 'fields')) {
             if (!is_array($object->fields) && !is_object($object->fields)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->fields, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->fields, true) . '\' is not an array or object'
+                );
             }
             $this->fields = [];
             foreach ($object->fields as $fieldsElementObject) {
-                $fieldsElement = new GCS_product_definitions_PaymentProductField();
+                $fieldsElement = new PaymentProductField();
                 $this->fields[] = $fieldsElement->fromObject($fieldsElementObject);
             }
         }

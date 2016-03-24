@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_PaymentProductFieldFormElement extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProductFieldFormElement
+ *
+ * @package GCS\product\definitions
+ */
+class PaymentProductFieldFormElement extends DataObject
 {
     /**
      * @var string
@@ -7,14 +16,16 @@ class GCS_product_definitions_PaymentProductFieldFormElement extends GCS_DataObj
     public $type = null;
 
     /**
-     * @var GCS_product_definitions_ValueMappingElement[]
+     * @var ValueMappingElement[]
      */
     public $valueMapping = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -24,11 +35,13 @@ class GCS_product_definitions_PaymentProductFieldFormElement extends GCS_DataObj
         }
         if (property_exists($object, 'valueMapping')) {
             if (!is_array($object->valueMapping) && !is_object($object->valueMapping)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->valueMapping, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->valueMapping, true) . '\' is not an array or object'
+                );
             }
             $this->valueMapping = [];
             foreach ($object->valueMapping as $valueMappingElementObject) {
-                $valueMappingElement = new GCS_product_definitions_ValueMappingElement();
+                $valueMappingElement = new ValueMappingElement();
                 $this->valueMapping[] = $valueMappingElement->fromObject($valueMappingElementObject);
             }
         }

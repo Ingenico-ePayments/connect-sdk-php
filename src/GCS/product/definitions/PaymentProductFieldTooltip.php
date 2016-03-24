@@ -1,5 +1,14 @@
 <?php
-class GCS_product_definitions_PaymentProductFieldTooltip extends GCS_DataObject
+namespace GCS\product\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProductFieldTooltip
+ *
+ * @package GCS\product\definitions
+ */
+class PaymentProductFieldTooltip extends DataObject
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_product_definitions_PaymentProductFieldTooltip extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
