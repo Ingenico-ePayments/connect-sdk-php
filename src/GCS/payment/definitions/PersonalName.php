@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_PersonalName extends GCS_fei_definitions_PersonalNameBase
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\PersonalNameBase;
+
+/**
+ * Class PersonalName
+ *
+ * @package GCS\payment\definitions
+ */
+class PersonalName extends PersonalNameBase
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_payment_definitions_PersonalName extends GCS_fei_definitions_PersonalN
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

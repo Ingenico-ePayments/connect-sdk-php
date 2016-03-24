@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_ApprovePaymentCardPaymentMethodSpecificOutput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class ApprovePaymentCardPaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class ApprovePaymentCardPaymentMethodSpecificOutput extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_payment_definitions_ApprovePaymentCardPaymentMethodSpecificOutput exte
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

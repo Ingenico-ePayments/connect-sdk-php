@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_PaymentStatusOutput extends GCS_fei_definitions_OrderStatusOutput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\OrderStatusOutput;
+
+/**
+ * Class PaymentStatusOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class PaymentStatusOutput extends OrderStatusOutput
 {
     /**
      * @var bool
@@ -8,8 +17,10 @@ class GCS_payment_definitions_PaymentStatusOutput extends GCS_fei_definitions_Or
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_OrderReferences extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class OrderReferences
+ *
+ * @package GCS\payment\definitions
+ */
+class OrderReferences extends DataObject
 {
     /**
      * @var string
@@ -7,7 +16,7 @@ class GCS_payment_definitions_OrderReferences extends GCS_DataObject
     public $descriptor = null;
 
     /**
-     * @var GCS_payment_definitions_OrderInvoiceData
+     * @var OrderInvoiceData
      */
     public $invoiceData = null;
 
@@ -23,8 +32,10 @@ class GCS_payment_definitions_OrderReferences extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -34,9 +45,11 @@ class GCS_payment_definitions_OrderReferences extends GCS_DataObject
         }
         if (property_exists($object, 'invoiceData')) {
             if (!is_object($object->invoiceData)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->invoiceData, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->invoiceData, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_OrderInvoiceData();
+            $value = new OrderInvoiceData();
             $this->invoiceData = $value->fromObject($object->invoiceData);
         }
         if (property_exists($object, 'merchantOrderId')) {

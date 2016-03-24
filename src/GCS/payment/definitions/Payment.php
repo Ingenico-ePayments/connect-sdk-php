@@ -1,8 +1,17 @@
 <?php
-class GCS_payment_definitions_Payment extends GCS_fei_definitions_AbstractOrderStatus
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\AbstractOrderStatus;
+
+/**
+ * Class Payment
+ *
+ * @package GCS\payment\definitions
+ */
+class Payment extends AbstractOrderStatus
 {
     /**
-     * @var GCS_payment_definitions_PaymentOutput
+     * @var PaymentOutput
      */
     public $paymentOutput = null;
 
@@ -12,23 +21,27 @@ class GCS_payment_definitions_Payment extends GCS_fei_definitions_AbstractOrderS
     public $status = null;
 
     /**
-     * @var GCS_payment_definitions_PaymentStatusOutput
+     * @var PaymentStatusOutput
      */
     public $statusOutput = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentOutput')) {
             if (!is_object($object->paymentOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->paymentOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->paymentOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_PaymentOutput();
+            $value = new PaymentOutput();
             $this->paymentOutput = $value->fromObject($object->paymentOutput);
         }
         if (property_exists($object, 'status')) {
@@ -36,9 +49,11 @@ class GCS_payment_definitions_Payment extends GCS_fei_definitions_AbstractOrderS
         }
         if (property_exists($object, 'statusOutput')) {
             if (!is_object($object->statusOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->statusOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->statusOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_PaymentStatusOutput();
+            $value = new PaymentStatusOutput();
             $this->statusOutput = $value->fromObject($object->statusOutput);
         }
         return $this;

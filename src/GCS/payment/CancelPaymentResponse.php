@@ -1,39 +1,51 @@
 <?php
+namespace GCS\payment;
+
+use GCS\DataObject;
+
 /**
- * class CancelPaymentResponse
+ * Class CancelPaymentResponse
+ *
+ * @package GCS\payment
  */
-class GCS_payment_CancelPaymentResponse extends GCS_DataObject
+class CancelPaymentResponse extends DataObject
 {
     /**
-     * @var GCS_payment_definitions_CancelPaymentCardPaymentMethodSpecificOutput
+     * @var definitions\CancelPaymentCardPaymentMethodSpecificOutput
      */
     public $cardPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_Payment
+     * @var definitions\Payment
      */
     public $payment = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardPaymentMethodSpecificOutput')) {
             if (!is_object($object->cardPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->cardPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->cardPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_CancelPaymentCardPaymentMethodSpecificOutput();
+            $value = new definitions\CancelPaymentCardPaymentMethodSpecificOutput();
             $this->cardPaymentMethodSpecificOutput = $value->fromObject($object->cardPaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'payment')) {
             if (!is_object($object->payment)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->payment, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->payment, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_Payment();
+            $value = new definitions\Payment();
             $this->payment = $value->fromObject($object->payment);
         }
         return $this;

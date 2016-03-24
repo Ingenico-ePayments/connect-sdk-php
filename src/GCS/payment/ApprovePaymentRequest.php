@@ -1,8 +1,14 @@
 <?php
+namespace GCS\payment;
+
+use GCS\DataObject;
+
 /**
- * class ApprovePaymentRequest
+ * Class ApprovePaymentRequest
+ *
+ * @package GCS\payment
  */
-class GCS_payment_ApprovePaymentRequest extends GCS_DataObject
+class ApprovePaymentRequest extends DataObject
 {
     /**
      * @var int
@@ -10,24 +16,26 @@ class GCS_payment_ApprovePaymentRequest extends GCS_DataObject
     public $amount = null;
 
     /**
-     * @var GCS_payment_definitions_ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput
+     * @var definitions\ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput
      */
     public $directDebitPaymentMethodSpecificInput = null;
 
     /**
-     * @var GCS_payment_definitions_OrderApprovePayment
+     * @var definitions\OrderApprovePayment
      */
     public $order = null;
 
     /**
-     * @var GCS_payment_definitions_ApprovePaymentSepaDirectDebitPaymentMethodSpecificInput
+     * @var definitions\ApprovePaymentSepaDirectDebitPaymentMethodSpecificInput
      */
     public $sepaDirectDebitPaymentMethodSpecificInput = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -37,24 +45,34 @@ class GCS_payment_ApprovePaymentRequest extends GCS_DataObject
         }
         if (property_exists($object, 'directDebitPaymentMethodSpecificInput')) {
             if (!is_object($object->directDebitPaymentMethodSpecificInput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->directDebitPaymentMethodSpecificInput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->directDebitPaymentMethodSpecificInput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput();
-            $this->directDebitPaymentMethodSpecificInput = $value->fromObject($object->directDebitPaymentMethodSpecificInput);
+            $value = new definitions\ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput();
+            $this->directDebitPaymentMethodSpecificInput = $value->fromObject(
+                $object->directDebitPaymentMethodSpecificInput
+            );
         }
         if (property_exists($object, 'order')) {
             if (!is_object($object->order)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->order, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->order, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_OrderApprovePayment();
+            $value = new definitions\OrderApprovePayment();
             $this->order = $value->fromObject($object->order);
         }
         if (property_exists($object, 'sepaDirectDebitPaymentMethodSpecificInput')) {
             if (!is_object($object->sepaDirectDebitPaymentMethodSpecificInput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->sepaDirectDebitPaymentMethodSpecificInput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->sepaDirectDebitPaymentMethodSpecificInput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_ApprovePaymentSepaDirectDebitPaymentMethodSpecificInput();
-            $this->sepaDirectDebitPaymentMethodSpecificInput = $value->fromObject($object->sepaDirectDebitPaymentMethodSpecificInput);
+            $value = new definitions\ApprovePaymentSepaDirectDebitPaymentMethodSpecificInput();
+            $this->sepaDirectDebitPaymentMethodSpecificInput = $value->fromObject(
+                $object->sepaDirectDebitPaymentMethodSpecificInput
+            );
         }
         return $this;
     }

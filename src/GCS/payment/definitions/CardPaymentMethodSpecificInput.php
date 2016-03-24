@@ -1,8 +1,17 @@
 <?php
-class GCS_payment_definitions_CardPaymentMethodSpecificInput extends GCS_payment_definitions_CardPaymentMethodSpecificInputBase
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\Card;
+
+/**
+ * Class CardPaymentMethodSpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class CardPaymentMethodSpecificInput extends CardPaymentMethodSpecificInputBase
 {
     /**
-     * @var GCS_fei_definitions_Card
+     * @var Card
      */
     public $card = null;
 
@@ -18,17 +27,21 @@ class GCS_payment_definitions_CardPaymentMethodSpecificInput extends GCS_payment
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {
             if (!is_object($object->card)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->card, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->card, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_Card();
+            $value = new Card();
             $this->card = $value->fromObject($object->card);
         }
         if (property_exists($object, 'isRecurring')) {

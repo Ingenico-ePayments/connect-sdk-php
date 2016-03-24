@@ -1,10 +1,19 @@
 <?php
-class GCS_payment_definitions_BankTransferPaymentMethodSpecificOutput extends GCS_payment_definitions_AbstractPaymentMethodSpecificOutput
+namespace GCS\payment\definitions;
+
+/**
+ * Class BankTransferPaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class BankTransferPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

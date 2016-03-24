@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_PaymentReferences extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentReferences
+ *
+ * @package GCS\payment\definitions
+ */
+class PaymentReferences extends DataObject
 {
     /**
      * @var int
@@ -33,8 +42,10 @@ class GCS_payment_definitions_PaymentReferences extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

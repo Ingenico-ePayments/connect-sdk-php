@@ -1,10 +1,19 @@
 <?php
-class GCS_payment_definitions_ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput extends GCS_payment_definitions_ApprovePaymentPaymentMethodSpecificInput
+namespace GCS\payment\definitions;
+
+/**
+ * Class ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput extends ApprovePaymentPaymentMethodSpecificInput
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

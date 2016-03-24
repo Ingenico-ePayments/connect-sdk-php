@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_Level3SummaryData extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class Level3SummaryData
+ *
+ * @package GCS\payment\definitions
+ */
+class Level3SummaryData extends DataObject
 {
     /**
      * @var int
@@ -18,8 +27,10 @@ class GCS_payment_definitions_Level3SummaryData extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

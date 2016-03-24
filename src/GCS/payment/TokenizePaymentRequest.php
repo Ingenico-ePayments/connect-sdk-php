@@ -1,8 +1,14 @@
 <?php
+namespace GCS\payment;
+
+use GCS\DataObject;
+
 /**
- * class TokenizePaymentRequest
+ * Class TokenizePaymentRequest
+ *
+ * @package GCS\payment
  */
-class GCS_payment_TokenizePaymentRequest extends GCS_DataObject
+class TokenizePaymentRequest extends DataObject
 {
     /**
      * @var string
@@ -11,8 +17,10 @@ class GCS_payment_TokenizePaymentRequest extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

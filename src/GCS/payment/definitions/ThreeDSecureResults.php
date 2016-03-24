@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_ThreeDSecureResults extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class ThreeDSecureResults
+ *
+ * @package GCS\payment\definitions
+ */
+class ThreeDSecureResults extends DataObject
 {
     /**
      * @var string
@@ -18,8 +27,10 @@ class GCS_payment_definitions_ThreeDSecureResults extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

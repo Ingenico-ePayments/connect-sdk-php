@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_ContactDetails extends GCS_fei_definitions_ContactDetailsBase
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\ContactDetailsBase;
+
+/**
+ * Class ContactDetails
+ *
+ * @package GCS\payment\definitions
+ */
+class ContactDetails extends ContactDetailsBase
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_payment_definitions_ContactDetails extends GCS_fei_definitions_Contact
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

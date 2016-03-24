@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_SepaDirectDebitPaymentMethodSpecificInput extends GCS_fei_definitions_AbstractPaymentMethodSpecificInput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\AbstractPaymentMethodSpecificInput;
+
+/**
+ * Class SepaDirectDebitPaymentMethodSpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class SepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
      * @var string
@@ -28,8 +37,10 @@ class GCS_payment_definitions_SepaDirectDebitPaymentMethodSpecificInput extends 
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

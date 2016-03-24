@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_RedirectPaymentProduct882SpecificInput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class RedirectPaymentProduct882SpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class RedirectPaymentProduct882SpecificInput extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_payment_definitions_RedirectPaymentProduct882SpecificInput extends GCS
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,10 +1,21 @@
 <?php
-class GCS_payment_definitions_CheckPaymentMethodSpecificInput extends GCS_fei_definitions_AbstractPaymentMethodSpecificInput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\AbstractPaymentMethodSpecificInput;
+
+/**
+ * Class CheckPaymentMethodSpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class CheckPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

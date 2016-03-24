@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_RedirectPaymentMethodSpecificInputBase extends GCS_fei_definitions_AbstractPaymentMethodSpecificInput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\AbstractPaymentMethodSpecificInput;
+
+/**
+ * Class RedirectPaymentMethodSpecificInputBase
+ *
+ * @package GCS\payment\definitions
+ */
+class RedirectPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificInput
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_payment_definitions_RedirectPaymentMethodSpecificInputBase extends GCS
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

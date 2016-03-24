@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_RefundPaymentProduct840CustomerAccount extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class RefundPaymentProduct840CustomerAccount
+ *
+ * @package GCS\payment\definitions
+ */
+class RefundPaymentProduct840CustomerAccount extends DataObject
 {
     /**
      * @var string
@@ -18,8 +27,10 @@ class GCS_payment_definitions_RefundPaymentProduct840CustomerAccount extends GCS
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

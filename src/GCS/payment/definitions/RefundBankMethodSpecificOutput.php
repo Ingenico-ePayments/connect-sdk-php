@@ -1,10 +1,19 @@
 <?php
-class GCS_payment_definitions_RefundBankMethodSpecificOutput extends GCS_payment_definitions_RefundMethodSpecificOutput
+namespace GCS\payment\definitions;
+
+/**
+ * Class RefundBankMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class RefundBankMethodSpecificOutput extends RefundMethodSpecificOutput
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

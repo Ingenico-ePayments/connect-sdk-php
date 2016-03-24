@@ -1,27 +1,37 @@
 <?php
+namespace GCS\payment;
+
+use GCS\DataObject;
+
 /**
- * class CancelApprovalPaymentResponse
+ * Class CancelApprovalPaymentResponse
+ *
+ * @package GCS\payment
  */
-class GCS_payment_CancelApprovalPaymentResponse extends GCS_DataObject
+class CancelApprovalPaymentResponse extends DataObject
 {
     /**
-     * @var GCS_payment_definitions_Payment
+     * @var definitions\Payment
      */
     public $payment = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'payment')) {
             if (!is_object($object->payment)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->payment, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->payment, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_Payment();
+            $value = new definitions\Payment();
             $this->payment = $value->fromObject($object->payment);
         }
         return $this;

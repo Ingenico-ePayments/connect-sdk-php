@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_InvoicePaymentMethodSpecificInput extends GCS_fei_definitions_AbstractPaymentMethodSpecificInput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\AbstractPaymentMethodSpecificInput;
+
+/**
+ * Class InvoicePaymentMethodSpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class InvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_payment_definitions_InvoicePaymentMethodSpecificInput extends GCS_fei_
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

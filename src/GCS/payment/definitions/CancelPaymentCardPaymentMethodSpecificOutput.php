@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_CancelPaymentCardPaymentMethodSpecificOutput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class CancelPaymentCardPaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class CancelPaymentCardPaymentMethodSpecificOutput extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_payment_definitions_CancelPaymentCardPaymentMethodSpecificOutput exten
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

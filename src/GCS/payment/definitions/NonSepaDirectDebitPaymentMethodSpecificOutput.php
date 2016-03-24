@@ -1,24 +1,37 @@
 <?php
-class GCS_payment_definitions_NonSepaDirectDebitPaymentMethodSpecificOutput extends GCS_payment_definitions_AbstractPaymentMethodSpecificOutput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\FraudResults;
+
+/**
+ * Class NonSepaDirectDebitPaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class NonSepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
-     * @var GCS_fei_definitions_FraudResults
+     * @var FraudResults
      */
     public $fraudResults = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'fraudResults')) {
             if (!is_object($object->fraudResults)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->fraudResults, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->fraudResults, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_FraudResults();
+            $value = new FraudResults();
             $this->fraudResults = $value->fromObject($object->fraudResults);
         }
         return $this;

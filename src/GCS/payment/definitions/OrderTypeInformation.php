@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_OrderTypeInformation extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class OrderTypeInformation
+ *
+ * @package GCS\payment\definitions
+ */
+class OrderTypeInformation extends DataObject
 {
     /**
      * @var string
@@ -13,8 +22,10 @@ class GCS_payment_definitions_OrderTypeInformation extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

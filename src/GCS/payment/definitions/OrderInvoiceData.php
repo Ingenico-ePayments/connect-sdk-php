@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_OrderInvoiceData extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class OrderInvoiceData
+ *
+ * @package GCS\payment\definitions
+ */
+class OrderInvoiceData extends DataObject
 {
     /**
      * @var string
@@ -23,8 +32,10 @@ class GCS_payment_definitions_OrderInvoiceData extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -40,7 +51,9 @@ class GCS_payment_definitions_OrderInvoiceData extends GCS_DataObject
         }
         if (property_exists($object, 'textQualifiers')) {
             if (!is_array($object->textQualifiers) && !is_object($object->textQualifiers)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->textQualifiers, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->textQualifiers, true) . '\' is not an array or object'
+                );
             }
             $this->textQualifiers = [];
             foreach ($object->textQualifiers as $textQualifiersElementObject) {

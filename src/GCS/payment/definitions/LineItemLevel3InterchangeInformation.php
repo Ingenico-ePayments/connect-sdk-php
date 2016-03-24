@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_LineItemLevel3InterchangeInformation extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class LineItemLevel3InterchangeInformation
+ *
+ * @package GCS\payment\definitions
+ */
+class LineItemLevel3InterchangeInformation extends DataObject
 {
     /**
      * @var int
@@ -43,8 +52,10 @@ class GCS_payment_definitions_LineItemLevel3InterchangeInformation extends GCS_D
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

@@ -1,36 +1,52 @@
 <?php
-class GCS_payment_definitions_OrderOutput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\AmountOfMoney;
+
+/**
+ * Class OrderOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class OrderOutput extends DataObject
 {
     /**
-     * @var GCS_fei_definitions_AmountOfMoney
+     * @var AmountOfMoney
      */
     public $amountOfMoney = null;
 
     /**
-     * @var GCS_payment_definitions_PaymentReferences
+     * @var PaymentReferences
      */
     public $references = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {
             if (!is_object($object->amountOfMoney)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->amountOfMoney, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->amountOfMoney, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_AmountOfMoney();
+            $value = new AmountOfMoney();
             $this->amountOfMoney = $value->fromObject($object->amountOfMoney);
         }
         if (property_exists($object, 'references')) {
             if (!is_object($object->references)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->references, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->references, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_PaymentReferences();
+            $value = new PaymentReferences();
             $this->references = $value->fromObject($object->references);
         }
         return $this;

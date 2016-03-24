@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_PaymentProduct840CustomerAccount extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PaymentProduct840CustomerAccount
+ *
+ * @package GCS\payment\definitions
+ */
+class PaymentProduct840CustomerAccount extends DataObject
 {
     /**
      * @var string
@@ -48,8 +57,10 @@ class GCS_payment_definitions_PaymentProduct840CustomerAccount extends GCS_DataO
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

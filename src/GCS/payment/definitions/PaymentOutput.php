@@ -1,5 +1,12 @@
 <?php
-class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_OrderOutput
+namespace GCS\payment\definitions;
+
+/**
+ * Class PaymentOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class PaymentOutput extends OrderOutput
 {
     /**
      * @var int
@@ -7,32 +14,32 @@ class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_Orde
     public $amountPaid = null;
 
     /**
-     * @var GCS_payment_definitions_BankTransferPaymentMethodSpecificOutput
+     * @var BankTransferPaymentMethodSpecificOutput
      */
     public $bankTransferPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_CardPaymentMethodSpecificOutput
+     * @var CardPaymentMethodSpecificOutput
      */
     public $cardPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_CashPaymentMethodSpecificOutput
+     * @var CashPaymentMethodSpecificOutput
      */
     public $cashPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_CheckPaymentMethodSpecificOutput
+     * @var CheckPaymentMethodSpecificOutput
      */
     public $checkPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_NonSepaDirectDebitPaymentMethodSpecificOutput
+     * @var NonSepaDirectDebitPaymentMethodSpecificOutput
      */
     public $directDebitPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_InvoicePaymentMethodSpecificOutput
+     * @var InvoicePaymentMethodSpecificOutput
      */
     public $invoicePaymentMethodSpecificOutput = null;
 
@@ -42,19 +49,21 @@ class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_Orde
     public $paymentMethod = null;
 
     /**
-     * @var GCS_payment_definitions_RedirectPaymentMethodSpecificOutput
+     * @var RedirectPaymentMethodSpecificOutput
      */
     public $redirectPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_SepaDirectDebitPaymentMethodSpecificOutput
+     * @var SepaDirectDebitPaymentMethodSpecificOutput
      */
     public $sepaDirectDebitPaymentMethodSpecificOutput = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -64,44 +73,60 @@ class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_Orde
         }
         if (property_exists($object, 'bankTransferPaymentMethodSpecificOutput')) {
             if (!is_object($object->bankTransferPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->bankTransferPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->bankTransferPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_BankTransferPaymentMethodSpecificOutput();
-            $this->bankTransferPaymentMethodSpecificOutput = $value->fromObject($object->bankTransferPaymentMethodSpecificOutput);
+            $value = new BankTransferPaymentMethodSpecificOutput();
+            $this->bankTransferPaymentMethodSpecificOutput = $value->fromObject(
+                $object->bankTransferPaymentMethodSpecificOutput
+            );
         }
         if (property_exists($object, 'cardPaymentMethodSpecificOutput')) {
             if (!is_object($object->cardPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->cardPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->cardPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_CardPaymentMethodSpecificOutput();
+            $value = new CardPaymentMethodSpecificOutput();
             $this->cardPaymentMethodSpecificOutput = $value->fromObject($object->cardPaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'cashPaymentMethodSpecificOutput')) {
             if (!is_object($object->cashPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->cashPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->cashPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_CashPaymentMethodSpecificOutput();
+            $value = new CashPaymentMethodSpecificOutput();
             $this->cashPaymentMethodSpecificOutput = $value->fromObject($object->cashPaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'checkPaymentMethodSpecificOutput')) {
             if (!is_object($object->checkPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->checkPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->checkPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_CheckPaymentMethodSpecificOutput();
+            $value = new CheckPaymentMethodSpecificOutput();
             $this->checkPaymentMethodSpecificOutput = $value->fromObject($object->checkPaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'directDebitPaymentMethodSpecificOutput')) {
             if (!is_object($object->directDebitPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->directDebitPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->directDebitPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_NonSepaDirectDebitPaymentMethodSpecificOutput();
-            $this->directDebitPaymentMethodSpecificOutput = $value->fromObject($object->directDebitPaymentMethodSpecificOutput);
+            $value = new NonSepaDirectDebitPaymentMethodSpecificOutput();
+            $this->directDebitPaymentMethodSpecificOutput = $value->fromObject(
+                $object->directDebitPaymentMethodSpecificOutput
+            );
         }
         if (property_exists($object, 'invoicePaymentMethodSpecificOutput')) {
             if (!is_object($object->invoicePaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->invoicePaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->invoicePaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_InvoicePaymentMethodSpecificOutput();
+            $value = new InvoicePaymentMethodSpecificOutput();
             $this->invoicePaymentMethodSpecificOutput = $value->fromObject($object->invoicePaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'paymentMethod')) {
@@ -109,17 +134,25 @@ class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_Orde
         }
         if (property_exists($object, 'redirectPaymentMethodSpecificOutput')) {
             if (!is_object($object->redirectPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->redirectPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->redirectPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_RedirectPaymentMethodSpecificOutput();
-            $this->redirectPaymentMethodSpecificOutput = $value->fromObject($object->redirectPaymentMethodSpecificOutput);
+            $value = new RedirectPaymentMethodSpecificOutput();
+            $this->redirectPaymentMethodSpecificOutput = $value->fromObject(
+                $object->redirectPaymentMethodSpecificOutput
+            );
         }
         if (property_exists($object, 'sepaDirectDebitPaymentMethodSpecificOutput')) {
             if (!is_object($object->sepaDirectDebitPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->sepaDirectDebitPaymentMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->sepaDirectDebitPaymentMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_SepaDirectDebitPaymentMethodSpecificOutput();
-            $this->sepaDirectDebitPaymentMethodSpecificOutput = $value->fromObject($object->sepaDirectDebitPaymentMethodSpecificOutput);
+            $value = new SepaDirectDebitPaymentMethodSpecificOutput();
+            $this->sepaDirectDebitPaymentMethodSpecificOutput = $value->fromObject(
+                $object->sepaDirectDebitPaymentMethodSpecificOutput
+            );
         }
         return $this;
     }

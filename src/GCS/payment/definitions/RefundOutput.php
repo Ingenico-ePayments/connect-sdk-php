@@ -1,5 +1,12 @@
 <?php
-class GCS_payment_definitions_RefundOutput extends GCS_payment_definitions_OrderOutput
+namespace GCS\payment\definitions;
+
+/**
+ * Class RefundOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class RefundOutput extends OrderOutput
 {
     /**
      * @var int
@@ -7,17 +14,17 @@ class GCS_payment_definitions_RefundOutput extends GCS_payment_definitions_Order
     public $amountPaid = null;
 
     /**
-     * @var GCS_payment_definitions_RefundBankMethodSpecificOutput
+     * @var RefundBankMethodSpecificOutput
      */
     public $bankRefundMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_RefundCardMethodSpecificOutput
+     * @var RefundCardMethodSpecificOutput
      */
     public $cardRefundMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_RefundEWalletMethodSpecificOutput
+     * @var RefundEWalletMethodSpecificOutput
      */
     public $eWalletRefundMethodSpecificOutput = null;
 
@@ -28,8 +35,10 @@ class GCS_payment_definitions_RefundOutput extends GCS_payment_definitions_Order
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -39,23 +48,29 @@ class GCS_payment_definitions_RefundOutput extends GCS_payment_definitions_Order
         }
         if (property_exists($object, 'bankRefundMethodSpecificOutput')) {
             if (!is_object($object->bankRefundMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->bankRefundMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->bankRefundMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_RefundBankMethodSpecificOutput();
+            $value = new RefundBankMethodSpecificOutput();
             $this->bankRefundMethodSpecificOutput = $value->fromObject($object->bankRefundMethodSpecificOutput);
         }
         if (property_exists($object, 'cardRefundMethodSpecificOutput')) {
             if (!is_object($object->cardRefundMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->cardRefundMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->cardRefundMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_RefundCardMethodSpecificOutput();
+            $value = new RefundCardMethodSpecificOutput();
             $this->cardRefundMethodSpecificOutput = $value->fromObject($object->cardRefundMethodSpecificOutput);
         }
         if (property_exists($object, 'eWalletRefundMethodSpecificOutput')) {
             if (!is_object($object->eWalletRefundMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->eWalletRefundMethodSpecificOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->eWalletRefundMethodSpecificOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_RefundEWalletMethodSpecificOutput();
+            $value = new RefundEWalletMethodSpecificOutput();
             $this->eWalletRefundMethodSpecificOutput = $value->fromObject($object->eWalletRefundMethodSpecificOutput);
         }
         if (property_exists($object, 'paymentMethod')) {

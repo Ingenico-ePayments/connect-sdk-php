@@ -1,13 +1,19 @@
 <?php
+namespace GCS\payment;
+
 /**
- * class CreatePaymentResponse
+ * Class CreatePaymentResponse
+ *
+ * @package GCS\payment
  */
-class GCS_payment_CreatePaymentResponse extends GCS_payment_definitions_CreatePaymentResult
+class CreatePaymentResponse extends definitions\CreatePaymentResult
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

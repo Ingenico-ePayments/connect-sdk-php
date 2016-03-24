@@ -1,10 +1,19 @@
 <?php
-class GCS_payment_definitions_InvoicePaymentMethodSpecificOutput extends GCS_payment_definitions_AbstractPaymentMethodSpecificOutput
+namespace GCS\payment\definitions;
+
+/**
+ * Class InvoicePaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class InvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

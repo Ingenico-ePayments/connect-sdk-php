@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_CashPaymentProduct1503SpecificInput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class CashPaymentProduct1503SpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class CashPaymentProduct1503SpecificInput extends DataObject
 {
     /**
      * @var string
@@ -8,8 +17,10 @@ class GCS_payment_definitions_CashPaymentProduct1503SpecificInput extends GCS_Da
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

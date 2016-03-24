@@ -1,5 +1,15 @@
 <?php
-class GCS_payment_definitions_NonSepaDirectDebitPaymentProduct705SpecificInput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\BankAccountBban;
+
+/**
+ * Class NonSepaDirectDebitPaymentProduct705SpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class NonSepaDirectDebitPaymentProduct705SpecificInput extends DataObject
 {
     /**
      * @var string
@@ -7,7 +17,7 @@ class GCS_payment_definitions_NonSepaDirectDebitPaymentProduct705SpecificInput e
     public $authorisationId = null;
 
     /**
-     * @var GCS_fei_definitions_BankAccountBban
+     * @var BankAccountBban
      */
     public $bankAccountBban = null;
 
@@ -18,8 +28,10 @@ class GCS_payment_definitions_NonSepaDirectDebitPaymentProduct705SpecificInput e
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -29,9 +41,11 @@ class GCS_payment_definitions_NonSepaDirectDebitPaymentProduct705SpecificInput e
         }
         if (property_exists($object, 'bankAccountBban')) {
             if (!is_object($object->bankAccountBban)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->bankAccountBban, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->bankAccountBban, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_BankAccountBban();
+            $value = new BankAccountBban();
             $this->bankAccountBban = $value->fromObject($object->bankAccountBban);
         }
         if (property_exists($object, 'transactionType')) {

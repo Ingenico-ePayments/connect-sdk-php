@@ -1,5 +1,12 @@
 <?php
-class GCS_payment_definitions_PaymentCreationOutput extends GCS_payment_definitions_PaymentCreationReferences
+namespace GCS\payment\definitions;
+
+/**
+ * Class PaymentCreationOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class PaymentCreationOutput extends PaymentCreationReferences
 {
     /**
      * @var bool
@@ -13,8 +20,10 @@ class GCS_payment_definitions_PaymentCreationOutput extends GCS_payment_definiti
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

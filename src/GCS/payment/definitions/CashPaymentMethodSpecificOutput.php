@@ -1,10 +1,19 @@
 <?php
-class GCS_payment_definitions_CashPaymentMethodSpecificOutput extends GCS_payment_definitions_AbstractPaymentMethodSpecificOutput
+namespace GCS\payment\definitions;
+
+/**
+ * Class CashPaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class CashPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

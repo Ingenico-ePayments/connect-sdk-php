@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_CardPaymentMethodSpecificInputBase extends GCS_fei_definitions_AbstractPaymentMethodSpecificInput
+namespace GCS\payment\definitions;
+
+use GCS\fei\definitions\AbstractPaymentMethodSpecificInput;
+
+/**
+ * Class CardPaymentMethodSpecificInputBase
+ *
+ * @package GCS\payment\definitions
+ */
+class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificInput
 {
     /**
      * @var string
@@ -28,8 +37,10 @@ class GCS_payment_definitions_CardPaymentMethodSpecificInputBase extends GCS_fei
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

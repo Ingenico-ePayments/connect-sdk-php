@@ -1,10 +1,19 @@
 <?php
-class GCS_payment_definitions_BankTransferPaymentMethodSpecificInput extends GCS_payment_definitions_BankTransferPaymentMethodSpecificInputBase
+namespace GCS\payment\definitions;
+
+/**
+ * Class BankTransferPaymentMethodSpecificInput
+ *
+ * @package GCS\payment\definitions
+ */
+class BankTransferPaymentMethodSpecificInput extends BankTransferPaymentMethodSpecificInputBase
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

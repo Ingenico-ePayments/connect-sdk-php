@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_AbstractPaymentMethodSpecificOutput extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class AbstractPaymentMethodSpecificOutput
+ *
+ * @package GCS\payment\definitions
+ */
+class AbstractPaymentMethodSpecificOutput extends DataObject
 {
     /**
      * @var int
@@ -8,8 +17,10 @@ class GCS_payment_definitions_AbstractPaymentMethodSpecificOutput extends GCS_Da
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

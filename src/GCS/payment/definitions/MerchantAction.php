@@ -1,5 +1,15 @@
 <?php
-class GCS_payment_definitions_MerchantAction extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\KeyValuePair;
+
+/**
+ * Class MerchantAction
+ *
+ * @package GCS\payment\definitions
+ */
+class MerchantAction extends DataObject
 {
     /**
      * @var string
@@ -7,7 +17,7 @@ class GCS_payment_definitions_MerchantAction extends GCS_DataObject
     public $actionType = null;
 
     /**
-     * @var GCS_payment_definitions_RedirectData
+     * @var RedirectData
      */
     public $redirectData = null;
 
@@ -17,14 +27,16 @@ class GCS_payment_definitions_MerchantAction extends GCS_DataObject
     public $renderingData = null;
 
     /**
-     * @var GCS_fei_definitions_KeyValuePair[]
+     * @var KeyValuePair[]
      */
     public $showData = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -34,9 +46,11 @@ class GCS_payment_definitions_MerchantAction extends GCS_DataObject
         }
         if (property_exists($object, 'redirectData')) {
             if (!is_object($object->redirectData)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->redirectData, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->redirectData, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_RedirectData();
+            $value = new RedirectData();
             $this->redirectData = $value->fromObject($object->redirectData);
         }
         if (property_exists($object, 'renderingData')) {
@@ -44,11 +58,13 @@ class GCS_payment_definitions_MerchantAction extends GCS_DataObject
         }
         if (property_exists($object, 'showData')) {
             if (!is_array($object->showData) && !is_object($object->showData)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->showData, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->showData, true) . '\' is not an array or object'
+                );
             }
             $this->showData = [];
             foreach ($object->showData as $showDataElementObject) {
-                $showDataElement = new GCS_fei_definitions_KeyValuePair();
+                $showDataElement = new KeyValuePair();
                 $this->showData[] = $showDataElement->fromObject($showDataElementObject);
             }
         }

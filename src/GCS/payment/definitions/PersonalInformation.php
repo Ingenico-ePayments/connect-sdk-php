@@ -1,5 +1,14 @@
 <?php
-class GCS_payment_definitions_PersonalInformation extends GCS_DataObject
+namespace GCS\payment\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PersonalInformation
+ *
+ * @package GCS\payment\definitions
+ */
+class PersonalInformation extends DataObject
 {
     /**
      * @var string
@@ -12,14 +21,16 @@ class GCS_payment_definitions_PersonalInformation extends GCS_DataObject
     public $gender = null;
 
     /**
-     * @var GCS_payment_definitions_PersonalName
+     * @var PersonalName
      */
     public $name = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -32,9 +43,11 @@ class GCS_payment_definitions_PersonalInformation extends GCS_DataObject
         }
         if (property_exists($object, 'name')) {
             if (!is_object($object->name)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->name, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->name, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_PersonalName();
+            $value = new PersonalName();
             $this->name = $value->fromObject($object->name);
         }
         return $this;
