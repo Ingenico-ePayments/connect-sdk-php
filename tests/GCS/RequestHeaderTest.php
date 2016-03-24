@@ -1,16 +1,19 @@
 <?php
+namespace GCS;
 
 /**
- * @group request_header
+ * Class RequestHeaderTest
  *
+ * @package GCS
+ * @group   request_header
  */
-class GCS_RequestHeaderTest extends GCS_TestCase
+class RequestHeaderTest extends TestCase
 {
 
     public function testV1HMAC()
     {
         foreach (array('GET','POST','PUT','DELETE') as $httpMethod) {
-            $requestHeaderGenerator = new GCS_RequestHeaderGenerator(
+            $requestHeaderGenerator = new RequestHeaderGenerator(
                 $this->getCommunicatorConfiguration(),
                 $httpMethod,
                 '/v1/consumer/ANDR%C3%89E/?q=na%20me'
@@ -34,7 +37,7 @@ class GCS_RequestHeaderTest extends GCS_TestCase
     {
         foreach (array('GET','POST','PUT','DELETE') as $httpMethod) {
             $clientMetaInfo = base64_encode('{ "test": "test" }');
-            $requestHeaderGenerator = new GCS_RequestHeaderGenerator(
+            $requestHeaderGenerator = new RequestHeaderGenerator(
                 $this->getCommunicatorConfiguration(),
                 $httpMethod,
                 '/v1/consumer/ANDR%C3%89E/?q=na%20me',
@@ -62,11 +65,11 @@ class GCS_RequestHeaderTest extends GCS_TestCase
     }
 
     /**
-     * @expectedException     Exception
+     * @expectedException \Exception
      */
     public function testException()
     {
-        new GCS_RequestHeaderGenerator(
+        new RequestHeaderGenerator(
             $this->getCommunicatorConfiguration(),
             'INVALID',
             '/v1/consumer/ANDR%C3%89E/?q=na%20me'

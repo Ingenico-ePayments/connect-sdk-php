@@ -1,39 +1,51 @@
 <?php
+namespace GCS\Merchant;
+
+use GCS\Errors\ErrorResponse;
+use GCS\Product\PaymentProductResponse;
+use GCS\Product\PaymentProducts;
+use GCS\Resource;
 
 /**
+ * Class Products
+ *
  * Products client.
  * Get information about payment products
+ *
+ * @package GCS\Merchant
  */
-class GCS_Merchant_Products extends GCS_Resource
+class Products extends Resource
 {
     /**
      * Resource /{merchantId}/products/{paymentProductId}
      *
      * @param int $paymentProductId
-     * @return GCS_Merchant_Products_PaymentProduct
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @return Products\PaymentProduct
+     *
+     * @throws ErrorResponse
      */
     public function paymentProduct($paymentProductId)
     {
         $newContext = $this->context;
         $newContext['paymentProductId'] = $paymentProductId;
-        return new GCS_Merchant_Products_PaymentProduct($this, $newContext);
+        return new Products\PaymentProduct($this, $newContext);
     }
 
     /**
      * Resource /{merchantId}/products
      * Retrieve payment products
      *
-     * @param GCS_Merchant_Products_FindParams $query
-     * @return GCS_product_PaymentProducts
-     * 
-     * @throws GCS_errors_ErrorResponse
+     * @param Products\FindParams $query
+     *
+     * @return PaymentProducts
+     *
+     * @throws ErrorResponse
      */
     public function find($query)
     {
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_product_PaymentProducts');
+        $responseClassMap = new \GCS\ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\Product\PaymentProducts');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products'),
@@ -47,16 +59,17 @@ class GCS_Merchant_Products extends GCS_Resource
      * Retrieve payment product fields
      *
      * @param int $paymentProductId
-     * @param GCS_Merchant_Products_GetParams $query
-     * @return GCS_product_PaymentProductResponse
-     * 
-     * @throws GCS_errors_ErrorResponse
+     * @param Products\GetParams $query
+     *
+     * @return PaymentProductResponse
+     *
+     * @throws ErrorResponse
      */
     public function get($paymentProductId, $query)
     {
         $this->context['paymentProductId'] = $paymentProductId;
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_product_PaymentProductResponse');
+        $responseClassMap = new \GCS\ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\Product\PaymentProductResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products/{paymentProductId}'),

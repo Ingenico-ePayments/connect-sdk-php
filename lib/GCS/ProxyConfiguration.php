@@ -1,9 +1,12 @@
 <?php
+namespace GCS;
 
 /**
- * Class GCS_ProxyConfiguration
+ * Class ProxyConfiguration
+ *
+ * @package GCS
  */
-class GCS_ProxyConfiguration
+class ProxyConfiguration
 {
     /**
      * @var string

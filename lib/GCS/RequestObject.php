@@ -1,5 +1,11 @@
 <?php
+namespace GCS;
 
-abstract class GCS_RequestObject
+/**
+ * Class RequestObject
+ *
+ * @package GCS
+ */
+abstract class RequestObject
 {
 }

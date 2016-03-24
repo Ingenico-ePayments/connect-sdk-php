@@ -1,24 +1,27 @@
 <?php
+namespace GCS;
 
 /**
- * @group communicator
+ * Class CommunicatorTest
  *
+ * @package GCS
+ * @group communicator
  */
-class GCS_CommunicatorTest extends GCS_TestCase
+class CommunicatorTest extends TestCase
 {
-    /** @var GCS_Communicator */
+    /** @var Communicator */
     protected $defaultCommunicator = null;
 
-    /** @var GCS_ResponseClassMap */
+    /** @var ResponseClassMap */
     protected $defaultResponseClassMap = null;
 
     public function setUp()
     {
-        $this->defaultCommunicator = new GCS_Communicator(
-            new GCS_DefaultConnection(),
+        $this->defaultCommunicator = new Communicator(
+            new DefaultConnection(),
             $this->getCommunicatorConfiguration()
         );
-        $this->defaultResponseClassMap = new GCS_ResponseClassMap();
+        $this->defaultResponseClassMap = new ResponseClassMap();
     }
 
     public function tearDown()
@@ -27,15 +30,15 @@ class GCS_CommunicatorTest extends GCS_TestCase
 
     public function testApiRequestNoop()
     {
-        new GCS_Communicator(new GCS_DefaultConnection(), new GCS_CommunicatorConfiguration('', '', ''));
+        new Communicator(new DefaultConnection(), new CommunicatorConfiguration('', '', ''));
     }
 
     public function testConnectionSharing()
     {
-        $sharedConnection = new GCS_DefaultConnection();
-        $communicator1 = new GCS_Communicator($sharedConnection, $this->getCommunicatorConfiguration());
+        $sharedConnection = new DefaultConnection();
+        $communicator1 = new Communicator($sharedConnection, $this->getCommunicatorConfiguration());
         $communicator1->get($this->defaultResponseClassMap, '/8500/services/testconnection');
-        $communicator2 = new GCS_Communicator($sharedConnection, $this->getCommunicatorConfiguration());
+        $communicator2 = new Communicator($sharedConnection, $this->getCommunicatorConfiguration());
         $communicator2->get($this->defaultResponseClassMap, '/8500/services/testconnection');
         $this->assertEquals($communicator1->getConnection(), $communicator2->getConnection());
     }
@@ -43,7 +46,7 @@ class GCS_CommunicatorTest extends GCS_TestCase
 
     public function testApiRequestGet()
     {
-        $findParams = new GCS_Merchant_Products_FindParams();
+        $findParams = new Merchant\Products\FindParams();
         $findParams->countryCode = 'NL';
         $findParams->currencyCode = 'EUR';
         $clientHeaders = [];
@@ -54,7 +57,7 @@ class GCS_CommunicatorTest extends GCS_TestCase
     {
         try {
             $this->defaultCommunicator->get($this->defaultResponseClassMap, '/foo/bar');
-        } catch (GCS_AuthorizationException $e) {
+        } catch (AuthorizationException $e) {
             return;
         }
         $this->fail();
@@ -64,7 +67,7 @@ class GCS_CommunicatorTest extends GCS_TestCase
     {
         try {
             $this->defaultCommunicator->post($this->defaultResponseClassMap, '/8500/payments/1/tokenize');
-        } catch (GCS_ReferenceException $e) {
+        } catch (ReferenceException $e) {
             return;
         }
         $this->fail();
@@ -74,7 +77,7 @@ class GCS_CommunicatorTest extends GCS_TestCase
     {
         try {
             $this->defaultCommunicator->put($this->defaultResponseClassMap, '/8500/tokens/1');
-        } catch (GCS_InvalidResponseException $e) {
+        } catch (InvalidResponseException $e) {
             return;
         }
         $this->fail();
@@ -84,7 +87,7 @@ class GCS_CommunicatorTest extends GCS_TestCase
     {
         try {
             $this->defaultCommunicator->delete($this->defaultResponseClassMap, '/8500/tokens/1');
-        } catch (GCS_ReferenceException $e) {
+        } catch (ReferenceException $e) {
             return;
         }
         $this->fail();

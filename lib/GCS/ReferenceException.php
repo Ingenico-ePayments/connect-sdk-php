@@ -1,5 +1,11 @@
 <?php
+namespace GCS;
 
-class GCS_ReferenceException extends GCS_ResponseException
+/**
+ * Class ReferenceException
+ *
+ * @package GCS
+ */
+class ReferenceException extends ResponseException
 {
 }

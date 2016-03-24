@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-class GCS_RequestHeaderGenerator
+/**
+ * Class RequestHeaderGenerator
+ *
+ * @package GCS
+ */
+class RequestHeaderGenerator
 {
 
     const AUTHORIZATION_ID = 'GCS';
@@ -13,7 +19,7 @@ class GCS_RequestHeaderGenerator
 
     const MIME_APPLICATION_JSON = 'application/json';
 
-    /** @var GCS_CommunicatorConfiguration */
+    /** @var CommunicatorConfiguration */
     protected $communicatorConfiguration;
 
     /** @var string */
@@ -26,21 +32,22 @@ class GCS_RequestHeaderGenerator
     protected $clientMetaInfo;
 
     /**
-     * @param GCS_CommunicatorConfiguration $communicatorConfiguration
+     * @param CommunicatorConfiguration $communicatorConfiguration
      * @param string $httpMethodText
      * @param string $uriPath
      * @param string $clientMetaInfo
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
 
     public function __construct(
-        GCS_CommunicatorConfiguration $communicatorConfiguration,
+        CommunicatorConfiguration $communicatorConfiguration,
         $httpMethodText,
         $uriPath,
         $clientMetaInfo = ''
     ) {
         if (!in_array($httpMethodText, array('GET','PUT','POST','DELETE'))) {
-            throw new UnexpectedValueException(sprintf('Undefined HTTP-method, got %s', $httpMethodText));
+            throw new \UnexpectedValueException(sprintf('Undefined HTTP-method, got %s', $httpMethodText));
         }
         $this->communicatorConfiguration = $communicatorConfiguration;
         $this->httpMethodText = $httpMethodText;
@@ -76,13 +83,16 @@ class GCS_RequestHeaderGenerator
      */
     protected function getRfc161Date()
     {
-        $dateTime = new DateTime('now');
+        $dateTime = new \DateTime('now');
         return $dateTime->format(self::DATE_RFC2616);
     }
 
+    /**
+     * @return string
+     */
     protected function getServerMetaInfoValue()
     {
-        $serverMetaInfo = new GCS_ServerMetaInfo();
+        $serverMetaInfo = new ServerMetaInfo();
         $serverMetaInfo->platformIdentifier = sprintf('%s; php version %s', php_uname(), phpversion());
         $serverMetaInfo->sdkIdentifier = 'v1.0';
         return base64_encode(json_encode($serverMetaInfo));
@@ -90,6 +100,7 @@ class GCS_RequestHeaderGenerator
 
     /**
      * @param string[] $requestHeaderValuesByFieldName
+     *
      * @return string
      */
     protected function getAuthorizationHeaderValue($requestHeaderValuesByFieldName)
@@ -109,6 +120,7 @@ class GCS_RequestHeaderGenerator
 
     /**
      * @param string[] $requestHeaderValuesByFieldName
+     *
      * @return string
      */
     protected function getSignData($requestHeaderValuesByFieldName)

@@ -1,5 +1,11 @@
 <?php
+namespace GCS;
 
-class GCS_GlobalCollectException extends GCS_ApiException
+/**
+ * Class GlobalCollectException
+ *
+ * @package GCS
+ */
+class GlobalCollectException extends ApiException
 {
 }

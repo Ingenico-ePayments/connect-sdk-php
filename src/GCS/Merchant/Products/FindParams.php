@@ -1,34 +1,42 @@
 <?php
+namespace GCS\Merchant\Products;
 
-class GCS_Merchant_Products_FindParams extends GCS_RequestObject
+use GCS\RequestObject;
+
+/**
+ * Class FindParams
+ *
+ * @package GCS\Merchant\Products
+ */
+class FindParams extends RequestObject
 {
     /**
-     * @var int amount
+     * @var int
      */
     public $amount;
 
     /**
-     * @var string hide
+     * @var string
      */
     public $hide;
 
     /**
-     * @var bool isRecurring
+     * @var bool
      */
     public $isRecurring;
 
     /**
-     * @var string countryCode
+     * @var string
      */
     public $countryCode;
 
     /**
-     * @var string locale
+     * @var string
      */
     public $locale;
 
     /**
-     * @var string currencyCode
+     * @var string
      */
     public $currencyCode;
 

@@ -1,19 +1,25 @@
 <?php
+namespace GCS;
 
-class GCS_DeclinedPayoutException extends GCS_ResponseException
+/**
+ * Class DeclinedPayoutException
+ *
+ * @package GCS
+ */
+class DeclinedPayoutException extends ResponseException
 {
     /**
-     * @return GCS_payout_definitions_PayoutResult
+     * @return Payout\Definitions\PayoutResult
      */
     public function getPayoutResult()
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('payoutResult', $responseVariables)) {
-            return new GCS_payout_definitions_PayoutResult();
+            return new Payout\Definitions\PayoutResult();
         }
         $payoutResult = $responseVariables['payoutResult'];
-        if (!($payoutResult instanceof GCS_payout_definitions_PayoutResult)) {
-            return new GCS_payout_definitions_PayoutResult();
+        if (!($payoutResult instanceof Payout\Definitions\PayoutResult)) {
+            return new Payout\Definitions\PayoutResult();
         }
         return $payoutResult;
     }

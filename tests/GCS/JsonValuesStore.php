@@ -1,8 +1,12 @@
 <?php
+namespace GCS;
+
 /**
- * Class GCS_JsonValuesStore
+ * Class JsonValuesStore
+ *
+ * @package GCS
  */
-class GCS_JsonValuesStore
+class JsonValuesStore
 {
 
     /**
@@ -11,7 +15,7 @@ class GCS_JsonValuesStore
     protected $valuesFilePath = null;
 
     /**
-     * @var null|StdClass
+     * @var null|\stdClass
      */
     protected $valuesObject = null;
 
@@ -25,16 +29,18 @@ class GCS_JsonValuesStore
 
     /**
      * @param string $key
-     * @param bool $isRequired
+     * @param bool   $isRequired
+     *
      * @return mixed
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function getValue($key, $isRequired = true)
     {
         $valuesObject = $this->getValuesObject();
         $value = null;
         if (!property_exists($valuesObject, $key) && $isRequired) {
-            throw new Exception('could not find property "' . $key . '"" in file "' . $this->valuesFilePath . '"');
+            throw new \Exception('could not find property "' . $key . '"" in file "' . $this->valuesFilePath . '"');
         }
         if (property_exists($valuesObject, $key)) {
             $value = $valuesObject->{$key};
@@ -43,21 +49,22 @@ class GCS_JsonValuesStore
     }
 
     /**
-     * @return StdClass
-     * @throws Exception
+     * @return \stdClass
+     *
+     * @throws \Exception
      */
     protected function getValuesObject()
     {
         if (is_null($this->valuesObject)) {
             if (!file_exists($this->valuesFilePath)) {
-                throw new Exception('could not open file ' . $this->valuesFilePath . ' (file does not exist)');
+                throw new \Exception('could not open file ' . $this->valuesFilePath . ' (file does not exist)');
             }
             if (!is_readable($this->valuesFilePath)) {
-                throw new Exception('could not open file ' . $this->valuesFilePath . ' (file is not readable)');
+                throw new \Exception('could not open file ' . $this->valuesFilePath . ' (file is not readable)');
             }
             $valuesObject = json_decode(file_get_contents($this->valuesFilePath));
             if (!$valuesObject) {
-                throw new Exception(
+                throw new \Exception(
                     'could not read JSON values file ' . $this->valuesFilePath . ' (file does not contain valid json)'
                 );
             }

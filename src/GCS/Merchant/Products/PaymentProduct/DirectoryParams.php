@@ -1,14 +1,22 @@
 <?php
+namespace GCS\Merchant\Products\PaymentProduct;
 
-class GCS_Merchant_Products_PaymentProduct_DirectoryParams extends GCS_RequestObject
+use GCS\RequestObject;
+
+/**
+ * Class DirectoryParams
+ *
+ * @package GCS\Merchant\Products\PaymentProduct
+ */
+class DirectoryParams extends RequestObject
 {
     /**
-     * @var string currencyCode
+     * @var string
      */
     public $currencyCode;
 
     /**
-     * @var string countryCode
+     * @var string
      */
     public $countryCode;
 

@@ -1,24 +1,36 @@
 <?php
+namespace GCS\Merchant;
+
+use GCS\Errors\ErrorResponse;
+use GCS\Resource;
+use GCS\ResponseClassMap;
+use GCS\Sessions\SessionRequest;
+use GCS\Sessions\SessionResponse;
 
 /**
+ * Class Sessions
+ *
  * Sessions client.
  * Create new Session for Client2Server API calls
+ *
+ * @package GCS\Merchant
  */
-class GCS_Merchant_Sessions extends GCS_Resource
+class Sessions extends Resource
 {
     /**
      * Resource /{merchantId}/sessions
      * Create Session
      *
-     * @param GCS_sessions_SessionRequest $body
-     * @return GCS_sessions_SessionResponse
-     * 
-     * @throws GCS_errors_ErrorResponse
+     * @param SessionRequest $body
+     *
+     * @return SessionResponse
+     *
+     * @throws ErrorResponse
      */
     public function create($body)
     {
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_sessions_SessionResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\Sessions\SessionResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/sessions'),

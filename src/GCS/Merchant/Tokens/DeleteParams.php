@@ -1,9 +1,17 @@
 <?php
+namespace GCS\Merchant\Tokens;
 
-class GCS_Merchant_Tokens_DeleteParams extends GCS_RequestObject
+use GCS\RequestObject;
+
+/**
+ * Class DeleteParams
+ *
+ * @package GCS\Merchant\Tokens
+ */
+class DeleteParams extends RequestObject
 {
     /**
-     * @var string mandateCancelDate
+     * @var string
      */
     public $mandateCancelDate;
 

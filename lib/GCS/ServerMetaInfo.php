@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-class GCS_ServerMetaInfo
+/**
+ * Class ServerMetaInfo
+ *
+ * @package GCS
+ */
+class ServerMetaInfo
 {
     /** @var string */
     public $platformIdentifier;

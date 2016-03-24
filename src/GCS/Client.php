@@ -1,11 +1,16 @@
 <?php
+namespace GCS;
 
 /**
+ * Class Client
+ *
  * GlobalCollect server-to-server (S2S) API
+ *
+ * @package GCS
  */
-class GCS_Client extends GCS_Resource
+class Client extends Resource
 {
-    /** @var GCS_Communicator */
+    /** @var Communicator */
     private $communicator;
 
     /** @var string */
@@ -14,11 +19,11 @@ class GCS_Client extends GCS_Resource
     /**
      * Construct a new GlobalCollect platform server-to-server API client.
      *
-     * @param GCS_Communicator $communicator
+     * @param Communicator $communicator
      * @param string $clientMetaInfo
      *
      */
-    public function __construct(GCS_Communicator $communicator, $clientMetaInfo = '')
+    public function __construct(Communicator $communicator, $clientMetaInfo = '')
     {
         parent::__construct();
         $this->communicator = $communicator;
@@ -26,7 +31,7 @@ class GCS_Client extends GCS_Resource
     }
 
     /**
-     * @return GCS_Communicator
+     * @return Communicator
      */
     protected function getCommunicator()
     {
@@ -35,6 +40,7 @@ class GCS_Client extends GCS_Resource
 
     /**
      * @param string $clientMetaInfo
+     *
      * @return $this
      */
     public function setClientMetaInfo($clientMetaInfo)
@@ -50,19 +56,20 @@ class GCS_Client extends GCS_Resource
     {
         return $this->clientMetaInfo;
     }
-    
+
     /**
      * Resource /{merchantId}
      *
      * @param string $merchantId
-     * @return GCS_Merchant
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @return Merchant
+     *
+     * @throws Errors\ErrorResponse
      */
     public function merchant($merchantId)
     {
         $newContext = $this->context;
         $newContext['merchantId'] = $merchantId;
-        return new GCS_Merchant($this, $newContext);
+        return new Merchant($this, $newContext);
     }
 }

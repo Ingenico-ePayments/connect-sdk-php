@@ -1,19 +1,25 @@
 <?php
+namespace GCS;
 
-class GCS_DeclinedRefundException extends GCS_ResponseException
+/**
+ * Class DeclinedRefundException
+ *
+ * @package GCS
+ */
+class DeclinedRefundException extends ResponseException
 {
     /**
-    php * @return GCS_refund_definitions_RefundResult
+     * @return Refund\Definitions\RefundResult
      */
     public function getRefundResult()
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('refundResult', $responseVariables)) {
-            return new GCS_refund_definitions_RefundResult();
+            return new Refund\Definitions\RefundResult();
         }
         $refundResult = $responseVariables['refundResult'];
-        if (!($refundResult instanceof GCS_refund_definitions_RefundResult)) {
-            return new GCS_refund_definitions_RefundResult();
+        if (!($refundResult instanceof Refund\Definitions\RefundResult)) {
+            return new Refund\Definitions\RefundResult();
         }
         return $refundResult;
     }

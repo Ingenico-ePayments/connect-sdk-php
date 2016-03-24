@@ -1,6 +1,12 @@
 <?php
+namespace GCS;
 
-interface GCS_ConnectionResponse
+/**
+ * Interface ConnectionResponse
+ *
+ * @package GCS
+ */
+interface ConnectionResponse
 {
     /**
      * @return string

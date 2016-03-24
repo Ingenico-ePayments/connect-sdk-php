@@ -1,21 +1,27 @@
 <?php
+namespace GCS;
 
-class GCS_ResponseException extends RuntimeException
+/**
+ * Class ResponseException
+ *
+ * @package GCS
+ */
+class ResponseException extends \RuntimeException
 {
     /** @var int */
     protected $httpStatusCode;
 
     /**
-     * @var GCS_DataObject
+     * @var DataObject
      */
     protected $response;
 
     /**
      * @param int $httpStatusCode
-     * @param GCS_DataObject $response
+     * @param DataObject $response
      * @param string $message
      */
-    public function __construct($httpStatusCode, GCS_DataObject $response, $message = null)
+    public function __construct($httpStatusCode, DataObject $response, $message = null)
     {
         if (is_null($message)) {
             $message = 'The server returned an error.';
@@ -25,6 +31,9 @@ class GCS_ResponseException extends RuntimeException
         $this->response = $response;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return sprintf(
@@ -48,7 +57,7 @@ class GCS_ResponseException extends RuntimeException
     }
 
     /**
-     * @return GCS_DataObject
+     * @return DataObject
      */
     public function getResponse()
     {
@@ -68,7 +77,7 @@ class GCS_ResponseException extends RuntimeException
     }
 
     /**
-     * @return GCS_errors_definitions_APIError[]
+     * @return Errors\Definitions\APIError[]
      */
     public function getErrors()
     {
@@ -81,7 +90,7 @@ class GCS_ResponseException extends RuntimeException
             return array();
         }
         foreach ($errors as $error) {
-            if (!($error instanceof GCS_errors_definitions_APIError)) {
+            if (!($error instanceof Errors\Definitions\APIError)) {
                 return array();
             }
         }

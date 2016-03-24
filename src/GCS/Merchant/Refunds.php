@@ -1,24 +1,36 @@
 <?php
+namespace GCS\Merchant;
+
+use GCS\Errors\ErrorResponse;
+use GCS\Refund\ApproveRefundRequest;
+use GCS\Refund\RefundResponse;
+use GCS\Resource;
+use GCS\ResponseClassMap;
 
 /**
+ * Class Refunds
+ *
  * Refunds client.
  * Create, cancel and approve refunds
+ *
+ * @package GCS\Merchant
  */
-class GCS_Merchant_Refunds extends GCS_Resource
+class Refunds extends Resource
 {
     /**
      * Resource /{merchantId}/refunds/{refundId}/cancel
      * Cancel refund
      *
      * @param string $refundId
+     *
      * @return null
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @throws ErrorResponse
      */
     public function cancel($refundId)
     {
         $this->context['refundId'] = $refundId;
-        $responseClassMap = new GCS_ResponseClassMap();
+        $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -32,15 +44,16 @@ class GCS_Merchant_Refunds extends GCS_Resource
      * Approve refund
      *
      * @param string $refundId
-     * @param GCS_refund_ApproveRefundRequest $body
+     * @param ApproveRefundRequest $body
+     *
      * @return null
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @throws ErrorResponse
      */
     public function approve($refundId, $body)
     {
         $this->context['refundId'] = $refundId;
-        $responseClassMap = new GCS_ResponseClassMap();
+        $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -55,14 +68,15 @@ class GCS_Merchant_Refunds extends GCS_Resource
      * Undo approve refund
      *
      * @param string $refundId
+     *
      * @return null
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @throws ErrorResponse
      */
     public function cancelapproval($refundId)
     {
         $this->context['refundId'] = $refundId;
-        $responseClassMap = new GCS_ResponseClassMap();
+        $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -76,15 +90,16 @@ class GCS_Merchant_Refunds extends GCS_Resource
      * Retrieve refund
      *
      * @param string $refundId
-     * @return GCS_refund_RefundResponse
-     * 
-     * @throws GCS_errors_ErrorResponse
+     *
+     * @return RefundResponse
+     *
+     * @throws ErrorResponse
      */
     public function get($refundId)
     {
         $this->context['refundId'] = $refundId;
-        $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_refund_RefundResponse');
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\GCS\Refund\RefundResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/refunds/{refundId}'),
