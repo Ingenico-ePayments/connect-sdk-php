@@ -1,27 +1,37 @@
 <?php
+namespace GCS\riskassessments;
+
+use GCS\fei\definitions\Card;
+
 /**
- * class RiskAssessmentCard
+ * Class RiskAssessmentCard
+ *
+ * @package GCS\riskassessments
  */
-class GCS_riskassessments_RiskAssessmentCard extends GCS_riskassessments_definitions_RiskAssessment
+class RiskAssessmentCard extends definitions\RiskAssessment
 {
     /**
-     * @var GCS_fei_definitions_Card
+     * @var Card
      */
     public $card = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {
             if (!is_object($object->card)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->card, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->card, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_Card();
+            $value = new Card();
             $this->card = $value->fromObject($object->card);
         }
         return $this;

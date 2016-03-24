@@ -1,24 +1,37 @@
 <?php
-class GCS_riskassessments_definitions_PersonalInformationRiskAssessment extends GCS_DataObject
+namespace GCS\riskassessments\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PersonalInformationRiskAssessment
+ *
+ * @package GCS\riskassessments\definitions
+ */
+class PersonalInformationRiskAssessment extends DataObject
 {
     /**
-     * @var GCS_riskassessments_definitions_PersonalNameRiskAssessment
+     * @var PersonalNameRiskAssessment
      */
     public $name = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'name')) {
             if (!is_object($object->name)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->name, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->name, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_riskassessments_definitions_PersonalNameRiskAssessment();
+            $value = new PersonalNameRiskAssessment();
             $this->name = $value->fromObject($object->name);
         }
         return $this;

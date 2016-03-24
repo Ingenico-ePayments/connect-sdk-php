@@ -1,10 +1,21 @@
 <?php
-class GCS_riskassessments_definitions_PersonalNameRiskAssessment extends GCS_fei_definitions_PersonalNameBase
+namespace GCS\riskassessments\definitions;
+
+use GCS\fei\definitions\PersonalNameBase;
+
+/**
+ * Class PersonalNameRiskAssessment
+ *
+ * @package GCS\riskassessments\definitions
+ */
+class PersonalNameRiskAssessment extends PersonalNameBase
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

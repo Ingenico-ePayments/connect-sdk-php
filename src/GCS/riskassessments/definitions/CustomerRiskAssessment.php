@@ -1,8 +1,19 @@
 <?php
-class GCS_riskassessments_definitions_CustomerRiskAssessment extends GCS_DataObject
+namespace GCS\riskassessments\definitions;
+
+use GCS\DataObject;
+use GCS\fei\definitions\Address;
+use GCS\payment\definitions\AddressPersonal;
+
+/**
+ * Class CustomerRiskAssessment
+ *
+ * @package GCS\riskassessments\definitions
+ */
+class CustomerRiskAssessment extends DataObject
 {
     /**
-     * @var GCS_fei_definitions_Address
+     * @var Address
      */
     public $billingAddress = null;
 
@@ -12,28 +23,32 @@ class GCS_riskassessments_definitions_CustomerRiskAssessment extends GCS_DataObj
     public $locale = null;
 
     /**
-     * @var GCS_riskassessments_definitions_PersonalInformationRiskAssessment
+     * @var PersonalInformationRiskAssessment
      */
     public $personalInformation = null;
 
     /**
-     * @var GCS_payment_definitions_AddressPersonal
+     * @var AddressPersonal
      */
     public $shippingAddress = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'billingAddress')) {
             if (!is_object($object->billingAddress)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->billingAddress, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->billingAddress, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_Address();
+            $value = new Address();
             $this->billingAddress = $value->fromObject($object->billingAddress);
         }
         if (property_exists($object, 'locale')) {
@@ -41,16 +56,20 @@ class GCS_riskassessments_definitions_CustomerRiskAssessment extends GCS_DataObj
         }
         if (property_exists($object, 'personalInformation')) {
             if (!is_object($object->personalInformation)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->personalInformation, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->personalInformation, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_riskassessments_definitions_PersonalInformationRiskAssessment();
+            $value = new PersonalInformationRiskAssessment();
             $this->personalInformation = $value->fromObject($object->personalInformation);
         }
         if (property_exists($object, 'shippingAddress')) {
             if (!is_object($object->shippingAddress)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->shippingAddress, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->shippingAddress, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_AddressPersonal();
+            $value = new AddressPersonal();
             $this->shippingAddress = $value->fromObject($object->shippingAddress);
         }
         return $this;
