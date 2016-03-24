@@ -1,8 +1,14 @@
 <?php
+namespace GCS\payout;
+
+use GCS\DataObject;
+
 /**
- * class ApprovePayoutRequest
+ * Class ApprovePayoutRequest
+ *
+ * @package GCS\payout
  */
-class GCS_payout_ApprovePayoutRequest extends GCS_DataObject
+class ApprovePayoutRequest extends DataObject
 {
     /**
      * @var string
@@ -11,8 +17,10 @@ class GCS_payout_ApprovePayoutRequest extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

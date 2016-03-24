@@ -1,5 +1,14 @@
 <?php
-class GCS_payout_definitions_PayoutReferences extends GCS_DataObject
+namespace GCS\payout\definitions;
+
+use GCS\DataObject;
+
+/**
+ * Class PayoutReferences
+ *
+ * @package GCS\payout\definitions
+ */
+class PayoutReferences extends DataObject
 {
     /**
      * @var string
@@ -18,8 +27,10 @@ class GCS_payout_definitions_PayoutReferences extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {

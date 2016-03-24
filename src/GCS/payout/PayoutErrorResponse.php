@@ -1,8 +1,15 @@
 <?php
+namespace GCS\payout;
+
+use GCS\DataObject;
+use GCS\errors\definitions\APIError;
+
 /**
- * class PayoutErrorResponse
+ * Class PayoutErrorResponse
+ *
+ * @package GCS\payout
  */
-class GCS_payout_PayoutErrorResponse extends GCS_DataObject
+class PayoutErrorResponse extends DataObject
 {
     /**
      * @var string
@@ -10,19 +17,21 @@ class GCS_payout_PayoutErrorResponse extends GCS_DataObject
     public $errorId = null;
 
     /**
-     * @var GCS_errors_definitions_APIError[]
+     * @var APIError[]
      */
     public $errors = null;
 
     /**
-     * @var GCS_payout_definitions_PayoutResult
+     * @var definitions\PayoutResult
      */
     public $payoutResult = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -32,19 +41,23 @@ class GCS_payout_PayoutErrorResponse extends GCS_DataObject
         }
         if (property_exists($object, 'errors')) {
             if (!is_array($object->errors) && !is_object($object->errors)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->errors, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->errors, true) . '\' is not an array or object'
+                );
             }
             $this->errors = [];
             foreach ($object->errors as $errorsElementObject) {
-                $errorsElement = new GCS_errors_definitions_APIError();
+                $errorsElement = new APIError();
                 $this->errors[] = $errorsElement->fromObject($errorsElementObject);
             }
         }
         if (property_exists($object, 'payoutResult')) {
             if (!is_object($object->payoutResult)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->payoutResult, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->payoutResult, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payout_definitions_PayoutResult();
+            $value = new definitions\PayoutResult();
             $this->payoutResult = $value->fromObject($object->payoutResult);
         }
         return $this;

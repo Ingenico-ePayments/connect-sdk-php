@@ -1,8 +1,19 @@
 <?php
-class GCS_payout_definitions_PayoutResult extends GCS_fei_definitions_AbstractOrderStatus
+namespace GCS\payout\definitions;
+
+use GCS\fei\definitions\AbstractOrderStatus;
+use GCS\fei\definitions\OrderStatusOutput;
+use GCS\payment\definitions\OrderOutput;
+
+/**
+ * Class PayoutResult
+ *
+ * @package GCS\payout\definitions
+ */
+class PayoutResult extends AbstractOrderStatus
 {
     /**
-     * @var GCS_payment_definitions_OrderOutput
+     * @var OrderOutput
      */
     public $payoutOutput = null;
 
@@ -12,23 +23,27 @@ class GCS_payout_definitions_PayoutResult extends GCS_fei_definitions_AbstractOr
     public $status = null;
 
     /**
-     * @var GCS_fei_definitions_OrderStatusOutput
+     * @var OrderStatusOutput
      */
     public $statusOutput = null;
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'payoutOutput')) {
             if (!is_object($object->payoutOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->payoutOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->payoutOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_payment_definitions_OrderOutput();
+            $value = new OrderOutput();
             $this->payoutOutput = $value->fromObject($object->payoutOutput);
         }
         if (property_exists($object, 'status')) {
@@ -36,9 +51,11 @@ class GCS_payout_definitions_PayoutResult extends GCS_fei_definitions_AbstractOr
         }
         if (property_exists($object, 'statusOutput')) {
             if (!is_object($object->statusOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->statusOutput, true) . '\' is not an object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->statusOutput, true) . '\' is not an object'
+                );
             }
-            $value = new GCS_fei_definitions_OrderStatusOutput();
+            $value = new OrderStatusOutput();
             $this->statusOutput = $value->fromObject($object->statusOutput);
         }
         return $this;

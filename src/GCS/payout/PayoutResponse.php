@@ -1,13 +1,19 @@
 <?php
+namespace GCS\payout;
+
 /**
- * class PayoutResponse
+ * Class PayoutResponse
+ *
+ * @package GCS\payout
  */
-class GCS_payout_PayoutResponse extends GCS_payout_definitions_PayoutResult
+class PayoutResponse extends definitions\PayoutResult
 {
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
