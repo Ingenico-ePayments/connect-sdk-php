@@ -1,13 +1,28 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\fei\definitions\BankAccountBban;
+use GCS\Merchant\Services\ConvertAmountParams;
+use GCS\services\BankDetailsRequest;
+use GCS\services\BINLookupRequest;
+use GCS\services\ConvertAmount;
+use GCS\services\TestConnection;
 
 /**
- * @group examples
+ * Class ServicesTest
  *
+ * @package GCS\Client
+ * @group   examples
  */
-class GCS_Client_ServicesTest extends GCS_ClientTestCase
+class ServicesTest extends ClientTestCase
 {
     const MERCHANT_ID = "20000";
 
+    /**
+     * @return TestConnection
+     */
     public function testTestConnection()
     {
         $client = $this->getClient();
@@ -17,13 +32,13 @@ class GCS_Client_ServicesTest extends GCS_ClientTestCase
     }
 
     /**
-     * @throws GCS_ApiException
+     * @throws ApiException
      */
     public function testRetrieveIINDetails()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $body = new GCS_services_BINLookupRequest();
+        $body = new BINLookupRequest();
 
         $body->bin = "4567350000427977";
 
@@ -32,15 +47,15 @@ class GCS_Client_ServicesTest extends GCS_ClientTestCase
     }
 
     /**
-     * @throws GCS_ApiException
+     * @throws ApiException
      */
     public function testConvertBankaccount()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $bankDetailsRequest = new GCS_services_BankDetailsRequest();
+        $bankDetailsRequest = new BankDetailsRequest();
 
-        $bankAccountBban = new GCS_fei_definitions_BankAccountBban();
+        $bankAccountBban = new BankAccountBban();
         $bankAccountBban->countryCode = "DE";
         $bankAccountBban->accountNumber = "0532013000";
         $bankAccountBban->bankCode = "37040044";
@@ -51,14 +66,15 @@ class GCS_Client_ServicesTest extends GCS_ClientTestCase
     }
 
     /**
-     * @return GCS_services_ConvertAmount
-     * @throws GCS_ApiException
+     * @return ConvertAmount
+     *
+     * @throws ApiException
      */
     public function testConvertAmount()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $convertAmountParams = new GCS_Merchant_Services_ConvertAmountParams();
+        $convertAmountParams = new ConvertAmountParams();
 
         $convertAmountParams->amount = 1000;
         $convertAmountParams->source = "USD";

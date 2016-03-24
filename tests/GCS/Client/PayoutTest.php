@@ -1,53 +1,72 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\errors\ErrorResponse;
+use GCS\fei\definitions\Address;
+use GCS\fei\definitions\AmountOfMoney;
+use GCS\fei\definitions\BankAccountIban;
+use GCS\fei\definitions\CompanyInformation;
+use GCS\fei\definitions\ContactDetailsBase;
+use GCS\payment\definitions\PersonalName;
+use GCS\payout\ApprovePayoutRequest;
+use GCS\payout\CreatePayoutRequest;
+use GCS\payout\definitions\PayoutCustomer;
+use GCS\payout\definitions\PayoutReferences;
+use GCS\payout\PayoutResponse;
 
 /**
- * @group examples
+ * Class PayoutTest
  *
+ * @package GCS\Client
+ * @group examples
  */
-class GCS_Client_PayoutTest extends GCS_ClientTestCase
+class PayoutTest extends ClientTestCase
 {
     const MERCHANT_ID = "8897";
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function testCreatePayout()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $createPayoutRequest = new GCS_payout_CreatePayoutRequest();
+        $createPayoutRequest = new CreatePayoutRequest();
 
         $createPayoutRequest->payoutText = "Payout Acme";
         $createPayoutRequest->payoutDate = "20150102";
         $createPayoutRequest->swiftCode = "swift";
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->amount = 2345;
         $amountOfMoney->currencyCode = "EUR";
         $createPayoutRequest->amountOfMoney = $amountOfMoney;
 
-        $bankAccountIban = new GCS_fei_definitions_BankAccountIban();
+        $bankAccountIban = new BankAccountIban();
         $bankAccountIban->iban = "NL91ABNA0417164300";
         $bankAccountIban->accountHolderName = "J.Cruijff";
         $createPayoutRequest->bankAccountIban = $bankAccountIban;
 
-        $payoutReferences = new GCS_payout_definitions_PayoutReferences();
+        $payoutReferences = new PayoutReferences();
         $payoutReferences->merchantReference = "AcmeOrder0001";
         $createPayoutRequest->references = $payoutReferences;
 
-        $payoutCustomer = new GCS_payout_definitions_PayoutCustomer();
+        $payoutCustomer = new PayoutCustomer();
 
-        $contactDetailsBase = new GCS_fei_definitions_ContactDetailsBase();
+        $contactDetailsBase = new ContactDetailsBase();
         $contactDetailsBase->emailAddress = "wile.e.coyote@acmelabs.com";
         $payoutCustomer->contactDetails = $contactDetailsBase;
 
-        $companyInformation = new GCS_fei_definitions_CompanyInformation();
+        $companyInformation = new CompanyInformation();
         $companyInformation->name = "Acme Labs";
         $payoutCustomer->companyInformation = $companyInformation;
 
-        $address = new GCS_fei_definitions_Address();
+        $address = new Address();
         $address->countryCode = "FR";
         $address->street = "N Hollywood Way";
         $address->houseNumber = "411";
@@ -56,7 +75,7 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
         $address->state = "California";
         $payoutCustomer->address = $address;
 
-        $personalName = new GCS_payment_definitions_PersonalName();
+        $personalName = new PersonalName();
         $personalName->title = "Mr.";
         $personalName->firstName = "Wile";
         $personalName->surnamePrefix = "E.";
@@ -65,7 +84,7 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
 
         $createPayoutRequest->customer = $payoutCustomer;
 
-        /** @var GCS_payout_PayoutResponse $payoutResponse */
+        /** @var PayoutResponse $payoutResponse */
         $payoutResponse = $client->merchant($merchantId)->payouts()->create($createPayoutRequest);
 
         return $payoutResponse->id;
@@ -75,15 +94,17 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
     /**
      * @depends testCreatePayout
      * @param string $payoutId
+     *
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
      */
     public function testRetrievePayout($payoutId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        /** @var GCS_payout_PayoutResponse $payoutResponse */
+        /** @var PayoutResponse $payoutResponse */
         $payoutResponse = $client->merchant($merchantId)->payouts()->get($payoutId);
         return $payoutResponse->id;
     }
@@ -91,7 +112,9 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
     /**
      * @depends testRetrievePayout
      * @param string $payoutId
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
      * @return string
      */
     public function testApprovePayout($payoutId)
@@ -99,10 +122,10 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $body = new GCS_payout_ApprovePayoutRequest();
+        $body = new ApprovePayoutRequest();
         $body->datePayout = "20150502";
 
-        /** @var GCS_payout_PayoutResponse $payoutResponse */
+        /** @var PayoutResponse $payoutResponse */
         $payoutResponse = $client->merchant($merchantId)->payouts()->approve($payoutId, $body);
 
         return $payoutResponse->id;
@@ -110,9 +133,13 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
 
     /**
      * @depends testApprovePayout
+     *
      * @param string $payoutId
+     *
      * @return string
-     * @throws GCS_ApiException, GCS_errors_ErrorResponse
+     *
+     * @throws ApiException
+     * @throws ErrorResponse
      */
     public function testCancelApprovePayout($payoutId)
     {
@@ -126,8 +153,10 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
     /**
      * @depends testCancelApprovePayout
      * @param string $payoutId
+     *
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
      */
     public function testCancelPayout($payoutId)
     {

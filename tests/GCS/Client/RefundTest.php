@@ -1,17 +1,31 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\fei\definitions\AmountOfMoney;
+use GCS\fei\definitions\BankAccountIban;
+use GCS\refund\ApproveRefundRequest;
+use GCS\refund\definitions\BankRefundMethodSpecificInput;
+use GCS\refund\definitions\RefundReferences;
+use GCS\refund\RefundErrorResponse;
+use GCS\refund\RefundRequest;
+use GCS\refund\RefundResponse;
 
 /**
- * @group examples
+ * Class RefundTest
  *
+ * @package GCS\Client
+ * @group   examples
  */
-class GCS_Client_RefundTest extends GCS_ClientTestCase
+class RefundTest extends ClientTestCase
 {
     const MERCHANT_ID = "9991";
 
     /**
-     * @throws GCS_ApiException
-     * @return GCS_refund_RefundErrorResponse
-     * @return string
+     * @return string|RefundErrorResponse
+     *
+     * @throws ApiException
      */
     public function testCreateRefund()
     {
@@ -19,55 +33,61 @@ class GCS_Client_RefundTest extends GCS_ClientTestCase
         $merchantId = self::MERCHANT_ID;
         $paymentId = "000000999100000429790000100001";
 
-        $refundRequest = new GCS_refund_RefundRequest();
+        $refundRequest = new RefundRequest();
 
-        $refundReferences = new GCS_refund_definitions_RefundReferences();
+        $refundReferences = new RefundReferences();
         $refundReferences->merchantReference = "850000568099";
         $refundRequest->refundReferences = $refundReferences;
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->currencyCode = "EUR";
         $amountOfMoney->amount = 1;
         $refundRequest->amountOfMoney = $amountOfMoney;
 
-        $bankRefundMethodSpecificInput = new GCS_refund_definitions_BankRefundMethodSpecificInput();
-        $bankAccountIban = new GCS_fei_definitions_BankAccountIban();
+        $bankRefundMethodSpecificInput = new BankRefundMethodSpecificInput();
+        $bankAccountIban = new BankAccountIban();
         $bankAccountIban->iban = "NL53INGB0000000036";
         $bankRefundMethodSpecificInput->bankAccountIban = $bankAccountIban;
         $refundRequest->bankRefundMethodSpecificInput = $bankRefundMethodSpecificInput;
 
-        /** @var GCS_refund_RefundResponse $refundResponse * */
+        /** @var RefundResponse $refundResponse * */
         $refundResponse = $client->merchant($merchantId)->payments()->refund($paymentId, $refundRequest);
         return $refundResponse->id;
     }
 
     /**
-     * @depends testCreateRefund
      * @param string $refundId
+     *
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
+     * @depends testCreateRefund
      */
     public function testRetrieveRefund($refundId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        /** @var GCS_refund_RefundResponse $refundResponse */
+        /** @var RefundResponse $refundResponse */
         $refundResponse = $client->merchant($merchantId)->refunds()->get($refundId);
         return $refundResponse->id;
     }
 
     /**
-     * @depends testRetrieveRefund
      * @param string $refundId
-     * @throws GCS_ApiException
+     *
      * @return string
+     *
+     * @throws ApiException
+     *
+     * @depends testRetrieveRefund
      */
     public function testApproveRefund($refundId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $approveRefundRequest = new GCS_refund_ApproveRefundRequest();
+        $approveRefundRequest = new ApproveRefundRequest();
 
         $approveRefundRequest->amount = 1;
 
@@ -76,10 +96,13 @@ class GCS_Client_RefundTest extends GCS_ClientTestCase
     }
 
     /**
-     * @depends testApproveRefund
      * @param string $refundId
-     * @throws GCS_ApiException
+     *
      * @return string
+     *
+     * @throws ApiException
+     *
+     * @depends testApproveRefund
      */
     public function testUndoApproveRefund($refundId)
     {
@@ -90,10 +113,13 @@ class GCS_Client_RefundTest extends GCS_ClientTestCase
     }
 
     /**
-     * @depends testUndoApproveRefund
      * @param string $refundId
+     *
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
+     * @depends testUndoApproveRefund
      */
     public function testCancelRefund($refundId)
     {

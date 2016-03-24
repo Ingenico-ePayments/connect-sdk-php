@@ -1,22 +1,31 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\sessions\SessionRequest;
+use GCS\sessions\SessionResponse;
 
 /**
- * @group examples
+ * Class SessionTest
  *
+ * @package GCS\Client
+ * @group   examples
  */
-class GCS_Client_SessionTest extends GCS_ClientTestCase
+class SessionTest extends ClientTestCase
 {
     const MERCHANT_ID = "20000";
 
     /**
-     * @return GCS_sessions_SessionResponse
-     * @throws GCS_ApiException
+     * @return SessionResponse
+     *
+     * @throws ApiException
      */
     public function testCreateSession()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $sessionRequest = new GCS_sessions_SessionRequest();
+        $sessionRequest = new SessionRequest();
 
         $tokens = array();
 

@@ -1,9 +1,43 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\fei\definitions\Address;
+use GCS\fei\definitions\AmountOfMoney;
+use GCS\fei\definitions\Card;
+use GCS\fei\definitions\CompanyInformation;
+use GCS\payment\ApprovePaymentRequest;
+use GCS\payment\CancelApprovalPaymentResponse;
+use GCS\payment\CancelPaymentResponse;
+use GCS\payment\CreatePaymentRequest;
+use GCS\payment\CreatePaymentResponse;
+use GCS\payment\definitions\AddressPersonal;
+use GCS\payment\definitions\ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput;
+use GCS\payment\definitions\CardPaymentMethodSpecificInput;
+use GCS\payment\definitions\ContactDetails;
+use GCS\payment\definitions\Customer;
+use GCS\payment\definitions\LineItem;
+use GCS\payment\definitions\LineItemInvoiceData;
+use GCS\payment\definitions\Order;
+use GCS\payment\definitions\OrderApprovePayment;
+use GCS\payment\definitions\OrderInvoiceData;
+use GCS\payment\definitions\OrderReferences;
+use GCS\payment\definitions\OrderReferencesApprovePayment;
+use GCS\payment\definitions\PersonalInformation;
+use GCS\payment\definitions\PersonalName;
+use GCS\payment\PaymentApprovalResponse;
+use GCS\payment\PaymentResponse;
+use GCS\payment\TokenizePaymentRequest;
+use GCS\token\CreateTokenResponse;
+
 /**
- * @group examples
+ * Class PaymentTest
  *
+ * @package GCS\Client
+ * @group   examples
  */
-class GCS_Client_PaymentTest extends GCS_ClientTestCase
+class PaymentTest extends ClientTestCase
 {
     const MERCHANT_ID = "20000";
 
@@ -16,23 +50,23 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $createPaymentRequest = new GCS_payment_CreatePaymentRequest();
+        $createPaymentRequest = new CreatePaymentRequest();
 
-        $order = new GCS_payment_definitions_Order();
+        $order = new Order();
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->amount = 2980;
         $amountOfMoney->currencyCode = "EUR";
         $order->amountOfMoney = $amountOfMoney;
 
-        $customer = new GCS_payment_definitions_Customer();
+        $customer = new Customer();
         $customer->merchantCustomerId = "1234";
         $customer->locale = "en_GB";
         $customer->vatNumber = "1234AB5678CD";
 
-        $personalInformation = new GCS_payment_definitions_PersonalInformation();
+        $personalInformation = new PersonalInformation();
 
-        $personalName = new GCS_payment_definitions_PersonalName();
+        $personalName = new PersonalName();
         $personalName->title = "Mr.";
         $personalName->firstName = "Wile";
         $personalName->surnamePrefix = "E.";
@@ -43,11 +77,11 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
         $personalInformation->dateOfBirth = "19490917";
         $customer->personalInformation = $personalInformation;
 
-        $companyInformation = new GCS_fei_definitions_CompanyInformation();
+        $companyInformation = new CompanyInformation();
         $companyInformation->name = "Acme Labs";
         $customer->companyInformation = $companyInformation;
 
-        $billingAddress = new GCS_fei_definitions_Address();
+        $billingAddress = new Address();
         $billingAddress->street = "Desertroad";
         $billingAddress->houseNumber = "13";
         $billingAddress->additionalInfo = "b";
@@ -57,9 +91,9 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
         $billingAddress->countryCode = "US";
         $customer->billingAddress = $billingAddress;
 
-        $shippingAddress = new GCS_payment_definitions_AddressPersonal();
+        $shippingAddress = new AddressPersonal();
 
-        $shippingName = new GCS_payment_definitions_PersonalName();
+        $shippingName = new PersonalName();
         $shippingName->title = "Miss";
         $shippingName->firstName = "Road";
         $shippingName->surname = "Runner";
@@ -75,7 +109,7 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
         $customer->shippingAddress = $shippingAddress;
 
 
-        $contactDetails = new GCS_payment_definitions_ContactDetails();
+        $contactDetails = new ContactDetails();
         $contactDetails->emailAddress = "wile.e.coyote@acmelabs.com";
         $contactDetails->emailMessageType = "html";
         $contactDetails->phoneNumber = "+1234567890";
@@ -84,40 +118,40 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
 
         $order->customer = $customer;
 
-        $references = new GCS_payment_definitions_OrderReferences();
+        $references = new OrderReferences();
         $references->merchantOrderId = 123456;
         $references->merchantReference = "AcmeOrder0001";
         $references->descriptor = "Fast and Furry-ous";
 
-        $invoiceData = new GCS_payment_definitions_OrderInvoiceData();
+        $invoiceData = new OrderInvoiceData();
         $invoiceData->invoiceNumber = "000000123";
         $invoiceData->invoiceDate = "20140306191500";
         $references->invoiceData = $invoiceData;
 
         $order->references = $references;
 
-        $lineItem1 = new GCS_payment_definitions_LineItem();
+        $lineItem1 = new LineItem();
 
-        $itemAmountOfMoney1 = new GCS_fei_definitions_AmountOfMoney();
+        $itemAmountOfMoney1 = new AmountOfMoney();
         $itemAmountOfMoney1->amount = 2500;
         $itemAmountOfMoney1->currencyCode = "EUR";
         $lineItem1->amountOfMoney = $itemAmountOfMoney1;
 
-        $lineItemInvoiceData1 = new GCS_payment_definitions_LineItemInvoiceData();
+        $lineItemInvoiceData1 = new LineItemInvoiceData();
         $lineItemInvoiceData1->nrOfItems = "1";
         $lineItemInvoiceData1->description = "ACME Super Outfit";
         $lineItemInvoiceData1->pricePerItem = 2500;
         $lineItem1->invoiceData = $lineItemInvoiceData1;
 
 
-        $lineItem2 = new GCS_payment_definitions_LineItem();
+        $lineItem2 = new LineItem();
 
-        $itemAmountOfMoney2 = new GCS_fei_definitions_AmountOfMoney();
+        $itemAmountOfMoney2 = new AmountOfMoney();
         $itemAmountOfMoney2->currencyCode = "EUR";
         $itemAmountOfMoney2->amount = 480;
         $lineItem2->amountOfMoney = $itemAmountOfMoney2;
 
-        $lineItemInvoiceData2 = new GCS_payment_definitions_LineItemInvoiceData();
+        $lineItemInvoiceData2 = new LineItemInvoiceData();
         $lineItemInvoiceData2->nrOfItems = "12";
         $lineItemInvoiceData2->description = "Aspirin";
         $lineItemInvoiceData2->pricePerItem = 40;
@@ -127,11 +161,11 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
 
         $createPaymentRequest->order = $order;
 
-        $cardPaymentMethodSpecificInput = new GCS_payment_definitions_CardPaymentMethodSpecificInput();
+        $cardPaymentMethodSpecificInput = new CardPaymentMethodSpecificInput();
         $cardPaymentMethodSpecificInput->paymentProductId = 1;
         $cardPaymentMethodSpecificInput->skipAuthentication = false;
 
-        $card = new GCS_fei_definitions_Card();
+        $card = new Card();
         $card->cvv = "123";
         $card->cardNumber = "4567350000427977";
         $card->expiryDate = "1220";
@@ -140,69 +174,79 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
 
         $createPaymentRequest->cardPaymentMethodSpecificInput = $cardPaymentMethodSpecificInput;
 
-        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse */
+        /** @var CreatePaymentResponse $createPaymentResponse */
         $createPaymentResponse = $client->merchant($merchantId)->payments()->create($createPaymentRequest);
         return $createPaymentResponse->payment->id;
     }
 
     /**
-     * @depends testCreatePayment
      * @param string $paymentId
-     * @throws GCS_ApiException
+     *
      * @return string
+     *
+     * @throws ApiException
+     *
+     * @depends testCreatePayment
      */
     public function testRetrievePayment($paymentId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        /** @var GCS_payment_PaymentResponse $paymentResponse */
+        /** @var PaymentResponse $paymentResponse */
         $paymentResponse = $client->merchant($merchantId)->payments()->get($paymentId);
         return $paymentResponse->id;
     }
 
     /**
-     * @depends testRetrievePayment
      * @param string $paymentId
-     * @throws GCS_ApiException
-     * @return GCS_payment_PaymentApprovalResponse
+     *
+     * @return PaymentApprovalResponse
+     *
+     * @throws ApiException
+     *
+     * @depends testRetrievePayment
      */
     public function testApprovePayment($paymentId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $approvePaymentRequest = new GCS_payment_ApprovePaymentRequest();
+        $approvePaymentRequest = new ApprovePaymentRequest();
 
         $directDebitPaymentMethodSpecificInput =
-            new GCS_payment_definitions_ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput();
+            new ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput();
         $directDebitPaymentMethodSpecificInput->dateCollect = "20150201";
         $directDebitPaymentMethodSpecificInput->token = "bfa8a7e4-4530-455a-858d-204ba2afb77e";
         $approvePaymentRequest->directDebitPaymentMethodSpecificInput = $directDebitPaymentMethodSpecificInput;
 
-        $orderApprovePayment = new GCS_payment_definitions_OrderApprovePayment();
-        $orderReferencesApprovePayment = new GCS_payment_definitions_OrderReferencesApprovePayment();
+        $orderApprovePayment = new OrderApprovePayment();
+        $orderReferencesApprovePayment = new OrderReferencesApprovePayment();
         $orderReferencesApprovePayment->merchantReference = "AcmeOrder0001";
         $orderApprovePayment->references = $orderReferencesApprovePayment;
         $approvePaymentRequest->order = $orderApprovePayment;
 
         $approvePaymentRequest->amount = 2980;
 
-        /** @var GCS_payment_PaymentApprovalResponse $paymentApprovalResponse */
+        /** @var PaymentApprovalResponse $paymentApprovalResponse */
         $paymentApprovalResponse =
             $client->merchant($merchantId)->payments()->approve($paymentId, $approvePaymentRequest);
         return $paymentApprovalResponse->payment->id;
     }
 
     /**
-     * @depends testApprovePayment
      * @param string $paymentId
-     * @throws GCS_ApiException
-     * @return GCS_payment_CancelApprovalPaymentResponse
+     *
+     * @return CancelApprovalPaymentResponse
+     *
+     * @throws ApiException
+     *
+     * @depends testApprovePayment
+     *
      */
     public function testCancelApprovePayment($paymentId)
     {
         $client = $this->GetClient();
         $merchantId = self::MERCHANT_ID;
-        /** @var GCS_payment_CancelApprovalPaymentResponse $cancelApprovalResponse */
+        /** @var CancelApprovalPaymentResponse $cancelApprovalResponse */
         $cancelApprovalResponse = $client->merchant($merchantId)->payments()->cancelapproval($paymentId);
         return $cancelApprovalResponse->payment->id;
     }
@@ -210,33 +254,39 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
     /**
      * @depends testApprovePayment
      * @param string $paymentId
-     * @throws GCS_ApiException
+     * @throws ApiException
      * @return string
      */
     public function testCreateTokenFromPayment($paymentId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $tokenizePaymentRequest = new GCS_payment_TokenizePaymentRequest();
+        $tokenizePaymentRequest = new TokenizePaymentRequest();
 
         $tokenizePaymentRequest->alias = "Some alias";
 
-        /** @var GCS_token_CreateTokenResponse $createTokenResponse */
-        $createTokenResponse = $client->merchant($merchantId)->payments()->tokenize($paymentId, $tokenizePaymentRequest);
+        /** @var CreateTokenResponse $createTokenResponse */
+        $createTokenResponse = $client
+            ->merchant($merchantId)
+            ->payments()
+            ->tokenize($paymentId, $tokenizePaymentRequest);
         return $createTokenResponse->token;
     }
 
     /**
-     * @depends testCancelApprovePayment
      * @param string $paymentId
-     * @throws GCS_ApiException
+     *
      * @return string
+     *
+     * @throws ApiException
+     *
+     * @depends testCancelApprovePayment
      */
     public function testCancelPayment($paymentId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        /** @var GCS_payment_CancelPaymentResponse $cancelPaymentResponse */
+        /** @var CancelPaymentResponse $cancelPaymentResponse */
         $cancelPaymentResponse = $client->merchant($merchantId)->payments()->cancel($paymentId);
         return $cancelPaymentResponse->payment->id;
     }
@@ -248,19 +298,19 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
-        $createPaymentRequest = new GCS_payment_CreatePaymentRequest();
+        $createPaymentRequest = new CreatePaymentRequest();
 
-        $order = new GCS_payment_definitions_Order();
+        $order = new Order();
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->currencyCode = "EUR";
         $amountOfMoney->amount = 16523;
         $order->amountOfMoney = $amountOfMoney;
 
-        $customer = new GCS_payment_definitions_Customer();
+        $customer = new Customer();
         $customer->locale = "en";
 
-        $billingAddress = new GCS_fei_definitions_Address();
+        $billingAddress = new Address();
         $billingAddress->countryCode = "NL";
         $customer->billingAddress = $billingAddress;
 
@@ -268,10 +318,10 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
 
         $createPaymentRequest->order = $order;
 
-        $cardPaymentMethodSpecificInput = new GCS_payment_definitions_CardPaymentMethodSpecificInput();
+        $cardPaymentMethodSpecificInput = new CardPaymentMethodSpecificInput();
         $cardPaymentMethodSpecificInput->paymentProductId = 1;
 
-        $card = new GCS_fei_definitions_Card();
+        $card = new Card();
         $card->cvv = "123";
         $card->cardNumber = "4444333322211211";
         $card->expiryDate = "1220";
@@ -279,23 +329,26 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
 
         $createPaymentRequest->cardPaymentMethodSpecificInput = $cardPaymentMethodSpecificInput;
 
-        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse */
+        /** @var CreatePaymentResponse $createPaymentResponse */
         $createPaymentResponse = $client->merchant($merchantId)->payments()->create($createPaymentRequest);
         return $createPaymentResponse->payment->id;
     }
 
     /**
-     * @depends testCreateMinimalPayment
      * @param string $paymentId
-     * @throws GCS_ApiException
+     *
      * @return string
+     *
+     * @throws ApiException
+     *
+     * @depends testCreateMinimalPayment
      */
     public function testApproveChallengedPayment($paymentId)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
 
-        /** @var GCS_payment_PaymentResponse $paymentApprovalResponse */
+        /** @var PaymentResponse $paymentApprovalResponse */
         $paymentApprovalResponse = $client->merchant($merchantId)->payments()->processchallenged($paymentId);
         return $paymentApprovalResponse->id;
     }

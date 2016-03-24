@@ -1,22 +1,34 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\Merchant\Products\FindParams;
+use GCS\Merchant\Products\GetParams;
+use GCS\Merchant\Products\PaymentProduct\DirectoryParams;
+use GCS\product\Directory;
+use GCS\product\PaymentProductResponse;
+use GCS\product\PaymentProducts;
 
 /**
- * @group examples
+ * Class ProductTest
  *
+ * @package GCS\Client
+ * @group   examples
  */
-class GCS_Client_ProductTest extends GCS_ClientTestCase
+class ProductTest extends ClientTestCase
 {
     const MERCHANT_ID = "20000";
 
     /**
-     * @return GCS_product_PaymentProducts
+     * @return PaymentProducts
      */
     public function testRetrievePaymentProducts()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $findParams = new GCS_Merchant_Products_FindParams();
+        $findParams = new FindParams();
 
         $findParams->amount = 1000;
         $findParams->countryCode = "US";
@@ -30,15 +42,16 @@ class GCS_Client_ProductTest extends GCS_ClientTestCase
     }
 
     /**
-     * @throws GCS_ApiException
-     * @return GCS_product_PaymentProductResponse
+     * @return PaymentProductResponse
+     *
+     * @throws ApiException
      */
     public function testRetrievePaymentProductFields()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $getParams = new GCS_Merchant_Products_GetParams();
+        $getParams = new GetParams();
 
         $getParams->amount = 1000;
         $getParams->currencyCode = "USD";
@@ -51,20 +64,25 @@ class GCS_Client_ProductTest extends GCS_ClientTestCase
     }
 
     /**
-     * @throws GCS_ApiException
-     * @return GCS_product_Directory
+     * @return Directory
+     *
+     * @throws ApiException
      */
     public function testRetrievePaymentProductDirectory()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $directoryParams = new GCS_Merchant_Products_PaymentProduct_DirectoryParams();
+        $directoryParams = new DirectoryParams();
 
         $directoryParams->currencyCode = "EUR";
         $directoryParams->countryCode = "NL";
 
-        $productDirectory =
-            $client->merchant($merchantId)->products()->paymentProduct(809)->directory($directoryParams);
+        $productDirectory = $client
+            ->merchant($merchantId)
+            ->products()
+            ->paymentProduct(809)
+            ->directory($directoryParams);
+
         return $productDirectory;
     }
 }

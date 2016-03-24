@@ -1,9 +1,12 @@
 <?php
+namespace GCS;
 
 /**
- * Class GCS_TestCase
+ * Class TestCase
+ *
+ * @package GCS
  */
-abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var string|null
@@ -11,12 +14,12 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
     protected $configFilePath = null;
 
     /**
-     * @var GCS_JsonValuesStore|null
+     * @var JsonValuesStore|null
      */
     protected $jsonValuesStore = null;
 
     /**
-     * @var GCS_CommunicatorConfiguration
+     * @var CommunicatorConfiguration
      */
     protected $communicatorConfiguration;
 
@@ -31,7 +34,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getApiKey()
     {
@@ -40,7 +44,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getApiSecret()
     {
@@ -49,7 +54,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getBaseUri()
     {
@@ -58,7 +64,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getProxyHost()
     {
@@ -67,7 +74,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getProxyPort()
     {
@@ -76,7 +84,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getProxyUsername()
     {
@@ -85,7 +94,8 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return string
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     protected function getProxyPassword()
     {
@@ -93,23 +103,23 @@ abstract class GCS_TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return GCS_JsonValuesStore
+     * @return JsonValuesStore
      */
     protected function getJsonValuesStore()
     {
         if (is_null($this->jsonValuesStore)) {
-            $this->jsonValuesStore = new GCS_JsonValuesStore($this->configFilePath);
+            $this->jsonValuesStore = new JsonValuesStore($this->configFilePath);
         }
         return $this->jsonValuesStore;
     }
 
     /**
-     * @return GCS_CommunicatorConfiguration
+     * @return CommunicatorConfiguration
      */
     protected function getCommunicatorConfiguration()
     {
         if (is_null($this->communicatorConfiguration)) {
-            $this->communicatorConfiguration = new GCS_CommunicatorConfiguration(
+            $this->communicatorConfiguration = new CommunicatorConfiguration(
                 $this->getApiKey(),
                 $this->getApiSecret(),
                 $this->getBaseUri()

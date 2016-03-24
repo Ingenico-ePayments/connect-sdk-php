@@ -1,10 +1,29 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\fei\definitions\AdditionalOrderInputAirlineData;
+use GCS\fei\definitions\Address;
+use GCS\fei\definitions\AirlineData;
+use GCS\fei\definitions\AirlineFlightLeg;
+use GCS\fei\definitions\AmountOfMoney;
+use GCS\fei\definitions\BankAccountBban;
+use GCS\fei\definitions\Card;
+use GCS\fei\definitions\ResultDoRiskAssessment;
+use GCS\riskassessments\definitions\CustomerRiskAssessment;
+use GCS\riskassessments\definitions\OrderRiskAssessment;
+use GCS\riskassessments\RiskAssessmentBankAccount;
+use GCS\riskassessments\RiskAssessmentCard;
+use GCS\riskassessments\RiskAssessmentResponse;
 
 /**
- * @group examples
+ * Class RiskAssessmentTest
  *
+ * @package GCS\Client
+ * @group examples
  */
-class GCS_Client_RiskAssessmentTest extends GCS_ClientTestCase
+class RiskAssessmentTest extends ClientTestCase
 {
     const MERCHANT_ID = "9991";
 
@@ -13,39 +32,40 @@ class GCS_Client_RiskAssessmentTest extends GCS_ClientTestCase
      */
 
     /**
-     * @return array|GCS_fei_definitions_ResultDoRiskAssessment[]
-     * @throws GCS_ApiException
+     * @return array|ResultDoRiskAssessment[]
+     *
+     * @throws ApiException
      */
     public function testRiskAssessCard()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $riskAssessmentCard = new GCS_riskassessments_RiskAssessmentCard();
+        $riskAssessmentCard = new RiskAssessmentCard();
 
         $riskAssessmentCard->paymentProductId = 1;
 
-        $card = new GCS_fei_definitions_Card();
+        $card = new Card();
         $card->expiryDate = "0520";
         $card->cardNumber = "4063651370499176";
         $card->cvv = "123";
         $riskAssessmentCard->card = $card;
 
-        $orderRiskAssessment = new GCS_riskassessments_definitions_OrderRiskAssessment();
+        $orderRiskAssessment = new OrderRiskAssessment();
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->amount = 0;
         $amountOfMoney->currencyCode = "USD";
         $orderRiskAssessment->amountOfMoney = $amountOfMoney;
 
-        $customerRiskAssessment = new GCS_riskassessments_definitions_CustomerRiskAssessment();
+        $customerRiskAssessment = new CustomerRiskAssessment();
         $customerRiskAssessment->locale = "en";
-        $customerBillingAddress = new GCS_fei_definitions_Address();
+        $customerBillingAddress = new Address();
         $customerBillingAddress->countryCode = 'US';
         $customerRiskAssessment->billingAddress = $customerBillingAddress;
         $orderRiskAssessment->customer = $customerRiskAssessment;
 
-        $airlineData = new GCS_fei_definitions_AirlineData();
+        $airlineData = new AirlineData();
         $airlineData->code = "123";
         $airlineData->name = "Air France KLM";
         $airlineData->invoiceNumber = "123456";
@@ -65,7 +85,7 @@ class GCS_Client_RiskAssessmentTest extends GCS_ClientTestCase
         $airlineData->issueDate = "20150101";
         $airlineData->isRestrictedTicket = true;
 
-        $airlineFlightLeg1 = new GCS_fei_definitions_AirlineFlightLeg();
+        $airlineFlightLeg1 = new AirlineFlightLeg();
         $airlineFlightLeg1->number = 1;
         $airlineFlightLeg1->date = "20150102";
         $airlineFlightLeg1->originAirport = "BCN";
@@ -78,7 +98,7 @@ class GCS_Client_RiskAssessmentTest extends GCS_ClientTestCase
         $airlineFlightLeg1->departureTime = "17:59";
         $airlineFlightLeg1->fare = "fare";
 
-        $airlineFlightLeg2 = new GCS_fei_definitions_AirlineFlightLeg();
+        $airlineFlightLeg2 = new AirlineFlightLeg();
         $airlineFlightLeg2->number = 2;
         $airlineFlightLeg2->date = "20150102";
         $airlineFlightLeg2->originAirport = "AMS";
@@ -93,52 +113,52 @@ class GCS_Client_RiskAssessmentTest extends GCS_ClientTestCase
 
         $airlineData->flightLegs = array($airlineFlightLeg1, $airlineFlightLeg2);
 
-        $additionalInput = new GCS_fei_definitions_AdditionalOrderInputAirlineData();
+        $additionalInput = new AdditionalOrderInputAirlineData();
         $additionalInput->airlineData = $airlineData;
 
         $orderRiskAssessment->additionalInput = $additionalInput;
 
         $riskAssessmentCard->order = $orderRiskAssessment;
 
-        /** @var GCS_riskassessments_RiskAssessmentResponse $riskAssessmentResponse */
+        /** @var RiskAssessmentResponse $riskAssessmentResponse */
         $riskAssessmentResponse = $client->merchant($merchantId)->riskassessments()->cards($riskAssessmentCard);
         return $riskAssessmentResponse->results;
     }
 
     /**
-     * @throws GCS_ApiException
+     * @throws ApiException
      */
     public function testRiskAssessBankAccount()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $riskAssessmentBankAccount = new GCS_riskassessments_RiskAssessmentBankAccount();
+        $riskAssessmentBankAccount = new RiskAssessmentBankAccount();
 
-        $bankAccountBban = new GCS_fei_definitions_BankAccountBban();
+        $bankAccountBban = new BankAccountBban();
         $bankAccountBban->countryCode = "DE";
         $bankAccountBban->accountNumber = "0532013000";
         $bankAccountBban->bankCode = "37040044";
         $riskAssessmentBankAccount->bankAccountBban = $bankAccountBban;
 
-        $riskAssessmentOrder = new GCS_riskassessments_definitions_OrderRiskAssessment();
+        $riskAssessmentOrder = new OrderRiskAssessment();
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->amount = 100;
         $amountOfMoney->currencyCode = "EUR";
         $riskAssessmentOrder->amountOfMoney = $amountOfMoney;
 
-        $customer = new GCS_riskassessments_definitions_CustomerRiskAssessment();
+        $customer = new CustomerRiskAssessment();
         $customer->locale = "en";
         $riskAssessmentOrder->customer = $customer;
-        $customerBillingAddress = new GCS_fei_definitions_Address();
+        $customerBillingAddress = new Address();
         $customerBillingAddress->countryCode = 'NL';
         $customer->billingAddress = $customerBillingAddress;
         $riskAssessmentOrder->customer = $customer;
 
         $riskAssessmentBankAccount->order = $riskAssessmentOrder;
 
-        /** @var GCS_riskassessments_RiskAssessmentResponse $response */
+        /** @var RiskAssessmentResponse $response */
         $response = $client->merchant($merchantId)->riskassessments()->bankaccounts($riskAssessmentBankAccount);
 
         return $response;

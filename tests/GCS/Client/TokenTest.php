@@ -1,10 +1,37 @@
 <?php
+namespace GCS\Client;
+
+use GCS\ApiException;
+use GCS\ClientTestCase;
+use GCS\fei\definitions\Address;
+use GCS\fei\definitions\BankAccountBban;
+use GCS\fei\definitions\BankAccountIban;
+use GCS\fei\definitions\CompanyInformation;
+use GCS\Merchant\Tokens\DeleteParams;
+use GCS\payment\definitions\PersonalInformation;
+use GCS\token\ApproveTokenRequest;
+use GCS\token\CreateTokenRequest;
+use GCS\token\CreateTokenResponse;
+use GCS\token\definitions\ContactDetailsToken;
+use GCS\token\definitions\CustomerToken;
+use GCS\token\definitions\CustomerTokenWithContactDetails;
+use GCS\token\definitions\Debtor;
+use GCS\token\definitions\MandateNonSepaDirectDebit;
+use GCS\token\definitions\MandateSepaDirectDebit;
+use GCS\token\definitions\PersonalInformationToken;
+use GCS\token\definitions\PersonalNameToken;
+use GCS\token\definitions\TokenNonSepaDirectDebit;
+use GCS\token\definitions\TokenNonSepaDirectDebitPaymentProduct705SpecificData;
+use GCS\token\definitions\TokenSepaDirectDebitWithoutCreditor;
+use GCS\token\UpdateTokenRequest;
 
 /**
- * @group examples
+ * Class TokenTest
  *
+ * @package GCS\Client
+ * @group   examples
  */
-class GCS_Client_TokenTest extends GCS_ClientTestCase
+class TokenTest extends ClientTestCase
 {
     const MERCHANT_ID = "20000";
 
@@ -12,24 +39,25 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
     /**
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
      */
     public function testCreateToken()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $createTokenRequest = new GCS_token_CreateTokenRequest();
+        $createTokenRequest = new CreateTokenRequest();
         $createTokenRequest->paymentProductId = 705;
 
-        $nonSepaDirectDebit = new GCS_token_definitions_TokenNonSepaDirectDebit();
+        $nonSepaDirectDebit = new TokenNonSepaDirectDebit();
 
-        $mandateNonSepaDirectDebit = new GCS_token_definitions_MandateNonSepaDirectDebit();
+        $mandateNonSepaDirectDebit = new MandateNonSepaDirectDebit();
 
-		$paymentProduct705SpecificData = new GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData();
+		$paymentProduct705SpecificData = new TokenNonSepaDirectDebitPaymentProduct705SpecificData();
         $paymentProduct705SpecificData->authorisationId = "123456";
 
-        $bankAccountBban = new GCS_fei_definitions_BankAccountBban();
+        $bankAccountBban = new BankAccountBban();
         $bankAccountBban->accountNumber = "000000123456";
         $bankAccountBban->bankCode = "05428";
         $bankAccountBban->branchCode = "11101";
@@ -42,16 +70,16 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
         $nonSepaDirectDebit->mandate = $mandateNonSepaDirectDebit;
 
 
-        $customerToken = new GCS_token_definitions_CustomerToken();
+        $customerToken = new CustomerToken();
         $customerToken->merchantCustomerId = "1234";
 
-        $companyInformation = new GCS_fei_definitions_CompanyInformation();
+        $companyInformation = new CompanyInformation();
         $companyInformation->name = "Acme Labs";
         $customerToken->companyInformation = $companyInformation;
 
-        $personalInformation = new GCS_payment_definitions_PersonalInformation();
+        $personalInformation = new PersonalInformation();
 
-        $personalNameToken = new GCS_token_definitions_PersonalNameToken();
+        $personalNameToken = new PersonalNameToken();
         $personalNameToken->firstName = "Wile";
         $personalNameToken->surnamePrefix = "E.";
         $personalNameToken->surname = "Coyote";
@@ -59,7 +87,7 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
         $customerToken->personalInformation = $personalInformation;
 
-        $billingAddress = new GCS_fei_definitions_Address();
+        $billingAddress = new Address();
         $billingAddress->city = "Monument Valley";
         $billingAddress->countryCode = "US";
         $billingAddress->houseNumber = "1";
@@ -79,8 +107,11 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
     /**
      * @param string $token
+     *
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
      * @depends testCreateToken
      */
     public function testRetrieveToken($token)
@@ -93,8 +124,11 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
     /**
      * @param string $token
+     *
      * @return string
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
      * @depends testRetrieveToken
      */
     public function testUpdateToken($token)
@@ -102,20 +136,20 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $updateTokenRequest = new GCS_token_UpdateTokenRequest();
+        $updateTokenRequest = new UpdateTokenRequest();
 
         $updateTokenRequest->paymentProductId = 701;
 
-        $nonSepaDirectDebit = new GCS_token_definitions_TokenNonSepaDirectDebit();
+        $nonSepaDirectDebit = new TokenNonSepaDirectDebit();
 
-        $mandateNonSepaDirectDebit = new GCS_token_definitions_MandateNonSepaDirectDebit();
+        $mandateNonSepaDirectDebit = new MandateNonSepaDirectDebit();
         $mandateNonSepaDirectDebit->authorisationId = "123456";
         $mandateNonSepaDirectDebit->addressLine1 = "Wile E. Coyote";
         $mandateNonSepaDirectDebit->addressLine2 = "N Hollywood Way";
         $mandateNonSepaDirectDebit->addressLine3 = "91505 Burbank";
         $mandateNonSepaDirectDebit->addressLine4 = "United States";
 
-        $bankAccountBban = new GCS_fei_definitions_BankAccountBban();
+        $bankAccountBban = new BankAccountBban();
         $bankAccountBban->accountNumber = "000000654321";
         $bankAccountBban->bankCode = "05428";
         $bankAccountBban->branchCode = "11101";
@@ -125,16 +159,16 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
         $nonSepaDirectDebit->mandate = $mandateNonSepaDirectDebit;
 
-        $customerToken = new GCS_token_definitions_CustomerToken();
+        $customerToken = new CustomerToken();
         $customerToken->merchantCustomerId = "1234";
 
-        $companyInformation = new GCS_fei_definitions_CompanyInformation();
+        $companyInformation = new CompanyInformation();
         $companyInformation->name = "Acme Labs";
         $customerToken->companyInformation = $companyInformation;
 
-        $personalInformationToken = new GCS_token_definitions_PersonalInformationToken();
+        $personalInformationToken = new PersonalInformationToken();
 
-        $name = new GCS_token_definitions_PersonalNameToken();
+        $name = new PersonalNameToken();
         $name->firstName = "Wile";
         $name->surnamePrefix = "E.";
         $name->surname = "Coyote";
@@ -142,7 +176,7 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
         $customerToken->personalInformation = $personalInformationToken;
 
-        $billingAddress = new GCS_fei_definitions_Address();
+        $billingAddress = new Address();
         $billingAddress->city = "Monument Valley";
         $billingAddress->countryCode = "US";
         $billingAddress->houseNumber = "13";
@@ -162,45 +196,47 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
     }
 
     /**
-     * @depends testUpdateToken
      * @param string $token
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
+     * @depends testUpdateToken
      */
     public function testDeleteToken($token)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
 
-        $deleteParams = new GCS_Merchant_Tokens_DeleteParams();
+        $deleteParams = new DeleteParams();
         $deleteParams->mandateCancelDate = "20150102";
         $client->merchant($merchantId)->tokens()->delete($token, $deleteParams);
     }
 
     /**
-     * @return string
-     * @throws GCS_ApiException
-     * @return GCS_token_CreateTokenResponse
+     * @return string|CreateTokenResponse
+     *
+     * @throws ApiException
      */
     public function testCreateSepaDirectDebitToken()
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST;
 
-        $createTokenRequest = new GCS_token_CreateTokenRequest();
+        $createTokenRequest = new CreateTokenRequest();
         $createTokenRequest->paymentProductId = 701;
 
-        $sepaDirectDebitToken = new GCS_token_definitions_TokenSepaDirectDebitWithoutCreditor();
+        $sepaDirectDebitToken = new TokenSepaDirectDebitWithoutCreditor();
 
-        $sepaDirectDebitMandate = new GCS_token_definitions_MandateSepaDirectDebit();
+        $sepaDirectDebitMandate = new MandateSepaDirectDebit();
 
-        $bankAccountIban = new GCS_fei_definitions_BankAccountIban();
+        $bankAccountIban = new BankAccountIban();
         $bankAccountIban->accountHolderName = "Paul";
         $bankAccountIban->iban = "IT60X0542811101000000123456";
         $sepaDirectDebitMandate->bankAccountIban = $bankAccountIban;
 
         $sepaDirectDebitMandate->customerContractIdentifier = "23424242323422322";
 
-        $debtor = new GCS_token_definitions_Debtor();
+        $debtor = new Debtor();
         $debtor->firstName = "Paul";
         $debtor->surnamePrefix = "van de";
         $debtor->surname = "Loonseduinen";
@@ -218,28 +254,28 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
         $sepaDirectDebitToken->mandate = $sepaDirectDebitMandate;
 
-        $customerToken = new GCS_token_definitions_CustomerTokenWithContactDetails();
+        $customerToken = new CustomerTokenWithContactDetails();
         $customerToken->merchantCustomerId = "1234";
 
-        $companyInformation = new GCS_fei_definitions_CompanyInformation();
+        $companyInformation = new CompanyInformation();
         $companyInformation->name = "ISAAC";
         $customerToken->companyInformation = $companyInformation;
 
-        $personalInformation = new GCS_payment_definitions_PersonalInformation();
+        $personalInformation = new PersonalInformation();
 
-        $personalNameToken = new GCS_token_definitions_PersonalNameToken();
+        $personalNameToken = new PersonalNameToken();
         $personalNameToken->firstName = "Mies";
         $personalNameToken->surnamePrefix = "van der";
         $personalNameToken->surname = "Heijden";
         $personalInformation->name = $personalNameToken;
         $customerToken->personalInformation = $personalInformation;
 
-        $contactDetailsToken = new GCS_token_definitions_ContactDetailsToken();
+        $contactDetailsToken = new ContactDetailsToken();
         $contactDetailsToken->emailAddress = "mies@isaac.nl";
         $contactDetailsToken->emailMessageType = "plain-text";
         $customerToken->contactDetails = $contactDetailsToken;
 
-        $billingAddress = new GCS_fei_definitions_Address();
+        $billingAddress = new Address();
         $billingAddress->city = "Eindhoven";
         $billingAddress->countryCode = "NL";
         $billingAddress->houseNumber = "16";
@@ -255,25 +291,28 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
         $createTokenRequest->sepaDirectDebit = $sepaDirectDebitToken;
         $createTokenRequest->paymentProductId = 770;
 
-        /** @var GCS_token_CreateTokenResponse $createTokenResponse */
+        /** @var CreateTokenResponse $createTokenResponse */
         $createTokenResponse = $client->merchant($merchantId)->tokens()->create($createTokenRequest);
         return $createTokenResponse;
     }
 
     /**
-     * @depends testCreateSepaDirectDebitToken
-     * @param GCS_token_CreateTokenResponse $createTokenResponse
-     * @throws GCS_ApiException
+     * @param CreateTokenResponse $createTokenResponse
+     *
      * @return string
+     *
+     * @throws ApiException
+     *
+     * @depends testCreateSepaDirectDebitToken
      */
-    public function testApproveSepaDirectDebitToken(GCS_token_CreateTokenResponse $createTokenResponse)
+    public function testApproveSepaDirectDebitToken(CreateTokenResponse $createTokenResponse)
     {
         $token = $createTokenResponse->token;
         if ($createTokenResponse->isNewToken) {
             $client = $this->getClient();
             $merchantId = self::MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST;
 
-            $approveTokenRequest = new GCS_token_ApproveTokenRequest();
+            $approveTokenRequest = new ApproveTokenRequest();
             $approveTokenRequest->mandateSignaturePlace = "Eindhoven";
             $approveTokenRequest->mandateSignatureDate = "20131018";
             $approveTokenRequest->mandateSigned = true;
@@ -284,16 +323,18 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
     }
 
     /**
-     * @depends testApproveSepaDirectDebitToken
      * @param string $token
-     * @throws GCS_ApiException
+     *
+     * @throws ApiException
+     *
+     * @depends testApproveSepaDirectDebitToken
      */
     public function testDeleteSepaDirectDebitToken($token)
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST;
 
-        $deleteParams = new GCS_Merchant_Tokens_DeleteParams();
+        $deleteParams = new DeleteParams();
         $deleteParams->mandateCancelDate = "20150102";
 
         $client->merchant($merchantId)->tokens()->delete($token, $deleteParams);

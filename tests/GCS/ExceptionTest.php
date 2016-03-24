@@ -1,20 +1,55 @@
 <?php
+namespace GCS\Client;
+
+use GCS\AuthorizationException;
+use GCS\ClientTestCase;
+use GCS\DeclinedPaymentException;
+use GCS\DeclinedPayoutException;
+use GCS\DeclinedRefundException;
+use GCS\errors\ErrorResponse;
+use GCS\fei\definitions\Address;
+use GCS\fei\definitions\AmountOfMoney;
+use GCS\fei\definitions\BankAccountIban;
+use GCS\fei\definitions\Card;
+use GCS\GlobalCollectException;
+use GCS\payment\CreatePaymentRequest;
+use GCS\payment\definitions\CardPaymentMethodSpecificInput;
+use GCS\payment\definitions\CreatePaymentResult;
+use GCS\payment\definitions\Customer;
+use GCS\payment\definitions\Order;
+use GCS\payment\definitions\PersonalInformation;
+use GCS\payment\definitions\PersonalName;
+use GCS\payment\PaymentErrorResponse;
+use GCS\payout\CreatePayoutRequest;
+use GCS\payout\definitions\PayoutCustomer;
+use GCS\payout\definitions\PayoutReferences;
+use GCS\payout\definitions\PayoutResult;
+use GCS\payout\PayoutErrorResponse;
+use GCS\refund\definitions\RefundResult;
+use GCS\refund\RefundErrorResponse;
+use GCS\ResponseException;
+use GCS\services\BINLookupRequest;
+use GCS\ValidationException;
+
 /**
- * @group exceptions
+ * Class ExceptionTest
+ *
+ * @package GCS\Client
+ * @group   exceptions
  */
-class GCS_Client_ExceptionTest extends GCS_ClientTestCase
+class ExceptionTest extends ClientTestCase
 {
 
     public function testExceptionErrors()
     {
         try {
-            $emptyBody = new GCS_services_BINLookupRequest();
+            $emptyBody = new BINLookupRequest();
             $this->getClient()->merchant("9991")->services()->getIINdetails($emptyBody);
-        } catch (GCS_ResponseException $e) {
+        } catch (ResponseException $e) {
             $this->assertNotEmpty($e->getErrorId());
             $errors = $e->getErrors();
             $this->assertCount(1, $errors);
-            $this->assertContainsOnlyInstancesOf('GCS_errors_definitions_APIError', $errors);
+            $this->assertContainsOnlyInstancesOf('\GCS\errors\definitions\APIError', $errors);
             return;
         }
         $this->fail('An expected exception has not been raised.');
@@ -22,7 +57,7 @@ class GCS_Client_ExceptionTest extends GCS_ClientTestCase
 
     public function testExceptionWithoutErrors()
     {
-        $responseException = new GCS_ResponseException(0, new GCS_errors_ErrorResponse());
+        $responseException = new ResponseException(0, new ErrorResponse());
         $this->assertEmpty($responseException->getErrorId());
         $this->assertCount(0, $responseException->getErrors());
     }
@@ -43,12 +78,12 @@ class GCS_Client_ExceptionTest extends GCS_ClientTestCase
     ]
 }
 EOD;
-        $errorResponse = new GCS_errors_ErrorResponse();
+        $errorResponse = new ErrorResponse();
         $errorResponse->fromJson($errorResponseJsonString);
-        $responseException = new GCS_ResponseException($httpStatusCode, $errorResponse);
+        $responseException = new ResponseException($httpStatusCode, $errorResponse);
         $expectedResponseExceptionString = sprintf(
             "exception '%s' with message '%s'. in %s:%d\nHTTP status code: %s\nResponse:\n%s\nStack trace:\n%s",
-            'GCS_ResponseException',
+            '\GCS\ResponseException',
             $responseException->getMessage(),
             $responseException->getFile(),
             $responseException->getLine(),
@@ -63,9 +98,9 @@ EOD;
     public function testValidationException()
     {
         try {
-            $emptyBody = new GCS_services_BINLookupRequest();
+            $emptyBody = new BINLookupRequest();
             $this->getClient()->merchant("9991")->services()->getIINdetails($emptyBody);
-        } catch (GCS_ValidationException $e) {
+        } catch (ValidationException $e) {
             return;
         }
         $this->fail('An expected exception has not been raised.');
@@ -76,7 +111,7 @@ EOD;
         try {
             $invalidMerchantId = "123";
             $response = $this->getClient()->merchant($invalidMerchantId)->services()->testconnection();
-        } catch (GCS_AuthorizationException $e) {
+        } catch (AuthorizationException $e) {
             return;
         }
         $this->fail('An expected exception has not been raised.');
@@ -86,27 +121,27 @@ EOD;
     {
         $merchantId = "8609";
 
-        $createPaymentRequest = new GCS_payment_CreatePaymentRequest();
+        $createPaymentRequest = new CreatePaymentRequest();
 
-        $order = new GCS_payment_definitions_Order();
+        $order = new Order();
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->currencyCode = "USD";
         $amountOfMoney->amount = 2997;
         $order->amountOfMoney = $amountOfMoney;
 
-        $customer = new GCS_payment_definitions_Customer();
+        $customer = new Customer();
         $customer->locale = "nl";
 
-        $personalInformation = new GCS_payment_definitions_PersonalInformation();
-        $personalName = new GCS_payment_definitions_PersonalName();
+        $personalInformation = new PersonalInformation();
+        $personalName = new PersonalName();
         $personalName->firstName = "Johan";
         $personalName->surname = "Cruijff";
         $personalInformation->name = $personalName;
 
         $customer->personalInformation = $personalInformation;
 
-        $billingAddress = new GCS_fei_definitions_Address();
+        $billingAddress = new Address();
         $billingAddress->street = "Nou Camp";
         $billingAddress->houseNumber = "14";
         $billingAddress->zip = "1000 AA";
@@ -118,10 +153,10 @@ EOD;
         $order->customer = $customer;
         $createPaymentRequest->order = $order;
 
-        $cardPaymentMethodSpecificInput = new GCS_payment_definitions_CardPaymentMethodSpecificInput();
+        $cardPaymentMethodSpecificInput = new CardPaymentMethodSpecificInput();
         $cardPaymentMethodSpecificInput->paymentProductId = 3;
 
-        $card = new GCS_fei_definitions_Card();
+        $card = new Card();
         $card->cvv = "123";
         $card->cardNumber = "542418027979173";
         $card->expiryDate = "1220";
@@ -131,11 +166,11 @@ EOD;
 
         try {
             $this->getClient()->merchant($merchantId)->payments()->create($createPaymentRequest);
-        } catch (GCS_DeclinedPaymentException $e) {
+        } catch (DeclinedPaymentException $e) {
             $paymentResult = $e->getPaymentResult();
-            $this->assertInstanceOf('GCS_payment_definitions_CreatePaymentResult', $paymentResult);
+            $this->assertInstanceOf('\GCS\payment\definitions\CreatePaymentResult', $paymentResult);
             $payment = $paymentResult->payment;
-            $this->assertInstanceOf('GCS_payment_definitions_Payment', $payment);
+            $this->assertInstanceOf('\GCS\payment\definitions\Payment', $payment);
             $this->assertNotEmpty($payment->id);
             $this->assertEquals('REJECTED', $payment->status);
             return;
@@ -148,32 +183,32 @@ EOD;
         $client = $this->getClient();
         $merchantId = "8897";
 
-        $createPayoutRequest = new GCS_payout_CreatePayoutRequest();
+        $createPayoutRequest = new CreatePayoutRequest();
 
         $createPayoutRequest->payoutText = "Payout Value Text";
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->currencyCode = "EUR";
         $amountOfMoney->amount = 2000;
         $createPayoutRequest->amountOfMoney = $amountOfMoney;
 
-        $bankAccountIban = new GCS_fei_definitions_BankAccountIban();
+        $bankAccountIban = new BankAccountIban();
         $bankAccountIban->iban = "NL91ABNA0417164300";
         $createPayoutRequest->bankAccountIban = $bankAccountIban;
 
-        $payoutReferences = new GCS_payout_definitions_PayoutReferences();
+        $payoutReferences = new PayoutReferences();
         $payoutReferences->merchantReference = "2006101135";
         $createPayoutRequest->references = $payoutReferences;
 
-        $payoutCustomer = new GCS_payout_definitions_PayoutCustomer();
+        $payoutCustomer = new PayoutCustomer();
 
-        $address = new GCS_fei_definitions_Address();
+        $address = new Address();
         $address->countryCode = "FR";
         $address->street = "Camp Nou";
         $address->city = "Barcelona";
         $payoutCustomer->address = $address;
 
-        $personalName = new GCS_payment_definitions_PersonalName();
+        $personalName = new PersonalName();
         $personalName->surname = "Cruijf";
         $payoutCustomer->name = $personalName;
 
@@ -181,9 +216,9 @@ EOD;
 
         try {
             $client->merchant($merchantId)->payouts()->create($createPayoutRequest);
-        } catch (GCS_DeclinedPayoutException $e) {
+        } catch (DeclinedPayoutException $e) {
             $payoutResult = $e->getPayoutResult();
-            $this->assertInstanceOf('GCS_payout_definitions_PayoutResult', $payoutResult);
+            $this->assertInstanceOf('\GCS\payout\definitions\PayoutResult', $payoutResult);
             $this->assertNotEmpty($payoutResult->id);
             $this->assertEquals('REJECTED', $payoutResult->status);
             return;
@@ -191,36 +226,37 @@ EOD;
         $this->fail('An expected exception has not been raised');
     }
 
-    public function testGlobalCollectionExceptionForPayoutWithPayoutResult() {
+    public function testGlobalCollectionExceptionForPayoutWithPayoutResult()
+    {
         $client = $this->getClient();
         $merchantId = "8897";
 
-        $createPayoutRequest = new GCS_payout_CreatePayoutRequest();
+        $createPayoutRequest = new CreatePayoutRequest();
 
         $createPayoutRequest->payoutText = "Payout Value Text";
 
-        $amountOfMoney = new GCS_fei_definitions_AmountOfMoney();
+        $amountOfMoney = new AmountOfMoney();
         $amountOfMoney->currencyCode = "EUR";
         $amountOfMoney->amount = 2000;
         $createPayoutRequest->amountOfMoney = $amountOfMoney;
 
-        $bankAccountIban = new GCS_fei_definitions_BankAccountIban();
+        $bankAccountIban = new BankAccountIban();
         $bankAccountIban->iban = "NL91ABNA0417164300";
         $bankAccountIban->accountHolderName = "J.Cruijff";
         $createPayoutRequest->bankAccountIban = $bankAccountIban;
 
-        $payoutReferences = new GCS_payout_definitions_PayoutReferences();
+        $payoutReferences = new PayoutReferences();
         $payoutReferences->merchantReference = "2006101135";
         $createPayoutRequest->references = $payoutReferences;
 
-        $payoutCustomer = new GCS_payout_definitions_PayoutCustomer();
+        $payoutCustomer = new PayoutCustomer();
 
-        $address = new GCS_fei_definitions_Address();
+        $address = new Address();
         $address->countryCode = "FR";
         $address->street = "Camp Nou";
         $payoutCustomer->address = $address;
 
-        $personalName = new GCS_payment_definitions_PersonalName();
+        $personalName = new PersonalName();
         $personalName->surname = "Cruijf";
         $payoutCustomer->name = $personalName;
 
@@ -228,8 +264,8 @@ EOD;
 
         try {
             $client->merchant($merchantId)->payouts()->create($createPayoutRequest);
-        } catch (GCS_GlobalCollectException $e) {
-            $this->assertInstanceOf('GCS_errors_ErrorResponse', $e->getResponse());
+        } catch (GlobalCollectException $e) {
+            $this->assertInstanceOf('\GCS\errors\ErrorResponse', $e->getResponse());
             return;
         }
         $this->fail('An expected exception has not been raised');
@@ -237,28 +273,32 @@ EOD;
 
     public function testDeclinedPaymentException()
     {
-        $paymentErrorResponse = new GCS_payment_PaymentErrorResponse();
-        $declinedPaymentException = new GCS_DeclinedPaymentException(0, $paymentErrorResponse);
-        $this->assertInstanceOf('GCS_payment_definitions_CreatePaymentResult', $declinedPaymentException->getPaymentResult());
-        $paymentErrorResponse->paymentResult = new GCS_payment_definitions_CreatePaymentResult();
-        $this->assertInstanceOf('GCS_payment_definitions_CreatePaymentResult', $declinedPaymentException->getPaymentResult());
+        $paymentErrorResponse = new PaymentErrorResponse();
+        $declinedPaymentException = new DeclinedPaymentException(0, $paymentErrorResponse);
+        $this->assertInstanceOf(
+            '\GCS\payment\definitions\CreatePaymentResult', $declinedPaymentException->getPaymentResult()
+        );
+        $paymentErrorResponse->paymentResult = new CreatePaymentResult();
+        $this->assertInstanceOf(
+            '\GCS\payment\definitions\CreatePaymentResult', $declinedPaymentException->getPaymentResult()
+        );
     }
 
     public function testDeclinedPayoutException()
     {
-        $payoutErrorResponse = new GCS_payout_PayoutErrorResponse();
-        $declinedPayoutException = new GCS_DeclinedPayoutException(0, $payoutErrorResponse);
-        $this->assertInstanceOf('GCS_payout_definitions_PayoutResult', $declinedPayoutException->getPayoutResult());
-        $payoutErrorResponse->payoutResult = new GCS_payout_definitions_PayoutResult();
-        $this->assertInstanceOf('GCS_payout_definitions_PayoutResult', $declinedPayoutException->getPayoutResult());
+        $payoutErrorResponse = new PayoutErrorResponse();
+        $declinedPayoutException = new DeclinedPayoutException(0, $payoutErrorResponse);
+        $this->assertInstanceOf('\GCS\payout\definitions\PayoutResult', $declinedPayoutException->getPayoutResult());
+        $payoutErrorResponse->payoutResult = new PayoutResult();
+        $this->assertInstanceOf('\GCS\payout\definitions\PayoutResult', $declinedPayoutException->getPayoutResult());
     }
 
     public function testDeclinedRefundException()
     {
-        $refundErrorResponse = new GCS_refund_RefundErrorResponse();
-        $declinedRefundException = new GCS_DeclinedRefundException(0, $refundErrorResponse);
-        $this->assertInstanceOf('GCS_refund_definitions_RefundResult', $declinedRefundException->getRefundResult());
-        $refundErrorResponse->refundResult = new GCS_refund_definitions_RefundResult();
-        $this->assertInstanceOf('GCS_refund_definitions_RefundResult', $declinedRefundException->getRefundResult());
+        $refundErrorResponse = new RefundErrorResponse();
+        $declinedRefundException = new DeclinedRefundException(0, $refundErrorResponse);
+        $this->assertInstanceOf('\GCS\refund\definitions\RefundResult', $declinedRefundException->getRefundResult());
+        $refundErrorResponse->refundResult = new RefundResult();
+        $this->assertInstanceOf('\GCS\refund\definitions\RefundResult', $declinedRefundException->getRefundResult());
     }
 }
