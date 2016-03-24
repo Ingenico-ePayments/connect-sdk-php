@@ -1,8 +1,14 @@
 <?php
+namespace GCS\sessions;
+
+use GCS\DataObject;
+
 /**
- * class SessionRequest
+ * Class SessionRequest
+ *
+ * @package GCS\sessions
  */
-class GCS_sessions_SessionRequest extends GCS_DataObject
+class SessionRequest extends DataObject
 {
     /**
      * @var string[]
@@ -11,15 +17,19 @@ class GCS_sessions_SessionRequest extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
         parent::fromObject($object);
         if (property_exists($object, 'tokens')) {
             if (!is_array($object->tokens) && !is_object($object->tokens)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->tokens, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->tokens, true) . '\' is not an array or object'
+                );
             }
             $this->tokens = [];
             foreach ($object->tokens as $tokensElementObject) {

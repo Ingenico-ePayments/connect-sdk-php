@@ -1,8 +1,14 @@
 <?php
+namespace GCS\sessions;
+
+use GCS\DataObject;
+
 /**
- * class SessionResponse
+ * Class SessionResponse
+ *
+ * @package GCS\sessions
  */
-class GCS_sessions_SessionResponse extends GCS_DataObject
+class SessionResponse extends DataObject
 {
     /**
      * @var string
@@ -26,8 +32,10 @@ class GCS_sessions_SessionResponse extends GCS_DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
     public function fromObject($object)
     {
@@ -40,7 +48,9 @@ class GCS_sessions_SessionResponse extends GCS_DataObject
         }
         if (property_exists($object, 'invalidTokens')) {
             if (!is_array($object->invalidTokens) && !is_object($object->invalidTokens)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->invalidTokens, true) . '\' is not an array or object');
+                throw new \UnexpectedValueException(
+                    'value \'' . print_r($object->invalidTokens, true) . '\' is not an array or object'
+                );
             }
             $this->invalidTokens = [];
             foreach ($object->invalidTokens as $invalidTokensElementObject) {
