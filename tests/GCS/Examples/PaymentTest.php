@@ -39,7 +39,7 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
         $personalName->surname = "Coyote";
 
         $personalInformation->name = $personalName;
-        $personalInformation->gender = "M";
+        $personalInformation->gender = "male";
         $personalInformation->dateOfBirth = "19490917";
         $customer->personalInformation = $personalInformation;
 
@@ -248,6 +248,18 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse */
+        $createPaymentResponse = $client->merchant($merchantId)->payments()->create(
+            $this->getMinimalCreatePaymentRequest()
+        );
+        return $createPaymentResponse->payment->id;
+    }
+
+    /**
+     * @return GCS_payment_CreatePaymentRequest
+     */
+    protected function getMinimalCreatePaymentRequest($correctCreditCardNumber = true)
+    {
         $createPaymentRequest = new GCS_payment_CreatePaymentRequest();
 
         $order = new GCS_payment_definitions_Order();
@@ -273,15 +285,13 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
 
         $card = new GCS_fei_definitions_Card();
         $card->cvv = "123";
-        $card->cardNumber = "4444333322211211";
+        $card->cardNumber = $correctCreditCardNumber ? "4444333322211211" : "4444333322211212";
         $card->expiryDate = "1220";
         $cardPaymentMethodSpecificInput->card = $card;
 
         $createPaymentRequest->cardPaymentMethodSpecificInput = $cardPaymentMethodSpecificInput;
 
-        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse */
-        $createPaymentResponse = $client->merchant($merchantId)->payments()->create($createPaymentRequest);
-        return $createPaymentResponse->payment->id;
+        return $createPaymentRequest;
     }
 
     /**
@@ -299,4 +309,80 @@ class GCS_Client_PaymentTest extends GCS_ClientTestCase
         $paymentApprovalResponse = $client->merchant($merchantId)->payments()->processchallenged($paymentId);
         return $paymentApprovalResponse->id;
     }
+
+    /**
+     * @return string
+     */
+    public function testCreatePaymentWithIdempotenceKeySuccess()
+    {
+        $client = $this->getClient();
+        $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        $callContext = new GCS_CallContext();
+        $dateTimeWitMicroseconds = DateTime::createFromFormat('U.u', microtime(true));
+        $callContext->setIdempotenceKey(__FUNCTION__ . '::' . $dateTimeWitMicroseconds->format('Ymd-His-u'));
+        $this->assertEmpty($callContext->getIdempotenceRequestTimestamp());
+
+        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse1 */
+        $createPaymentResponse1 = $client->merchant($merchantId)->payments()->create(
+            $this->getMinimalCreatePaymentRequest(),
+            $callContext
+        );
+        $this->assertEmpty($callContext->getIdempotenceRequestTimestamp());
+        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse2 */
+        $createPaymentResponse2 = $client->merchant($merchantId)->payments()->create(
+            $this->getMinimalCreatePaymentRequest(),
+            $callContext
+        );
+        $idempotenceRequestTimestamp = $callContext->getIdempotenceRequestTimestamp();
+        $this->assertNotEmpty($idempotenceRequestTimestamp);
+        $this->assertEquals($createPaymentResponse1->payment->id, $createPaymentResponse2->payment->id);
+        /** @var GCS_payment_CreatePaymentResponse $createPaymentResponse3 */
+        $createPaymentResponse3 = $client->merchant($merchantId)->payments()->create(
+            $this->getMinimalCreatePaymentRequest(),
+            $callContext
+        );
+        $this->assertEquals($createPaymentResponse1->payment->id, $createPaymentResponse3->payment->id);
+        $this->assertEquals($idempotenceRequestTimestamp, $callContext->getIdempotenceRequestTimestamp());
+        return $createPaymentResponse1->payment->id;
+    }
+
+    public function testCreatePaymentWithIdempotenceKeyFailure()
+    {
+        $client = $this->getClient();
+        $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        $callContext = new GCS_CallContext();
+        $dateTimeWitMicroseconds = DateTime::createFromFormat('U.u', microtime(true));
+        $callContext->setIdempotenceKey(__FUNCTION__ . '::' . $dateTimeWitMicroseconds->format('Ymd-His-u'));
+        $this->assertEmpty($callContext->getIdempotenceRequestTimestamp());
+
+        try {
+            $client->merchant($merchantId)->payments()->create(
+                $this->getMinimalCreatePaymentRequest(false),
+                $callContext
+            );
+            $this->fail('excepted exception');
+        } catch (GCS_ValidationException $e) {
+            $this->assertEmpty($callContext->getIdempotenceRequestTimestamp());
+        }
+        try {
+            $client->merchant($merchantId)->payments()->create(
+                $this->getMinimalCreatePaymentRequest(false),
+                $callContext
+            );
+            $this->fail('excepted exception');
+        } catch (GCS_ValidationException $e) {
+            $idempotenceRequestTimestamp = $callContext->getIdempotenceRequestTimestamp();
+            $this->assertNotEmpty($idempotenceRequestTimestamp);
+        }
+        try {
+            $client->merchant($merchantId)->payments()->create(
+                $this->getMinimalCreatePaymentRequest(false),
+                $callContext
+            );
+            $this->fail('excepted exception');
+        } catch (GCS_ValidationException $e) {
+            $this->assertEquals($idempotenceRequestTimestamp, $callContext->getIdempotenceRequestTimestamp());
+        }
+    }
+
 }

@@ -100,7 +100,9 @@ class GCS_Client_PayoutTest extends GCS_ClientTestCase
         $merchantId = self::MERCHANT_ID;
 
         $body = new GCS_payout_ApprovePayoutRequest();
-        $body->datePayout = "20150502";
+        $payoutDate = new DateTime();
+        $payoutDate->add(new DateInterval("P7D"));
+        $body->datePayout = $payoutDate->format('Ymd');
 
         /** @var GCS_payout_PayoutResponse $payoutResponse */
         $payoutResponse = $client->merchant($merchantId)->payouts()->approve($payoutId, $body);

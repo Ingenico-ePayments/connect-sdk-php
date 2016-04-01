@@ -15,7 +15,9 @@ class GCS_RequestHeaderTest extends GCS_TestCase
                 $httpMethod,
                 '/v1/consumer/ANDR%C3%89E/?q=na%20me'
             );
-            $curlHeaders = $requestHeaderGenerator->generateRequestHeaders();
+            $requestHeaders = $requestHeaderGenerator->generateRequestHeaders();
+            $httpHeaderHelper = new GCS_HttpHeaderHelper();
+            $curlHeaders = $httpHeaderHelper->generateRawHeaders($requestHeaders);
 
             $this->assertCount(4, $curlHeaders);
 

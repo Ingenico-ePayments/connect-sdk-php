@@ -11,11 +11,12 @@ class GCS_Merchant_Tokens extends GCS_Resource
      * Create token
      *
      * @param GCS_token_CreateTokenRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_token_CreateTokenResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function create($body)
+    public function create($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_token_CreateTokenResponse');
@@ -25,7 +26,9 @@ class GCS_Merchant_Tokens extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -35,11 +38,12 @@ class GCS_Merchant_Tokens extends GCS_Resource
      *
      * @param string $tokenId
      * @param GCS_token_ApproveTokenRequest $body
+     * @param GCS_CallContext $callContext
      * @return null
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function approvesepadirectdebit($tokenId, $body)
+    public function approvesepadirectdebit($tokenId, $body, GCS_CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -48,7 +52,9 @@ class GCS_Merchant_Tokens extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -58,11 +64,12 @@ class GCS_Merchant_Tokens extends GCS_Resource
      *
      * @param string $tokenId
      * @param GCS_token_UpdateTokenRequest $body
+     * @param GCS_CallContext $callContext
      * @return null
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function update($tokenId, $body)
+    public function update($tokenId, $body, GCS_CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -71,7 +78,9 @@ class GCS_Merchant_Tokens extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -80,11 +89,12 @@ class GCS_Merchant_Tokens extends GCS_Resource
      * Retrieve token
      *
      * @param string $tokenId
+     * @param GCS_CallContext $callContext
      * @return GCS_token_TokenResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function get($tokenId)
+    public function get($tokenId, GCS_CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -93,7 +103,9 @@ class GCS_Merchant_Tokens extends GCS_Resource
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
         );
     }
 
@@ -103,11 +115,12 @@ class GCS_Merchant_Tokens extends GCS_Resource
      *
      * @param string $tokenId
      * @param GCS_Merchant_Tokens_DeleteParams $query
+     * @param GCS_CallContext $callContext
      * @return null
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function delete($tokenId, $query)
+    public function delete($tokenId, $query, GCS_CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -117,7 +130,8 @@ class GCS_Merchant_Tokens extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
-            $query
+            $query,
+            $callContext
         );
     }
 }

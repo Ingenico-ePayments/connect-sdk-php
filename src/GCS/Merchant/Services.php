@@ -11,11 +11,12 @@ class GCS_Merchant_Services extends GCS_Resource
      * Convert Bankaccount
      *
      * @param GCS_services_BankDetailsRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_services_BankDetailsResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function bankaccount($body)
+    public function bankaccount($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_services_BankDetailsResponse');
@@ -23,7 +24,9 @@ class GCS_Merchant_Services extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/convert/bankaccount'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -31,11 +34,12 @@ class GCS_Merchant_Services extends GCS_Resource
      * Resource /{merchantId}/services/testconnection
      * Test connection
      *
+     * @param GCS_CallContext $callContext
      * @return GCS_services_TestConnection
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function testconnection()
+    public function testconnection(GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_services_TestConnection');
@@ -43,7 +47,9 @@ class GCS_Merchant_Services extends GCS_Resource
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/testconnection'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
         );
     }
 
@@ -52,11 +58,12 @@ class GCS_Merchant_Services extends GCS_Resource
      * Retrieve IIN details
      *
      * @param GCS_services_BINLookupRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_services_BINLookupResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function getIINdetails($body)
+    public function getIINdetails($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_services_BINLookupResponse');
@@ -65,7 +72,9 @@ class GCS_Merchant_Services extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/getIINdetails'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -74,11 +83,12 @@ class GCS_Merchant_Services extends GCS_Resource
      * Convert amount
      *
      * @param GCS_Merchant_Services_ConvertAmountParams $query
+     * @param GCS_CallContext $callContext
      * @return GCS_services_ConvertAmount
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function convertAmount($query)
+    public function convertAmount($query, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_services_ConvertAmount');
@@ -86,7 +96,8 @@ class GCS_Merchant_Services extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/services/convert/amount'),
             $this->getClientMetaInfo(),
-            $query
+            $query,
+            $callContext
         );
     }
 }

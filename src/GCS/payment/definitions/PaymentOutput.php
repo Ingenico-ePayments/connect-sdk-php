@@ -22,11 +22,6 @@ class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_Orde
     public $cashPaymentMethodSpecificOutput = null;
 
     /**
-     * @var GCS_payment_definitions_CheckPaymentMethodSpecificOutput
-     */
-    public $checkPaymentMethodSpecificOutput = null;
-
-    /**
      * @var GCS_payment_definitions_NonSepaDirectDebitPaymentMethodSpecificOutput
      */
     public $directDebitPaymentMethodSpecificOutput = null;
@@ -82,13 +77,6 @@ class GCS_payment_definitions_PaymentOutput extends GCS_payment_definitions_Orde
             }
             $value = new GCS_payment_definitions_CashPaymentMethodSpecificOutput();
             $this->cashPaymentMethodSpecificOutput = $value->fromObject($object->cashPaymentMethodSpecificOutput);
-        }
-        if (property_exists($object, 'checkPaymentMethodSpecificOutput')) {
-            if (!is_object($object->checkPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->checkPaymentMethodSpecificOutput, true) . '\' is not an object');
-            }
-            $value = new GCS_payment_definitions_CheckPaymentMethodSpecificOutput();
-            $this->checkPaymentMethodSpecificOutput = $value->fromObject($object->checkPaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'directDebitPaymentMethodSpecificOutput')) {
             if (!is_object($object->directDebitPaymentMethodSpecificOutput)) {

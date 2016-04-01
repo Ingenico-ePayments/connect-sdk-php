@@ -117,11 +117,15 @@ class GCS_DefaultConnection implements GCS_Connection
         } while ($running > 0);
 
         $content = curl_multi_getcontent($curlHandle);
-        $contentInfo = curl_getinfo($curlHandle);
+        $headerSize = curl_getinfo($curlHandle, CURLINFO_HEADER_SIZE);
+        $httpCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
         curl_multi_remove_handle($multiHandle, $curlHandle);
-        return new GCS_DefaultConnectionResponse($content, $contentInfo);
+        $httpHeaderHelper = new GCS_HttpHeaderHelper();
+        $headers = $httpHeaderHelper->parseRawHeaders(explode("\r\n", substr($content, 0, $headerSize)));
+        $body = substr($content, $headerSize);
+        return new GCS_DefaultConnectionResponse($httpCode, $headers, $body);
     }
-
+    
     /**
      * @param resource $curlHandle
      * @param string $httpMethod
@@ -141,7 +145,7 @@ class GCS_DefaultConnection implements GCS_Connection
         if (!is_array($requestHeaders)) {
             throw new UnexpectedValueException('Invalid request headers; expected array');
         }
-        curl_setopt($curlHandle, CURLOPT_HEADER, false);
+        curl_setopt($curlHandle, CURLOPT_HEADER, true);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_CUSTOMREQUEST, $httpMethod);
         curl_setopt($curlHandle, CURLOPT_URL, $requestUri);
@@ -149,7 +153,8 @@ class GCS_DefaultConnection implements GCS_Connection
             curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $body);
         }
         if (count($requestHeaders) > 0) {
-            curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $requestHeaders);
+            $httpHeaderHelper = new GCS_HttpHeaderHelper();
+            curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $httpHeaderHelper->generateRawHeaders($requestHeaders));
         }
         if (!is_null($proxyConfiguration)) {
             $curlProxy = $proxyConfiguration->getCurlProxy();

@@ -6,7 +6,7 @@
  */
 class GCS_Client_RefundTest extends GCS_ClientTestCase
 {
-    const MERCHANT_ID = "9991";
+    const MERCHANT_ID = "1701";
 
     /**
      * @throws GCS_ApiException
@@ -17,9 +17,17 @@ class GCS_Client_RefundTest extends GCS_ClientTestCase
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $paymentId = "000000999100000429790000100001";
+        $paymentId = "000000170110001805450000100001";
 
         $refundRequest = new GCS_refund_RefundRequest();
+
+        $customerName = new GCS_payment_definitions_PersonalName();
+        $customerName->surname = "X";
+        $customerAddress = new GCS_payment_definitions_AddressPersonal();
+        $customerAddress->name = $customerName;
+        $customer = new GCS_refund_definitions_RefundCustomer();
+        $customer->address = $customerAddress;
+        $refundRequest->customer = $customer;
 
         $refundReferences = new GCS_refund_definitions_RefundReferences();
         $refundReferences->merchantReference = "850000568099";

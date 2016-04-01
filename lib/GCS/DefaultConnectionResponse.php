@@ -2,50 +2,60 @@
 
 class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
 {
-    protected $contentType = '';
+    /** @var int */
+    protected $httpStatusCode;
 
-    protected $content = '';
+    /** @var string */
+    protected $headers = '';
 
-    protected $httpStatusCode = '';
+    /** @var string */
+    protected $body = '';
 
     /**
-     * @param string $content
-     * @param string[] $contentInfo
-     *
+     * @param int $httpStatusCode
+     * @param array $headers
+     * @param string $body
      */
-    public function __construct($content, $contentInfo)
+    public function __construct($httpStatusCode, array $headers, $body)
     {
-        if (array_key_exists('content_type', $contentInfo)) {
-            $this->contentType = $contentInfo['content_type'];
-        }
-        $this->content = $content;
-        if (array_key_exists('http_code', $contentInfo)) {
-            $this->httpStatusCode = $contentInfo['http_code'];
-        }
+        $this->httpStatusCode = $httpStatusCode;
+        $this->headers = $headers;
+        $this->body = $body;
     }
 
     /**
-     * @return string
-     */
-    public function getContentType()
-    {
-        return $this->contentType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @return string
+     * @return int
      */
     public function getHttpStatusCode()
     {
         return $this->httpStatusCode;
     }
 
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param string $name
+     * @return string|array
+     */
+    public function getHeaderValue($name)
+    {
+        if (array_key_exists($name, $this->headers)) {
+            return $this->headers[$name];
+        }
+        return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
 }

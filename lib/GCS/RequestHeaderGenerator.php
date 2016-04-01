@@ -22,14 +22,18 @@ class GCS_RequestHeaderGenerator
     /** @var string */
     protected $uriPath;
 
-    /** @var  string */
+    /** @var string */
     protected $clientMetaInfo;
+
+    /** @var GCS_CallContext */
+    protected $callContext;
 
     /**
      * @param GCS_CommunicatorConfiguration $communicatorConfiguration
      * @param string $httpMethodText
      * @param string $uriPath
      * @param string $clientMetaInfo
+     * @param GCS_CallContext $callContext
      * @throws UnexpectedValueException
      */
 
@@ -37,7 +41,8 @@ class GCS_RequestHeaderGenerator
         GCS_CommunicatorConfiguration $communicatorConfiguration,
         $httpMethodText,
         $uriPath,
-        $clientMetaInfo = ''
+        $clientMetaInfo = '',
+        GCS_CallContext $callContext = null
     ) {
         if (!in_array($httpMethodText, array('GET','PUT','POST','DELETE'))) {
             throw new UnexpectedValueException(sprintf('Undefined HTTP-method, got %s', $httpMethodText));
@@ -46,6 +51,7 @@ class GCS_RequestHeaderGenerator
         $this->httpMethodText = $httpMethodText;
         $this->uriPath = $uriPath;
         $this->clientMetaInfo = $clientMetaInfo;
+        $this->callContext = $callContext;
     }
 
     /**
@@ -55,19 +61,17 @@ class GCS_RequestHeaderGenerator
     {
         $contentType = self::MIME_APPLICATION_JSON;
         $rfc2616Date = $this->getRfc161Date();
-        $requestHeaderValuesByFieldName = array();
-        $requestHeaderValuesByFieldName['Content-type'] = $contentType;
-        $requestHeaderValuesByFieldName['Date'] = $rfc2616Date;
-        if ($this->clientMetaInfo) {
-            $requestHeaderValuesByFieldName['X-GCS-ClientMetaInfo'] = $this->clientMetaInfo;
-        }
-        $requestHeaderValuesByFieldName['X-GCS-ServerMetaInfo'] = $this->getServerMetaInfoValue();
-        $requestHeaderValuesByFieldName['Authorization'] =
-            $this->getAuthorizationHeaderValue($requestHeaderValuesByFieldName);
         $requestHeaders = array();
-        foreach ($requestHeaderValuesByFieldName as $fieldName => $fieldValue) {
-            $requestHeaders[] = sprintf('%s: %s', $fieldName, $fieldValue);
+        $requestHeaders['Content-type'] = $contentType;
+        $requestHeaders['Date'] = $rfc2616Date;
+        if ($this->clientMetaInfo) {
+            $requestHeaders['X-GCS-ClientMetaInfo'] = $this->clientMetaInfo;
         }
+        $requestHeaders['X-GCS-ServerMetaInfo'] = $this->getServerMetaInfoValue();
+        if ($this->callContext && strlen($this->callContext->getIdempotenceKey()) > 0) {
+            $requestHeaders['X-GCS-Idempotence-Key'] = $this->callContext->getIdempotenceKey();
+        }
+        $requestHeaders['Authorization'] = $this->getAuthorizationHeaderValue($requestHeaders);
         return $requestHeaders;
     }
 
@@ -89,10 +93,10 @@ class GCS_RequestHeaderGenerator
     }
 
     /**
-     * @param string[] $requestHeaderValuesByFieldName
+     * @param string[] $requestHeaders
      * @return string
      */
-    protected function getAuthorizationHeaderValue($requestHeaderValuesByFieldName)
+    protected function getAuthorizationHeaderValue($requestHeaders)
     {
         return
             self::AUTHORIZATION_ID . ' ' . self::AUTHORIZATION_TYPE. ':'.
@@ -100,7 +104,7 @@ class GCS_RequestHeaderGenerator
             base64_encode(
                 hash_hmac(
                     self::HASH_ALGORITHM,
-                    $this->getSignData($requestHeaderValuesByFieldName),
+                    $this->getSignData($requestHeaders),
                     $this->communicatorConfiguration->getApiSecret(),
                     true
                 )
@@ -108,24 +112,24 @@ class GCS_RequestHeaderGenerator
     }
 
     /**
-     * @param string[] $requestHeaderValuesByFieldName
+     * @param string[] $requestHeaders
      * @return string
      */
-    protected function getSignData($requestHeaderValuesByFieldName)
+    protected function getSignData($requestHeaders)
     {
         $signData = $this->httpMethodText . "\n";
-        if (isset($requestHeaderValuesByFieldName['Content-type'])) {
-            $signData .= $requestHeaderValuesByFieldName['Content-type'] . "\n";
+        if (isset($requestHeaders['Content-type'])) {
+            $signData .= $requestHeaders['Content-type'] . "\n";
         } else {
             $signData .= "\n";
         }
-        if (isset($requestHeaderValuesByFieldName['Date'])) {
-            $signData .= $requestHeaderValuesByFieldName['Date'] . "\n";
+        if (isset($requestHeaders['Date'])) {
+            $signData .= $requestHeaders['Date'] . "\n";
         } else {
             $signData .= "\n";
         }
         $gcsHeaders = array();
-        foreach ($requestHeaderValuesByFieldName as $headerKey => $headerValue) {
+        foreach ($requestHeaders as $headerKey => $headerValue) {
             if (preg_match('/X-GCS/i', $headerKey)) {
                 $gcsHeaders[$headerKey] = $headerValue;
             }

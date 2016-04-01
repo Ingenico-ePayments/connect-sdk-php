@@ -20,11 +20,6 @@ class GCS_hostedcheckout_CreateHostedCheckoutRequest extends GCS_DataObject
     public $cashPaymentMethodSpecificInput = null;
 
     /**
-     * @var GCS_payment_definitions_CheckPaymentMethodSpecificInput
-     */
-    public $checkPaymentMethodSpecificInput = null;
-
-    /**
      * @var GCS_fei_definitions_FraudFields
      */
     public $fraudFields = null;
@@ -72,13 +67,6 @@ class GCS_hostedcheckout_CreateHostedCheckoutRequest extends GCS_DataObject
             }
             $value = new GCS_payment_definitions_CashPaymentMethodSpecificInputBase();
             $this->cashPaymentMethodSpecificInput = $value->fromObject($object->cashPaymentMethodSpecificInput);
-        }
-        if (property_exists($object, 'checkPaymentMethodSpecificInput')) {
-            if (!is_object($object->checkPaymentMethodSpecificInput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->checkPaymentMethodSpecificInput, true) . '\' is not an object');
-            }
-            $value = new GCS_payment_definitions_CheckPaymentMethodSpecificInput();
-            $this->checkPaymentMethodSpecificInput = $value->fromObject($object->checkPaymentMethodSpecificInput);
         }
         if (property_exists($object, 'fraudFields')) {
             if (!is_object($object->fraudFields)) {

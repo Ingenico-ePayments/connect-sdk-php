@@ -37,7 +37,7 @@ class GCS_ClientTestCase extends GCS_TestCase
             $communicatorConfiguration->setProxyConfiguration(new GCS_ProxyConfiguration(
                 $this->getProxyHost(),
                 $this->getProxyPort(),
-                $this->getProxyUserName(),
+                $this->getProxyUsername(),
                 $this->getProxyPassword()
             ));
             $communicator = new GCS_Communicator($connection, $communicatorConfiguration);

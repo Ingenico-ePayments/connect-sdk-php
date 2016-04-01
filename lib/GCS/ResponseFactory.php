@@ -7,23 +7,37 @@ class GCS_ResponseFactory
     /**
      * @param GCS_ConnectionResponse $response
      * @param GCS_ResponseClassMap $responseClassMap
-     * @throws GCS_ReferenceException
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_GlobalCollectException
-     * @throws GCS_ApiException
+     * @param GCS_CallContext $callContext
      * @return GCS_DataObject|null
      */
-    public function createResponse(GCS_ConnectionResponse $response, GCS_ResponseClassMap $responseClassMap)
-    {
+    public function createResponse(
+        GCS_ConnectionResponse $response,
+        GCS_ResponseClassMap $responseClassMap,
+        GCS_CallContext $callContext = null
+    ) {
         try {
+            if ($callContext) {
+                $this->updateCallContext($response, $callContext);
+            }
             $responseObject = $this->getResponseObject($response, $responseClassMap);
         } catch (UnexpectedValueException $e) {
             throw new GCS_InvalidResponseException($response, $e->getMessage());
         }
         if ($response->getHttpStatusCode() >= 400) {
-            throw $this->createException($response->getHttpStatusCode(), $responseObject);
+            throw $this->createException($response->getHttpStatusCode(), $responseObject, $callContext);
         }
         return $responseObject;
+    }
+
+    /**
+     * @param GCS_ConnectionResponse $response
+     * @param GCS_CallContext $callContext
+     */
+    protected function updateCallContext(GCS_ConnectionResponse $response, GCS_CallContext $callContext)
+    {
+        $callContext->setIdempotenceRequestTimestamp(
+            $response->getHeaderValue('X-GCS-Idempotence-Request-Timestamp')
+        );
     }
 
     /**
@@ -35,7 +49,7 @@ class GCS_ResponseFactory
         GCS_ConnectionResponse $response,
         GCS_ResponseClassMap $responseClassMap
     ) {
-        $contentType = $response->getContentType();
+        $contentType = $response->getHeaderValue('Content-Type');
         if (!$contentType) {
             throw new UnexpectedValueException('Content type is missing or empty');
         }
@@ -63,17 +77,21 @@ class GCS_ResponseFactory
             throw new UnexpectedValueException("class '$responseClassName' is not a 'GCS_DataObject'");
         }
         /** @var GCS_DataObject $responseObject */
-        $responseObject->fromJson($response->getContent());
+        $responseObject->fromJson($response->getBody());
         return $responseObject;
     }
 
     /**
      * @param $httpStatusCode
      * @param GCS_DataObject $errorObject
+     * @param GCS_CallContext $callContext
      * @return GCS_DeclinedPaymentException|GCS_DeclinedPayoutException|GCS_DeclinedRefundException|GCS_ValidationException|GCS_AuthorizationException|GCS_ReferenceException|GCS_GlobalCollectException|GCS_ApiException
      */
-    protected function createException($httpStatusCode, GCS_DataObject $errorObject)
-    {
+    protected function createException(
+        $httpStatusCode,
+        GCS_DataObject $errorObject,
+        GCS_CallContext $callContext = null
+    ) {
         if ($errorObject instanceof GCS_payment_PaymentErrorResponse && !is_null($errorObject->paymentResult)) {
             return new GCS_DeclinedPaymentException($httpStatusCode, $errorObject);
         }
@@ -90,6 +108,17 @@ class GCS_ResponseFactory
         if ($httpStatusCode == 403) {
             return new GCS_AuthorizationException($httpStatusCode, $errorObject);
         }
+        if ($httpStatusCode == 409 && $callContext && strlen($callContext->getIdempotenceKey()) > 0 &&
+            $this->isIdempotenceError($errorObject)
+        ) {
+            return new GCS_IdempotenceException(
+                $httpStatusCode,
+                $errorObject,
+                null,
+                $callContext->getIdempotenceKey(),
+                $callContext->getIdempotenceRequestTimestamp()
+            );
+        }
 
         $httpClassCode = floor($httpStatusCode / 100);
         // If a different HTTP status code was sent, then either the user made an error, or the server is in trouble.
@@ -104,5 +133,29 @@ class GCS_ResponseFactory
             default:
                 return new GCS_ApiException($httpStatusCode, $errorObject);
         }
+    }
+
+    /**
+     * @param GCS_DataObject $errorObject
+     * @return bool
+     */
+    protected function isIdempotenceError(GCS_DataObject $errorObject)
+    {
+        $errorObjectVariables = get_object_vars($errorObject);
+        if (!array_key_exists('errors', $errorObjectVariables)) {
+            return false;
+        }
+        $errors = $errorObjectVariables['errors'];
+        if (!is_array($errors)) {
+            return false;
+        }
+        if (count($errors) != 1) {
+            return false;
+        }
+        $error = $errors[0];
+        if (!$error instanceof GCS_errors_definitions_APIError) {
+            return false;
+        }
+        return $error->code == '1409';
     }
 }

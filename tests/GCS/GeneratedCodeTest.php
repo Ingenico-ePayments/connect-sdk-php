@@ -205,6 +205,7 @@ class GCS_GeneratedCodeTest extends GCS_ClientTestCase
         $request->card->data->cardWithoutCvv = new GCS_fei_definitions_CardWithoutCvv();
         $request->card->data->cardWithoutCvv->cardNumber = '4567350000427977';
         $request->card->data->cardWithoutCvv->expiryDate = '0820';
+        $request->card->data->cardWithoutCvv->issueNumber = '12';
         $request->card->customer = new GCS_token_definitions_CustomerToken();
         $request->card->customer->billingAddress = new GCS_fei_definitions_Address();
         $request->card->customer->billingAddress->countryCode = 'NL';

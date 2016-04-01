@@ -26,7 +26,8 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
         $mandateNonSepaDirectDebit = new GCS_token_definitions_MandateNonSepaDirectDebit();
 
-		$paymentProduct705SpecificData = new GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData();
+        $paymentProduct705SpecificData =
+            new GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData();
         $paymentProduct705SpecificData->authorisationId = "123456";
 
         $bankAccountBban = new GCS_fei_definitions_BankAccountBban();
@@ -35,7 +36,7 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
         $bankAccountBban->branchCode = "11101";
         $bankAccountBban->checkDigit = "X";
         $bankAccountBban->countryCode = "IT";
-		$paymentProduct705SpecificData->bankAccountBban = $bankAccountBban;
+        $paymentProduct705SpecificData->bankAccountBban = $bankAccountBban;
 
         $mandateNonSepaDirectDebit->paymentProduct705SpecificData = $paymentProduct705SpecificData;
 
@@ -109,11 +110,10 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
         $nonSepaDirectDebit = new GCS_token_definitions_TokenNonSepaDirectDebit();
 
         $mandateNonSepaDirectDebit = new GCS_token_definitions_MandateNonSepaDirectDebit();
-        $mandateNonSepaDirectDebit->authorisationId = "123456";
-        $mandateNonSepaDirectDebit->addressLine1 = "Wile E. Coyote";
-        $mandateNonSepaDirectDebit->addressLine2 = "N Hollywood Way";
-        $mandateNonSepaDirectDebit->addressLine3 = "91505 Burbank";
-        $mandateNonSepaDirectDebit->addressLine4 = "United States";
+
+        $paymentProduct705SpecificData =
+            new GCS_token_definitions_TokenNonSepaDirectDebitPaymentProduct705SpecificData();
+        $paymentProduct705SpecificData->authorisationId = "123456";
 
         $bankAccountBban = new GCS_fei_definitions_BankAccountBban();
         $bankAccountBban->accountNumber = "000000654321";
@@ -121,7 +121,9 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
         $bankAccountBban->branchCode = "11101";
         $bankAccountBban->checkDigit = "X";
         $bankAccountBban->countryCode = "IT";
-        $mandateNonSepaDirectDebit->bankAccountBban = $bankAccountBban;
+        $paymentProduct705SpecificData->bankAccountBban = $bankAccountBban;
+
+        $mandateNonSepaDirectDebit->paymentProduct705SpecificData = $paymentProduct705SpecificData;
 
         $nonSepaDirectDebit->mandate = $mandateNonSepaDirectDebit;
 

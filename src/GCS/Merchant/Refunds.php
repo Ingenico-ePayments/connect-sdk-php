@@ -11,11 +11,12 @@ class GCS_Merchant_Refunds extends GCS_Resource
      * Cancel refund
      *
      * @param string $refundId
+     * @param GCS_CallContext $callContext
      * @return null
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function cancel($refundId)
+    public function cancel($refundId, GCS_CallContext $callContext = null)
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -23,7 +24,10 @@ class GCS_Merchant_Refunds extends GCS_Resource
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/refunds/{refundId}/cancel'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
         );
     }
 
@@ -33,11 +37,12 @@ class GCS_Merchant_Refunds extends GCS_Resource
      *
      * @param string $refundId
      * @param GCS_refund_ApproveRefundRequest $body
+     * @param GCS_CallContext $callContext
      * @return null
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function approve($refundId, $body)
+    public function approve($refundId, $body, GCS_CallContext $callContext = null)
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -46,7 +51,9 @@ class GCS_Merchant_Refunds extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/refunds/{refundId}/approve'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -55,11 +62,12 @@ class GCS_Merchant_Refunds extends GCS_Resource
      * Undo approve refund
      *
      * @param string $refundId
+     * @param GCS_CallContext $callContext
      * @return null
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function cancelapproval($refundId)
+    public function cancelapproval($refundId, GCS_CallContext $callContext = null)
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -67,7 +75,10 @@ class GCS_Merchant_Refunds extends GCS_Resource
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/refunds/{refundId}/cancelapproval'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
         );
     }
 
@@ -76,11 +87,12 @@ class GCS_Merchant_Refunds extends GCS_Resource
      * Retrieve refund
      *
      * @param string $refundId
+     * @param GCS_CallContext $callContext
      * @return GCS_refund_RefundResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function get($refundId)
+    public function get($refundId, GCS_CallContext $callContext = null)
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -88,7 +100,9 @@ class GCS_Merchant_Refunds extends GCS_Resource
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/refunds/{refundId}'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
         );
     }
 }

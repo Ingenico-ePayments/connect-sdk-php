@@ -11,11 +11,12 @@ class GCS_Merchant_Riskassessments extends GCS_Resource
      * Risk-assess card
      *
      * @param GCS_riskassessments_RiskAssessmentCard $body
+     * @param GCS_CallContext $callContext
      * @return GCS_riskassessments_RiskAssessmentResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function cards($body)
+    public function cards($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_riskassessments_RiskAssessmentResponse');
@@ -23,7 +24,9 @@ class GCS_Merchant_Riskassessments extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/riskassessments/cards'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -32,11 +35,12 @@ class GCS_Merchant_Riskassessments extends GCS_Resource
      * Risk-assess bank account
      *
      * @param GCS_riskassessments_RiskAssessmentBankAccount $body
+     * @param GCS_CallContext $callContext
      * @return GCS_riskassessments_RiskAssessmentResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function bankaccounts($body)
+    public function bankaccounts($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_riskassessments_RiskAssessmentResponse');
@@ -44,7 +48,9 @@ class GCS_Merchant_Riskassessments extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/riskassessments/bankaccounts'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 }

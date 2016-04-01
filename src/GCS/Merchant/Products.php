@@ -26,11 +26,12 @@ class GCS_Merchant_Products extends GCS_Resource
      * Retrieve payment products
      *
      * @param GCS_Merchant_Products_FindParams $query
+     * @param GCS_CallContext $callContext
      * @return GCS_product_PaymentProducts
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function find($query)
+    public function find($query, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(200, 'GCS_product_PaymentProducts');
@@ -38,7 +39,8 @@ class GCS_Merchant_Products extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products'),
             $this->getClientMetaInfo(),
-            $query
+            $query,
+            $callContext
         );
     }
 
@@ -48,11 +50,12 @@ class GCS_Merchant_Products extends GCS_Resource
      *
      * @param int $paymentProductId
      * @param GCS_Merchant_Products_GetParams $query
+     * @param GCS_CallContext $callContext
      * @return GCS_product_PaymentProductResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function get($paymentProductId, $query)
+    public function get($paymentProductId, $query, GCS_CallContext $callContext = null)
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -61,7 +64,8 @@ class GCS_Merchant_Products extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/products/{paymentProductId}'),
             $this->getClientMetaInfo(),
-            $query
+            $query,
+            $callContext
         );
     }
 }

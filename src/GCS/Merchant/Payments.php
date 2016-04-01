@@ -12,12 +12,13 @@ class GCS_Merchant_Payments extends GCS_Resource
      *
      * @param string $paymentId
      * @param GCS_refund_RefundRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_refund_RefundResponse
      * 
      * @throws GCS_refund_RefundErrorResponse
      * @throws GCS_errors_ErrorResponse
      */
-    public function refund($paymentId, $body)
+    public function refund($paymentId, $body, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -28,7 +29,9 @@ class GCS_Merchant_Payments extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/refund'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -37,11 +40,12 @@ class GCS_Merchant_Payments extends GCS_Resource
      * Approves challenged payment
      *
      * @param string $paymentId
+     * @param GCS_CallContext $callContext
      * @return GCS_payment_PaymentResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function processchallenged($paymentId)
+    public function processchallenged($paymentId, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -51,7 +55,10 @@ class GCS_Merchant_Payments extends GCS_Resource
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/processchallenged'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
         );
     }
 
@@ -60,11 +67,12 @@ class GCS_Merchant_Payments extends GCS_Resource
      * Retrieve payment
      *
      * @param string $paymentId
+     * @param GCS_CallContext $callContext
      * @return GCS_payment_PaymentResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function get($paymentId)
+    public function get($paymentId, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -72,7 +80,9 @@ class GCS_Merchant_Payments extends GCS_Resource
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
         );
     }
 
@@ -81,12 +91,13 @@ class GCS_Merchant_Payments extends GCS_Resource
      * Create payment
      *
      * @param GCS_payment_CreatePaymentRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_payment_CreatePaymentResponse
      * 
      * @throws GCS_payment_PaymentErrorResponse
      * @throws GCS_errors_ErrorResponse
      */
-    public function create($body)
+    public function create($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
         $responseClassMap->addResponseClassName(400, 'GCS_payment_PaymentErrorResponse');
@@ -99,7 +110,9 @@ class GCS_Merchant_Payments extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -109,11 +122,12 @@ class GCS_Merchant_Payments extends GCS_Resource
      *
      * @param string $paymentId
      * @param GCS_payment_TokenizePaymentRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_token_CreateTokenResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function tokenize($paymentId, $body)
+    public function tokenize($paymentId, $body, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -124,7 +138,9 @@ class GCS_Merchant_Payments extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/tokenize'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -133,11 +149,12 @@ class GCS_Merchant_Payments extends GCS_Resource
      * Cancel payment
      *
      * @param string $paymentId
+     * @param GCS_CallContext $callContext
      * @return GCS_payment_CancelPaymentResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function cancel($paymentId)
+    public function cancel($paymentId, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -146,7 +163,10 @@ class GCS_Merchant_Payments extends GCS_Resource
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/cancel'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
         );
     }
 
@@ -156,11 +176,12 @@ class GCS_Merchant_Payments extends GCS_Resource
      *
      * @param string $paymentId
      * @param GCS_payment_ApprovePaymentRequest $body
+     * @param GCS_CallContext $callContext
      * @return GCS_payment_PaymentApprovalResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function approve($paymentId, $body)
+    public function approve($paymentId, $body, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -171,7 +192,9 @@ class GCS_Merchant_Payments extends GCS_Resource
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/approve'),
             $this->getClientMetaInfo(),
-            $body
+            $body,
+            null,
+            $callContext
         );
     }
 
@@ -180,11 +203,12 @@ class GCS_Merchant_Payments extends GCS_Resource
      * Undo capture payment request
      *
      * @param string $paymentId
+     * @param GCS_CallContext $callContext
      * @return GCS_payment_CancelApprovalPaymentResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function cancelapproval($paymentId)
+    public function cancelapproval($paymentId, GCS_CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new GCS_ResponseClassMap();
@@ -193,7 +217,10 @@ class GCS_Merchant_Payments extends GCS_Resource
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{merchantId}/payments/{paymentId}/cancelapproval'),
-            $this->getClientMetaInfo()
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
         );
     }
 }

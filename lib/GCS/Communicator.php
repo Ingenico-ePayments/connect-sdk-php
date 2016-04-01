@@ -35,22 +35,22 @@ class GCS_Communicator
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
      * @param GCS_RequestObject|null $requestParameters
+     * @param GCS_CallContext $callContext
      * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
      */
     public function get(
         GCS_ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
-        GCS_RequestObject $requestParameters = null
+        GCS_RequestObject $requestParameters = null,
+        GCS_CallContext $callContext = null
     ) {
         $response = $this->getConnection()->get(
             $this->getRequestUri($relativeUriPath, $requestParameters),
-            $this->getRequestHeaders('GET', $relativeUriPath, $requestParameters, $clientMetaInfo),
+            $this->getRequestHeaders('GET', $relativeUriPath, $requestParameters, $clientMetaInfo, $callContext),
             $this->communicatorConfiguration->getProxyConfiguration()
         );
-        return $this->getResponseFactory()->createResponse($response, $responseClassMap);
+        return $this->getResponseFactory()->createResponse($response, $responseClassMap, $callContext);
     }
 
     /**
@@ -58,22 +58,22 @@ class GCS_Communicator
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
      * @param GCS_RequestObject $requestParameters
+     * @param GCS_CallContext $callContext
      * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
      */
     public function delete(
         GCS_ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
-        GCS_RequestObject $requestParameters = null
+        GCS_RequestObject $requestParameters = null,
+        GCS_CallContext $callContext = null
     ) {
         $response = $this->getConnection()->delete(
             $this->getRequestUri($relativeUriPath, $requestParameters),
-            $this->getRequestHeaders('DELETE', $relativeUriPath, $requestParameters, $clientMetaInfo),
+            $this->getRequestHeaders('DELETE', $relativeUriPath, $requestParameters, $clientMetaInfo, $callContext),
             $this->communicatorConfiguration->getProxyConfiguration()
         );
-        return $this->getResponseFactory()->createResponse($response, $responseClassMap);
+        return $this->getResponseFactory()->createResponse($response, $responseClassMap, $callContext);
     }
 
     /**
@@ -82,24 +82,24 @@ class GCS_Communicator
      * @param string $clientMetaInfo
      * @param GCS_DataObject|null $body
      * @param GCS_RequestObject|null $requestParameters
+     * @param GCS_CallContext $callContext
      * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
      */
     public function post(
         GCS_ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
         GCS_DataObject $body = null,
-        GCS_RequestObject $requestParameters = null
+        GCS_RequestObject $requestParameters = null,
+        GCS_CallContext $callContext = null
     ) {
         $response = $this->getConnection()->post(
             $this->getRequestUri($relativeUriPath, $requestParameters),
-            $this->getRequestHeaders('POST', $relativeUriPath, $requestParameters, $clientMetaInfo),
+            $this->getRequestHeaders('POST', $relativeUriPath, $requestParameters, $clientMetaInfo, $callContext),
             $body ? $body->toJson() : '',
             $this->communicatorConfiguration->getProxyConfiguration()
         );
-        return $this->getResponseFactory()->createResponse($response, $responseClassMap);
+        return $this->getResponseFactory()->createResponse($response, $responseClassMap, $callContext);
     }
 
     /**
@@ -108,24 +108,24 @@ class GCS_Communicator
      * @param string $clientMetaInfo
      * @param GCS_DataObject|null $body
      * @param GCS_RequestObject|null $requestParameters
+     * @param GCS_CallContext $callContext
      * @return GCS_DataObject
-     * @throws GCS_InvalidResponseException
-     * @throws GCS_ResponseException
      */
     public function put(
         GCS_ResponseClassMap $responseClassMap,
         $relativeUriPath,
         $clientMetaInfo = '',
         GCS_DataObject $body = null,
-        GCS_RequestObject $requestParameters = null
+        GCS_RequestObject $requestParameters = null,
+        GCS_CallContext $callContext = null
     ) {
         $response = $this->getConnection()->put(
             $this->getRequestUri($relativeUriPath, $requestParameters),
-            $this->getRequestHeaders('PUT', $relativeUriPath, $requestParameters, $clientMetaInfo),
+            $this->getRequestHeaders('PUT', $relativeUriPath, $requestParameters, $clientMetaInfo, $callContext),
             $body ? $body->toJson() : '',
             $this->communicatorConfiguration->getProxyConfiguration()
         );
-        return $this->getResponseFactory()->createResponse($response, $responseClassMap);
+        return $this->getResponseFactory()->createResponse($response, $responseClassMap, $callContext);
     }
 
     /**
@@ -191,19 +191,22 @@ class GCS_Communicator
      * @param string $relativeUriPath
      * @param GCS_RequestObject|null $requestParameters
      * @param string $clientMetaInfo
+     * @param GCS_CallContext $callContext
      * @return string[]
      */
     protected function getRequestHeaders(
         $httpMethod,
         $relativeUriPath,
         GCS_RequestObject $requestParameters = null,
-        $clientMetaInfo = ''
+        $clientMetaInfo = '',
+        GCS_CallContext $callContext = null
     ) {
         $requestHeaderGenerator = new GCS_RequestHeaderGenerator(
             $this->communicatorConfiguration,
             $httpMethod,
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters),
-            $clientMetaInfo
+            $clientMetaInfo,
+            $callContext
         );
         return $requestHeaderGenerator->generateRequestHeaders();
     }

@@ -36,6 +36,7 @@ class GCS_Client_ExceptionTest extends GCS_ClientTestCase
     "errors": [
         {
             "code": "20000000",
+            "httpStatusCode": 400,
             "message": "PARAMETER_NOT_FOUND_IN_REQUEST",
             "propertyName": "bin",
             "requestId": ""
@@ -121,9 +122,10 @@ EOD;
         $cardPaymentMethodSpecificInput = new GCS_payment_definitions_CardPaymentMethodSpecificInput();
         $cardPaymentMethodSpecificInput->paymentProductId = 3;
 
+        $nonExistingCardNumber = "1234567890123452";
         $card = new GCS_fei_definitions_Card();
         $card->cvv = "123";
-        $card->cardNumber = "542418027979173";
+        $card->cardNumber = $nonExistingCardNumber;
         $card->expiryDate = "1220";
         $cardPaymentMethodSpecificInput->card = $card;
 
