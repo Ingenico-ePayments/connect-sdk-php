@@ -105,7 +105,7 @@ class GCS_Client_TokenTest extends GCS_ClientTestCase
 
         $updateTokenRequest = new GCS_token_UpdateTokenRequest();
 
-        $updateTokenRequest->paymentProductId = 701;
+        $updateTokenRequest->paymentProductId = 705;
 
         $nonSepaDirectDebit = new GCS_token_definitions_TokenNonSepaDirectDebit();
 

@@ -22,7 +22,7 @@ class GCS_Merchant_Hostedcheckouts extends GCS_Resource
         $responseClassMap->addResponseClassName(201, 'GCS_hostedcheckout_CreateHostedCheckoutResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/hostedcheckouts'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/hostedcheckouts'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -47,7 +47,7 @@ class GCS_Merchant_Hostedcheckouts extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_hostedcheckout_GetHostedCheckoutResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext

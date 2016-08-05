@@ -24,7 +24,7 @@ class GCS_Merchant_Payouts extends GCS_Resource
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payouts/{payoutId}/cancel'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/cancel'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -50,7 +50,7 @@ class GCS_Merchant_Payouts extends GCS_Resource
         $responseClassMap->addResponseClassName(201, 'GCS_payout_PayoutResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payouts'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -77,7 +77,7 @@ class GCS_Merchant_Payouts extends GCS_Resource
         $responseClassMap->addResponseClassName(402, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payouts/{payoutId}/approve'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/approve'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -103,7 +103,7 @@ class GCS_Merchant_Payouts extends GCS_Resource
         $responseClassMap->addResponseClassName(405, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payouts/{payoutId}/cancelapproval'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/cancelapproval'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -113,7 +113,7 @@ class GCS_Merchant_Payouts extends GCS_Resource
 
     /**
      * Resource /{merchantId}/payouts/{payoutId}
-     * Retrieve payout
+     * Get payout
      *
      * @param string $payoutId
      * @param GCS_CallContext $callContext
@@ -129,7 +129,7 @@ class GCS_Merchant_Payouts extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payouts/{payoutId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext

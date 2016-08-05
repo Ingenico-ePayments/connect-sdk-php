@@ -23,7 +23,7 @@ class GCS_Client_ServicesTest extends GCS_ClientTestCase
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $body = new GCS_services_BINLookupRequest();
+        $body = new GCS_services_GetIINDetailsRequest();
 
         $body->bin = "4567350000427977";
 

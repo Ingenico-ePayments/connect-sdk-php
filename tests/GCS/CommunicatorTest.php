@@ -6,6 +6,9 @@
  */
 class GCS_CommunicatorTest extends GCS_TestCase
 {
+
+    const MERCHANT_ID = '8500';
+
     /** @var GCS_Communicator */
     protected $defaultCommunicator = null;
 
@@ -24,7 +27,7 @@ class GCS_CommunicatorTest extends GCS_TestCase
     public function tearDown()
     {
     }
-
+    
     public function testApiRequestNoop()
     {
         new GCS_Communicator(new GCS_DefaultConnection(), new GCS_CommunicatorConfiguration('', '', ''));
@@ -32,38 +35,44 @@ class GCS_CommunicatorTest extends GCS_TestCase
 
     public function testConnectionSharing()
     {
+        $relativeUri = sprintf('/%s/%s/services/testconnection', GCS_Client::API_VERSION, self::MERCHANT_ID);
         $sharedConnection = new GCS_DefaultConnection();
+        $relativeUri = sprintf('/%s/%s/services/testconnection', GCS_Client::API_VERSION, self::MERCHANT_ID);
         $communicator1 = new GCS_Communicator($sharedConnection, $this->getCommunicatorConfiguration());
-        $communicator1->get($this->defaultResponseClassMap, '/8500/services/testconnection');
+        $communicator1->get($this->defaultResponseClassMap, $relativeUri);
         $communicator2 = new GCS_Communicator($sharedConnection, $this->getCommunicatorConfiguration());
-        $communicator2->get($this->defaultResponseClassMap, '/8500/services/testconnection');
+        $communicator2->get($this->defaultResponseClassMap, $relativeUri);
         $this->assertEquals($communicator1->getConnection(), $communicator2->getConnection());
     }
 
 
     public function testApiRequestGet()
     {
+        $relativeUri = sprintf('/%s/%s/products', GCS_Client::API_VERSION, self::MERCHANT_ID);
         $findParams = new GCS_Merchant_Products_FindParams();
         $findParams->countryCode = 'NL';
         $findParams->currencyCode = 'EUR';
         $clientHeaders = [];
-        $this->defaultCommunicator->get($this->defaultResponseClassMap, '/8500/products', $clientHeaders, $findParams);
+        $this->defaultCommunicator->get($this->defaultResponseClassMap, $relativeUri, $clientHeaders, $findParams);
     }
 
     public function testExceptionInvalidUrl()
     {
         try {
-            $this->defaultCommunicator->get($this->defaultResponseClassMap, '/foo/bar');
-        } catch (GCS_AuthorizationException $e) {
+            $relativeUri = sprintf('/%s/%s/foo', GCS_Client::API_VERSION, self::MERCHANT_ID);
+            $this->defaultCommunicator->get($this->defaultResponseClassMap, $relativeUri);
+        } catch (GCS_InvalidResponseException $e) {
+            $this->assertEquals(404, $e->getResponse()->getHttpStatusCode());
             return;
         }
-        $this->fail();
+        $this->fail('an expected exception has not been raised');
     }
 
     public function testApiRequestPost()
     {
         try {
-            $this->defaultCommunicator->post($this->defaultResponseClassMap, '/8500/payments/1/tokenize');
+            $relativeUri = sprintf('/%s/%s/payments/1/tokenize', GCS_Client::API_VERSION, self::MERCHANT_ID);
+            $this->defaultCommunicator->post($this->defaultResponseClassMap, $relativeUri);
         } catch (GCS_ReferenceException $e) {
             return;
         }
@@ -73,7 +82,8 @@ class GCS_CommunicatorTest extends GCS_TestCase
     public function testApiRequestPut()
     {
         try {
-            $this->defaultCommunicator->put($this->defaultResponseClassMap, '/8500/tokens/1');
+            $relativeUri = sprintf('/%s/%s/tokens/1', GCS_Client::API_VERSION, self::MERCHANT_ID);
+            $this->defaultCommunicator->put($this->defaultResponseClassMap, $relativeUri);
         } catch (GCS_InvalidResponseException $e) {
             return;
         }
@@ -83,7 +93,8 @@ class GCS_CommunicatorTest extends GCS_TestCase
     public function testApiRequestDelete()
     {
         try {
-            $this->defaultCommunicator->delete($this->defaultResponseClassMap, '/8500/tokens/1');
+            $relativeUri = sprintf('/%s/%s/tokens/1', GCS_Client::API_VERSION, self::MERCHANT_ID);
+            $this->defaultCommunicator->delete($this->defaultResponseClassMap, $relativeUri);
         } catch (GCS_ReferenceException $e) {
             return;
         }

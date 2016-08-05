@@ -5,8 +5,11 @@ class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
     /** @var int */
     protected $httpStatusCode;
 
-    /** @var string */
-    protected $headers = '';
+    /** @var array */
+    protected $headers;
+
+    /** @var array */
+    protected $lowerCasedHeaderKeyMap;
 
     /** @var string */
     protected $body = '';
@@ -20,6 +23,10 @@ class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
     {
         $this->httpStatusCode = $httpStatusCode;
         $this->headers = $headers;
+        $this->lowerCasedHeaderKeyMap = array();
+        foreach (array_keys($headers) as $headerKey) {
+            $this->lowerCasedHeaderKeyMap[strtolower($headerKey)] = $headerKey;
+        }
         $this->body = $body;
     }
 
@@ -45,8 +52,9 @@ class GCS_DefaultConnectionResponse implements GCS_ConnectionResponse
      */
     public function getHeaderValue($name)
     {
-        if (array_key_exists($name, $this->headers)) {
-            return $this->headers[$name];
+        $lowerCasedName = strtolower($name);
+        if (array_key_exists($lowerCasedName, $this->lowerCasedHeaderKeyMap)) {
+            return $this->headers[$this->lowerCasedHeaderKeyMap[$lowerCasedName]];
         }
         return '';
     }

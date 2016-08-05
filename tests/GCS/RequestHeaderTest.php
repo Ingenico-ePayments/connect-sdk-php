@@ -74,4 +74,11 @@ class GCS_RequestHeaderTest extends GCS_TestCase
             '/v1/consumer/ANDR%C3%89E/?q=na%20me'
         );
     }
+
+    public function testMultiLineHeader()
+    {
+        $gcsHeaderValue = " some value  \r\n \n with  some \r\n \t spaces ";
+        $gcsEncodedHeaderValue = trim(preg_replace('/\r?\n[\h]*/', ' ', $gcsHeaderValue));
+        $this->assertEquals('some value    with  some  spaces', $gcsEncodedHeaderValue);
+    }
 }

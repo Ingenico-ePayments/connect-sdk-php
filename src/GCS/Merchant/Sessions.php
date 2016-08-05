@@ -22,7 +22,7 @@ class GCS_Merchant_Sessions extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_sessions_SessionResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/sessions'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/sessions'),
             $this->getClientMetaInfo(),
             $body,
             null,

@@ -105,16 +105,23 @@ EOD;
    } ]
 }
 EOD;
-        $response = new GCS_DefaultConnectionResponse(409, $responseHeaders, $responseBody);
+        $connectionResponse = new GCS_DefaultConnectionResponse(409, $responseHeaders, $responseBody);
         $responseFactory = new GCS_ResponseFactory();
-        try {
-            $responseFactory->createResponse($response, new GCS_ResponseClassMap(), $callContext);
-            $this->fail('expected exception');
-        } catch (GCS_IdempotenceException $e) {
-            $this->assertEquals($callContext->getIdempotenceKey(), $e->getIdempotenceKey());
-            $this->assertNotEmpty($e->getIdempotenceRequestTimestamp());
-            $this->assertEquals($callContext->getIdempotenceRequestTimestamp(), $e->getIdempotenceRequestTimestamp());
+        $responseExceptionFactory = new GCS_ResponseExceptionFactory();
+        $exception = $responseExceptionFactory->createException(
+            $connectionResponse->getHttpStatusCode(),
+            $responseFactory->createResponse($connectionResponse, new GCS_ResponseClassMap(), $callContext),
+            $callContext
+        );
+        if (!$exception instanceof GCS_IdempotenceException) {
+            $this->fail('expected GCS_IdempotenceException, but got ' . get_class($exception));
         }
+        $this->assertEquals($callContext->getIdempotenceKey(), $exception->getIdempotenceKey());
+        $this->assertNotEmpty($exception->getIdempotenceRequestTimestamp());
+        $this->assertEquals(
+            $callContext->getIdempotenceRequestTimestamp(),
+            $exception->getIdempotenceRequestTimestamp()
+        );
     }
 
     public function testReferenceException()
@@ -135,14 +142,14 @@ EOD;
    } ]
 }
 EOD;
-        $response = new GCS_DefaultConnectionResponse(409, $responseHeaders, $responseBody);
+        $connectionResponse = new GCS_DefaultConnectionResponse(409, $responseHeaders, $responseBody);
         $responseFactory = new GCS_ResponseFactory();
-        try {
-            $responseFactory->createResponse($response, new GCS_ResponseClassMap(), $callContext);
-            $this->fail('expected exception');
-        } catch (GCS_ReferenceException $e) {
-            $this->assertTrue(true);
-        }
+        $responseExceptionFactory = new GCS_ResponseExceptionFactory();
+        $exception = $responseExceptionFactory->createException(
+            $connectionResponse->getHttpStatusCode(),
+            $responseFactory->createResponse($connectionResponse, new GCS_ResponseClassMap(), $callContext),
+            $callContext
+        );
+        $this->assertInstanceOf('GCS_ReferenceException', $exception);
     }
-
 }

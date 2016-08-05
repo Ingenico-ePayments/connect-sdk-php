@@ -30,6 +30,27 @@ class GCS_Client_ProductTest extends GCS_ClientTestCase
     }
 
     /**
+     * @return GCS_product_PaymentProducts
+     */
+    public function testRetrievePaymentProductsMultipleHide()
+    {
+        $client = $this->getClient();
+        $merchantId = self::MERCHANT_ID;
+
+        $findParams = new GCS_Merchant_Products_FindParams();
+
+        $findParams->amount = 1000;
+        $findParams->countryCode = "US";
+        $findParams->currencyCode = "USD";
+        $findParams->hide = array("fields", "accountsOnFile");
+        $findParams->isRecurring = true;
+        $findParams->locale = "en_US";
+
+        $paymentProducts = $client->merchant($merchantId)->products()->find($findParams);
+        return $paymentProducts;
+    }
+
+    /**
      * @throws GCS_ApiException
      * @return GCS_product_PaymentProductResponse
      */
@@ -58,13 +79,13 @@ class GCS_Client_ProductTest extends GCS_ClientTestCase
     {
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $directoryParams = new GCS_Merchant_Products_PaymentProduct_DirectoryParams();
+        $directoryParams = new GCS_Merchant_Products_DirectoryParams();
 
         $directoryParams->currencyCode = "EUR";
         $directoryParams->countryCode = "NL";
 
         $productDirectory =
-            $client->merchant($merchantId)->products()->paymentProduct(809)->directory($directoryParams);
+            $client->merchant($merchantId)->products()->directory(809, $directoryParams);
         return $productDirectory;
     }
 }

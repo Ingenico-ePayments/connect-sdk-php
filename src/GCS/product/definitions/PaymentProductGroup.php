@@ -1,25 +1,10 @@
 <?php
-class GCS_product_definitions_PaymentProduct extends GCS_DataObject
+class GCS_product_definitions_PaymentProductGroup extends GCS_DataObject
 {
     /**
      * @var GCS_product_definitions_AccountOnFile[]
      */
     public $accountsOnFile = null;
-
-    /**
-     * @var bool
-     */
-    public $allowsRecurring = null;
-
-    /**
-     * @var bool
-     */
-    public $allowsTokenization = null;
-
-    /**
-     * @var bool
-     */
-    public $autoTokenized = null;
 
     /**
      * @var GCS_product_definitions_PaymentProductDisplayHints
@@ -32,39 +17,9 @@ class GCS_product_definitions_PaymentProduct extends GCS_DataObject
     public $fields = null;
 
     /**
-     * @var int
+     * @var string
      */
     public $id = null;
-
-    /**
-     * @var int
-     */
-    public $maxAmount = null;
-
-    /**
-     * @var int
-     */
-    public $minAmount = null;
-
-    /**
-     * @var string
-     */
-    public $mobileIntegrationLevel = null;
-
-    /**
-     * @var string
-     */
-    public $paymentMethod = null;
-
-    /**
-     * @var string
-     */
-    public $paymentProductGroup = null;
-
-    /**
-     * @var bool
-     */
-    public $usesRedirectionTo3rdParty = null;
 
     /**
      * @param object $object
@@ -83,15 +38,6 @@ class GCS_product_definitions_PaymentProduct extends GCS_DataObject
                 $accountsOnFileElement = new GCS_product_definitions_AccountOnFile();
                 $this->accountsOnFile[] = $accountsOnFileElement->fromObject($accountsOnFileElementObject);
             }
-        }
-        if (property_exists($object, 'allowsRecurring')) {
-            $this->allowsRecurring = $object->allowsRecurring;
-        }
-        if (property_exists($object, 'allowsTokenization')) {
-            $this->allowsTokenization = $object->allowsTokenization;
-        }
-        if (property_exists($object, 'autoTokenized')) {
-            $this->autoTokenized = $object->autoTokenized;
         }
         if (property_exists($object, 'displayHints')) {
             if (!is_object($object->displayHints)) {
@@ -112,24 +58,6 @@ class GCS_product_definitions_PaymentProduct extends GCS_DataObject
         }
         if (property_exists($object, 'id')) {
             $this->id = $object->id;
-        }
-        if (property_exists($object, 'maxAmount')) {
-            $this->maxAmount = $object->maxAmount;
-        }
-        if (property_exists($object, 'minAmount')) {
-            $this->minAmount = $object->minAmount;
-        }
-        if (property_exists($object, 'mobileIntegrationLevel')) {
-            $this->mobileIntegrationLevel = $object->mobileIntegrationLevel;
-        }
-        if (property_exists($object, 'paymentMethod')) {
-            $this->paymentMethod = $object->paymentMethod;
-        }
-        if (property_exists($object, 'paymentProductGroup')) {
-            $this->paymentProductGroup = $object->paymentProductGroup;
-        }
-        if (property_exists($object, 'usesRedirectionTo3rdParty')) {
-            $this->usesRedirectionTo3rdParty = $object->usesRedirectionTo3rdParty;
         }
         return $this;
     }

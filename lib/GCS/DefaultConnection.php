@@ -112,7 +112,22 @@ class GCS_DefaultConnection implements GCS_Connection
         curl_multi_add_handle($multiHandle, $curlHandle);
         $running = null;
         do {
-            curl_multi_exec($multiHandle, $running);
+            $status = curl_multi_exec($multiHandle, $running);
+            if ($status > CURLM_OK) {
+                $errorMessage = 'cURL error ' . $status;
+                if (function_exists('curl_multi_strerror')) {
+                    $errorMessage .= ' (' . curl_multi_strerror($status) . ')';
+                }
+                throw new ErrorException($errorMessage);
+            }
+            $info = curl_multi_info_read($multiHandle);
+            if ($info && isset($info['result']) && $info['result'] != CURLE_OK) {
+                $errorMessage = 'cURL error ' . $info['result'];
+                if (function_exists('curl_strerror')) {
+                    $errorMessage .= ' (' . curl_strerror($info['result']) . ')';
+                }
+                throw new ErrorException($errorMessage);
+            }
             curl_multi_select($multiHandle);
         } while ($running > 0);
 

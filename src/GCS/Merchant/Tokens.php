@@ -24,7 +24,7 @@ class GCS_Merchant_Tokens extends GCS_Resource
         $responseClassMap->addResponseClassName(403, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/tokens'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -50,7 +50,7 @@ class GCS_Merchant_Tokens extends GCS_Resource
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -76,7 +76,7 @@ class GCS_Merchant_Tokens extends GCS_Resource
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->put(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -86,7 +86,7 @@ class GCS_Merchant_Tokens extends GCS_Resource
 
     /**
      * Resource /{merchantId}/tokens/{tokenId}
-     * Retrieve token
+     * Get token
      *
      * @param string $tokenId
      * @param GCS_CallContext $callContext
@@ -102,7 +102,7 @@ class GCS_Merchant_Tokens extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -128,7 +128,7 @@ class GCS_Merchant_Tokens extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->delete(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
             $query,
             $callContext

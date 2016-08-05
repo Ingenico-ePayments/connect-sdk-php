@@ -1,6 +1,6 @@
 <?php
 
-class GCS_Merchant_Products_GetParams extends GCS_RequestObject
+class GCS_Merchant_Productgroups_GetParams extends GCS_RequestObject
 {
     /**
      * @var int amount

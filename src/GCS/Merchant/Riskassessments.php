@@ -22,7 +22,7 @@ class GCS_Merchant_Riskassessments extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_riskassessments_RiskAssessmentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/riskassessments/cards'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/cards'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -46,7 +46,7 @@ class GCS_Merchant_Riskassessments extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_riskassessments_RiskAssessmentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/riskassessments/bankaccounts'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/bankaccounts'),
             $this->getClientMetaInfo(),
             $body,
             null,

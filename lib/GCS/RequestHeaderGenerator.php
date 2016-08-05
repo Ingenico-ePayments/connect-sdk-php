@@ -59,10 +59,10 @@ class GCS_RequestHeaderGenerator
      */
     public function generateRequestHeaders()
     {
-        $contentType = self::MIME_APPLICATION_JSON;
+        $contentType = static::MIME_APPLICATION_JSON;
         $rfc2616Date = $this->getRfc161Date();
         $requestHeaders = array();
-        $requestHeaders['Content-type'] = $contentType;
+        $requestHeaders['Content-Type'] = $contentType;
         $requestHeaders['Date'] = $rfc2616Date;
         if ($this->clientMetaInfo) {
             $requestHeaders['X-GCS-ClientMetaInfo'] = $this->clientMetaInfo;
@@ -81,7 +81,7 @@ class GCS_RequestHeaderGenerator
     protected function getRfc161Date()
     {
         $dateTime = new DateTime('now');
-        return $dateTime->format(self::DATE_RFC2616);
+        return $dateTime->format(static::DATE_RFC2616);
     }
 
     protected function getServerMetaInfoValue()
@@ -99,11 +99,11 @@ class GCS_RequestHeaderGenerator
     protected function getAuthorizationHeaderValue($requestHeaders)
     {
         return
-            self::AUTHORIZATION_ID . ' ' . self::AUTHORIZATION_TYPE. ':'.
+            static::AUTHORIZATION_ID . ' ' . static::AUTHORIZATION_TYPE. ':'.
             $this->communicatorConfiguration->getApiKeyId() .':'.
             base64_encode(
                 hash_hmac(
-                    self::HASH_ALGORITHM,
+                    static::HASH_ALGORITHM,
                     $this->getSignData($requestHeaders),
                     $this->communicatorConfiguration->getApiSecret(),
                     true
@@ -118,8 +118,8 @@ class GCS_RequestHeaderGenerator
     protected function getSignData($requestHeaders)
     {
         $signData = $this->httpMethodText . "\n";
-        if (isset($requestHeaders['Content-type'])) {
-            $signData .= $requestHeaders['Content-type'] . "\n";
+        if (isset($requestHeaders['Content-Type'])) {
+            $signData .= $requestHeaders['Content-Type'] . "\n";
         } else {
             $signData .= "\n";
         }
@@ -136,7 +136,7 @@ class GCS_RequestHeaderGenerator
         }
         ksort($gcsHeaders);
         foreach ($gcsHeaders as $gcsHeaderKey => $gcsHeaderValue) {
-            $gcsEncodedHeaderValue = trim(preg_replace('/\s+/', ' ', $gcsHeaderValue));
+            $gcsEncodedHeaderValue = trim(preg_replace('/\r?\n[\h]*/', ' ', $gcsHeaderValue));
 
             $signData .= strtolower($gcsHeaderKey).':'.$gcsEncodedHeaderValue. "\n";
         }

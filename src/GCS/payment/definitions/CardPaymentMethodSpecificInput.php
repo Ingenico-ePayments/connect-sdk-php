@@ -7,6 +7,11 @@ class GCS_payment_definitions_CardPaymentMethodSpecificInput extends GCS_payment
     public $card = null;
 
     /**
+     * @var GCS_payment_definitions_ExternalCardholderAuthenticationData
+     */
+    public $externalCardholderAuthenticationData = null;
+
+    /**
      * @var bool
      */
     public $isRecurring = null;
@@ -30,6 +35,13 @@ class GCS_payment_definitions_CardPaymentMethodSpecificInput extends GCS_payment
             }
             $value = new GCS_fei_definitions_Card();
             $this->card = $value->fromObject($object->card);
+        }
+        if (property_exists($object, 'externalCardholderAuthenticationData')) {
+            if (!is_object($object->externalCardholderAuthenticationData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->externalCardholderAuthenticationData, true) . '\' is not an object');
+            }
+            $value = new GCS_payment_definitions_ExternalCardholderAuthenticationData();
+            $this->externalCardholderAuthenticationData = $value->fromObject($object->externalCardholderAuthenticationData);
         }
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;

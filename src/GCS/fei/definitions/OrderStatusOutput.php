@@ -12,6 +12,11 @@ class GCS_fei_definitions_OrderStatusOutput extends GCS_DataObject
     public $isCancellable = null;
 
     /**
+     * @var string
+     */
+    public $statusCategory = null;
+
+    /**
      * @var int
      */
     public $statusCode = null;
@@ -41,6 +46,9 @@ class GCS_fei_definitions_OrderStatusOutput extends GCS_DataObject
         }
         if (property_exists($object, 'isCancellable')) {
             $this->isCancellable = $object->isCancellable;
+        }
+        if (property_exists($object, 'statusCategory')) {
+            $this->statusCategory = $object->statusCategory;
         }
         if (property_exists($object, 'statusCode')) {
             $this->statusCode = $object->statusCode;

@@ -8,7 +8,7 @@ class GCS_Client_ExceptionTest extends GCS_ClientTestCase
     public function testExceptionErrors()
     {
         try {
-            $emptyBody = new GCS_services_BINLookupRequest();
+            $emptyBody = new GCS_services_GetIINDetailsRequest();
             $this->getClient()->merchant("9991")->services()->getIINdetails($emptyBody);
         } catch (GCS_ResponseException $e) {
             $this->assertNotEmpty($e->getErrorId());
@@ -64,7 +64,7 @@ EOD;
     public function testValidationException()
     {
         try {
-            $emptyBody = new GCS_services_BINLookupRequest();
+            $emptyBody = new GCS_services_GetIINDetailsRequest();
             $this->getClient()->merchant("9991")->services()->getIINdetails($emptyBody);
         } catch (GCS_ValidationException $e) {
             return;

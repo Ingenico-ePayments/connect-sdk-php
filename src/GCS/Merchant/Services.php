@@ -22,7 +22,7 @@ class GCS_Merchant_Services extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_services_BankDetailsResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/services/convert/bankaccount'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/bankaccount'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -46,7 +46,7 @@ class GCS_Merchant_Services extends GCS_Resource
         $responseClassMap->addResponseClassName(403, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/services/testconnection'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/testconnection'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -55,22 +55,22 @@ class GCS_Merchant_Services extends GCS_Resource
 
     /**
      * Resource /{merchantId}/services/getIINdetails
-     * Retrieve IIN details
+     * Get IIN details
      *
-     * @param GCS_services_BINLookupRequest $body
+     * @param GCS_services_GetIINDetailsRequest $body
      * @param GCS_CallContext $callContext
-     * @return GCS_services_BINLookupResponse
+     * @return GCS_services_GetIINDetailsResponse
      * 
      * @throws GCS_errors_ErrorResponse
      */
     public function getIINdetails($body, GCS_CallContext $callContext = null)
     {
         $responseClassMap = new GCS_ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, 'GCS_services_BINLookupResponse');
+        $responseClassMap->addResponseClassName(200, 'GCS_services_GetIINDetailsResponse');
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/services/getIINdetails'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/getIINdetails'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -94,7 +94,7 @@ class GCS_Merchant_Services extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_services_ConvertAmount');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/services/convert/amount'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/amount'),
             $this->getClientMetaInfo(),
             $query,
             $callContext

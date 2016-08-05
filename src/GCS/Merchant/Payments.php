@@ -27,7 +27,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_refund_RefundErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}/refund'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/refund'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -54,7 +54,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(405, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}/processchallenged'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/processchallenged'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -64,7 +64,7 @@ class GCS_Merchant_Payments extends GCS_Resource
 
     /**
      * Resource /{merchantId}/payments/{paymentId}
-     * Retrieve payment
+     * Get payment
      *
      * @param string $paymentId
      * @param GCS_CallContext $callContext
@@ -79,7 +79,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_payment_PaymentResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -108,7 +108,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(201, 'GCS_payment_CreatePaymentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -136,7 +136,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}/tokenize'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/tokenize'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -162,7 +162,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(402, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}/cancel'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancel'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -190,7 +190,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}/approve'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/approve'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -216,7 +216,7 @@ class GCS_Merchant_Payments extends GCS_Resource
         $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/payments/{paymentId}/cancelapproval'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancelapproval'),
             $this->getClientMetaInfo(),
             null,
             null,

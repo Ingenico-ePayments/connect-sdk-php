@@ -7,23 +7,34 @@
 class GCS_Merchant_Products extends GCS_Resource
 {
     /**
-     * Resource /{merchantId}/products/{paymentProductId}
+     * Resource /{merchantId}/products/{paymentProductId}/directory
+     * Get payment product directory
      *
      * @param int $paymentProductId
-     * @return GCS_Merchant_Products_PaymentProduct
+     * @param GCS_Merchant_Products_DirectoryParams $query
+     * @param GCS_CallContext $callContext
+     * @return GCS_product_Directory
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function paymentProduct($paymentProductId)
+    public function directory($paymentProductId, $query, GCS_CallContext $callContext = null)
     {
-        $newContext = $this->context;
-        $newContext['paymentProductId'] = $paymentProductId;
-        return new GCS_Merchant_Products_PaymentProduct($this, $newContext);
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new GCS_ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, 'GCS_product_Directory');
+        $responseClassMap->addResponseClassName(404, 'GCS_errors_ErrorResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/directory'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
     }
 
     /**
      * Resource /{merchantId}/products
-     * Retrieve payment products
+     * Get payment products
      *
      * @param GCS_Merchant_Products_FindParams $query
      * @param GCS_CallContext $callContext
@@ -37,7 +48,7 @@ class GCS_Merchant_Products extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_product_PaymentProducts');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/products'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -46,7 +57,7 @@ class GCS_Merchant_Products extends GCS_Resource
 
     /**
      * Resource /{merchantId}/products/{paymentProductId}
-     * Retrieve payment product fields
+     * Get payment product
      *
      * @param int $paymentProductId
      * @param GCS_Merchant_Products_GetParams $query
@@ -62,7 +73,7 @@ class GCS_Merchant_Products extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_product_PaymentProductResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/products/{paymentProductId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}'),
             $this->getClientMetaInfo(),
             $query,
             $callContext

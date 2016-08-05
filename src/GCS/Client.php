@@ -5,6 +5,8 @@
  */
 class GCS_Client extends GCS_Resource
 {
+    const API_VERSION = 'v1';
+
     /** @var GCS_Communicator */
     private $communicator;
 
@@ -23,6 +25,7 @@ class GCS_Client extends GCS_Resource
         parent::__construct();
         $this->communicator = $communicator;
         $this->setClientMetaInfo($clientMetaInfo);
+        $this->context = array('apiVersion' => static::API_VERSION);
     }
 
     /**
@@ -31,6 +34,22 @@ class GCS_Client extends GCS_Resource
     protected function getCommunicator()
     {
         return $this->communicator;
+    }
+
+    /**
+     * @param GCS_CommunicatorLogger $communicatorLogger
+     */
+    public function enableLogging(GCS_CommunicatorLogger $communicatorLogger)
+    {
+        $this->getCommunicator()->enableLogging($communicatorLogger);
+    }
+
+    /**
+     *
+     */
+    public function disableLogging()
+    {
+        $this->getCommunicator()->disableLogging();
     }
 
     /**

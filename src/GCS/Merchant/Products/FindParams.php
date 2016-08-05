@@ -8,7 +8,7 @@ class GCS_Merchant_Products_FindParams extends GCS_RequestObject
     public $amount;
 
     /**
-     * @var string hide
+     * @var string[] hide
      */
     public $hide;
 

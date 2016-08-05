@@ -1,13 +1,10 @@
 <?php
-/**
- * class BINLookupResponse
- */
-class GCS_services_BINLookupResponse extends GCS_DataObject
+class GCS_services_definitions_IINDetail extends GCS_DataObject
 {
     /**
-     * @var string
+     * @var bool
      */
-    public $countryCode = null;
+    public $isAllowedInContext = null;
 
     /**
      * @var int
@@ -22,8 +19,8 @@ class GCS_services_BINLookupResponse extends GCS_DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'countryCode')) {
-            $this->countryCode = $object->countryCode;
+        if (property_exists($object, 'isAllowedInContext')) {
+            $this->isAllowedInContext = $object->isAllowedInContext;
         }
         if (property_exists($object, 'paymentProductId')) {
             $this->paymentProductId = $object->paymentProductId;

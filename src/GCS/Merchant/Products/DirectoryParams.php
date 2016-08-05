@@ -1,6 +1,6 @@
 <?php
 
-class GCS_Merchant_Products_PaymentProduct_DirectoryParams extends GCS_RequestObject
+class GCS_Merchant_Products_DirectoryParams extends GCS_RequestObject
 {
     /**
      * @var string currencyCode

@@ -57,6 +57,19 @@ class GCS_Merchant extends GCS_Resource
     }
 
     /**
+     * Resource /{merchantId}/services
+     * Several services to help you
+     *
+     * @return GCS_Merchant_Services
+     * 
+     * @throws GCS_errors_ErrorResponse
+     */
+    public function services()
+    {
+        return new GCS_Merchant_Services($this, $this->context);
+    }
+
+    /**
      * Resource /{merchantId}/hostedcheckouts
      * Create new hosted checkout
      *
@@ -96,16 +109,16 @@ class GCS_Merchant extends GCS_Resource
     }
 
     /**
-     * Resource /{merchantId}/services
-     * Several services to help you
+     * Resource /{merchantId}/productgroups
+     * Get information about payment product groups
      *
-     * @return GCS_Merchant_Services
+     * @return GCS_Merchant_Productgroups
      * 
      * @throws GCS_errors_ErrorResponse
      */
-    public function services()
+    public function productgroups()
     {
-        return new GCS_Merchant_Services($this, $this->context);
+        return new GCS_Merchant_Productgroups($this, $this->context);
     }
 
     /**

@@ -15,9 +15,11 @@ class GCS_Client_RefundTest extends GCS_ClientTestCase
      */
     public function testCreateRefund()
     {
+        $this->markTestSkipped('No refundable payment is available at this time');
+
         $client = $this->getClient();
         $merchantId = self::MERCHANT_ID;
-        $paymentId = "000000170110001805450000100001";
+        $paymentId = "000000170110001962280000100001";
 
         $refundRequest = new GCS_refund_RefundRequest();
 
@@ -42,6 +44,7 @@ class GCS_Client_RefundTest extends GCS_ClientTestCase
         $bankAccountIban = new GCS_fei_definitions_BankAccountIban();
         $bankAccountIban->iban = "NL53INGB0000000036";
         $bankRefundMethodSpecificInput->bankAccountIban = $bankAccountIban;
+        $bankRefundMethodSpecificInput->countryCode = "DE";
         $refundRequest->bankRefundMethodSpecificInput = $bankRefundMethodSpecificInput;
 
         /** @var GCS_refund_RefundResponse $refundResponse * */

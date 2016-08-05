@@ -5,7 +5,7 @@ class GCS_HttpHeaderHelper
     /**
      * Parses a raw array of HTTP headers into an associative array with the same structure as the output
      * of the get_headers method using the $format = 1 parameter
-     * @param array $rawHeaders
+     * @param string[] $rawHeaders
      * @return array
      */
     public function parseRawHeaders(array $rawHeaders)
@@ -44,7 +44,7 @@ class GCS_HttpHeaderHelper
      * Generates an array of raw headers from an associative array of headers with the same structure as the output
      * of the get_headers method using the $format = 1 parameter
      * @param array $headers
-     * @return string
+     * @return string[]
      */
     public function generateRawHeaders(array $headers)
     {

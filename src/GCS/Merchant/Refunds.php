@@ -23,7 +23,7 @@ class GCS_Merchant_Refunds extends GCS_Resource
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/refunds/{refundId}/cancel'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancel'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -49,7 +49,7 @@ class GCS_Merchant_Refunds extends GCS_Resource
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/refunds/{refundId}/approve'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/approve'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -74,7 +74,7 @@ class GCS_Merchant_Refunds extends GCS_Resource
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/refunds/{refundId}/cancelapproval'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancelapproval'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -84,7 +84,7 @@ class GCS_Merchant_Refunds extends GCS_Resource
 
     /**
      * Resource /{merchantId}/refunds/{refundId}
-     * Retrieve refund
+     * Get refund
      *
      * @param string $refundId
      * @param GCS_CallContext $callContext
@@ -99,7 +99,7 @@ class GCS_Merchant_Refunds extends GCS_Resource
         $responseClassMap->addResponseClassName(200, 'GCS_refund_RefundResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{merchantId}/refunds/{refundId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
