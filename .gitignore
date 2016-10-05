@@ -1,4 +1,7 @@
 .idea
+.buildpath
+.project
+.settings
 *.pyc
 doc
 /composer.lock

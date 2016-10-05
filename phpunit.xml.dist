@@ -1,7 +1,7 @@
 <phpunit bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite>
-            <directory>tests/GCS</directory>
+            <directory>tests/Ingenico/Connect/Sdk</directory>
         </testsuite>
     </testsuites>
     <filter>

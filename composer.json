@@ -2,13 +2,13 @@
     "name": "ingenico-epayments/connect-sdk-php",
     "type": "library",
     "description": "PHP SDK to communicate with the GlobalCollect platform server-to-server API",
-    "homepage": "http://www.globalcollect.com/",
+    "homepage": "http://www.ingenico.com/epayments/",
     "keywords": ["SDK"],
     "license": "MIT",
     "authors": [
         {
             "name": "Ingenico ePayments",
-            "homepage": "http://www.globalcollect.com/"
+            "homepage": "http://www.ingenico.com/epayments/"
         }
     ],
     "require": {
@@ -18,8 +18,13 @@
         "phpunit/phpunit": "~4"
     },
     "autoload": {
-        "psr-0": {
-            "GCS_": ["src", "lib"]
+        "psr-4": {
+            "Ingenico\\Connect\\Sdk\\": ["src/Ingenico/Connect/Sdk", "lib/Ingenico/Connect/Sdk"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ingenico\\Connect\\Sdk\\": ["tests/Ingenico/Connect/Sdk"]
         }
     }
 }
