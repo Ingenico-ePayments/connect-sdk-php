@@ -10,14 +10,17 @@ use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Product\Directory;
+use Ingenico\Connect\Sdk\Domain\Product\PaymentProductNetworksResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProducts;
+use Ingenico\Connect\Sdk\Domain\Publickey\PublicKey;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
 use Ingenico\Connect\Sdk\Merchant\Products\DirectoryParams;
 use Ingenico\Connect\Sdk\Merchant\Products\FindProductsParams;
 use Ingenico\Connect\Sdk\Merchant\Products\GetProductParams;
+use Ingenico\Connect\Sdk\Merchant\Products\NetworksParams;
 use Ingenico\Connect\Sdk\ReferenceException;
 use Ingenico\Connect\Sdk\Resource;
 use Ingenico\Connect\Sdk\ResponseClassMap;
@@ -29,39 +32,6 @@ use Ingenico\Connect\Sdk\ValidationException;
  */
 class Products extends Resource
 {
-    /**
-     * Resource /{merchantId}/products/{paymentProductId}/directory
-     * Get payment product directory
-     *
-     * @param int $paymentProductId
-     * @param DirectoryParams $query
-     * @param CallContext $callContext
-     * @return Directory
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
-     * @throws ValidationException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__directory_get Get payment product directory
-     */
-    public function directory($paymentProductId, $query, CallContext $callContext = null)
-    {
-        $this->context['paymentProductId'] = $paymentProductId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\Directory');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/directory'),
-            $this->getClientMetaInfo(),
-            $query,
-            $callContext
-        );
-    }
-
     /**
      * Resource /{merchantId}/products
      * Get payment products
@@ -120,6 +90,104 @@ class Products extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}'),
             $this->getClientMetaInfo(),
             $query,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/products/{paymentProductId}/directory
+     * Get payment product directory
+     *
+     * @param int $paymentProductId
+     * @param DirectoryParams $query
+     * @param CallContext $callContext
+     * @return Directory
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ApiException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__directory_get Get payment product directory
+     */
+    public function directory($paymentProductId, $query, CallContext $callContext = null)
+    {
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\Directory');
+        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/directory'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/products/{paymentProductId}/networks
+     * Get payment product networks
+     *
+     * @param int $paymentProductId
+     * @param NetworksParams $query
+     * @param CallContext $callContext
+     * @return PaymentProductNetworksResponse
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ApiException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__networks_get Get payment product networks
+     */
+    public function networks($paymentProductId, $query, CallContext $callContext = null)
+    {
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductNetworksResponse');
+        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/networks'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/products/{paymentProductId}/publicKey
+     * Get payment product specific public key
+     *
+     * @param int $paymentProductId
+     * @param CallContext $callContext
+     * @return PublicKey
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ApiException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__publicKey_get Get payment product specific public key
+     */
+    public function publicKey($paymentProductId, CallContext $callContext = null)
+    {
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Publickey\PublicKey');
+        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/publicKey'),
+            $this->getClientMetaInfo(),
+            null,
             $callContext
         );
     }

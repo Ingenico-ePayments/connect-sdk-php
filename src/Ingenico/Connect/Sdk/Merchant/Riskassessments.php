@@ -26,37 +26,6 @@ use Ingenico\Connect\Sdk\ValidationException;
 class Riskassessments extends Resource
 {
     /**
-     * Resource /{merchantId}/riskassessments/cards
-     * Risk-assess card
-     *
-     * @param RiskAssessmentCard $body
-     * @param CallContext $callContext
-     * @return RiskAssessmentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ValidationException
-     * @throws ReferenceException
-     * @throws IdempotenceException
-     * @throws ApiException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_cards_post Risk-assess card
-     */
-    public function cards($body, CallContext $callContext = null)
-    {
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse');
-        return $this->getCommunicator()->post(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/cards'),
-            $this->getClientMetaInfo(),
-            $body,
-            null,
-            $callContext
-        );
-    }
-
-    /**
      * Resource /{merchantId}/riskassessments/bankaccounts
      * Risk-assess bank account
      *
@@ -80,6 +49,37 @@ class Riskassessments extends Resource
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/bankaccounts'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/riskassessments/cards
+     * Risk-assess card
+     *
+     * @param RiskAssessmentCard $body
+     * @param CallContext $callContext
+     * @return RiskAssessmentResponse
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ValidationException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ApiException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_cards_post Risk-assess card
+     */
+    public function cards($body, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/cards'),
             $this->getClientMetaInfo(),
             $body,
             null,

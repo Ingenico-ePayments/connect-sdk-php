@@ -25,12 +25,12 @@ use Ingenico\Connect\Sdk\ValidationException;
 class Refunds extends Resource
 {
     /**
-     * Resource /{merchantId}/refunds/{refundId}/cancel
-     * Cancel refund
+     * Resource /{merchantId}/refunds/{refundId}
+     * Get refund
      *
      * @param string $refundId
      * @param CallContext $callContext
-     * @return null
+     * @return RefundResponse
      * 
      * @throws GlobalCollectException
      * @throws InvalidResponseException
@@ -39,18 +39,17 @@ class Refunds extends Resource
      * @throws ReferenceException
      * @throws IdempotenceException
      * @throws ApiException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancel_post Cancel refund
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__get Get refund
      */
-    public function cancel($refundId, CallContext $callContext = null)
+    public function get($refundId, CallContext $callContext = null)
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
-        return $this->getCommunicator()->post(
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse');
+        return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancel'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}'),
             $this->getClientMetaInfo(),
-            null,
             null,
             $callContext
         );
@@ -90,6 +89,38 @@ class Refunds extends Resource
     }
 
     /**
+     * Resource /{merchantId}/refunds/{refundId}/cancel
+     * Cancel refund
+     *
+     * @param string $refundId
+     * @param CallContext $callContext
+     * @return null
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ValidationException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ApiException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancel_post Cancel refund
+     */
+    public function cancel($refundId, CallContext $callContext = null)
+    {
+        $this->context['refundId'] = $refundId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(204, '');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancel'),
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
+        );
+    }
+
+    /**
      * Resource /{merchantId}/refunds/{refundId}/cancelapproval
      * Undo approve refund
      *
@@ -116,37 +147,6 @@ class Refunds extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancelapproval'),
             $this->getClientMetaInfo(),
             null,
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/refunds/{refundId}
-     * Get refund
-     *
-     * @param string $refundId
-     * @param CallContext $callContext
-     * @return RefundResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ValidationException
-     * @throws ReferenceException
-     * @throws IdempotenceException
-     * @throws ApiException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__get Get refund
-     */
-    public function get($refundId, CallContext $callContext = null)
-    {
-        $this->context['refundId'] = $refundId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}'),
-            $this->getClientMetaInfo(),
             null,
             $callContext
         );

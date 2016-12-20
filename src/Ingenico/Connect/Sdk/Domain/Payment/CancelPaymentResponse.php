@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CancelPaymentCardPaymentMethodSpecificOutput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CancelPaymentMobilePaymentMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Payment;
 use UnexpectedValueException;
 
@@ -22,6 +23,11 @@ class CancelPaymentResponse extends DataObject
      * @var CancelPaymentCardPaymentMethodSpecificOutput
      */
     public $cardPaymentMethodSpecificOutput = null;
+
+    /**
+     * @var CancelPaymentMobilePaymentMethodSpecificOutput
+     */
+    public $mobilePaymentMethodSpecificOutput = null;
 
     /**
      * @var Payment
@@ -42,6 +48,13 @@ class CancelPaymentResponse extends DataObject
             }
             $value = new CancelPaymentCardPaymentMethodSpecificOutput();
             $this->cardPaymentMethodSpecificOutput = $value->fromObject($object->cardPaymentMethodSpecificOutput);
+        }
+        if (property_exists($object, 'mobilePaymentMethodSpecificOutput')) {
+            if (!is_object($object->mobilePaymentMethodSpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->mobilePaymentMethodSpecificOutput, true) . '\' is not an object');
+            }
+            $value = new CancelPaymentMobilePaymentMethodSpecificOutput();
+            $this->mobilePaymentMethodSpecificOutput = $value->fromObject($object->mobilePaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'payment')) {
             if (!is_object($object->payment)) {

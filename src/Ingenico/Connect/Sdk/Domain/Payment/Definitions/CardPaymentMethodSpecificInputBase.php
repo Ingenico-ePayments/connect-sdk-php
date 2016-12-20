@@ -19,12 +19,22 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
     /**
      * @var string
      */
+    public $authorizationMode = null;
+
+    /**
+     * @var string
+     */
     public $customerReference = null;
 
     /**
      * @var string
      */
     public $recurringPaymentSequenceIndicator = null;
+
+    /**
+     * @var bool
+     */
+    public $requiresApproval = null;
 
     /**
      * @var bool
@@ -49,11 +59,17 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'authorizationMode')) {
+            $this->authorizationMode = $object->authorizationMode;
+        }
         if (property_exists($object, 'customerReference')) {
             $this->customerReference = $object->customerReference;
         }
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;
+        }
+        if (property_exists($object, 'requiresApproval')) {
+            $this->requiresApproval = $object->requiresApproval;
         }
         if (property_exists($object, 'skipAuthentication')) {
             $this->skipAuthentication = $object->skipAuthentication;

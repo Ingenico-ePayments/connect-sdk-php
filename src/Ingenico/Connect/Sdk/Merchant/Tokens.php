@@ -63,33 +63,65 @@ class Tokens extends Resource
     }
 
     /**
-     * Resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit
-     * Approve SEPA DD mandate
+     * Resource /{merchantId}/tokens/{tokenId}
+     * Delete token
      *
      * @param string $tokenId
-     * @param ApproveTokenRequest $body
+     * @param DeleteTokenParams $query
      * @param CallContext $callContext
      * @return null
      * 
      * @throws GlobalCollectException
      * @throws InvalidResponseException
      * @throws AuthorizationException
-     * @throws ValidationException
+     * @throws ApiException
      * @throws ReferenceException
      * @throws IdempotenceException
-     * @throws ApiException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__approvesepadirectdebit_post Approve SEPA DD mandate
+     * @throws ValidationException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete Delete token
      */
-    public function approvesepadirectdebit($tokenId, $body, CallContext $callContext = null)
+    public function delete($tokenId, $query, CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
-        return $this->getCommunicator()->post(
+        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
+        return $this->getCommunicator()->delete(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
-            $body,
+            $query,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/tokens/{tokenId}
+     * Get token
+     *
+     * @param string $tokenId
+     * @param CallContext $callContext
+     * @return TokenResponse
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ApiException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__get Get token
+     */
+    public function get($tokenId, CallContext $callContext = null)
+    {
+        $this->context['tokenId'] = $tokenId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\TokenResponse');
+        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
+            $this->getClientMetaInfo(),
             null,
             $callContext
         );
@@ -129,66 +161,34 @@ class Tokens extends Resource
     }
 
     /**
-     * Resource /{merchantId}/tokens/{tokenId}
-     * Get token
+     * Resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit
+     * Approve SEPA DD mandate
      *
      * @param string $tokenId
-     * @param CallContext $callContext
-     * @return TokenResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
-     * @throws ValidationException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__get Get token
-     */
-    public function get($tokenId, CallContext $callContext = null)
-    {
-        $this->context['tokenId'] = $tokenId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\TokenResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
-            $this->getClientMetaInfo(),
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/tokens/{tokenId}
-     * Delete token
-     *
-     * @param string $tokenId
-     * @param DeleteTokenParams $query
+     * @param ApproveTokenRequest $body
      * @param CallContext $callContext
      * @return null
      * 
      * @throws GlobalCollectException
      * @throws InvalidResponseException
      * @throws AuthorizationException
-     * @throws ApiException
+     * @throws ValidationException
      * @throws ReferenceException
      * @throws IdempotenceException
-     * @throws ValidationException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete Delete token
+     * @throws ApiException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__approvesepadirectdebit_post Approve SEPA DD mandate
      */
-    public function delete($tokenId, $query, CallContext $callContext = null)
+    public function approvesepadirectdebit($tokenId, $body, CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        return $this->getCommunicator()->delete(
+        return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
             $this->getClientMetaInfo(),
-            $query,
+            $body,
+            null,
             $callContext
         );
     }

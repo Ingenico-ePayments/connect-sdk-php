@@ -31,6 +31,36 @@ use Ingenico\Connect\Sdk\ValidationException;
 class Services extends Resource
 {
     /**
+     * Resource /{merchantId}/services/convert/amount
+     * Convert amount
+     *
+     * @param ConvertAmountParams $query
+     * @param CallContext $callContext
+     * @return ConvertAmount
+     * 
+     * @throws GlobalCollectException
+     * @throws InvalidResponseException
+     * @throws AuthorizationException
+     * @throws ValidationException
+     * @throws ReferenceException
+     * @throws IdempotenceException
+     * @throws ApiException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_amount_get Convert amount
+     */
+    public function convertAmount($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\ConvertAmount');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/amount'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
+    /**
      * Resource /{merchantId}/services/convert/bankaccount
      * Convert Bankaccount
      *
@@ -56,36 +86,6 @@ class Services extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/bankaccount'),
             $this->getClientMetaInfo(),
             $body,
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/services/testconnection
-     * Test connection
-     *
-     * @param CallContext $callContext
-     * @return TestConnection
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
-     * @throws ValidationException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_testconnection_get Test connection
-     */
-    public function testconnection(CallContext $callContext = null)
-    {
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\TestConnection');
-        $responseClassMap->addResponseClassName(403, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/testconnection'),
-            $this->getClientMetaInfo(),
             null,
             $callContext
         );
@@ -124,31 +124,31 @@ class Services extends Resource
     }
 
     /**
-     * Resource /{merchantId}/services/convert/amount
-     * Convert amount
+     * Resource /{merchantId}/services/testconnection
+     * Test connection
      *
-     * @param ConvertAmountParams $query
      * @param CallContext $callContext
-     * @return ConvertAmount
+     * @return TestConnection
      * 
      * @throws GlobalCollectException
      * @throws InvalidResponseException
      * @throws AuthorizationException
-     * @throws ValidationException
+     * @throws ApiException
      * @throws ReferenceException
      * @throws IdempotenceException
-     * @throws ApiException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_amount_get Convert amount
+     * @throws ValidationException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_testconnection_get Test connection
      */
-    public function convertAmount($query, CallContext $callContext = null)
+    public function testconnection(CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\ConvertAmount');
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\TestConnection');
+        $responseClassMap->addResponseClassName(403, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/amount'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/testconnection'),
             $this->getClientMetaInfo(),
-            $query,
+            null,
             $callContext
         );
     }

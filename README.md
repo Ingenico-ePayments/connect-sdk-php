@@ -12,7 +12,7 @@ The Ingenico Connect PHP SDK helps you to communicate with the [Ingenico Connect
 
 Its use is demonstrated by an example for most calls. The examples execute a call using the provided API keys.
 
-See the [Ingenico Connect Developer Hub](https://developer.globalcollect.com/documentation/sdk/php/) for more information on how to use the API.
+See the [Ingenico Connect Developer Hub](https://developer.globalcollect.com/documentation/sdk/server/php/) for more information on how to use the SDK.
 
 ## Structure of this repository
 
@@ -36,8 +36,8 @@ PHP 5.4 or above is required. No additional packages are needed.
 
 ## Manual installation
 
-1. Download the latest version of the PHP SDK from the [Ingenico Connect Developer Hub](https://developer.globalcollect.com/documentation/sdk/server/) or download it from GitHub.
-2. Add the contents of the tar.gz file to your project. The content of the `/src` and `/lib` folders may be combined, if this is required by the project.
+1. Download the latest version of the PHP SDK from GitHub. Choose the `connect-sdk-php-x.y.z.tar.gz` file from the [releases](https://github.com/Ingenico-ePayments/connect-sdk-php/releases) page, where `x.y.z` is the version number.
+2. Add the contents of the `tar.gz` file to your project. The content of the `/src` and `/lib` folders may be combined, if this is required by the project.
 3. Add all classes from the `/src` and `/lib` folders to your autoloader; all classes inside these folders are compliant with [PSR-4](http://www.php-fig.org/psr/psr-4/).
 
 ## Development and testing

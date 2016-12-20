@@ -11,6 +11,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpe
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\InvoicePaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobilePaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecificInput;
@@ -59,6 +60,11 @@ class CreatePaymentRequest extends DataObject
      * @var InvoicePaymentMethodSpecificInput
      */
     public $invoicePaymentMethodSpecificInput = null;
+
+    /**
+     * @var MobilePaymentMethodSpecificInput
+     */
+    public $mobilePaymentMethodSpecificInput = null;
 
     /**
      * @var Order
@@ -127,6 +133,13 @@ class CreatePaymentRequest extends DataObject
             }
             $value = new InvoicePaymentMethodSpecificInput();
             $this->invoicePaymentMethodSpecificInput = $value->fromObject($object->invoicePaymentMethodSpecificInput);
+        }
+        if (property_exists($object, 'mobilePaymentMethodSpecificInput')) {
+            if (!is_object($object->mobilePaymentMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->mobilePaymentMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new MobilePaymentMethodSpecificInput();
+            $this->mobilePaymentMethodSpecificInput = $value->fromObject($object->mobilePaymentMethodSpecificInput);
         }
         if (property_exists($object, 'order')) {
             if (!is_object($object->order)) {
