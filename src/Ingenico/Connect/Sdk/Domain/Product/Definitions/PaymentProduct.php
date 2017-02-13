@@ -40,6 +40,11 @@ class PaymentProduct extends DataObject
     public $autoTokenized = null;
 
     /**
+     * @var bool
+     */
+    public $canBeIframed = null;
+
+    /**
      * @var PaymentProductDisplayHints
      */
     public $displayHints = null;
@@ -110,6 +115,9 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'autoTokenized')) {
             $this->autoTokenized = $object->autoTokenized;
+        }
+        if (property_exists($object, 'canBeIframed')) {
+            $this->canBeIframed = $object->canBeIframed;
         }
         if (property_exists($object, 'displayHints')) {
             if (!is_object($object->displayHints)) {
