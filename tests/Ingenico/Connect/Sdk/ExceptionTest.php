@@ -59,9 +59,11 @@ class Client_ExceptionTest extends ClientTestCase
     "errorId": "8a41a5dd-7366-4026-a41b-e98c56808edd",
     "errors": [
         {
+            "category": "CONNECT_PLATFORM_ERROR",
             "code": "20000000",
             "httpStatusCode": 400,
-            "message": "PARAMETER_NOT_FOUND_IN_REQUEST",
+            "id": "PARAMETER_NOT_FOUND_IN_REQUEST",
+            "message": "The parameter shown above was not found in the request received by connect.",
             "propertyName": "bin",
             "requestId": ""
         }

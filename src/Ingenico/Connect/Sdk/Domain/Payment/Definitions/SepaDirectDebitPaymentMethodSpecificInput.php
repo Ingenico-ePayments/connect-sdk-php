@@ -42,6 +42,11 @@ class SepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpe
     public $token = null;
 
     /**
+     * @var bool
+     */
+    public $tokenize = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -63,6 +68,9 @@ class SepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpe
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;
+        }
+        if (property_exists($object, 'tokenize')) {
+            $this->tokenize = $object->tokenize;
         }
         return $this;
     }

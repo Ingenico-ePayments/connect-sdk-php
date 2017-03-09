@@ -52,6 +52,11 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
     public $token = null;
 
     /**
+     * @var bool
+     */
+    public $tokenize = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -79,6 +84,9 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;
+        }
+        if (property_exists($object, 'tokenize')) {
+            $this->tokenize = $object->tokenize;
         }
         return $this;
     }
