@@ -18,6 +18,7 @@ class RedirectPaymentProduct809SpecificInput extends DataObject
 {
     /**
      * @var string
+     * @deprecated Use RedirectPaymentMethodSpecificInput.expirationPeriod instead
      */
     public $expirationPeriod = null;
 

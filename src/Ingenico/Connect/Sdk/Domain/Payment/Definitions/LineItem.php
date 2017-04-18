@@ -9,6 +9,7 @@ use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItemInvoiceData;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItemLevel3InterchangeInformation;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderLineDetails;
 use UnexpectedValueException;
 
 /**
@@ -31,8 +32,14 @@ class LineItem extends DataObject
 
     /**
      * @var LineItemLevel3InterchangeInformation
+     * @deprecated Use orderLineDetails instead
      */
     public $level3InterchangeInformation = null;
+
+    /**
+     * @var OrderLineDetails
+     */
+    public $orderLineDetails = null;
 
     /**
      * @param object $object
@@ -62,6 +69,13 @@ class LineItem extends DataObject
             }
             $value = new LineItemLevel3InterchangeInformation();
             $this->level3InterchangeInformation = $value->fromObject($object->level3InterchangeInformation);
+        }
+        if (property_exists($object, 'orderLineDetails')) {
+            if (!is_object($object->orderLineDetails)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->orderLineDetails, true) . '\' is not an object');
+            }
+            $value = new OrderLineDetails();
+            $this->orderLineDetails = $value->fromObject($object->orderLineDetails);
         }
         return $this;
     }

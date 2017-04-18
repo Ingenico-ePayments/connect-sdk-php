@@ -26,6 +26,7 @@ class AdditionalOrderInput extends DataObject
 
     /**
      * @var Level3SummaryData
+     * @deprecated Use Order.shoppingCart instead
      */
     public $level3SummaryData = null;
 

@@ -79,7 +79,7 @@ class Client extends Resource
     {
         return $this->clientMetaInfo;
     }
-    
+
     /**
      * Resource /{merchantId}
      *

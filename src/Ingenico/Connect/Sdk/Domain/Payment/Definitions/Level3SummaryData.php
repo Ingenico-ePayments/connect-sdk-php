@@ -13,21 +13,25 @@ use UnexpectedValueException;
  *
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  * @link https://developer.globalcollect.com/documentation/api/server/#schema_Level3SummaryData Level3SummaryData
+ * @deprecated Use ShoppingCart instead
  */
 class Level3SummaryData extends DataObject
 {
     /**
      * @var int
+     * @deprecated Use ShoppingCart.discountAmount instead
      */
     public $discountAmount = null;
 
     /**
      * @var int
+     * @deprecated Use ShoppingCart.dutyAmount instead
      */
     public $dutyAmount = null;
 
     /**
      * @var int
+     * @deprecated Use ShoppingCart.shippingAmount instead
      */
     public $shippingAmount = null;
 

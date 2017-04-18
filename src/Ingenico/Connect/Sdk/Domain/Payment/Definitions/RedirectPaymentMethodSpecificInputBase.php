@@ -17,6 +17,11 @@ use UnexpectedValueException;
 class RedirectPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificInput
 {
     /**
+     * @var int
+     */
+    public $expirationPeriod = null;
+
+    /**
      * @var string
      */
     public $recurringPaymentSequenceIndicator = null;
@@ -34,6 +39,9 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecif
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'expirationPeriod')) {
+            $this->expirationPeriod = $object->expirationPeriod;
+        }
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;
         }
