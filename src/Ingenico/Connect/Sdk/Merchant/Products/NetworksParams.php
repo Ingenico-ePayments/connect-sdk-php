@@ -34,5 +34,4 @@ class NetworksParams extends RequestObject
      * @var bool
      */
     public $isRecurring;
-
 }

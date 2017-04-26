@@ -31,14 +31,14 @@ class Refunds extends Resource
      * @param string $refundId
      * @param CallContext $callContext
      * @return RefundResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__get Get refund
      */
     public function get($refundId, CallContext $callContext = null)
@@ -63,14 +63,14 @@ class Refunds extends Resource
      * @param ApproveRefundRequest $body
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__approve_post Approve refund
      */
     public function approve($refundId, $body, CallContext $callContext = null)
@@ -95,14 +95,14 @@ class Refunds extends Resource
      * @param string $refundId
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancel_post Cancel refund
      */
     public function cancel($refundId, CallContext $callContext = null)
@@ -127,14 +127,14 @@ class Refunds extends Resource
      * @param string $refundId
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancelapproval_post Undo approve refund
      */
     public function cancelapproval($refundId, CallContext $callContext = null)

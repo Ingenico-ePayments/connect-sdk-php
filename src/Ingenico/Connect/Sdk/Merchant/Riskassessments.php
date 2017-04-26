@@ -32,14 +32,14 @@ class Riskassessments extends Resource
      * @param RiskAssessmentBankAccount $body
      * @param CallContext $callContext
      * @return RiskAssessmentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_bankaccounts_post Risk-assess bank account
      */
     public function bankaccounts($body, CallContext $callContext = null)
@@ -63,14 +63,14 @@ class Riskassessments extends Resource
      * @param RiskAssessmentCard $body
      * @param CallContext $callContext
      * @return RiskAssessmentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_cards_post Risk-assess card
      */
     public function cards($body, CallContext $callContext = null)

@@ -8,7 +8,6 @@ namespace Ingenico\Connect\Sdk\Merchant;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
-use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Token\ApproveTokenRequest;
 use Ingenico\Connect\Sdk\Domain\Token\CreateTokenRequest;
 use Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse;
@@ -36,14 +35,14 @@ class Tokens extends Resource
      * @param CreateTokenRequest $body
      * @param CallContext $callContext
      * @return CreateTokenResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens_post Create token
      */
     public function create($body, CallContext $callContext = null)
@@ -51,7 +50,6 @@ class Tokens extends Resource
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
         $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(403, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens'),
@@ -64,52 +62,19 @@ class Tokens extends Resource
 
     /**
      * Resource /{merchantId}/tokens/{tokenId}
-     * Delete token
-     *
-     * @param string $tokenId
-     * @param DeleteTokenParams $query
-     * @param CallContext $callContext
-     * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
-     * @throws ValidationException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete Delete token
-     */
-    public function delete($tokenId, $query, CallContext $callContext = null)
-    {
-        $this->context['tokenId'] = $tokenId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        return $this->getCommunicator()->delete(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
-            $this->getClientMetaInfo(),
-            $query,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/tokens/{tokenId}
      * Get token
      *
      * @param string $tokenId
      * @param CallContext $callContext
      * @return TokenResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__get Get token
      */
     public function get($tokenId, CallContext $callContext = null)
@@ -117,7 +82,6 @@ class Tokens extends Resource
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\TokenResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
@@ -135,14 +99,14 @@ class Tokens extends Resource
      * @param UpdateTokenRequest $body
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__put Update token
      */
     public function update($tokenId, $body, CallContext $callContext = null)
@@ -161,6 +125,38 @@ class Tokens extends Resource
     }
 
     /**
+     * Resource /{merchantId}/tokens/{tokenId}
+     * Delete token
+     *
+     * @param string $tokenId
+     * @param DeleteTokenParams $query
+     * @param CallContext $callContext
+     * @return null
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete Delete token
+     */
+    public function delete($tokenId, $query, CallContext $callContext = null)
+    {
+        $this->context['tokenId'] = $tokenId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(204, '');
+        return $this->getCommunicator()->delete(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
+    /**
      * Resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit
      * Approve SEPA DD mandate
      *
@@ -168,14 +164,14 @@ class Tokens extends Resource
      * @param ApproveTokenRequest $body
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__approvesepadirectdebit_post Approve SEPA DD mandate
      */
     public function approvesepadirectdebit($tokenId, $body, CallContext $callContext = null)

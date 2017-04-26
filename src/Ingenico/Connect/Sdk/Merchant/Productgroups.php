@@ -8,7 +8,6 @@ namespace Ingenico\Connect\Sdk\Merchant;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
-use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroupResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroups;
 use Ingenico\Connect\Sdk\GlobalCollectException;
@@ -34,14 +33,14 @@ class Productgroups extends Resource
      * @param FindProductgroupsParams $query
      * @param CallContext $callContext
      * @return PaymentProductGroups
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups_get Get payment product groups
      */
     public function find($query, CallContext $callContext = null)
@@ -65,14 +64,14 @@ class Productgroups extends Resource
      * @param GetProductgroupParams $query
      * @param CallContext $callContext
      * @return PaymentProductGroupResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups__paymentProductGroupId__get Get payment product group
      */
     public function get($paymentProductGroupId, $query, CallContext $callContext = null)
@@ -80,7 +79,6 @@ class Productgroups extends Resource
         $this->context['paymentProductGroupId'] = $paymentProductGroupId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroupResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}'),

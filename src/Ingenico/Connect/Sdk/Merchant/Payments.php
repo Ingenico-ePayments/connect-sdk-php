@@ -10,7 +10,6 @@ use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\DeclinedPaymentException;
 use Ingenico\Connect\Sdk\DeclinedRefundException;
-use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\ApprovePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse;
@@ -45,26 +44,26 @@ class Payments extends Resource
      * @param CreatePaymentRequest $body
      * @param CallContext $callContext
      * @return CreatePaymentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @throws DeclinedPaymentException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments_post Create payment
      */
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse');
         $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
         $responseClassMap->addResponseClassName(402, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
         $responseClassMap->addResponseClassName(403, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
         $responseClassMap->addResponseClassName(502, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
         $responseClassMap->addResponseClassName(503, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
@@ -82,14 +81,14 @@ class Payments extends Resource
      * @param string $paymentId
      * @param CallContext $callContext
      * @return PaymentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__get Get payment
      */
     public function get($paymentId, CallContext $callContext = null)
@@ -114,14 +113,14 @@ class Payments extends Resource
      * @param ApprovePaymentRequest $body
      * @param CallContext $callContext
      * @return PaymentApprovalResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__approve_post Capture payment
      */
     public function approve($paymentId, $body, CallContext $callContext = null)
@@ -129,8 +128,6 @@ class Payments extends Resource
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse');
-        $responseClassMap->addResponseClassName(402, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/approve'),
@@ -148,14 +145,14 @@ class Payments extends Resource
      * @param string $paymentId
      * @param CallContext $callContext
      * @return CancelPaymentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__cancel_post Cancel payment
      */
     public function cancel($paymentId, CallContext $callContext = null)
@@ -163,7 +160,6 @@ class Payments extends Resource
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse');
-        $responseClassMap->addResponseClassName(402, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancel'),
@@ -181,14 +177,14 @@ class Payments extends Resource
      * @param string $paymentId
      * @param CallContext $callContext
      * @return CancelApprovalPaymentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__cancelapproval_post Undo capture payment request
      */
     public function cancelapproval($paymentId, CallContext $callContext = null)
@@ -196,7 +192,6 @@ class Payments extends Resource
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancelapproval'),
@@ -214,14 +209,14 @@ class Payments extends Resource
      * @param string $paymentId
      * @param CallContext $callContext
      * @return PaymentResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__processchallenged_post Approves challenged payment
      */
     public function processchallenged($paymentId, CallContext $callContext = null)
@@ -229,8 +224,6 @@ class Payments extends Resource
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
-        $responseClassMap->addResponseClassName(405, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/processchallenged'),
@@ -249,23 +242,23 @@ class Payments extends Resource
      * @param RefundRequest $body
      * @param CallContext $callContext
      * @return RefundResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws DeclinedRefundException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @throws DeclinedRefundException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__refund_post Create refund
      */
     public function refund($paymentId, $body, CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse');
         $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse');
+        $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse');
         $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -285,14 +278,14 @@ class Payments extends Resource
      * @param TokenizePaymentRequest $body
      * @param CallContext $callContext
      * @return CreateTokenResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__tokenize_post Create a token from payment
      */
     public function tokenize($paymentId, $body, CallContext $callContext = null)
@@ -301,7 +294,6 @@ class Payments extends Resource
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
         $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/tokenize'),

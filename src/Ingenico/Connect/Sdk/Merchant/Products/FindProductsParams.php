@@ -16,21 +16,6 @@ use Ingenico\Connect\Sdk\RequestObject;
 class FindProductsParams extends RequestObject
 {
     /**
-     * @var int
-     */
-    public $amount;
-
-    /**
-     * @var string[]
-     */
-    public $hide;
-
-    /**
-     * @var bool
-     */
-    public $isRecurring;
-
-    /**
      * @var string
      */
     public $countryCode;
@@ -38,11 +23,25 @@ class FindProductsParams extends RequestObject
     /**
      * @var string
      */
-    public $locale;
+    public $currencyCode;
 
     /**
      * @var string
      */
-    public $currencyCode;
+    public $locale;
 
+    /**
+     * @var int
+     */
+    public $amount;
+
+    /**
+     * @var bool
+     */
+    public $isRecurring;
+
+    /**
+     * @var string[]
+     */
+    public $hide;
 }

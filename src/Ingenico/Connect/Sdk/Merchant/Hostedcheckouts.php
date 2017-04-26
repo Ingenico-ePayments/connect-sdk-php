@@ -32,14 +32,14 @@ class Hostedcheckouts extends Resource
      * @param CreateHostedCheckoutRequest $body
      * @param CallContext $callContext
      * @return CreateHostedCheckoutResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__hostedcheckouts_post Create hosted checkout
      */
     public function create($body, CallContext $callContext = null)
@@ -63,14 +63,14 @@ class Hostedcheckouts extends Resource
      * @param string $hostedCheckoutId
      * @param CallContext $callContext
      * @return GetHostedCheckoutResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__hostedcheckouts__hostedCheckoutId__get Get hosted checkout status
      */
     public function get($hostedCheckoutId, CallContext $callContext = null)

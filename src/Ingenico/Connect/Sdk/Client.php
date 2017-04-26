@@ -85,7 +85,6 @@ class Client extends Resource
      *
      * @param string $merchantId
      * @return Merchant
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__api 
      */
     public function merchant($merchantId)
     {

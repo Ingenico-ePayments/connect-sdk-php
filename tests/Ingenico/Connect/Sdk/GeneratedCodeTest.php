@@ -76,7 +76,6 @@ class GeneratedCodeTest extends ClientTestCase
         $productQuery = new FindProductsParams();
         $productQuery->amount = 1000;
         $productQuery->currencyCode = 'EUR';
-        $productQuery->orderType = 'normal';
         $productQuery->countryCode = 'NL';
 
         try {

@@ -9,7 +9,6 @@ use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\DeclinedPayoutException;
-use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Payout\ApprovePayoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payout\CreatePayoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse;
@@ -35,22 +34,22 @@ class Payouts extends Resource
      * @param CreatePayoutRequest $body
      * @param CallContext $callContext
      * @return PayoutResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws DeclinedPayoutException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @throws DeclinedPayoutException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts_post Create payout
      */
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse');
         $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse');
+        $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
@@ -68,14 +67,14 @@ class Payouts extends Resource
      * @param string $payoutId
      * @param CallContext $callContext
      * @return PayoutResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__get Get payout
      */
     public function get($payoutId, CallContext $callContext = null)
@@ -83,7 +82,6 @@ class Payouts extends Resource
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}'),
@@ -101,14 +99,14 @@ class Payouts extends Resource
      * @param ApprovePayoutRequest $body
      * @param CallContext $callContext
      * @return PayoutResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__approve_post Approve payout
      */
     public function approve($payoutId, $body, CallContext $callContext = null)
@@ -116,7 +114,6 @@ class Payouts extends Resource
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse');
-        $responseClassMap->addResponseClassName(402, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/approve'),
@@ -134,21 +131,20 @@ class Payouts extends Resource
      * @param string $payoutId
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancel_post Cancel payout
      */
     public function cancel($payoutId, CallContext $callContext = null)
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(402, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
@@ -167,14 +163,14 @@ class Payouts extends Resource
      * @param string $payoutId
      * @param CallContext $callContext
      * @return null
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
-     * @throws ApiException
-     * @throws ReferenceException
-     * @throws IdempotenceException
+     *
      * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancelapproval_post Undo approve payout
      */
     public function cancelapproval($payoutId, CallContext $callContext = null)
@@ -182,7 +178,6 @@ class Payouts extends Resource
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(204, '');
-        $responseClassMap->addResponseClassName(405, '\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/cancelapproval'),

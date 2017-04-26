@@ -31,14 +31,14 @@ class Sessions extends Resource
      * @param SessionRequest $body
      * @param CallContext $callContext
      * @return SessionResponse
-     * 
-     * @throws GlobalCollectException
-     * @throws InvalidResponseException
-     * @throws AuthorizationException
+     *
      * @throws ValidationException
-     * @throws ReferenceException
+     * @throws AuthorizationException
      * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
      * @throws ApiException
+     * @throws InvalidResponseException
      * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__sessions_post Create Session
      */
     public function create($body, CallContext $callContext = null)

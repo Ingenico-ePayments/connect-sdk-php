@@ -21,13 +21,12 @@ class ConvertAmountParams extends RequestObject
     public $source;
 
     /**
-     * @var int
-     */
-    public $amount;
-
-    /**
      * @var string
      */
     public $target;
 
+    /**
+     * @var int
+     */
+    public $amount;
 }

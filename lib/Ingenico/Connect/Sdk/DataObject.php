@@ -2,6 +2,7 @@
 namespace Ingenico\Connect\Sdk;
 
 use stdClass;
+use Exception;
 use UnexpectedValueException;
 
 /**
@@ -93,5 +94,10 @@ abstract class DataObject
             throw new UnexpectedValueException('Expected object, got ' . gettype($object));
         }
         return $this;
+    }
+
+    public function __set($name, $value)
+    {
+        throw new Exception('Cannot add new property ' . $name . ' to instances of class ' . get_class($this));
     }
 }

@@ -18,11 +18,10 @@ class DirectoryParams extends RequestObject
     /**
      * @var string
      */
-    public $currencyCode;
+    public $countryCode;
 
     /**
      * @var string
      */
-    public $countryCode;
-
+    public $currencyCode;
 }

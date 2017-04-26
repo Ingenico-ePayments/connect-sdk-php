@@ -19,5 +19,4 @@ class DeleteTokenParams extends RequestObject
      * @var string
      */
     public $mandateCancelDate;
-
 }
