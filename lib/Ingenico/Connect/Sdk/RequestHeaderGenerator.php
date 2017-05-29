@@ -12,7 +12,7 @@ use UnexpectedValueException;
  */
 class RequestHeaderGenerator
 {
-    const SDK_VERSION = '5.5.1';
+    const SDK_VERSION = '5.5.2';
 
     const AUTHORIZATION_ID = 'GCS';
 
@@ -90,8 +90,7 @@ class RequestHeaderGenerator
      */
     protected function getRfc161Date()
     {
-        $dateTime = new DateTime('now');
-        return $dateTime->format(static::DATE_RFC2616);
+        return gmdate(static::DATE_RFC2616);
     }
 
     protected function getServerMetaInfoValue()

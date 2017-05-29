@@ -19,19 +19,19 @@ class Level3SummaryData extends DataObject
 {
     /**
      * @var int
-     * @deprecated Use ShoppingCart.discountAmount instead
+     * @deprecated Use ShoppingCart.amountbreakdown with type DISCOUNT instead
      */
     public $discountAmount = null;
 
     /**
      * @var int
-     * @deprecated Use ShoppingCart.dutyAmount instead
+     * @deprecated Use ShoppingCart.amountbreakdown with type DUTY instead
      */
     public $dutyAmount = null;
 
     /**
      * @var int
-     * @deprecated Use ShoppingCart.shippingAmount instead
+     * @deprecated Use ShoppingCart.amountbreakdown with type SHPPING instead
      */
     public $shippingAmount = null;
 
