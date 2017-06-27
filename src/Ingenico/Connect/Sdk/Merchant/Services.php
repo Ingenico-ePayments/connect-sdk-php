@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -44,7 +44,7 @@ class Services extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_amount_get Convert amount
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/convertAmount.html Convert amount
      */
     public function convertAmount($query, CallContext $callContext = null)
     {
@@ -61,7 +61,7 @@ class Services extends Resource
 
     /**
      * Resource /{merchantId}/services/convert/bankaccount
-     * Convert Bankaccount
+     * Convert bankaccount
      *
      * @param BankDetailsRequest $body
      * @param CallContext $callContext
@@ -74,7 +74,7 @@ class Services extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_convert_bankaccount_post Convert Bankaccount
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/bankaccount.html Convert bankaccount
      */
     public function bankaccount($body, CallContext $callContext = null)
     {
@@ -105,7 +105,7 @@ class Services extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_getIINdetails_post Get IIN details
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/getIINdetails.html Get IIN details
      */
     public function getIINdetails($body, CallContext $callContext = null)
     {
@@ -135,7 +135,7 @@ class Services extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__services_testconnection_get Test connection
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/testconnection.html Test connection
      */
     public function testconnection(CallContext $callContext = null)
     {

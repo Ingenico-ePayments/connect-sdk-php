@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -43,7 +43,7 @@ class Payouts extends Resource
      * @throws ApiException
      * @throws InvalidResponseException
      * @throws DeclinedPayoutException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts_post Create payout
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/create.html Create payout
      */
     public function create($body, CallContext $callContext = null)
     {
@@ -75,7 +75,7 @@ class Payouts extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__get Get payout
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/get.html Get payout
      */
     public function get($payoutId, CallContext $callContext = null)
     {
@@ -107,7 +107,7 @@ class Payouts extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__approve_post Approve payout
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/approve.html Approve payout
      */
     public function approve($payoutId, $body, CallContext $callContext = null)
     {
@@ -139,7 +139,7 @@ class Payouts extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancel_post Cancel payout
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/cancel.html Cancel payout
      */
     public function cancel($payoutId, CallContext $callContext = null)
     {
@@ -171,7 +171,7 @@ class Payouts extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payouts__payoutId__cancelapproval_post Undo approve payout
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/cancelapproval.html Undo approve payout
      */
     public function cancelapproval($payoutId, CallContext $callContext = null)
     {

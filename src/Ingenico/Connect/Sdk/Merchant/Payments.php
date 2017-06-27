@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -10,9 +10,12 @@ use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\DeclinedPaymentException;
 use Ingenico\Connect\Sdk\DeclinedRefundException;
+use Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse;
+use Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\ApprovePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse;
+use Ingenico\Connect\Sdk\Domain\Payment\CapturePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse;
@@ -53,7 +56,7 @@ class Payments extends Resource
      * @throws ApiException
      * @throws InvalidResponseException
      * @throws DeclinedPaymentException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments_post Create payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/create.html Create payment
      */
     public function create($body, CallContext $callContext = null)
     {
@@ -89,7 +92,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__get Get payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/get.html Get payment
      */
     public function get($paymentId, CallContext $callContext = null)
     {
@@ -107,7 +110,7 @@ class Payments extends Resource
 
     /**
      * Resource /{merchantId}/payments/{paymentId}/approve
-     * Capture payment
+     * Approve payment
      *
      * @param string $paymentId
      * @param ApprovePaymentRequest $body
@@ -121,7 +124,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__approve_post Capture payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/approve.html Approve payment
      */
     public function approve($paymentId, $body, CallContext $callContext = null)
     {
@@ -133,6 +136,70 @@ class Payments extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/approve'),
             $this->getClientMetaInfo(),
             $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/capture
+     * Capture payment
+     *
+     * @param string $paymentId
+     * @param CapturePaymentRequest $body
+     * @param CallContext $callContext
+     * @return CaptureResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/capture.html Capture payment
+     */
+    public function capture($paymentId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/capture'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/captures
+     * Get captures of payment
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return CapturesResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/captures.html Get captures of payment
+     */
+    public function captures($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/captures'),
+            $this->getClientMetaInfo(),
             null,
             $callContext
         );
@@ -153,7 +220,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__cancel_post Cancel payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/cancel.html Cancel payment
      */
     public function cancel($paymentId, CallContext $callContext = null)
     {
@@ -185,7 +252,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__cancelapproval_post Undo capture payment request
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/cancelapproval.html Undo capture payment request
      */
     public function cancelapproval($paymentId, CallContext $callContext = null)
     {
@@ -217,7 +284,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__processchallenged_post Approves challenged payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/processchallenged.html Approves challenged payment
      */
     public function processchallenged($paymentId, CallContext $callContext = null)
     {
@@ -251,7 +318,7 @@ class Payments extends Resource
      * @throws ApiException
      * @throws InvalidResponseException
      * @throws DeclinedRefundException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__refund_post Create refund
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/refund.html Create refund
      */
     public function refund($paymentId, $body, CallContext $callContext = null)
     {
@@ -286,7 +353,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__payments__paymentId__tokenize_post Create a token from payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/tokenize.html Create a token from payment
      */
     public function tokenize($paymentId, $body, CallContext $callContext = null)
     {

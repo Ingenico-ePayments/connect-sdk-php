@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
@@ -9,11 +9,8 @@ use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
- * Class Level3SummaryData
- *
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_Level3SummaryData Level3SummaryData
- * @deprecated Use ShoppingCart instead
+ * @deprecated Use Order.shoppingCart instead
  */
 class Level3SummaryData extends DataObject
 {
@@ -31,7 +28,7 @@ class Level3SummaryData extends DataObject
 
     /**
      * @var int
-     * @deprecated Use ShoppingCart.amountbreakdown with type SHPPING instead
+     * @deprecated Use ShoppingCart.amountbreakdown with type SHIPPING instead
      */
     public $shippingAmount = null;
 

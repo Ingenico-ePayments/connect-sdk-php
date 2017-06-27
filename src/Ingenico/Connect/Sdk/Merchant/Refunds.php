@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -39,7 +39,7 @@ class Refunds extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__get Get refund
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/get.html Get refund
      */
     public function get($refundId, CallContext $callContext = null)
     {
@@ -71,7 +71,7 @@ class Refunds extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__approve_post Approve refund
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/approve.html Approve refund
      */
     public function approve($refundId, $body, CallContext $callContext = null)
     {
@@ -103,7 +103,7 @@ class Refunds extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancel_post Cancel refund
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/cancel.html Cancel refund
      */
     public function cancel($refundId, CallContext $callContext = null)
     {
@@ -135,7 +135,7 @@ class Refunds extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__refunds__refundId__cancelapproval_post Undo approve refund
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/cancelapproval.html Undo approve refund
      */
     public function cancelapproval($refundId, CallContext $callContext = null)
     {

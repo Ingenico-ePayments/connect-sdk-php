@@ -1,10 +1,11 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk;
 
+use Ingenico\Connect\Sdk\Merchant\Captures;
 use Ingenico\Connect\Sdk\Merchant\Hostedcheckouts;
 use Ingenico\Connect\Sdk\Merchant\Payments;
 use Ingenico\Connect\Sdk\Merchant\Payouts;
@@ -24,7 +25,6 @@ class Merchant extends Resource
      * Create, cancel and approve payments
      *
      * @return Payments
-     * @link https://developer.globalcollect.com/documentation/api/server/#payments Create, cancel and approve payments
      */
     public function payments()
     {
@@ -32,11 +32,21 @@ class Merchant extends Resource
     }
 
     /**
+     * Resource /{merchantId}/captures
+     * Get capture
+     *
+     * @return Captures
+     */
+    public function captures()
+    {
+        return new Captures($this, $this->context);
+    }
+
+    /**
      * Resource /{merchantId}/payouts
      * Create, cancel and approve payouts
      *
      * @return Payouts
-     * @link https://developer.globalcollect.com/documentation/api/server/#payouts Create, cancel and approve payouts
      */
     public function payouts()
     {
@@ -48,7 +58,6 @@ class Merchant extends Resource
      * Get information about payment products
      *
      * @return Products
-     * @link https://developer.globalcollect.com/documentation/api/server/#products Get information about payment products
      */
     public function products()
     {
@@ -60,7 +69,6 @@ class Merchant extends Resource
      * Get information about payment product groups
      *
      * @return Productgroups
-     * @link https://developer.globalcollect.com/documentation/api/server/#productgroups Get information about payment product groups
      */
     public function productgroups()
     {
@@ -72,7 +80,6 @@ class Merchant extends Resource
      * Create, cancel and approve refunds
      *
      * @return Refunds
-     * @link https://developer.globalcollect.com/documentation/api/server/#refunds Create, cancel and approve refunds
      */
     public function refunds()
     {
@@ -84,7 +91,6 @@ class Merchant extends Resource
      * Perform risk assessments on your customer data
      *
      * @return Riskassessments
-     * @link https://developer.globalcollect.com/documentation/api/server/#riskassessments Perform risk assessments on your customer data
      */
     public function riskassessments()
     {
@@ -96,7 +102,6 @@ class Merchant extends Resource
      * Several services to help you
      *
      * @return Services
-     * @link https://developer.globalcollect.com/documentation/api/server/#services Several services to help you
      */
     public function services()
     {
@@ -108,7 +113,6 @@ class Merchant extends Resource
      * Create new Session for Client2Server API calls
      *
      * @return Sessions
-     * @link https://developer.globalcollect.com/documentation/api/server/#sessions Create new Session for Client2Server API calls
      */
     public function sessions()
     {
@@ -120,7 +124,6 @@ class Merchant extends Resource
      * Create, delete and update tokens
      *
      * @return Tokens
-     * @link https://developer.globalcollect.com/documentation/api/server/#tokens Create, delete and update tokens
      */
     public function tokens()
     {
@@ -132,7 +135,6 @@ class Merchant extends Resource
      * Create new hosted checkout
      *
      * @return Hostedcheckouts
-     * @link https://developer.globalcollect.com/documentation/api/server/#hostedcheckouts Create new hosted checkout
      */
     public function hostedcheckouts()
     {

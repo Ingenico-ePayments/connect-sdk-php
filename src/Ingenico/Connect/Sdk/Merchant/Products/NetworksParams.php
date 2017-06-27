@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant\Products;
 
@@ -11,7 +11,7 @@ use Ingenico\Connect\Sdk\RequestObject;
  * Query parameters for Get payment product networks
  *
  * @package Ingenico\Connect\Sdk\Merchant\Products
- * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__networks_get Get payment product networks
+ * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
  */
 class NetworksParams extends RequestObject
 {

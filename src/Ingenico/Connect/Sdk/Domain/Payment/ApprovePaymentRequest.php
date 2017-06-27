@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment;
 
@@ -12,10 +12,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderApprovePayment;
 use UnexpectedValueException;
 
 /**
- * Class ApprovePaymentRequest
- *
  * @package Ingenico\Connect\Sdk\Domain\Payment
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_ApprovePaymentRequest ApprovePaymentRequest
  */
 class ApprovePaymentRequest extends DataObject
 {

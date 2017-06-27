@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant\Products;
 
@@ -11,7 +11,7 @@ use Ingenico\Connect\Sdk\RequestObject;
  * Query parameters for Get payment products
  *
  * @package Ingenico\Connect\Sdk\Merchant\Products
- * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products_get Get payment products
+ * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/find.html Get payment products
  */
 class FindProductsParams extends RequestObject
 {

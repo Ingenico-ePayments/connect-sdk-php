@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Token;
 
@@ -13,10 +13,7 @@ use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenSepaDirectDebit;
 use UnexpectedValueException;
 
 /**
- * Class TokenResponse
- *
  * @package Ingenico\Connect\Sdk\Domain\Token
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_TokenResponse TokenResponse
  */
 class TokenResponse extends DataObject
 {

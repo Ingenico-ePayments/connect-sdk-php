@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payout;
 
@@ -9,15 +9,14 @@ use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountBban;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
+use Ingenico\Connect\Sdk\Domain\Payout\Definitions\BankTransferPayoutMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payout\Definitions\CardPayoutMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutCustomer;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutReferences;
 use UnexpectedValueException;
 
 /**
- * Class CreatePayoutRequest
- *
  * @package Ingenico\Connect\Sdk\Domain\Payout
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_CreatePayoutRequest CreatePayoutRequest
  */
 class CreatePayoutRequest extends DataObject
 {
@@ -28,26 +27,41 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var BankAccountBban
+     * @deprecated Use bankTransferPayoutMethodSpecificInput.bankAccountBban instead
      */
     public $bankAccountBban = null;
 
     /**
      * @var BankAccountIban
+     * @deprecated Use bankTransferPayoutMethodSpecificInput.bankAccountIban instead
      */
     public $bankAccountIban = null;
 
     /**
+     * @var BankTransferPayoutMethodSpecificInput
+     */
+    public $bankTransferPayoutMethodSpecificInput = null;
+
+    /**
+     * @var CardPayoutMethodSpecificInput
+     */
+    public $cardPayoutMethodSpecificInput = null;
+
+    /**
      * @var PayoutCustomer
+     * @deprecated Use bankTransferPayoutMethodSpecificInput.customer instead
      */
     public $customer = null;
 
     /**
      * @var string
+     * @deprecated Use bankTransferPayoutMethodSpecificInput.payoutDate instead
      */
     public $payoutDate = null;
 
     /**
      * @var string
+     * @deprecated Use bankTransferPayoutMethodSpecificInput.payoutText instead
      */
     public $payoutText = null;
 
@@ -58,6 +72,7 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var string
+     * @deprecated Use bankTransferPayoutMethodSpecificInput.swiftCode instead
      */
     public $swiftCode = null;
 
@@ -89,6 +104,20 @@ class CreatePayoutRequest extends DataObject
             }
             $value = new BankAccountIban();
             $this->bankAccountIban = $value->fromObject($object->bankAccountIban);
+        }
+        if (property_exists($object, 'bankTransferPayoutMethodSpecificInput')) {
+            if (!is_object($object->bankTransferPayoutMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->bankTransferPayoutMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new BankTransferPayoutMethodSpecificInput();
+            $this->bankTransferPayoutMethodSpecificInput = $value->fromObject($object->bankTransferPayoutMethodSpecificInput);
+        }
+        if (property_exists($object, 'cardPayoutMethodSpecificInput')) {
+            if (!is_object($object->cardPayoutMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->cardPayoutMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new CardPayoutMethodSpecificInput();
+            $this->cardPayoutMethodSpecificInput = $value->fromObject($object->cardPayoutMethodSpecificInput);
         }
         if (property_exists($object, 'customer')) {
             if (!is_object($object->customer)) {

@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
@@ -11,10 +11,7 @@ use Ingenico\Connect\Sdk\Domain\Token\Definitions\PersonalInformationToken;
 use UnexpectedValueException;
 
 /**
- * Class CustomerToken
- *
  * @package Ingenico\Connect\Sdk\Domain\Token\Definitions
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_CustomerToken CustomerToken
  */
 class CustomerToken extends CustomerBase
 {

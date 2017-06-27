@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -41,7 +41,7 @@ class Productgroups extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups_get Get payment product groups
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/find.html Get payment product groups
      */
     public function find($query, CallContext $callContext = null)
     {
@@ -72,7 +72,7 @@ class Productgroups extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups__paymentProductGroupId__get Get payment product group
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/get.html Get payment product group
      */
     public function get($paymentProductGroupId, $query, CallContext $callContext = null)
     {

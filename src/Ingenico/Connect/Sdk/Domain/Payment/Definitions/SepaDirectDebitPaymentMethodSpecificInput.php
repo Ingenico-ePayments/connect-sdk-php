@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
@@ -9,10 +9,7 @@ use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
 use UnexpectedValueException;
 
 /**
- * Class SepaDirectDebitPaymentMethodSpecificInput
- *
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_SepaDirectDebitPaymentMethodSpecificInput SepaDirectDebitPaymentMethodSpecificInput
  */
 class SepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {

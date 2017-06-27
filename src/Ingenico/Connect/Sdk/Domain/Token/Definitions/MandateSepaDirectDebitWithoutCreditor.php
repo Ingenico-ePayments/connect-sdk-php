@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
@@ -12,10 +12,7 @@ use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateApproval;
 use UnexpectedValueException;
 
 /**
- * Class MandateSepaDirectDebitWithoutCreditor
- *
  * @package Ingenico\Connect\Sdk\Domain\Token\Definitions
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_MandateSepaDirectDebitWithoutCreditor MandateSepaDirectDebitWithoutCreditor
  */
 class MandateSepaDirectDebitWithoutCreditor extends DataObject
 {

@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Product\Definitions;
 
@@ -10,10 +10,7 @@ use Ingenico\Connect\Sdk\Domain\Product\Definitions\ValueMappingElement;
 use UnexpectedValueException;
 
 /**
- * Class PaymentProductFieldFormElement
- *
  * @package Ingenico\Connect\Sdk\Domain\Product\Definitions
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_PaymentProductFieldFormElement PaymentProductFieldFormElement
  */
 class PaymentProductFieldFormElement extends DataObject
 {

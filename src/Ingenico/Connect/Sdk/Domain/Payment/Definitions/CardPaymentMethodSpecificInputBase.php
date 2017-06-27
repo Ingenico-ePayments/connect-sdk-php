@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
@@ -9,10 +9,7 @@ use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
 use UnexpectedValueException;
 
 /**
- * Class CardPaymentMethodSpecificInputBase
- *
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_CardPaymentMethodSpecificInputBase CardPaymentMethodSpecificInputBase
  */
 class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificInput
 {
@@ -57,6 +54,11 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
     public $tokenize = null;
 
     /**
+     * @var string
+     */
+    public $transactionChannel = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -87,6 +89,9 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
         }
         if (property_exists($object, 'tokenize')) {
             $this->tokenize = $object->tokenize;
+        }
+        if (property_exists($object, 'transactionChannel')) {
+            $this->transactionChannel = $object->transactionChannel;
         }
         return $this;
     }

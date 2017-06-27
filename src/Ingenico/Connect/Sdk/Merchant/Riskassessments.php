@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -20,14 +20,14 @@ use Ingenico\Connect\Sdk\ResponseClassMap;
 use Ingenico\Connect\Sdk\ValidationException;
 
 /**
- * RiskAssessments client.
+ * Risk assessments client.
  * Perform risk assessments on your customer data
  */
 class Riskassessments extends Resource
 {
     /**
      * Resource /{merchantId}/riskassessments/bankaccounts
-     * Risk-assess bank account
+     * Risk-assess bankaccount
      *
      * @param RiskAssessmentBankAccount $body
      * @param CallContext $callContext
@@ -40,7 +40,7 @@ class Riskassessments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_bankaccounts_post Risk-assess bank account
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/riskassessments/bankaccounts.html Risk-assess bankaccount
      */
     public function bankaccounts($body, CallContext $callContext = null)
     {
@@ -71,7 +71,7 @@ class Riskassessments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__riskassessments_cards_post Risk-assess card
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/riskassessments/cards.html Risk-assess card
      */
     public function cards($body, CallContext $callContext = null)
     {

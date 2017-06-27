@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -46,7 +46,7 @@ class Products extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products_get Get payment products
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/find.html Get payment products
      */
     public function find($query, CallContext $callContext = null)
     {
@@ -77,7 +77,7 @@ class Products extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__get Get payment product
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/get.html Get payment product
      */
     public function get($paymentProductId, $query, CallContext $callContext = null)
     {
@@ -109,7 +109,7 @@ class Products extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__directory_get Get payment product directory
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/directory.html Get payment product directory
      */
     public function directory($paymentProductId, $query, CallContext $callContext = null)
     {
@@ -141,7 +141,7 @@ class Products extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__networks_get Get payment product networks
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
      */
     public function networks($paymentProductId, $query, CallContext $callContext = null)
     {
@@ -172,7 +172,7 @@ class Products extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__products__paymentProductId__publicKey_get Get payment product specific public key
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/publicKey.html Get payment product specific public key
      */
     public function publicKey($paymentProductId, CallContext $callContext = null)
     {

@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -26,7 +26,7 @@ class Sessions extends Resource
 {
     /**
      * Resource /{merchantId}/sessions
-     * Create Session
+     * Create session
      *
      * @param SessionRequest $body
      * @param CallContext $callContext
@@ -39,7 +39,7 @@ class Sessions extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__sessions_post Create Session
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/sessions/create.html Create session
      */
     public function create($body, CallContext $callContext = null)
     {

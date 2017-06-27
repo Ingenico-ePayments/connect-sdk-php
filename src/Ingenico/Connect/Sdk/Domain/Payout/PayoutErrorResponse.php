@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payout;
 
@@ -11,10 +11,7 @@ use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutResult;
 use UnexpectedValueException;
 
 /**
- * Class PayoutErrorResponse
- *
  * @package Ingenico\Connect\Sdk\Domain\Payout
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_PayoutErrorResponse PayoutErrorResponse
  */
 class PayoutErrorResponse extends DataObject
 {

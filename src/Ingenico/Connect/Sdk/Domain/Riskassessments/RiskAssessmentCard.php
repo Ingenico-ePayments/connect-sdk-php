@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Riskassessments;
 
@@ -10,10 +10,7 @@ use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\RiskAssessment;
 use UnexpectedValueException;
 
 /**
- * Class RiskAssessmentCard
- *
  * @package Ingenico\Connect\Sdk\Domain\Riskassessments
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_RiskAssessmentCard RiskAssessmentCard
  */
 class RiskAssessmentCard extends RiskAssessment
 {

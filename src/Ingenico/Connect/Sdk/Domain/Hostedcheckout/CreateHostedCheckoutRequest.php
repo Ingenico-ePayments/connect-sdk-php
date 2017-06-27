@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Domain\Hostedcheckout;
 
@@ -16,10 +16,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecifi
 use UnexpectedValueException;
 
 /**
- * Class CreateHostedCheckoutRequest
- *
  * @package Ingenico\Connect\Sdk\Domain\Hostedcheckout
- * @link https://developer.globalcollect.com/documentation/api/server/#schema_CreateHostedCheckoutRequest CreateHostedCheckoutRequest
  */
 class CreateHostedCheckoutRequest extends DataObject
 {

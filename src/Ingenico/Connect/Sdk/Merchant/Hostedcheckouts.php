@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -20,7 +20,7 @@ use Ingenico\Connect\Sdk\ResponseClassMap;
 use Ingenico\Connect\Sdk\ValidationException;
 
 /**
- * HostedCheckouts client.
+ * Hosted Checkouts client.
  * Create new hosted checkout
  */
 class Hostedcheckouts extends Resource
@@ -40,7 +40,7 @@ class Hostedcheckouts extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__hostedcheckouts_post Create hosted checkout
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/hostedcheckouts/create.html Create hosted checkout
      */
     public function create($body, CallContext $callContext = null)
     {
@@ -71,7 +71,7 @@ class Hostedcheckouts extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__hostedcheckouts__hostedCheckoutId__get Get hosted checkout status
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/hostedcheckouts/get.html Get hosted checkout status
      */
     public function get($hostedCheckoutId, CallContext $callContext = null)
     {

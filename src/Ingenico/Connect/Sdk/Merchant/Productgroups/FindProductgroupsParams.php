@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant\Productgroups;
 
@@ -11,7 +11,7 @@ use Ingenico\Connect\Sdk\RequestObject;
  * Query parameters for Get payment product groups
  *
  * @package Ingenico\Connect\Sdk\Merchant\Productgroups
- * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__productgroups_get Get payment product groups
+ * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/find.html Get payment product groups
  */
 class FindProductgroupsParams extends RequestObject
 {

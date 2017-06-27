@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://developer.globalcollect.com/documentation/api/server/
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -43,7 +43,7 @@ class Tokens extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens_post Create token
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/create.html Create token
      */
     public function create($body, CallContext $callContext = null)
     {
@@ -75,7 +75,7 @@ class Tokens extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__get Get token
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/get.html Get token
      */
     public function get($tokenId, CallContext $callContext = null)
     {
@@ -107,7 +107,7 @@ class Tokens extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__put Update token
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/update.html Update token
      */
     public function update($tokenId, $body, CallContext $callContext = null)
     {
@@ -140,7 +140,7 @@ class Tokens extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__delete Delete token
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/delete.html Delete token
      */
     public function delete($tokenId, $query, CallContext $callContext = null)
     {
@@ -172,7 +172,7 @@ class Tokens extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://developer.globalcollect.com/documentation/api/server/#__merchantId__tokens__tokenId__approvesepadirectdebit_post Approve SEPA DD mandate
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/approvesepadirectdebit.html Approve SEPA DD mandate
      */
     public function approvesepadirectdebit($tokenId, $body, CallContext $callContext = null)
     {
