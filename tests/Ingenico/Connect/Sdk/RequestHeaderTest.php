@@ -124,6 +124,53 @@ class RequestHeaderTest extends TestCase
             $this->getApiEndpoint(),
             'Ingenico.Integrator'
         );
+        $communicatorConfiguration->setShoppingCartExtension(new ShoppingCartExtension('Ingenico.Creator', 'Extension', '1.0', 'ExtensionId'));
+
+        $requestHeaderGenerator = new RequestHeaderGenerator(
+            $communicatorConfiguration,
+            'GET',
+            '/v1/consumer/ANDR%C3%89E/?q=na%20me'
+        );
+        $requestHeaders = $requestHeaderGenerator->generateRequestHeaders();
+        $serverMetaInfoJson = $requestHeaders['X-GCS-ServerMetaInfo'];
+        $serverMetaInfo = json_decode(base64_decode($serverMetaInfoJson));
+        $this->assertInstanceOf('\stdClass', $serverMetaInfo);
+
+        $this->assertObjectHasAttribute('platformIdentifier', $serverMetaInfo);
+        $this->assertContains(php_uname(), $serverMetaInfo->platformIdentifier);
+        $this->assertContains(phpversion(), $serverMetaInfo->platformIdentifier);
+
+        $this->assertObjectHasAttribute('sdkIdentifier', $serverMetaInfo);
+        $this->assertEquals('PHPServerSDK/v' . RequestHeaderGenerator::SDK_VERSION, $serverMetaInfo->sdkIdentifier);
+
+        $this->assertObjectHasAttribute('sdkCreator', $serverMetaInfo);
+        $this->assertEquals('Ingenico', $serverMetaInfo->sdkCreator);
+
+        $this->assertObjectHasAttribute('integrator', $serverMetaInfo);
+        $this->assertEquals('Ingenico.Integrator', $serverMetaInfo->integrator);
+
+        $this->assertObjectHasAttribute('shoppingCartExtension', $serverMetaInfo);
+        $this->assertInstanceOf('\stdClass', $serverMetaInfo->shoppingCartExtension);
+
+        $this->assertObjectHasAttribute('extensionId', $serverMetaInfo->shoppingCartExtension);
+        $this->assertEquals('ExtensionId', $serverMetaInfo->shoppingCartExtension->extensionId);
+        $this->assertObjectHasAttribute('creator', $serverMetaInfo->shoppingCartExtension);
+        $this->assertEquals('Ingenico.Creator', $serverMetaInfo->shoppingCartExtension->creator);
+        $this->assertObjectHasAttribute('name', $serverMetaInfo->shoppingCartExtension);
+        $this->assertEquals('Extension', $serverMetaInfo->shoppingCartExtension->name);
+        $this->assertObjectHasAttribute('version', $serverMetaInfo->shoppingCartExtension);
+        $this->assertEquals('1.0', $serverMetaInfo->shoppingCartExtension->version);
+    }
+
+    public function testServerMetaInfoHeaderFullNoShoppingCartExtensionId()
+    {
+        // create a new CommunicatorConfiguration to not modify the field
+        $communicatorConfiguration = new CommunicatorConfiguration(
+            $this->getApiKey(),
+            $this->getApiSecret(),
+            $this->getApiEndpoint(),
+            'Ingenico.Integrator'
+        );
         $communicatorConfiguration->setShoppingCartExtension(new ShoppingCartExtension('Ingenico.Creator', 'Extension', '1.0'));
 
         $requestHeaderGenerator = new RequestHeaderGenerator(
@@ -152,6 +199,8 @@ class RequestHeaderTest extends TestCase
         $this->assertObjectHasAttribute('shoppingCartExtension', $serverMetaInfo);
         $this->assertInstanceOf('\stdClass', $serverMetaInfo->shoppingCartExtension);
 
+        $this->assertObjectHasAttribute('extensionId', $serverMetaInfo->shoppingCartExtension);
+        $this->assertNull($serverMetaInfo->shoppingCartExtension->extensionId);
         $this->assertObjectHasAttribute('creator', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('Ingenico.Creator', $serverMetaInfo->shoppingCartExtension->creator);
         $this->assertObjectHasAttribute('name', $serverMetaInfo->shoppingCartExtension);

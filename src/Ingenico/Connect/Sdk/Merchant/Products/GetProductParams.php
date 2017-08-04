@@ -44,4 +44,9 @@ class GetProductParams extends RequestObject
      * @var string[]
      */
     public $hide;
+
+    /**
+     * @var bool
+     */
+    public $forceBasicFlow;
 }

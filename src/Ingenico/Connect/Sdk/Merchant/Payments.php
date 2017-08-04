@@ -16,11 +16,14 @@ use Ingenico\Connect\Sdk\Domain\Payment\ApprovePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CapturePaymentRequest;
+use Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentRequest;
+use Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse;
+use Ingenico\Connect\Sdk\Domain\Payment\ThirdPartyStatusResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\TokenizePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundRequest;
@@ -206,6 +209,70 @@ class Payments extends Resource
     }
 
     /**
+     * Resource /{merchantId}/payments/{paymentId}/complete
+     * Complete payment
+     *
+     * @param string $paymentId
+     * @param CompletePaymentRequest $body
+     * @param CallContext $callContext
+     * @return CompletePaymentResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/complete.html Complete payment
+     */
+    public function complete($paymentId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/complete'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/thirdpartystatus
+     * Third party status poll
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return ThirdPartyStatusResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/thirdPartyStatus.html Third party status poll
+     */
+    public function thirdPartyStatus($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\ThirdPartyStatusResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/thirdpartystatus'),
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
+        );
+    }
+
+    /**
      * Resource /{merchantId}/payments/{paymentId}/cancel
      * Cancel payment
      *
@@ -239,7 +306,7 @@ class Payments extends Resource
 
     /**
      * Resource /{merchantId}/payments/{paymentId}/cancelapproval
-     * Undo capture payment request
+     * Undo capture payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -252,7 +319,7 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/cancelapproval.html Undo capture payment request
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/cancelapproval.html Undo capture payment
      */
     public function cancelapproval($paymentId, CallContext $callContext = null)
     {

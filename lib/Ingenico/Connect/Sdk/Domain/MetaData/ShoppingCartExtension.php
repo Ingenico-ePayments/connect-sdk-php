@@ -26,11 +26,17 @@ class ShoppingCartExtension extends DataObject
      */
     public $version = null;
 
-    public function __construct($creator, $name, $version)
+    /**
+     * @var string
+     */
+    public $extensionId = null;
+
+    public function __construct($creator, $name, $version, $extensionId = null)
     {
         $this->creator = $creator;
         $this->name = $name;
         $this->version = $version;
+        $this->extensionId = $extensionId;
     }
 
     /**
@@ -49,6 +55,9 @@ class ShoppingCartExtension extends DataObject
         }
         if (property_exists($object, 'version')) {
             $this->version = $object->version;
+        }
+        if (property_exists($object, 'extensionId')) {
+            $this->extensionId = $object->extensionId;
         }
         return $this;
     }

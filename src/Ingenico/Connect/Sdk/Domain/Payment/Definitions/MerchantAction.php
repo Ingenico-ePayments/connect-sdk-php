@@ -8,6 +8,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\KeyValuePair;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectData;
+use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductField;
 use UnexpectedValueException;
 
 /**
@@ -19,6 +20,11 @@ class MerchantAction extends DataObject
      * @var string
      */
     public $actionType = null;
+
+    /**
+     * @var PaymentProductField[]
+     */
+    public $formFields = null;
 
     /**
      * @var RedirectData
@@ -45,6 +51,16 @@ class MerchantAction extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'actionType')) {
             $this->actionType = $object->actionType;
+        }
+        if (property_exists($object, 'formFields')) {
+            if (!is_array($object->formFields) && !is_object($object->formFields)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->formFields, true) . '\' is not an array or object');
+            }
+            $this->formFields = [];
+            foreach ($object->formFields as $formFieldsElementObject) {
+                $formFieldsElement = new PaymentProductField();
+                $this->formFields[] = $formFieldsElement->fromObject($formFieldsElementObject);
+            }
         }
         if (property_exists($object, 'redirectData')) {
             if (!is_object($object->redirectData)) {
