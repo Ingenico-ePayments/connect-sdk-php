@@ -1,7 +1,7 @@
 {
     "name": "ingenico-epayments/connect-sdk-php",
     "type": "library",
-    "description": "PHP SDK to communicate with the GlobalCollect platform server-to-server API",
+    "description": "PHP SDK to communicate with the Ingenico ePayments platform server-to-server API",
     "homepage": "http://www.ingenico.com/epayments/",
     "keywords": ["SDK"],
     "license": "MIT",

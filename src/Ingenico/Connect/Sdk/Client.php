@@ -24,7 +24,7 @@ class Client extends Resource
     private $clientMetaInfo;
 
     /**
-     * Construct a new GlobalCollect platform server-to-server API client.
+     * Construct a new Ingenico ePayments platform server-to-server API client.
      *
      * @param Communicator $communicator
      * @param string $clientMetaInfo

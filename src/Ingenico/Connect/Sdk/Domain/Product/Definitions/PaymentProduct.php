@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Product\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Product\Definitions\AccountOnFile;
+use Ingenico\Connect\Sdk\Domain\Product\Definitions\AuthenticationIndicator;
 use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductDisplayHints;
 use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductField;
 use UnexpectedValueException;
@@ -30,6 +31,11 @@ class PaymentProduct extends DataObject
      * @var bool
      */
     public $allowsTokenization = null;
+
+    /**
+     * @var AuthenticationIndicator
+     */
+    public $authenticationIndicator = null;
 
     /**
      * @var bool
@@ -109,6 +115,13 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'allowsTokenization')) {
             $this->allowsTokenization = $object->allowsTokenization;
+        }
+        if (property_exists($object, 'authenticationIndicator')) {
+            if (!is_object($object->authenticationIndicator)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->authenticationIndicator, true) . '\' is not an object');
+            }
+            $value = new AuthenticationIndicator();
+            $this->authenticationIndicator = $value->fromObject($object->authenticationIndicator);
         }
         if (property_exists($object, 'autoTokenized')) {
             $this->autoTokenized = $object->autoTokenized;

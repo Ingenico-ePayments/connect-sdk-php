@@ -24,9 +24,19 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecif
     public $recurringPaymentSequenceIndicator = null;
 
     /**
+     * @var bool
+     */
+    public $requiresApproval = null;
+
+    /**
      * @var string
      */
     public $token = null;
+
+    /**
+     * @var bool
+     */
+    public $tokenize = null;
 
     /**
      * @param object $object
@@ -42,8 +52,14 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecif
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;
         }
+        if (property_exists($object, 'requiresApproval')) {
+            $this->requiresApproval = $object->requiresApproval;
+        }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;
+        }
+        if (property_exists($object, 'tokenize')) {
+            $this->tokenize = $object->tokenize;
         }
         return $this;
     }

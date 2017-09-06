@@ -36,6 +36,7 @@ class Order extends DataObject
 
     /**
      * @var LineItem[]
+     * @deprecated Use ShoppingCart.items instead
      */
     public $items = null;
 

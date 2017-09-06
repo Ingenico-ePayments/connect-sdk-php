@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CompletePaymentCardPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
 use UnexpectedValueException;
 
 /**
@@ -18,6 +19,11 @@ class CompletePaymentRequest extends DataObject
      * @var CompletePaymentCardPaymentMethodSpecificInput
      */
     public $cardPaymentMethodSpecificInput = null;
+
+    /**
+     * @var Order
+     */
+    public $order = null;
 
     /**
      * @param object $object
@@ -33,6 +39,13 @@ class CompletePaymentRequest extends DataObject
             }
             $value = new CompletePaymentCardPaymentMethodSpecificInput();
             $this->cardPaymentMethodSpecificInput = $value->fromObject($object->cardPaymentMethodSpecificInput);
+        }
+        if (property_exists($object, 'order')) {
+            if (!is_object($object->order)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->order, true) . '\' is not an object');
+            }
+            $value = new Order();
+            $this->order = $value->fromObject($object->order);
         }
         return $this;
     }

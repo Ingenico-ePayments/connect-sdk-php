@@ -5,13 +5,13 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ApprovePaymentPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ApprovePaymentDirectDebitPaymentMethodSpecificInput;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput extends ApprovePaymentPaymentMethodSpecificInput
+class ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput extends ApprovePaymentDirectDebitPaymentMethodSpecificInput
 {
     /**
      * @param object $object

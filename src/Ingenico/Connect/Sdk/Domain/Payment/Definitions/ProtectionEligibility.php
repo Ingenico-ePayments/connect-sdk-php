@@ -5,14 +5,24 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ApprovePaymentDirectDebitPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class ApprovePaymentSepaDirectDebitPaymentMethodSpecificInput extends ApprovePaymentDirectDebitPaymentMethodSpecificInput
+class ProtectionEligibility extends DataObject
 {
+    /**
+     * @var string
+     */
+    public $eligibility = null;
+
+    /**
+     * @var string
+     */
+    public $type = null;
+
     /**
      * @param object $object
      * @return $this
@@ -21,6 +31,12 @@ class ApprovePaymentSepaDirectDebitPaymentMethodSpecificInput extends ApprovePay
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'eligibility')) {
+            $this->eligibility = $object->eligibility;
+        }
+        if (property_exists($object, 'type')) {
+            $this->type = $object->type;
+        }
         return $this;
     }
 }

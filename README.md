@@ -12,7 +12,7 @@ The Ingenico Connect PHP SDK helps you to communicate with the [Ingenico Connect
 
 Its use is demonstrated by an example for most calls. The examples execute a call using the provided API keys.
 
-See the [Ingenico Connect Developer Hub](https://developer.globalcollect.com/documentation/sdk/server/php/) for more information on how to use the SDK.
+See the [Ingenico Connect Developer Hub](https://epayments.developer-ingenico.com/documentation/sdk/server/php/) for more information on how to use the SDK.
 
 ## Structure of this repository
 

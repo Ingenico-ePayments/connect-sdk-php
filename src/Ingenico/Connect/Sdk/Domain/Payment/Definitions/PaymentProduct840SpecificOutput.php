@@ -8,6 +8,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentProduct840CustomerAccount;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ProtectionEligibility;
 use UnexpectedValueException;
 
 /**
@@ -24,6 +25,11 @@ class PaymentProduct840SpecificOutput extends DataObject
      * @var Address
      */
     public $customerAddress = null;
+
+    /**
+     * @var ProtectionEligibility
+     */
+    public $protectionEligibility = null;
 
     /**
      * @param object $object
@@ -46,6 +52,13 @@ class PaymentProduct840SpecificOutput extends DataObject
             }
             $value = new Address();
             $this->customerAddress = $value->fromObject($object->customerAddress);
+        }
+        if (property_exists($object, 'protectionEligibility')) {
+            if (!is_object($object->protectionEligibility)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->protectionEligibility, true) . '\' is not an object');
+            }
+            $value = new ProtectionEligibility();
+            $this->protectionEligibility = $value->fromObject($object->protectionEligibility);
         }
         return $this;
     }
