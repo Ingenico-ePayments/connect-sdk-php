@@ -9,10 +9,12 @@ use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\Domain\Refund\ApproveRefundRequest;
+use Ingenico\Connect\Sdk\Domain\Refund\FindRefundsResponse;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundResponse;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
+use Ingenico\Connect\Sdk\Merchant\Refunds\FindRefundsParams;
 use Ingenico\Connect\Sdk\ReferenceException;
 use Ingenico\Connect\Sdk\Resource;
 use Ingenico\Connect\Sdk\ResponseClassMap;
@@ -24,6 +26,36 @@ use Ingenico\Connect\Sdk\ValidationException;
  */
 class Refunds extends Resource
 {
+    /**
+     * Resource /{merchantId}/refunds
+     * Find refunds
+     *
+     * @param FindRefundsParams $query
+     * @param CallContext $callContext
+     * @return FindRefundsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/find.html Find refunds
+     */
+    public function find($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\FindRefundsResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
     /**
      * Resource /{merchantId}/refunds/{refundId}
      * Get refund

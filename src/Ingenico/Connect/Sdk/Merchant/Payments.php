@@ -20,6 +20,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse;
+use Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse;
@@ -32,6 +33,7 @@ use Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
+use Ingenico\Connect\Sdk\Merchant\Payments\FindPaymentsParams;
 use Ingenico\Connect\Sdk\ReferenceException;
 use Ingenico\Connect\Sdk\Resource;
 use Ingenico\Connect\Sdk\ResponseClassMap;
@@ -43,6 +45,36 @@ use Ingenico\Connect\Sdk\ValidationException;
  */
 class Payments extends Resource
 {
+    /**
+     * Resource /{merchantId}/payments
+     * Find payments
+     *
+     * @param FindPaymentsParams $query
+     * @param CallContext $callContext
+     * @return FindPaymentsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/find.html Find payments
+     */
+    public function find($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
     /**
      * Resource /{merchantId}/payments
      * Create payment

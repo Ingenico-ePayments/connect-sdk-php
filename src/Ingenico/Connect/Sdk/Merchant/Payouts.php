@@ -11,11 +11,13 @@ use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\DeclinedPayoutException;
 use Ingenico\Connect\Sdk\Domain\Payout\ApprovePayoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payout\CreatePayoutRequest;
+use Ingenico\Connect\Sdk\Domain\Payout\FindPayoutsResponse;
 use Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
+use Ingenico\Connect\Sdk\Merchant\Payouts\FindPayoutsParams;
 use Ingenico\Connect\Sdk\ReferenceException;
 use Ingenico\Connect\Sdk\Resource;
 use Ingenico\Connect\Sdk\ResponseClassMap;
@@ -27,6 +29,36 @@ use Ingenico\Connect\Sdk\ValidationException;
  */
 class Payouts extends Resource
 {
+    /**
+     * Resource /{merchantId}/payouts
+     * Find payouts
+     *
+     * @param FindPayoutsParams $query
+     * @param CallContext $callContext
+     * @return FindPayoutsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
+     */
+    public function find($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payout\FindPayoutsResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
     /**
      * Resource /{merchantId}/payouts
      * Create payout
