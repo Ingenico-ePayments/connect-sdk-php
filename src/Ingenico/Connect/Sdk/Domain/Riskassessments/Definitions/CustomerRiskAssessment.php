@@ -8,6 +8,7 @@ namespace Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions;
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AddressPersonal;
+use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\ContactDetailsRiskAssessment;
 use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\PersonalInformationRiskAssessment;
 use UnexpectedValueException;
 
@@ -20,6 +21,11 @@ class CustomerRiskAssessment extends DataObject
      * @var Address
      */
     public $billingAddress = null;
+
+    /**
+     * @var ContactDetailsRiskAssessment
+     */
+    public $contactDetails = null;
 
     /**
      * @var string
@@ -50,6 +56,13 @@ class CustomerRiskAssessment extends DataObject
             }
             $value = new Address();
             $this->billingAddress = $value->fromObject($object->billingAddress);
+        }
+        if (property_exists($object, 'contactDetails')) {
+            if (!is_object($object->contactDetails)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->contactDetails, true) . '\' is not an object');
+            }
+            $value = new ContactDetailsRiskAssessment();
+            $this->contactDetails = $value->fromObject($object->contactDetails);
         }
         if (property_exists($object, 'locale')) {
             $this->locale = $object->locale;
