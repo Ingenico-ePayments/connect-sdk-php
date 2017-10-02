@@ -1,6 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
+use Exception;
 use UnexpectedValueException;
 
 /**
