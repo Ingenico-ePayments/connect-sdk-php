@@ -1,6 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
+use Exception;
 use UnexpectedValueException;
 
 /**
@@ -32,7 +33,7 @@ class ResourceLogger implements CommunicatorLogger
     }
 
     /** @inheritdoc */
-    public function logException($message, \Exception $exception)
+    public function logException($message, Exception $exception)
     {
         fwrite($this->resource, $this->getDatePrefix() . $message . PHP_EOL . (string) $exception . PHP_EOL);
     }
