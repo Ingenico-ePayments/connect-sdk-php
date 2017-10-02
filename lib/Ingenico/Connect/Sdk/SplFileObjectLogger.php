@@ -1,6 +1,8 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
+use Exception;
+
 /**
  * Class SplFileObjectLogger
  *
