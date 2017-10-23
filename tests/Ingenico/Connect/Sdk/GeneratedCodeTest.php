@@ -1,6 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
+use Exception;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
 use Ingenico\Connect\Sdk\Domain\Definitions\CardWithoutCvv;

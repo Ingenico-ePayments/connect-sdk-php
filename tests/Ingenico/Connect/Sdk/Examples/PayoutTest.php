@@ -3,6 +3,7 @@ namespace Ingenico\Connect\Sdk\Examples;
 
 use DateInterval;
 use DateTime;
+use Exception;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
