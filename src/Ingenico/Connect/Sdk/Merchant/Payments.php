@@ -199,6 +199,7 @@ class Payments extends Resource
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse');
+        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/capture'),
