@@ -8,6 +8,7 @@ namespace Ingenico\Connect\Sdk\Domain\Capture\Definitions;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificOutput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\InvoicePaymentMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobilePaymentMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentMethodSpecificOutput;
@@ -45,6 +46,11 @@ class CaptureOutput extends OrderOutput
      * @var NonSepaDirectDebitPaymentMethodSpecificOutput
      */
     public $directDebitPaymentMethodSpecificOutput = null;
+
+    /**
+     * @var EInvoicePaymentMethodSpecificOutput
+     */
+    public $eInvoicePaymentMethodSpecificOutput = null;
 
     /**
      * @var InvoicePaymentMethodSpecificOutput
@@ -109,6 +115,13 @@ class CaptureOutput extends OrderOutput
             }
             $value = new NonSepaDirectDebitPaymentMethodSpecificOutput();
             $this->directDebitPaymentMethodSpecificOutput = $value->fromObject($object->directDebitPaymentMethodSpecificOutput);
+        }
+        if (property_exists($object, 'eInvoicePaymentMethodSpecificOutput')) {
+            if (!is_object($object->eInvoicePaymentMethodSpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->eInvoicePaymentMethodSpecificOutput, true) . '\' is not an object');
+            }
+            $value = new EInvoicePaymentMethodSpecificOutput();
+            $this->eInvoicePaymentMethodSpecificOutput = $value->fromObject($object->eInvoicePaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'invoicePaymentMethodSpecificOutput')) {
             if (!is_object($object->invoicePaymentMethodSpecificOutput)) {

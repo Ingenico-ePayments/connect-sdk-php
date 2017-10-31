@@ -36,6 +36,11 @@ class PaymentProductField extends DataObject
     public $type = null;
 
     /**
+     * @var bool
+     */
+    public $usedForLookup = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -62,6 +67,9 @@ class PaymentProductField extends DataObject
         }
         if (property_exists($object, 'type')) {
             $this->type = $object->type;
+        }
+        if (property_exists($object, 'usedForLookup')) {
+            $this->usedForLookup = $object->usedForLookup;
         }
         return $this;
     }

@@ -58,6 +58,11 @@ class PaymentProduct extends DataObject
     public $fields = null;
 
     /**
+     * @var string
+     */
+    public $fieldsWarning = null;
+
+    /**
      * @var int
      */
     public $id = null;
@@ -145,6 +150,9 @@ class PaymentProduct extends DataObject
                 $fieldsElement = new PaymentProductField();
                 $this->fields[] = $fieldsElement->fromObject($fieldsElementObject);
             }
+        }
+        if (property_exists($object, 'fieldsWarning')) {
+            $this->fieldsWarning = $object->fieldsWarning;
         }
         if (property_exists($object, 'id')) {
             $this->id = $object->id;

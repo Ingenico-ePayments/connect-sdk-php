@@ -38,6 +38,11 @@ class PaymentProductFieldDisplayHints extends DataObject
     /**
      * @var string
      */
+    public $link = null;
+
+    /**
+     * @var string
+     */
     public $mask = null;
 
     /**
@@ -83,6 +88,9 @@ class PaymentProductFieldDisplayHints extends DataObject
         }
         if (property_exists($object, 'label')) {
             $this->label = $object->label;
+        }
+        if (property_exists($object, 'link')) {
+            $this->link = $object->link;
         }
         if (property_exists($object, 'mask')) {
             $this->mask = $object->mask;

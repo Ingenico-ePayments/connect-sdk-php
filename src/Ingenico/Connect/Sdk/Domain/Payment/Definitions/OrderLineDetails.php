@@ -21,12 +21,22 @@ class OrderLineDetails extends DataObject
     /**
      * @var int
      */
+    public $googleProductCategoryId = null;
+
+    /**
+     * @var int
+     */
     public $lineAmountTotal = null;
 
     /**
      * @var string
      */
     public $productCode = null;
+
+    /**
+     * @var string
+     */
+    public $productName = null;
 
     /**
      * @var int
@@ -64,11 +74,17 @@ class OrderLineDetails extends DataObject
         if (property_exists($object, 'discountAmount')) {
             $this->discountAmount = $object->discountAmount;
         }
+        if (property_exists($object, 'googleProductCategoryId')) {
+            $this->googleProductCategoryId = $object->googleProductCategoryId;
+        }
         if (property_exists($object, 'lineAmountTotal')) {
             $this->lineAmountTotal = $object->lineAmountTotal;
         }
         if (property_exists($object, 'productCode')) {
             $this->productCode = $object->productCode;
+        }
+        if (property_exists($object, 'productName')) {
+            $this->productName = $object->productName;
         }
         if (property_exists($object, 'productPrice')) {
             $this->productPrice = $object->productPrice;

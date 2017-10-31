@@ -10,6 +10,7 @@ use Ingenico\Connect\Sdk\Domain\Definitions\FraudFields;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\InvoicePaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobilePaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentMethodSpecificInput;
@@ -42,6 +43,11 @@ class CreatePaymentRequest extends DataObject
      * @var NonSepaDirectDebitPaymentMethodSpecificInput
      */
     public $directDebitPaymentMethodSpecificInput = null;
+
+    /**
+     * @var EInvoicePaymentMethodSpecificInput
+     */
+    public $eInvoicePaymentMethodSpecificInput = null;
 
     /**
      * @var string
@@ -113,6 +119,13 @@ class CreatePaymentRequest extends DataObject
             }
             $value = new NonSepaDirectDebitPaymentMethodSpecificInput();
             $this->directDebitPaymentMethodSpecificInput = $value->fromObject($object->directDebitPaymentMethodSpecificInput);
+        }
+        if (property_exists($object, 'eInvoicePaymentMethodSpecificInput')) {
+            if (!is_object($object->eInvoicePaymentMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->eInvoicePaymentMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new EInvoicePaymentMethodSpecificInput();
+            $this->eInvoicePaymentMethodSpecificInput = $value->fromObject($object->eInvoicePaymentMethodSpecificInput);
         }
         if (property_exists($object, 'encryptedCustomerInput')) {
             $this->encryptedCustomerInput = $object->encryptedCustomerInput;
