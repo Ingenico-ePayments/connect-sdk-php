@@ -11,8 +11,10 @@ use Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\HostedCheckoutSpecifi
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificInputBase;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecificInputBase;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentMethodSpecificInputBase;
 use UnexpectedValueException;
 
 /**
@@ -36,6 +38,11 @@ class CreateHostedCheckoutRequest extends DataObject
     public $cashPaymentMethodSpecificInput = null;
 
     /**
+     * @var EInvoicePaymentMethodSpecificInputBase
+     */
+    public $eInvoicePaymentMethodSpecificInput = null;
+
+    /**
      * @var FraudFields
      */
     public $fraudFields = null;
@@ -54,6 +61,11 @@ class CreateHostedCheckoutRequest extends DataObject
      * @var RedirectPaymentMethodSpecificInputBase
      */
     public $redirectPaymentMethodSpecificInput = null;
+
+    /**
+     * @var SepaDirectDebitPaymentMethodSpecificInputBase
+     */
+    public $sepaDirectDebitPaymentMethodSpecificInput = null;
 
     /**
      * @param object $object
@@ -84,6 +96,13 @@ class CreateHostedCheckoutRequest extends DataObject
             $value = new CashPaymentMethodSpecificInputBase();
             $this->cashPaymentMethodSpecificInput = $value->fromObject($object->cashPaymentMethodSpecificInput);
         }
+        if (property_exists($object, 'eInvoicePaymentMethodSpecificInput')) {
+            if (!is_object($object->eInvoicePaymentMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->eInvoicePaymentMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new EInvoicePaymentMethodSpecificInputBase();
+            $this->eInvoicePaymentMethodSpecificInput = $value->fromObject($object->eInvoicePaymentMethodSpecificInput);
+        }
         if (property_exists($object, 'fraudFields')) {
             if (!is_object($object->fraudFields)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->fraudFields, true) . '\' is not an object');
@@ -111,6 +130,13 @@ class CreateHostedCheckoutRequest extends DataObject
             }
             $value = new RedirectPaymentMethodSpecificInputBase();
             $this->redirectPaymentMethodSpecificInput = $value->fromObject($object->redirectPaymentMethodSpecificInput);
+        }
+        if (property_exists($object, 'sepaDirectDebitPaymentMethodSpecificInput')) {
+            if (!is_object($object->sepaDirectDebitPaymentMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->sepaDirectDebitPaymentMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new SepaDirectDebitPaymentMethodSpecificInputBase();
+            $this->sepaDirectDebitPaymentMethodSpecificInput = $value->fromObject($object->sepaDirectDebitPaymentMethodSpecificInput);
         }
         return $this;
     }

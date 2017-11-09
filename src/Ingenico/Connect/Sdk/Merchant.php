@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk;
 
 use Ingenico\Connect\Sdk\Merchant\Captures;
 use Ingenico\Connect\Sdk\Merchant\Hostedcheckouts;
+use Ingenico\Connect\Sdk\Merchant\Mandates;
 use Ingenico\Connect\Sdk\Merchant\Payments;
 use Ingenico\Connect\Sdk\Merchant\Payouts;
 use Ingenico\Connect\Sdk\Merchant\Productgroups;
@@ -73,6 +74,17 @@ class Merchant extends Resource
     public function productgroups()
     {
         return new Productgroups($this, $this->context);
+    }
+
+    /**
+     * Resource /{merchantId}/mandates
+     * Create, get and update mandates
+     *
+     * @return Mandates
+     */
+    public function mandates()
+    {
+        return new Mandates($this, $this->context);
     }
 
     /**

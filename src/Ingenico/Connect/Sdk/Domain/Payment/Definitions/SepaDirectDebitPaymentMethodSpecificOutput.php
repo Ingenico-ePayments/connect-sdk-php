@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\FraudResults;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractPaymentMethodSpecificOutput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentProduct771SpecificOutput;
 use UnexpectedValueException;
 
 /**
@@ -18,6 +19,11 @@ class SepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSp
      * @var FraudResults
      */
     public $fraudResults = null;
+
+    /**
+     * @var PaymentProduct771SpecificOutput
+     */
+    public $paymentProduct771SpecificOutput = null;
 
     /**
      * @param object $object
@@ -33,6 +39,13 @@ class SepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSp
             }
             $value = new FraudResults();
             $this->fraudResults = $value->fromObject($object->fraudResults);
+        }
+        if (property_exists($object, 'paymentProduct771SpecificOutput')) {
+            if (!is_object($object->paymentProduct771SpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct771SpecificOutput, true) . '\' is not an object');
+            }
+            $value = new PaymentProduct771SpecificOutput();
+            $this->paymentProduct771SpecificOutput = $value->fromObject($object->paymentProduct771SpecificOutput);
         }
         return $this;
     }

@@ -3,15 +3,15 @@
  * This class was auto-generated from the API references found at
  * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
-namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
+namespace Ingenico\Connect\Sdk\Domain\Mandates\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\RedirectDataBase;
 use UnexpectedValueException;
 
 /**
- * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
+ * @package Ingenico\Connect\Sdk\Domain\Mandates\Definitions
  */
-class RedirectData extends RedirectDataBase
+class MandateRedirectData extends RedirectDataBase
 {
     /**
      * @param object $object

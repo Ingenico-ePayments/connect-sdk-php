@@ -5,14 +5,19 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\RedirectDataBase;
+use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectData extends RedirectDataBase
+class PaymentProduct771SpecificOutput extends DataObject
 {
+    /**
+     * @var string
+     */
+    public $mandateReference = null;
+
     /**
      * @param object $object
      * @return $this
@@ -21,6 +26,9 @@ class RedirectData extends RedirectDataBase
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'mandateReference')) {
+            $this->mandateReference = $object->mandateReference;
+        }
         return $this;
     }
 }

@@ -30,6 +30,11 @@ class HostedCheckoutSpecificInput extends DataObject
     public $paymentProductFilters = null;
 
     /**
+     * @var bool
+     */
+    public $returnCancelState = null;
+
+    /**
      * @var string
      */
     public $returnUrl = null;
@@ -69,6 +74,9 @@ class HostedCheckoutSpecificInput extends DataObject
             }
             $value = new PaymentProductFiltersHostedCheckout();
             $this->paymentProductFilters = $value->fromObject($object->paymentProductFilters);
+        }
+        if (property_exists($object, 'returnCancelState')) {
+            $this->returnCancelState = $object->returnCancelState;
         }
         if (property_exists($object, 'returnUrl')) {
             $this->returnUrl = $object->returnUrl;

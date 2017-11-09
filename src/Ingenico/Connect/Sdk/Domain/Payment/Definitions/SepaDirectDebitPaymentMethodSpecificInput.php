@@ -5,13 +5,13 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentMethodSpecificInputBase;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class SepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
+class SepaDirectDebitPaymentMethodSpecificInput extends SepaDirectDebitPaymentMethodSpecificInputBase
 {
     /**
      * @var string

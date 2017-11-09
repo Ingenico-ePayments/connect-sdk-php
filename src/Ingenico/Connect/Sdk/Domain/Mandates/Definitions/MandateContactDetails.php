@@ -1,0 +1,42 @@
+<?php
+/*
+ * This class was auto-generated from the API references found at
+ * https://epayments-api.developer-ingenico.com/s2sapi/v1/
+ */
+namespace Ingenico\Connect\Sdk\Domain\Mandates\Definitions;
+
+use Ingenico\Connect\Sdk\DataObject;
+use UnexpectedValueException;
+
+/**
+ * @package Ingenico\Connect\Sdk\Domain\Mandates\Definitions
+ */
+class MandateContactDetails extends DataObject
+{
+    /**
+     * @var string
+     */
+    public $emailAddress = null;
+
+    /**
+     * @var string
+     */
+    public $phoneNumber = null;
+
+    /**
+     * @param object $object
+     * @return $this
+     * @throws UnexpectedValueException
+     */
+    public function fromObject($object)
+    {
+        parent::fromObject($object);
+        if (property_exists($object, 'emailAddress')) {
+            $this->emailAddress = $object->emailAddress;
+        }
+        if (property_exists($object, 'phoneNumber')) {
+            $this->phoneNumber = $object->phoneNumber;
+        }
+        return $this;
+    }
+}

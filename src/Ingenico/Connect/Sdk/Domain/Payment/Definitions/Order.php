@@ -11,6 +11,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AdditionalOrderInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Customer;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItem;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderReferences;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Seller;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ShoppingCart;
 use UnexpectedValueException;
 
@@ -44,6 +45,11 @@ class Order extends DataObject
      * @var OrderReferences
      */
     public $references = null;
+
+    /**
+     * @var Seller
+     */
+    public $seller = null;
 
     /**
      * @var ShoppingCart
@@ -95,6 +101,13 @@ class Order extends DataObject
             }
             $value = new OrderReferences();
             $this->references = $value->fromObject($object->references);
+        }
+        if (property_exists($object, 'seller')) {
+            if (!is_object($object->seller)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->seller, true) . '\' is not an object');
+            }
+            $value = new Seller();
+            $this->seller = $value->fromObject($object->seller);
         }
         if (property_exists($object, 'shoppingCart')) {
             if (!is_object($object->shoppingCart)) {

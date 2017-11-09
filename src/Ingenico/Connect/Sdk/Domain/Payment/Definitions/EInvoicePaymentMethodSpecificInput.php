@@ -5,14 +5,14 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentProduct9000SpecificInput;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class EInvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
+class EInvoicePaymentMethodSpecificInput extends EInvoicePaymentMethodSpecificInputBase
 {
     /**
      * @var bool
@@ -23,11 +23,6 @@ class EInvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificIn
      * @var EInvoicePaymentProduct9000SpecificInput
      */
     public $paymentProduct9000SpecificInput = null;
-
-    /**
-     * @var bool
-     */
-    public $requiresApproval = null;
 
     /**
      * @param object $object
@@ -46,9 +41,6 @@ class EInvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificIn
             }
             $value = new EInvoicePaymentProduct9000SpecificInput();
             $this->paymentProduct9000SpecificInput = $value->fromObject($object->paymentProduct9000SpecificInput);
-        }
-        if (property_exists($object, 'requiresApproval')) {
-            $this->requiresApproval = $object->requiresApproval;
         }
         return $this;
     }
