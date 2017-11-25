@@ -8,6 +8,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundBankMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundCardMethodSpecificOutput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundEInvoiceMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundEWalletMethodSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundMobileMethodSpecificOutput;
 use UnexpectedValueException;
@@ -31,6 +32,11 @@ class RefundOutput extends OrderOutput
      * @var RefundCardMethodSpecificOutput
      */
     public $cardRefundMethodSpecificOutput = null;
+
+    /**
+     * @var RefundEInvoiceMethodSpecificOutput
+     */
+    public $eInvoiceRefundMethodSpecificOutput = null;
 
     /**
      * @var RefundEWalletMethodSpecificOutput
@@ -71,6 +77,13 @@ class RefundOutput extends OrderOutput
             }
             $value = new RefundCardMethodSpecificOutput();
             $this->cardRefundMethodSpecificOutput = $value->fromObject($object->cardRefundMethodSpecificOutput);
+        }
+        if (property_exists($object, 'eInvoiceRefundMethodSpecificOutput')) {
+            if (!is_object($object->eInvoiceRefundMethodSpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->eInvoiceRefundMethodSpecificOutput, true) . '\' is not an object');
+            }
+            $value = new RefundEInvoiceMethodSpecificOutput();
+            $this->eInvoiceRefundMethodSpecificOutput = $value->fromObject($object->eInvoiceRefundMethodSpecificOutput);
         }
         if (property_exists($object, 'eWalletRefundMethodSpecificOutput')) {
             if (!is_object($object->eWalletRefundMethodSpecificOutput)) {
