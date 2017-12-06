@@ -5,13 +5,14 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentMethodSpecificInputBase;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractSepaDirectDebitPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentProduct771SpecificInput;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class SepaDirectDebitPaymentMethodSpecificInput extends SepaDirectDebitPaymentMethodSpecificInputBase
+class SepaDirectDebitPaymentMethodSpecificInput extends AbstractSepaDirectDebitPaymentMethodSpecificInput
 {
     /**
      * @var string
@@ -27,6 +28,11 @@ class SepaDirectDebitPaymentMethodSpecificInput extends SepaDirectDebitPaymentMe
      * @var bool
      */
     public $isRecurring = null;
+
+    /**
+     * @var SepaDirectDebitPaymentProduct771SpecificInput
+     */
+    public $paymentProduct771SpecificInput = null;
 
     /**
      * @var string
@@ -59,6 +65,13 @@ class SepaDirectDebitPaymentMethodSpecificInput extends SepaDirectDebitPaymentMe
         }
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;
+        }
+        if (property_exists($object, 'paymentProduct771SpecificInput')) {
+            if (!is_object($object->paymentProduct771SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct771SpecificInput, true) . '\' is not an object');
+            }
+            $value = new SepaDirectDebitPaymentProduct771SpecificInput();
+            $this->paymentProduct771SpecificInput = $value->fromObject($object->paymentProduct771SpecificInput);
         }
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;

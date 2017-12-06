@@ -5,17 +5,17 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentProduct771SpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractSepaDirectDebitPaymentMethodSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentProduct771SpecificInputBase;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class SepaDirectDebitPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificInput
+class SepaDirectDebitPaymentMethodSpecificInputBase extends AbstractSepaDirectDebitPaymentMethodSpecificInput
 {
     /**
-     * @var SepaDirectDebitPaymentProduct771SpecificInput
+     * @var SepaDirectDebitPaymentProduct771SpecificInputBase
      */
     public $paymentProduct771SpecificInput = null;
 
@@ -31,7 +31,7 @@ class SepaDirectDebitPaymentMethodSpecificInputBase extends AbstractPaymentMetho
             if (!is_object($object->paymentProduct771SpecificInput)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct771SpecificInput, true) . '\' is not an object');
             }
-            $value = new SepaDirectDebitPaymentProduct771SpecificInput();
+            $value = new SepaDirectDebitPaymentProduct771SpecificInputBase();
             $this->paymentProduct771SpecificInput = $value->fromObject($object->paymentProduct771SpecificInput);
         }
         return $this;

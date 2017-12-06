@@ -5,17 +5,17 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\CreateMandateWithReturnUrl;
+use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\CreateMandateBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractSepaDirectDebitPaymentProduct771SpecificInput;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class SepaDirectDebitPaymentProduct771SpecificInput extends AbstractSepaDirectDebitPaymentProduct771SpecificInput
+class SepaDirectDebitPaymentProduct771SpecificInputBase extends AbstractSepaDirectDebitPaymentProduct771SpecificInput
 {
     /**
-     * @var CreateMandateWithReturnUrl
+     * @var CreateMandateBase
      */
     public $mandate = null;
 
@@ -31,7 +31,7 @@ class SepaDirectDebitPaymentProduct771SpecificInput extends AbstractSepaDirectDe
             if (!is_object($object->mandate)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->mandate, true) . '\' is not an object');
             }
-            $value = new CreateMandateWithReturnUrl();
+            $value = new CreateMandateBase();
             $this->mandate = $value->fromObject($object->mandate);
         }
         return $this;

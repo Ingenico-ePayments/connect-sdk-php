@@ -37,11 +37,6 @@ class CreateMandateBase extends DataObject
     /**
      * @var string
      */
-    public $returnUrl = null;
-
-    /**
-     * @var string
-     */
     public $signatureType = null;
 
     /**
@@ -67,9 +62,6 @@ class CreateMandateBase extends DataObject
         }
         if (property_exists($object, 'recurrenceType')) {
             $this->recurrenceType = $object->recurrenceType;
-        }
-        if (property_exists($object, 'returnUrl')) {
-            $this->returnUrl = $object->returnUrl;
         }
         if (property_exists($object, 'signatureType')) {
             $this->signatureType = $object->signatureType;

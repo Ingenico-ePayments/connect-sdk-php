@@ -3,15 +3,15 @@
  * This class was auto-generated from the API references found at
  * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
-namespace Ingenico\Connect\Sdk\Domain\Mandates;
+namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\CreateMandateWithReturnUrl;
+use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
 use UnexpectedValueException;
 
 /**
- * @package Ingenico\Connect\Sdk\Domain\Mandates
+ * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class CreateMandateRequest extends CreateMandateWithReturnUrl
+class AbstractSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
      * @param object $object
