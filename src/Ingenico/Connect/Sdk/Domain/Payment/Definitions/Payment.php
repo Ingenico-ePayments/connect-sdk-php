@@ -6,6 +6,7 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\AbstractOrderStatus;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\HostedCheckoutSpecificOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentOutput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentStatusOutput;
 use UnexpectedValueException;
@@ -15,6 +16,11 @@ use UnexpectedValueException;
  */
 class Payment extends AbstractOrderStatus
 {
+    /**
+     * @var HostedCheckoutSpecificOutput
+     */
+    public $hostedCheckoutSpecificOutput = null;
+
     /**
      * @var PaymentOutput
      */
@@ -38,6 +44,13 @@ class Payment extends AbstractOrderStatus
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'hostedCheckoutSpecificOutput')) {
+            if (!is_object($object->hostedCheckoutSpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->hostedCheckoutSpecificOutput, true) . '\' is not an object');
+            }
+            $value = new HostedCheckoutSpecificOutput();
+            $this->hostedCheckoutSpecificOutput = $value->fromObject($object->hostedCheckoutSpecificOutput);
+        }
         if (property_exists($object, 'paymentOutput')) {
             if (!is_object($object->paymentOutput)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->paymentOutput, true) . '\' is not an object');

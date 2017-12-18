@@ -16,6 +16,16 @@ class SessionResponse extends DataObject
     /**
      * @var string
      */
+    public $assetUrl = null;
+
+    /**
+     * @var string
+     */
+    public $clientApiUrl = null;
+
+    /**
+     * @var string
+     */
     public $clientSessionId = null;
 
     /**
@@ -41,6 +51,12 @@ class SessionResponse extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'assetUrl')) {
+            $this->assetUrl = $object->assetUrl;
+        }
+        if (property_exists($object, 'clientApiUrl')) {
+            $this->clientApiUrl = $object->clientApiUrl;
+        }
         if (property_exists($object, 'clientSessionId')) {
             $this->clientSessionId = $object->clientSessionId;
         }

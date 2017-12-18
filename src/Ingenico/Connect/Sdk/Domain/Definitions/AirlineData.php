@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AirlineFlightLeg;
+use Ingenico\Connect\Sdk\Domain\Definitions\AirlinePassenger;
 use UnexpectedValueException;
 
 /**
@@ -78,6 +79,11 @@ class AirlineData extends DataObject
      * @var string
      */
     public $passengerName = null;
+
+    /**
+     * @var AirlinePassenger[]
+     */
+    public $passengers = null;
 
     /**
      * @var string
@@ -162,6 +168,16 @@ class AirlineData extends DataObject
         }
         if (property_exists($object, 'passengerName')) {
             $this->passengerName = $object->passengerName;
+        }
+        if (property_exists($object, 'passengers')) {
+            if (!is_array($object->passengers) && !is_object($object->passengers)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->passengers, true) . '\' is not an array or object');
+            }
+            $this->passengers = [];
+            foreach ($object->passengers as $passengersElementObject) {
+                $passengersElement = new AirlinePassenger();
+                $this->passengers[] = $passengersElement->fromObject($passengersElementObject);
+            }
         }
         if (property_exists($object, 'placeOfIssue')) {
             $this->placeOfIssue = $object->placeOfIssue;

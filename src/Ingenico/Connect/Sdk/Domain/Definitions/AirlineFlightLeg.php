@@ -66,6 +66,11 @@ class AirlineFlightLeg extends DataObject
     /**
      * @var string
      */
+    public $serviceClass = null;
+
+    /**
+     * @var string
+     */
     public $stopoverCode = null;
 
     /**
@@ -105,6 +110,9 @@ class AirlineFlightLeg extends DataObject
         }
         if (property_exists($object, 'originAirport')) {
             $this->originAirport = $object->originAirport;
+        }
+        if (property_exists($object, 'serviceClass')) {
+            $this->serviceClass = $object->serviceClass;
         }
         if (property_exists($object, 'stopoverCode')) {
             $this->stopoverCode = $object->stopoverCode;

@@ -15,6 +15,11 @@ use UnexpectedValueException;
 class CreateMandateBase extends DataObject
 {
     /**
+     * @var string
+     */
+    public $alias = null;
+
+    /**
      * @var MandateCustomer
      */
     public $customer = null;
@@ -47,6 +52,9 @@ class CreateMandateBase extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'alias')) {
+            $this->alias = $object->alias;
+        }
         if (property_exists($object, 'customer')) {
             if (!is_object($object->customer)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->customer, true) . '\' is not an object');
