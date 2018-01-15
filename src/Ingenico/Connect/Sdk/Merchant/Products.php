@@ -8,6 +8,8 @@ namespace Ingenico\Connect\Sdk\Merchant;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
+use Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintRequest;
+use Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse;
 use Ingenico\Connect\Sdk\Domain\Product\Directory;
 use Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsRequest;
 use Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse;
@@ -128,6 +130,72 @@ class Products extends Resource
     }
 
     /**
+     * Resource /{merchantId}/products/{paymentProductId}/customerDetails
+     * Get customer details
+     *
+     * @param int $paymentProductId
+     * @param GetCustomerDetailsRequest $body
+     * @param CallContext $callContext
+     * @return GetCustomerDetailsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/customerDetails.html Get customer details
+     */
+    public function customerDetails($paymentProductId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/products/{paymentProductId}/deviceFingerprint
+     * Get device fingerprint
+     *
+     * @param int $paymentProductId
+     * @param DeviceFingerprintRequest $body
+     * @param CallContext $callContext
+     * @return DeviceFingerprintResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/deviceFingerprint.html Get device fingerprint
+     */
+    public function deviceFingerprint($paymentProductId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/deviceFingerprint'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
      * Resource /{merchantId}/products/{paymentProductId}/networks
      * Get payment product networks
      *
@@ -185,39 +253,6 @@ class Products extends Resource
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/publicKey'),
             $this->getClientMetaInfo(),
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/products/{paymentProductId}/customerDetails
-     * Get customer details
-     *
-     * @param int $paymentProductId
-     * @param GetCustomerDetailsRequest $body
-     * @param CallContext $callContext
-     * @return GetCustomerDetailsResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/customerDetails.html Get customer details
-     */
-    public function customerDetails($paymentProductId, $body, CallContext $callContext = null)
-    {
-        $this->context['paymentProductId'] = $paymentProductId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse');
-        return $this->getCommunicator()->post(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails'),
-            $this->getClientMetaInfo(),
-            $body,
             null,
             $callContext
         );

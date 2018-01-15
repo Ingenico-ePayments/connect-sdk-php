@@ -43,7 +43,12 @@ class FraudFields extends DataObject
     /**
      * @var bool
      */
-    public $fingerPrintActivated = null;
+    public $deviceFingerprintActivated = null;
+
+    /**
+     * @var string
+     */
+    public $deviceFingerprintTransactionId = null;
 
     /**
      * @var string
@@ -127,8 +132,11 @@ class FraudFields extends DataObject
         if (property_exists($object, 'defaultFormFill')) {
             $this->defaultFormFill = $object->defaultFormFill;
         }
-        if (property_exists($object, 'fingerPrintActivated')) {
-            $this->fingerPrintActivated = $object->fingerPrintActivated;
+        if (property_exists($object, 'deviceFingerprintActivated')) {
+            $this->deviceFingerprintActivated = $object->deviceFingerprintActivated;
+        }
+        if (property_exists($object, 'deviceFingerprintTransactionId')) {
+            $this->deviceFingerprintTransactionId = $object->deviceFingerprintTransactionId;
         }
         if (property_exists($object, 'giftCardType')) {
             $this->giftCardType = $object->giftCardType;

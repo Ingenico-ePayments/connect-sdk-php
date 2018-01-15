@@ -48,6 +48,11 @@ class PaymentProduct extends DataObject
     public $canBeIframed = null;
 
     /**
+     * @var bool
+     */
+    public $deviceFingerprintEnabled = null;
+
+    /**
      * @var PaymentProductDisplayHints
      */
     public $displayHints = null;
@@ -133,6 +138,9 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'canBeIframed')) {
             $this->canBeIframed = $object->canBeIframed;
+        }
+        if (property_exists($object, 'deviceFingerprintEnabled')) {
+            $this->deviceFingerprintEnabled = $object->deviceFingerprintEnabled;
         }
         if (property_exists($object, 'displayHints')) {
             if (!is_object($object->displayHints)) {

@@ -31,36 +31,6 @@ class Payouts extends Resource
 {
     /**
      * Resource /{merchantId}/payouts
-     * Find payouts
-     *
-     * @param FindPayoutsParams $query
-     * @param CallContext $callContext
-     * @return FindPayoutsResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
-     */
-    public function find($query, CallContext $callContext = null)
-    {
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payout\FindPayoutsResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
-            $this->getClientMetaInfo(),
-            $query,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/payouts
      * Create payout
      *
      * @param CreatePayoutRequest $body
@@ -88,6 +58,36 @@ class Payouts extends Resource
             $this->getClientMetaInfo(),
             $body,
             null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payouts
+     * Find payouts
+     *
+     * @param FindPayoutsParams $query
+     * @param CallContext $callContext
+     * @return FindPayoutsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
+     */
+    public function find($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payout\FindPayoutsResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
+            $this->getClientMetaInfo(),
+            $query,
             $callContext
         );
     }

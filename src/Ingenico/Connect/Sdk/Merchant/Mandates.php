@@ -58,37 +58,6 @@ class Mandates extends Resource
 
     /**
      * Resource /{merchantId}/mandates/{uniqueMandateReference}
-     * Get mandate
-     *
-     * @param string $uniqueMandateReference
-     * @param CallContext $callContext
-     * @return GetMandateResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/mandates/get.html Get mandate
-     */
-    public function get($uniqueMandateReference, CallContext $callContext = null)
-    {
-        $this->context['uniqueMandateReference'] = $uniqueMandateReference;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
-            $this->getClientMetaInfo(),
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/mandates/{uniqueMandateReference}
      * Create mandate with mandatereference
      *
      * @param string $uniqueMandateReference
@@ -115,6 +84,37 @@ class Mandates extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
             $this->getClientMetaInfo(),
             $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/mandates/{uniqueMandateReference}
+     * Get mandate
+     *
+     * @param string $uniqueMandateReference
+     * @param CallContext $callContext
+     * @return GetMandateResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/mandates/get.html Get mandate
+     */
+    public function get($uniqueMandateReference, CallContext $callContext = null)
+    {
+        $this->context['uniqueMandateReference'] = $uniqueMandateReference;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
+            $this->getClientMetaInfo(),
             null,
             $callContext
         );

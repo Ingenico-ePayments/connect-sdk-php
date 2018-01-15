@@ -60,6 +60,11 @@ class PaymentProductFieldValidators extends DataObject
     public $regularExpression = null;
 
     /**
+     * @var EmptyValidator
+     */
+    public $termsAndConditions = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -122,6 +127,13 @@ class PaymentProductFieldValidators extends DataObject
             }
             $value = new RegularExpressionValidator();
             $this->regularExpression = $value->fromObject($object->regularExpression);
+        }
+        if (property_exists($object, 'termsAndConditions')) {
+            if (!is_object($object->termsAndConditions)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->termsAndConditions, true) . '\' is not an object');
+            }
+            $value = new EmptyValidator();
+            $this->termsAndConditions = $value->fromObject($object->termsAndConditions);
         }
         return $this;
     }

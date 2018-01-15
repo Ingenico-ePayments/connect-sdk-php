@@ -22,6 +22,17 @@ use Ingenico\Connect\Sdk\Resource;
 class Merchant extends Resource
 {
     /**
+     * Resource /{merchantId}/hostedcheckouts
+     * Create new hosted checkout
+     *
+     * @return Hostedcheckouts
+     */
+    public function hostedcheckouts()
+    {
+        return new Hostedcheckouts($this, $this->context);
+    }
+
+    /**
      * Resource /{merchantId}/payments
      * Create, cancel and approve payments
      *
@@ -44,6 +55,17 @@ class Merchant extends Resource
     }
 
     /**
+     * Resource /{merchantId}/refunds
+     * Create, cancel and approve refunds
+     *
+     * @return Refunds
+     */
+    public function refunds()
+    {
+        return new Refunds($this, $this->context);
+    }
+
+    /**
      * Resource /{merchantId}/payouts
      * Create, cancel and approve payouts
      *
@@ -52,17 +74,6 @@ class Merchant extends Resource
     public function payouts()
     {
         return new Payouts($this, $this->context);
-    }
-
-    /**
-     * Resource /{merchantId}/products
-     * Get information about payment products
-     *
-     * @return Products
-     */
-    public function products()
-    {
-        return new Products($this, $this->context);
     }
 
     /**
@@ -77,25 +88,14 @@ class Merchant extends Resource
     }
 
     /**
-     * Resource /{merchantId}/mandates
-     * Create, get and update mandates
+     * Resource /{merchantId}/products
+     * Get information about payment products
      *
-     * @return Mandates
+     * @return Products
      */
-    public function mandates()
+    public function products()
     {
-        return new Mandates($this, $this->context);
-    }
-
-    /**
-     * Resource /{merchantId}/refunds
-     * Create, cancel and approve refunds
-     *
-     * @return Refunds
-     */
-    public function refunds()
-    {
-        return new Refunds($this, $this->context);
+        return new Products($this, $this->context);
     }
 
     /**
@@ -121,17 +121,6 @@ class Merchant extends Resource
     }
 
     /**
-     * Resource /{merchantId}/sessions
-     * Create new Session for Client2Server API calls
-     *
-     * @return Sessions
-     */
-    public function sessions()
-    {
-        return new Sessions($this, $this->context);
-    }
-
-    /**
      * Resource /{merchantId}/tokens
      * Create, delete and update tokens
      *
@@ -143,13 +132,24 @@ class Merchant extends Resource
     }
 
     /**
-     * Resource /{merchantId}/hostedcheckouts
-     * Create new hosted checkout
+     * Resource /{merchantId}/mandates
+     * Create, get and update mandates
      *
-     * @return Hostedcheckouts
+     * @return Mandates
      */
-    public function hostedcheckouts()
+    public function mandates()
     {
-        return new Hostedcheckouts($this, $this->context);
+        return new Mandates($this, $this->context);
+    }
+
+    /**
+     * Resource /{merchantId}/sessions
+     * Create new Session for Client2Server API calls
+     *
+     * @return Sessions
+     */
+    public function sessions()
+    {
+        return new Sessions($this, $this->context);
     }
 }

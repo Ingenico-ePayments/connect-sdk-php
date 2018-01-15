@@ -47,36 +47,6 @@ class Payments extends Resource
 {
     /**
      * Resource /{merchantId}/payments
-     * Find payments
-     *
-     * @param FindPaymentsParams $query
-     * @param CallContext $callContext
-     * @return FindPaymentsResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/find.html Find payments
-     */
-    public function find($query, CallContext $callContext = null)
-    {
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
-            $this->getClientMetaInfo(),
-            $query,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/payments
      * Create payment
      *
      * @param CreatePaymentRequest $body
@@ -113,6 +83,36 @@ class Payments extends Resource
     }
 
     /**
+     * Resource /{merchantId}/payments
+     * Find payments
+     *
+     * @param FindPaymentsParams $query
+     * @param CallContext $callContext
+     * @return FindPaymentsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/find.html Find payments
+     */
+    public function find($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
+            $this->getClientMetaInfo(),
+            $query,
+            $callContext
+        );
+    }
+
+    /**
      * Resource /{merchantId}/payments/{paymentId}
      * Get payment
      *
@@ -138,6 +138,136 @@ class Payments extends Resource
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}'),
             $this->getClientMetaInfo(),
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/complete
+     * Complete payment
+     *
+     * @param string $paymentId
+     * @param CompletePaymentRequest $body
+     * @param CallContext $callContext
+     * @return CompletePaymentResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/complete.html Complete payment
+     */
+    public function complete($paymentId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/complete'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/thirdpartystatus
+     * Third party status poll
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return ThirdPartyStatusResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/thirdPartyStatus.html Third party status poll
+     */
+    public function thirdPartyStatus($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\ThirdPartyStatusResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/thirdpartystatus'),
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/tokenize
+     * Create a token from payment
+     *
+     * @param string $paymentId
+     * @param TokenizePaymentRequest $body
+     * @param CallContext $callContext
+     * @return CreateTokenResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/tokenize.html Create a token from payment
+     */
+    public function tokenize($paymentId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
+        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/tokenize'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/processchallenged
+     * Approves challenged payment
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return PaymentResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/processchallenged.html Approves challenged payment
+     */
+    public function processchallenged($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/processchallenged'),
+            $this->getClientMetaInfo(),
+            null,
             null,
             $callContext
         );
@@ -210,133 +340,6 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/captures
-     * Get captures of payment
-     *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return CapturesResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/captures.html Get captures of payment
-     */
-    public function captures($paymentId, CallContext $callContext = null)
-    {
-        $this->context['paymentId'] = $paymentId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/captures'),
-            $this->getClientMetaInfo(),
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/payments/{paymentId}/complete
-     * Complete payment
-     *
-     * @param string $paymentId
-     * @param CompletePaymentRequest $body
-     * @param CallContext $callContext
-     * @return CompletePaymentResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/complete.html Complete payment
-     */
-    public function complete($paymentId, $body, CallContext $callContext = null)
-    {
-        $this->context['paymentId'] = $paymentId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse');
-        return $this->getCommunicator()->post(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/complete'),
-            $this->getClientMetaInfo(),
-            $body,
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/payments/{paymentId}/thirdpartystatus
-     * Third party status poll
-     *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return ThirdPartyStatusResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/thirdPartyStatus.html Third party status poll
-     */
-    public function thirdPartyStatus($paymentId, CallContext $callContext = null)
-    {
-        $this->context['paymentId'] = $paymentId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\ThirdPartyStatusResponse');
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/thirdpartystatus'),
-            $this->getClientMetaInfo(),
-            null,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/payments/{paymentId}/cancel
-     * Cancel payment
-     *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return CancelPaymentResponse
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/cancel.html Cancel payment
-     */
-    public function cancel($paymentId, CallContext $callContext = null)
-    {
-        $this->context['paymentId'] = $paymentId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse');
-        return $this->getCommunicator()->post(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancel'),
-            $this->getClientMetaInfo(),
-            null,
-            null,
-            $callContext
-        );
-    }
-
-    /**
      * Resource /{merchantId}/payments/{paymentId}/cancelapproval
      * Undo capture payment
      *
@@ -369,12 +372,12 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/processchallenged
-     * Approves challenged payment
+     * Resource /{merchantId}/payments/{paymentId}/captures
+     * Get captures of payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
-     * @return PaymentResponse
+     * @return CapturesResponse
      *
      * @throws ValidationException
      * @throws AuthorizationException
@@ -383,18 +386,17 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/processchallenged.html Approves challenged payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/captures.html Get captures of payment
      */
-    public function processchallenged($paymentId, CallContext $callContext = null)
+    public function captures($paymentId, CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse');
-        return $this->getCommunicator()->post(
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse');
+        return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/processchallenged'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/captures'),
             $this->getClientMetaInfo(),
-            null,
             null,
             $callContext
         );
@@ -437,13 +439,12 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/tokenize
-     * Create a token from payment
+     * Resource /{merchantId}/payments/{paymentId}/cancel
+     * Cancel payment
      *
      * @param string $paymentId
-     * @param TokenizePaymentRequest $body
      * @param CallContext $callContext
-     * @return CreateTokenResponse
+     * @return CancelPaymentResponse
      *
      * @throws ValidationException
      * @throws AuthorizationException
@@ -452,19 +453,18 @@ class Payments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/tokenize.html Create a token from payment
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/cancel.html Cancel payment
      */
-    public function tokenize($paymentId, $body, CallContext $callContext = null)
+    public function cancel($paymentId, CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse');
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/tokenize'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancel'),
             $this->getClientMetaInfo(),
-            $body,
+            null,
             null,
             $callContext
         );
