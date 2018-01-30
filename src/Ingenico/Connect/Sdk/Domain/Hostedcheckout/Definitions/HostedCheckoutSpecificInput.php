@@ -50,6 +50,11 @@ class HostedCheckoutSpecificInput extends DataObject
     public $tokens = null;
 
     /**
+     * @var bool
+     */
+    public $validateShoppingCart = null;
+
+    /**
      * @var string
      */
     public $variant = null;
@@ -86,6 +91,9 @@ class HostedCheckoutSpecificInput extends DataObject
         }
         if (property_exists($object, 'tokens')) {
             $this->tokens = $object->tokens;
+        }
+        if (property_exists($object, 'validateShoppingCart')) {
+            $this->validateShoppingCart = $object->validateShoppingCart;
         }
         if (property_exists($object, 'variant')) {
             $this->variant = $object->variant;

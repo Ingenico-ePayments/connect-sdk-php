@@ -40,6 +40,11 @@ class PaymentProductFieldValidators extends DataObject
     public $fixedList = null;
 
     /**
+     * @var EmptyValidator
+     */
+    public $iban = null;
+
+    /**
      * @var LengthValidator
      */
     public $length = null;
@@ -99,6 +104,13 @@ class PaymentProductFieldValidators extends DataObject
             }
             $value = new FixedListValidator();
             $this->fixedList = $value->fromObject($object->fixedList);
+        }
+        if (property_exists($object, 'iban')) {
+            if (!is_object($object->iban)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->iban, true) . '\' is not an object');
+            }
+            $value = new EmptyValidator();
+            $this->iban = $value->fromObject($object->iban);
         }
         if (property_exists($object, 'length')) {
             if (!is_object($object->length)) {

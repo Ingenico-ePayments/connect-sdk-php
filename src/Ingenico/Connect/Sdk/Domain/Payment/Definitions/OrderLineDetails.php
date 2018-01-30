@@ -31,6 +31,11 @@ class OrderLineDetails extends DataObject
     /**
      * @var string
      */
+    public $productCategory = null;
+
+    /**
+     * @var string
+     */
     public $productCode = null;
 
     /**
@@ -79,6 +84,9 @@ class OrderLineDetails extends DataObject
         }
         if (property_exists($object, 'lineAmountTotal')) {
             $this->lineAmountTotal = $object->lineAmountTotal;
+        }
+        if (property_exists($object, 'productCategory')) {
+            $this->productCategory = $object->productCategory;
         }
         if (property_exists($object, 'productCode')) {
             $this->productCode = $object->productCode;
