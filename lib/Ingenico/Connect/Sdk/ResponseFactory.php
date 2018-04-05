@@ -58,7 +58,7 @@ class ResponseFactory
         if (!$contentType) {
             throw new UnexpectedValueException('Content type is missing or empty');
         }
-        if ($contentType != static::MIME_APPLICATION_JSON) {
+        if (!$this->isJsonContentType($contentType)) {
             throw new UnexpectedValueException(
                 "Invalid content type; got '$contentType', expected '" . static::MIME_APPLICATION_JSON . "'"
             );
@@ -84,5 +84,10 @@ class ResponseFactory
         /** @var DataObject $responseObject */
         $responseObject->fromJson($response->getBody());
         return $responseObject;
+    }
+
+    private function isJsonContentType($contentType) {
+        return $contentType === static::MIME_APPLICATION_JSON
+            || substr($contentType, 0, strlen(static::MIME_APPLICATION_JSON)) === static::MIME_APPLICATION_JSON;
     }
 }

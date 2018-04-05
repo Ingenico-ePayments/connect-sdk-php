@@ -89,6 +89,48 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
         $communicator->post($responseClassMap, $relativeRequestUri, '', $requestBody);
     }
 
+    public function testLoggingForSuccessUTF8Response()
+    {
+        $relativeRequestUri = '/foo/bar';
+        $connection = new CommunicatorLoggingTestingConnection(
+            $this->getMockConnectionResponse(200, array('Content-Type' => 'application/json;charset=UTF-8'), '{}')
+        );
+        /** @var Connection $connection */
+        $communicator = new Communicator(
+            $connection,
+            $this->getMockCommunicatorConfiguration()
+        );
+        $uuidGenerator = $this->getCommunicatorUuidGenerator($connection);
+        $relativeRequestUriWithRequestParameters = $relativeRequestUri;
+        $requestHeaders =
+            $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
+        $requestBody = $this->getMockRequestDataObject();
+        $httpObfuscator = new HttpObfuscator();
+        $rawObfuscatedRequest = $httpObfuscator->getRawObfuscatedRequest(
+            'POST',
+            $relativeRequestUriWithRequestParameters,
+            $requestHeaders,
+            $requestBody->toJson()
+        );
+        $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
+        $logger->expects($this->exactly(2))->method('log')->will(
+            $this->returnCallback(function ($message) use ($uuidGenerator, $rawObfuscatedRequest) {
+                $messageHeader = strstr($message, "\n", true);
+                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
+                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $messageHeader);
+                if (strpos($messageHeader, 'Outgoing request') === 0) {
+                    $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
+                }
+            })
+        );
+        $logger->expects($this->never())->method('logException');
+        /** @var CommunicatorLogger $logger */
+        $communicator->enableLogging($logger);
+        $responseClassMap = $this->getMock('\Ingenico\Connect\Sdk\ResponseClassMap');
+        /** @var ResponseClassMap $responseClassMap */
+        $communicator->post($responseClassMap, $relativeRequestUri, '', $requestBody);
+    }
+
     public function testLoggingForClientErrorResponse()
     {
         $relativeRequestUri = '/foo/bar';

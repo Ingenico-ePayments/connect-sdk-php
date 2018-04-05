@@ -23,6 +23,20 @@ class BodyObfuscatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider jsonObfuscationProvider
+     * @param string $jsonBody
+     * @param string $obfuscatedJsonBody
+     */
+    public function testJsonObfuscationUTF8($jsonBody, $obfuscatedJsonBody)
+    {
+        $bodyObfuscator = new BodyObfuscator();
+        $this->assertEquals(
+            $obfuscatedJsonBody,
+            $bodyObfuscator->obfuscateBody(BodyObfuscator::MIME_APPLICATION_JSON . ';charset=UTF-8', $jsonBody)
+        );
+    }
+
+    /**
      * @return array
      */
     public function jsonObfuscationProvider()

@@ -1,6 +1,8 @@
 <?php
 namespace Ingenico\Connect\Sdk\Webhooks;
 
+use UnexpectedValueException;
+
 /**
  * Class InMemorySecretKeyStore
  *

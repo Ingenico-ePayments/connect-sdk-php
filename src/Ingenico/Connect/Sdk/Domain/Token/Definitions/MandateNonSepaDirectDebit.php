@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenNonSepaDirectDebitPaymentProduct705SpecificData;
+use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenNonSepaDirectDebitPaymentProduct730SpecificData;
 use UnexpectedValueException;
 
 /**
@@ -18,6 +19,11 @@ class MandateNonSepaDirectDebit extends DataObject
      * @var TokenNonSepaDirectDebitPaymentProduct705SpecificData
      */
     public $paymentProduct705SpecificData = null;
+
+    /**
+     * @var TokenNonSepaDirectDebitPaymentProduct730SpecificData
+     */
+    public $paymentProduct730SpecificData = null;
 
     /**
      * @param object $object
@@ -33,6 +39,13 @@ class MandateNonSepaDirectDebit extends DataObject
             }
             $value = new TokenNonSepaDirectDebitPaymentProduct705SpecificData();
             $this->paymentProduct705SpecificData = $value->fromObject($object->paymentProduct705SpecificData);
+        }
+        if (property_exists($object, 'paymentProduct730SpecificData')) {
+            if (!is_object($object->paymentProduct730SpecificData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct730SpecificData, true) . '\' is not an object');
+            }
+            $value = new TokenNonSepaDirectDebitPaymentProduct730SpecificData();
+            $this->paymentProduct730SpecificData = $value->fromObject($object->paymentProduct730SpecificData);
         }
         return $this;
     }

@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentProduct705SpecificInput;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentProduct730SpecificInput;
 use UnexpectedValueException;
 
 /**
@@ -33,6 +34,11 @@ class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethod
      * @var NonSepaDirectDebitPaymentProduct705SpecificInput
      */
     public $paymentProduct705SpecificInput = null;
+
+    /**
+     * @var NonSepaDirectDebitPaymentProduct730SpecificInput
+     */
+    public $paymentProduct730SpecificInput = null;
 
     /**
      * @var string
@@ -72,6 +78,13 @@ class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethod
             }
             $value = new NonSepaDirectDebitPaymentProduct705SpecificInput();
             $this->paymentProduct705SpecificInput = $value->fromObject($object->paymentProduct705SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct730SpecificInput')) {
+            if (!is_object($object->paymentProduct730SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct730SpecificInput, true) . '\' is not an object');
+            }
+            $value = new NonSepaDirectDebitPaymentProduct730SpecificInput();
+            $this->paymentProduct730SpecificInput = $value->fromObject($object->paymentProduct730SpecificInput);
         }
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;

@@ -27,7 +27,7 @@ class BodyObfuscator
      */
     public function obfuscateBody($contentType, $body)
     {
-        if ($contentType != static::MIME_APPLICATION_JSON) {
+        if (!$this->isJsonContentType($contentType)) {
             return $body;
         }
         $decodedJsonBody = json_decode($body);
@@ -35,7 +35,11 @@ class BodyObfuscator
             return $body;
         }
         return json_encode($this->obfuscateDecodedJsonPart($decodedJsonBody), JSON_PRETTY_PRINT);
+    }
 
+    private function isJsonContentType($contentType) {
+        return $contentType === static::MIME_APPLICATION_JSON
+            || substr($contentType, 0, strlen(static::MIME_APPLICATION_JSON)) === static::MIME_APPLICATION_JSON;
     }
 
     /**
