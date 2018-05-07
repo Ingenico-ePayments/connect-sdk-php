@@ -59,6 +59,16 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
     public $transactionChannel = null;
 
     /**
+     * @var string
+     */
+    public $unscheduledCardOnFileIndicator = null;
+
+    /**
+     * @var string
+     */
+    public $unscheduledCardOnFileRequestor = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -92,6 +102,12 @@ class CardPaymentMethodSpecificInputBase extends AbstractPaymentMethodSpecificIn
         }
         if (property_exists($object, 'transactionChannel')) {
             $this->transactionChannel = $object->transactionChannel;
+        }
+        if (property_exists($object, 'unscheduledCardOnFileIndicator')) {
+            $this->unscheduledCardOnFileIndicator = $object->unscheduledCardOnFileIndicator;
+        }
+        if (property_exists($object, 'unscheduledCardOnFileRequestor')) {
+            $this->unscheduledCardOnFileRequestor = $object->unscheduledCardOnFileRequestor;
         }
         return $this;
     }

@@ -2,7 +2,7 @@
 namespace Ingenico\Connect\Sdk;
 
 /**
- * Class ApiException
+ * Class Resource
  *
  * @package Ingenico\Connect\Sdk
  */

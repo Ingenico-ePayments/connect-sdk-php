@@ -54,18 +54,18 @@ class ResponseFactory
         ConnectionResponse $response,
         ResponseClassMap $responseClassMap
     ) {
+        $httpStatusCode = $response->getHttpStatusCode();
+        if (!$httpStatusCode) {
+            throw new UnexpectedValueException('HTTP status code is missing');
+        }
         $contentType = $response->getHeaderValue('Content-Type');
         if (!$contentType) {
             throw new UnexpectedValueException('Content type is missing or empty');
         }
-        if (!$this->isJsonContentType($contentType)) {
+        if (!$this->isJsonContentType($contentType) && $httpStatusCode !== 204) {
             throw new UnexpectedValueException(
                 "Invalid content type; got '$contentType', expected '" . static::MIME_APPLICATION_JSON . "'"
             );
-        }
-        $httpStatusCode = $response->getHttpStatusCode();
-        if (!$httpStatusCode) {
-            throw new UnexpectedValueException('HTTP status code is missing');
         }
         $responseClassName = $responseClassMap->getResponseClassName($httpStatusCode);
         if (empty($responseClassName)) {
