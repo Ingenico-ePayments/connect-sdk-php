@@ -19,11 +19,6 @@ class MandateContactDetails extends DataObject
     public $emailAddress = null;
 
     /**
-     * @var string
-     */
-    public $phoneNumber = null;
-
-    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -33,9 +28,6 @@ class MandateContactDetails extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'emailAddress')) {
             $this->emailAddress = $object->emailAddress;
-        }
-        if (property_exists($object, 'phoneNumber')) {
-            $this->phoneNumber = $object->phoneNumber;
         }
         return $this;
     }

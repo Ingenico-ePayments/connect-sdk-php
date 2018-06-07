@@ -37,6 +37,11 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     public $threeDSecureResults = null;
 
     /**
+     * @var string
+     */
+    public $token = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -67,6 +72,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
             }
             $value = new ThreeDSecureResults();
             $this->threeDSecureResults = $value->fromObject($object->threeDSecureResults);
+        }
+        if (property_exists($object, 'token')) {
+            $this->token = $object->token;
         }
         return $this;
     }

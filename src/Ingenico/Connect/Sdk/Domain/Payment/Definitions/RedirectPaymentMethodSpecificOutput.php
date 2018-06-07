@@ -38,6 +38,11 @@ class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
     public $paymentProduct840SpecificOutput = null;
 
     /**
+     * @var string
+     */
+    public $token = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -72,6 +77,9 @@ class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
             }
             $value = new PaymentProduct840SpecificOutput();
             $this->paymentProduct840SpecificOutput = $value->fromObject($object->paymentProduct840SpecificOutput);
+        }
+        if (property_exists($object, 'token')) {
+            $this->token = $object->token;
         }
         return $this;
     }
