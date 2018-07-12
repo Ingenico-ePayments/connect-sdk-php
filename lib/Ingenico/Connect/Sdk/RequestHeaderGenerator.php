@@ -2,7 +2,6 @@
 namespace Ingenico\Connect\Sdk;
 
 use stdClass;
-use DateTime;
 use UnexpectedValueException;
 
 /**
@@ -12,7 +11,7 @@ use UnexpectedValueException;
  */
 class RequestHeaderGenerator
 {
-    const SDK_VERSION = '5.21.0';
+    const SDK_VERSION = '5.22.0';
 
     const AUTHORIZATION_ID = 'GCS';
 

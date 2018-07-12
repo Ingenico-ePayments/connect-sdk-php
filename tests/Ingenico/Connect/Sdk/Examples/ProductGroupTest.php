@@ -14,15 +14,13 @@ use Ingenico\Connect\Sdk\Merchant\Productgroups\GetProductgroupParams;
  */
 class ProductGroupTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
     /**
      * @return PaymentProductGroups
      */
     public function testRetrievePaymentProductGroups()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $findParams = new FindProductgroupsParams();
 
@@ -44,7 +42,7 @@ class ProductGroupTest extends ClientTestCase
     public function testRetrievePaymentProductGroup()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $getParams = new GetProductgroupParams();
 

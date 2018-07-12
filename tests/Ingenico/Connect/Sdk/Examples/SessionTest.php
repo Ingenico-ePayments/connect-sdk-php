@@ -12,8 +12,6 @@ use Ingenico\Connect\Sdk\Domain\Sessions\SessionResponse;
  */
 class SessionTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
     /**
      * @return SessionResponse
      * @throws ApiException
@@ -21,7 +19,7 @@ class SessionTest extends ClientTestCase
     public function testCreateSession()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $sessionRequest = new SessionRequest();
 
         $tokens = array();

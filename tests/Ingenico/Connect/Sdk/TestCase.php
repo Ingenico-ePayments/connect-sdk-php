@@ -36,6 +36,15 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @return string
      * @throws Exception
      */
+    protected function getMerchantId()
+    {
+        return $this->getJsonValuesStore()->getValue('merchant_id');
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
     protected function getApiKey()
     {
         return $this->getJsonValuesStore()->getValue('api_key');

@@ -16,15 +16,13 @@ use Ingenico\Connect\Sdk\Merchant\Products\GetProductParams;
  */
 class ProductTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
     /**
      * @return PaymentProducts
      */
     public function testRetrievePaymentProducts()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $findParams = new FindProductsParams();
 
@@ -45,7 +43,7 @@ class ProductTest extends ClientTestCase
     public function testRetrievePaymentProductsMultipleHide()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $findParams = new FindProductsParams();
 
@@ -67,7 +65,7 @@ class ProductTest extends ClientTestCase
     public function testRetrievePaymentProductFields()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $getParams = new GetProductParams();
 
@@ -88,7 +86,7 @@ class ProductTest extends ClientTestCase
     public function testRetrievePaymentProductDirectory()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $directoryParams = new DirectoryParams();
 
         $directoryParams->currencyCode = "EUR";

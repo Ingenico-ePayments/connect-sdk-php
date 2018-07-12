@@ -10,8 +10,6 @@ use Ingenico\Connect\Sdk\Merchant\Products\FindProductsParams;
 class CommunicatorTest extends TestCase
 {
 
-    const MERCHANT_ID = '8500';
-
     /** @var Communicator */
     protected $defaultCommunicator = null;
 
@@ -38,9 +36,9 @@ class CommunicatorTest extends TestCase
 
     public function testConnectionSharing()
     {
-        $relativeUri = sprintf('/%s/%s/services/testconnection', Client::API_VERSION, self::MERCHANT_ID);
+        $relativeUri = sprintf('/%s/%s/services/testconnection', Client::API_VERSION, $this->getMerchantId());
         $sharedConnection = new DefaultConnection();
-        $relativeUri = sprintf('/%s/%s/services/testconnection', Client::API_VERSION, self::MERCHANT_ID);
+        $relativeUri = sprintf('/%s/%s/services/testconnection', Client::API_VERSION, $this->getMerchantId());
         $communicator1 = new Communicator($sharedConnection, $this->getCommunicatorConfiguration());
         $communicator1->get($this->defaultResponseClassMap, $relativeUri);
         $communicator2 = new Communicator($sharedConnection, $this->getCommunicatorConfiguration());
@@ -51,7 +49,7 @@ class CommunicatorTest extends TestCase
 
     public function testApiRequestGet()
     {
-        $relativeUri = sprintf('/%s/%s/products', Client::API_VERSION, self::MERCHANT_ID);
+        $relativeUri = sprintf('/%s/%s/products', Client::API_VERSION, $this->getMerchantId());
         $findParams = new FindProductsParams();
         $findParams->countryCode = 'NL';
         $findParams->currencyCode = 'EUR';
@@ -62,7 +60,7 @@ class CommunicatorTest extends TestCase
     public function testExceptionInvalidUrl()
     {
         try {
-            $relativeUri = sprintf('/%s/%s/foo', Client::API_VERSION, self::MERCHANT_ID);
+            $relativeUri = sprintf('/%s/%s/foo', Client::API_VERSION, $this->getMerchantId());
             $this->defaultCommunicator->get($this->defaultResponseClassMap, $relativeUri);
         } catch (InvalidResponseException $e) {
             $this->assertEquals(404, $e->getResponse()->getHttpStatusCode());
@@ -74,7 +72,7 @@ class CommunicatorTest extends TestCase
     public function testApiRequestPost()
     {
         try {
-            $relativeUri = sprintf('/%s/%s/payments/1/tokenize', Client::API_VERSION, self::MERCHANT_ID);
+            $relativeUri = sprintf('/%s/%s/payments/1/tokenize', Client::API_VERSION, $this->getMerchantId());
             $this->defaultCommunicator->post($this->defaultResponseClassMap, $relativeUri);
         } catch (ReferenceException $e) {
             return;
@@ -85,7 +83,7 @@ class CommunicatorTest extends TestCase
     public function testApiRequestPut()
     {
         try {
-            $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, self::MERCHANT_ID);
+            $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, $this->getMerchantId());
             $this->defaultCommunicator->put($this->defaultResponseClassMap, $relativeUri);
         } catch (InvalidResponseException $e) {
             return;
@@ -96,7 +94,7 @@ class CommunicatorTest extends TestCase
     public function testApiRequestDelete()
     {
         try {
-            $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, self::MERCHANT_ID);
+            $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, $this->getMerchantId());
             $this->defaultCommunicator->delete($this->defaultResponseClassMap, $relativeUri);
         } catch (ReferenceException $e) {
             return;

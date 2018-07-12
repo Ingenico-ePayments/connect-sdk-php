@@ -1,4 +1,5 @@
 {
+    "merchant_id":    "MERCHANT_ID",
     "api_key":        "API_KEY_ID",
     "api_secret":     "API_SECRET",
     "api_endpoint":   "API_ENDPOINT",

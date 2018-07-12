@@ -44,10 +44,9 @@ class GeneratedCodeTest extends ClientTestCase
 
     public function testCreateSessionsPost()
     {
-
         $client = $this->getClient();
         $client->setClientMetaInfo('{ "test": "test" }');
-        $merchant = $client->merchant('9991');
+        $merchant = $client->merchant($this->getMerchantId());
         $sessionRequest = new SessionRequest();
         $sessionRequest->tokens = array('e7303c8c-8b18-4929-9ae9-63d37575c352');
         try {
@@ -73,7 +72,7 @@ class GeneratedCodeTest extends ClientTestCase
     public function testMerchant()
     {
         $client = $this->getClient();
-        $merchant = $client->merchant('9991');
+        $merchant = $client->merchant($this->getMerchantId());
         $productQuery = new FindProductsParams();
         $productQuery->amount = 1000;
         $productQuery->currencyCode = 'EUR';
@@ -104,7 +103,7 @@ class GeneratedCodeTest extends ClientTestCase
     public function testProducts()
     {
         $client = $this->getClient();
-        $merchant = $client->merchant(9991);
+        $merchant = $client->merchant($this->getMerchantId());
         try {
             $result = $merchant->products();
             $this->assertInstanceOf('\Ingenico\Connect\Sdk\Merchant\Products', $result);
@@ -127,7 +126,7 @@ class GeneratedCodeTest extends ClientTestCase
     {
         $client = $this->getClient();
         $client->setClientMetaInfo('{ "test": "test" }');
-        $merchant = $client->merchant(9991);
+        $merchant = $client->merchant($this->getMerchantId());
 
         $amountParameters = new ConvertAmountParams();
         $amountParameters->amount = 100;
@@ -154,7 +153,7 @@ class GeneratedCodeTest extends ClientTestCase
     public function testProxyConvertAmountGet()
     {
         $client = $this->getProxyClient();
-        $merchant = $client->merchant(9991);
+        $merchant = $client->merchant($this->getMerchantId());
 
         $amountParameters = new ConvertAmountParams();
         $amountParameters->amount = 100;
@@ -181,7 +180,7 @@ class GeneratedCodeTest extends ClientTestCase
     public function testHostedCheckout()
     {
         $client = $this->getClient();
-        $merchant = $client->merchant(8915);
+        $merchant = $client->merchant($this->getMerchantId());
         $body = new CreateHostedCheckoutRequest();
         $body->order = new Order();
         $body->order->amountOfMoney = new AmountOfMoney();
@@ -190,6 +189,7 @@ class GeneratedCodeTest extends ClientTestCase
         $body->order->customer = new Customer();
         $body->order->customer->billingAddress = new Address();
         $body->order->customer->billingAddress->countryCode = 'NL';
+        $body->order->customer->merchantCustomerId = "123456789";
         try {
             $result = $merchant->hostedcheckouts()->create($body);
             $this->assertInstanceOf('\Ingenico\Connect\Sdk\Domain\Hostedcheckout\CreateHostedCheckoutResponse', $result);
@@ -216,7 +216,7 @@ class GeneratedCodeTest extends ClientTestCase
     public function testCreateUpdateDeleteTokenCardMinimal()
     {
         $client = $this->getClient();
-        $merchant = $client->merchant('9991');
+        $merchant = $client->merchant($this->getMerchantId());
         $request = new CreateTokenRequest();
 
         $request->card = new TokenCard();
@@ -265,7 +265,7 @@ class GeneratedCodeTest extends ClientTestCase
     {
         try {
             $client = $this->getClient();
-            $merchant = $client->merchant(8910);
+            $merchant = $client->merchant($this->getMerchantId());
             $merchant->payments()->cancel('000000891000000000010000100001');
         } catch (ReferenceException $e) {
             $this->assertInstanceOf('\Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse', $e->getResponse());

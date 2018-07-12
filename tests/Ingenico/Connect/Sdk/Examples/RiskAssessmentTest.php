@@ -23,8 +23,6 @@ use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse;
  */
 class RiskAssessmentTest extends ClientTestCase
 {
-    const MERCHANT_ID = "9991";
-
     /**
      * RISK ASSESS CARD
      */
@@ -36,7 +34,7 @@ class RiskAssessmentTest extends ClientTestCase
     public function testRiskAssessCard()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $riskAssessmentCard = new RiskAssessmentCard();
 
@@ -89,9 +87,9 @@ class RiskAssessmentTest extends ClientTestCase
         $airlineFlightLeg1->arrivalAirport = "AMS";
         $airlineFlightLeg1->stopoverCode = "non-permitted";
         $airlineFlightLeg1->airlineClass = "1";
-        $airlineFlightLeg1->carrierCode = "14";
+        $airlineFlightLeg1->carrierCode = "KL";
         $airlineFlightLeg1->fareBasis = "INTERNET";
-        $airlineFlightLeg1->flightNumber = "KL791";
+        $airlineFlightLeg1->flightNumber = "791";
         $airlineFlightLeg1->departureTime = "17:59";
         $airlineFlightLeg1->fare = "fare";
 
@@ -102,9 +100,9 @@ class RiskAssessmentTest extends ClientTestCase
         $airlineFlightLeg2->arrivalAirport = "BCN";
         $airlineFlightLeg2->stopoverCode = "non-permitted";
         $airlineFlightLeg2->airlineClass = "1";
-        $airlineFlightLeg2->carrierCode = "14";
+        $airlineFlightLeg2->carrierCode = "KL";
         $airlineFlightLeg2->fareBasis = "INTERNET";
-        $airlineFlightLeg2->flightNumber = "KL792";
+        $airlineFlightLeg2->flightNumber = "792";
         $airlineFlightLeg2->departureTime = "23:59";
         $airlineFlightLeg2->fare = "fare";
 
@@ -128,7 +126,7 @@ class RiskAssessmentTest extends ClientTestCase
     public function testRiskAssessBankAccount()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $riskAssessmentBankAccount = new RiskAssessmentBankAccount();
 

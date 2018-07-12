@@ -25,16 +25,16 @@ use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutReferences;
  */
 class PayoutTest extends ClientTestCase
 {
-    const MERCHANT_ID = "8897";
-
     /**
      * @return string
      * @throws Exception
      */
     public function testCreatePayout()
     {
+        $this->markTestSkipped('Payouts are not available for all merchants');
+
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $createPayoutRequest = new CreatePayoutRequest();
 
@@ -100,7 +100,7 @@ class PayoutTest extends ClientTestCase
     public function testRetrievePayout($payoutId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         /** @var PayoutResponse $payoutResponse */
         $payoutResponse = $client->merchant($merchantId)->payouts()->get($payoutId);
@@ -116,7 +116,7 @@ class PayoutTest extends ClientTestCase
     public function testApprovePayout($payoutId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $body = new ApprovePayoutRequest();
         $payoutDate = new DateTime();
@@ -138,7 +138,7 @@ class PayoutTest extends ClientTestCase
     public function testCancelApprovePayout($payoutId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $client->merchant($merchantId)->payouts()->cancelapproval($payoutId);
         return $payoutId;
@@ -154,7 +154,7 @@ class PayoutTest extends ClientTestCase
     {
         $this->testApprovePayout($payoutId);
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $client->merchant($merchantId)->payouts()->cancel($payoutId);
         return $payoutId;

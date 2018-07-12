@@ -40,17 +40,15 @@ use Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse;
  */
 class PaymentTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
-    const MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST = "8731";
-
     /**
      * @return string
      */
     public function testCreatePayment()
     {
+        $this->markTestSkipped('Payment may or may not succeed');
+
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $createPaymentRequest = new CreatePaymentRequest();
 
         $order = new Order();
@@ -189,7 +187,7 @@ class PaymentTest extends ClientTestCase
     public function testRetrievePayment($paymentId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         /** @var PaymentResponse $paymentResponse */
         $paymentResponse = $client->merchant($merchantId)->payments()->get($paymentId);
         return $paymentResponse->id;
@@ -203,8 +201,10 @@ class PaymentTest extends ClientTestCase
      */
     public function testApprovePayment($paymentId)
     {
+        $this->markTestSkipped('Payment may or may not be approvable');
+
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $approvePaymentRequest = new ApprovePaymentRequest();
 
         $directDebitPaymentMethodSpecificInput = new ApprovePaymentNonSepaDirectDebitPaymentMethodSpecificInput();
@@ -235,7 +235,7 @@ class PaymentTest extends ClientTestCase
     public function testCancelApprovePayment($paymentId)
     {
         $client = $this->GetClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         /** @var CancelApprovalPaymentResponse $cancelApprovalResponse */
         $cancelApprovalResponse = $client->merchant($merchantId)->payments()->cancelapproval($paymentId);
         return $cancelApprovalResponse->payment->id;
@@ -250,7 +250,7 @@ class PaymentTest extends ClientTestCase
     public function testCreateTokenFromPayment($paymentId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $tokenizePaymentRequest = new TokenizePaymentRequest();
 
         $tokenizePaymentRequest->alias = "Some alias";
@@ -269,7 +269,7 @@ class PaymentTest extends ClientTestCase
     public function testCancelPayment($paymentId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         /** @var CancelPaymentResponse $cancelPaymentResponse */
         $cancelPaymentResponse = $client->merchant($merchantId)->payments()->cancel($paymentId);
         return $cancelPaymentResponse->payment->id;
@@ -281,7 +281,7 @@ class PaymentTest extends ClientTestCase
     public function testCreateMinimalPayment()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        $merchantId = $this->getMerchantId();
         /** @var CreatePaymentResponse $createPaymentResponse */
         $createPaymentResponse = $client->merchant($merchantId)->payments()->create(
             $this->getMinimalCreatePaymentRequest()
@@ -319,7 +319,7 @@ class PaymentTest extends ClientTestCase
 
         $card = new Card();
         $card->cvv = "123";
-        $card->cardNumber = $correctCreditCardNumber ? "4444333322211211" : "4444333322211212";
+        $card->cardNumber = $correctCreditCardNumber ? "4567350000427977" : "4444333322211212";
         $card->expiryDate = "1220";
         $cardPaymentMethodSpecificInput->card = $card;
 
@@ -336,8 +336,10 @@ class PaymentTest extends ClientTestCase
      */
     public function testApproveChallengedPayment($paymentId)
     {
+        $this->markTestSkipped('Payment may or may not be challenged');
+
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        $merchantId = $this->getMerchantId();
 
         /** @var PaymentResponse $paymentApprovalResponse */
         $paymentApprovalResponse = $client->merchant($merchantId)->payments()->processchallenged($paymentId);
@@ -350,7 +352,7 @@ class PaymentTest extends ClientTestCase
     public function testCreatePaymentWithIdempotenceKeySuccess()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        $merchantId = $this->getMerchantId();
         $callContext = new CallContext();
         $dateTimeWitMicroseconds = DateTime::createFromFormat('U.u', microtime(true));
         $callContext->setIdempotenceKey(__FUNCTION__ . '::' . $dateTimeWitMicroseconds->format('Ymd-His-u'));
@@ -382,8 +384,10 @@ class PaymentTest extends ClientTestCase
 
     public function testCreatePaymentWithIdempotenceKeyFailure()
     {
+        $this->markTestSkipped('Payment may or may not succeed');
+
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID_FOR_CHALLENGED_PAYMENT_TEST;
+        $merchantId = $this->getMerchantId();
         $callContext = new CallContext();
         $dateTimeWitMicroseconds = DateTime::createFromFormat('U.u', microtime(true));
         $callContext->setIdempotenceKey(__FUNCTION__ . '::' . $dateTimeWitMicroseconds->format('Ymd-His-u'));

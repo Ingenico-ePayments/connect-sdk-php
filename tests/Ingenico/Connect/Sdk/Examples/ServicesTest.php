@@ -15,12 +15,10 @@ use Ingenico\Connect\Sdk\Merchant\Services\ConvertAmountParams;
  */
 class ServicesTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
     public function testTestConnection()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $response = $client->merchant($merchantId)->services()->testconnection();
         return $response;
     }
@@ -31,7 +29,7 @@ class ServicesTest extends ClientTestCase
     public function testRetrieveIINDetails()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $body = new GetIINDetailsRequest();
 
         $body->bin = "4567350000427977";
@@ -46,7 +44,7 @@ class ServicesTest extends ClientTestCase
     public function testConvertBankaccount()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $bankDetailsRequest = new BankDetailsRequest();
 
         $bankAccountBban = new BankAccountBban();
@@ -66,7 +64,7 @@ class ServicesTest extends ClientTestCase
     public function testConvertAmount()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $convertAmountParams = new ConvertAmountParams();
 
         $convertAmountParams->amount = 1000;

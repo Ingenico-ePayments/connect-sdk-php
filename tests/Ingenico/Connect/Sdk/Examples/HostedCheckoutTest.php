@@ -5,10 +5,12 @@ use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
+use Ingenico\Connect\Sdk\Domain\Definitions\PaymentProductFilter;
 use Ingenico\Connect\Sdk\Domain\Hostedcheckout\CreateHostedCheckoutRequest;
 use Ingenico\Connect\Sdk\Domain\Hostedcheckout\CreateHostedCheckoutResponse;
 use Ingenico\Connect\Sdk\Domain\Hostedcheckout\GetHostedCheckoutResponse;
 use Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\HostedCheckoutSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\PaymentProductFiltersHostedCheckout;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Customer;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
 
@@ -18,8 +20,6 @@ use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
  */
 class HostedCheckoutTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
     /**
      * HOSTED CHECKOUT
      */
@@ -31,7 +31,7 @@ class HostedCheckoutTest extends ClientTestCase
     public function testCreateHostedCheckout()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $createHostedCheckoutRequest = new CreateHostedCheckoutRequest();
         $order = new Order();
 
@@ -41,6 +41,7 @@ class HostedCheckoutTest extends ClientTestCase
         $order->amountOfMoney = $amountOfMoney;
 
         $customer = new Customer();
+        $customer->merchantCustomerId = "123456789";
 
         $billingAddress = new Address();
         $billingAddress->countryCode = "US";
@@ -52,7 +53,10 @@ class HostedCheckoutTest extends ClientTestCase
 
         $hostedCheckoutSpecificInput = new HostedCheckoutSpecificInput();
         $hostedCheckoutSpecificInput->locale = "en_GB";
-        $hostedCheckoutSpecificInput->variant = "testVariant";
+        $hostedCheckoutSpecificInput->variant = "100";
+        $hostedCheckoutSpecificInput->paymentProductFilters = new PaymentProductFiltersHostedCheckout();
+        $hostedCheckoutSpecificInput->paymentProductFilters->exclude = new PaymentProductFilter();
+        $hostedCheckoutSpecificInput->paymentProductFilters->exclude->products = array(120);
         $createHostedCheckoutRequest->hostedCheckoutSpecificInput = $hostedCheckoutSpecificInput;
 
         /** @var CreateHostedCheckoutResponse $createHostedCheckoutResponse */
@@ -70,7 +74,7 @@ class HostedCheckoutTest extends ClientTestCase
     public function testGetHostedCheckoutStatus($hostedCheckoutId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         /** @var GetHostedCheckoutResponse $getHostedCheckoutResponse */
         $getHostedCheckoutResponse = $client->merchant($merchantId)->hostedcheckouts()->get($hostedCheckoutId);
         return $getHostedCheckoutResponse->status;

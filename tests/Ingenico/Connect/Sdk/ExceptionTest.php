@@ -33,7 +33,7 @@ class Client_ExceptionTest extends ClientTestCase
     {
         try {
             $emptyBody = new GetIINDetailsRequest();
-            $this->getClient()->merchant("9991")->services()->getIINdetails($emptyBody);
+            $this->getClient()->merchant($this->getMerchantId())->services()->getIINdetails($emptyBody);
         } catch (ResponseException $e) {
             $this->assertNotEmpty($e->getErrorId());
             $errors = $e->getErrors();
@@ -92,7 +92,7 @@ EOD;
     {
         try {
             $emptyBody = new GetIINDetailsRequest();
-            $this->getClient()->merchant("9991")->services()->getIINdetails($emptyBody);
+            $this->getClient()->merchant($this->getMerchantId())->services()->getIINdetails($emptyBody);
         } catch (ValidationException $e) {
             return;
         }
@@ -112,7 +112,7 @@ EOD;
 
     public function testDeclinedPaymentExceptionForPaymentCreate()
     {
-        $merchantId = "8609";
+        $merchantId = $this->getMerchantId();
 
         $createPaymentRequest = new CreatePaymentRequest();
 
@@ -174,8 +174,10 @@ EOD;
 
     public function testDeclinedPayoutExceptionForPayout()
     {
+        $this->markTestSkipped('Payouts are not available for all merchants');
+
         $client = $this->getClient();
-        $merchantId = "8897";
+        $merchantId = $this->getMerchantId();
 
         $createPayoutRequest = new CreatePayoutRequest();
 
@@ -221,8 +223,10 @@ EOD;
     }
 
     public function testGlobalCollectExceptionForPayoutWithPayoutResult() {
+        $this->markTestSkipped('Payouts are not available for all merchants');
+
         $client = $this->getClient();
-        $merchantId = "8897";
+        $merchantId = $this->getMerchantId();
 
         $createPayoutRequest = new CreatePayoutRequest();
 

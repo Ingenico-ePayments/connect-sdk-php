@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk;
 
 use Ingenico\Connect\Sdk\Merchant\Captures;
 use Ingenico\Connect\Sdk\Merchant\Hostedcheckouts;
+use Ingenico\Connect\Sdk\Merchant\Hostedmandatemanagements;
 use Ingenico\Connect\Sdk\Merchant\Mandates;
 use Ingenico\Connect\Sdk\Merchant\Payments;
 use Ingenico\Connect\Sdk\Merchant\Payouts;
@@ -30,6 +31,17 @@ class Merchant extends Resource
     public function hostedcheckouts()
     {
         return new Hostedcheckouts($this, $this->context);
+    }
+
+    /**
+     * Resource /{merchantId}/hostedmandatemanagements
+     * Create new hosted mandate management
+     *
+     * @return Hostedmandatemanagements
+     */
+    public function hostedmandatemanagements()
+    {
+        return new Hostedmandatemanagements($this, $this->context);
     }
 
     /**

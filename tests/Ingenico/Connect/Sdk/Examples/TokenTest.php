@@ -31,10 +31,6 @@ use Ingenico\Connect\Sdk\Merchant\Tokens\DeleteTokenParams;
  */
 class TokenTest extends ClientTestCase
 {
-    const MERCHANT_ID = "20000";
-
-    const MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST = "9991";
-
     /**
      * @return string
      * @throws ApiException
@@ -42,7 +38,7 @@ class TokenTest extends ClientTestCase
     public function testCreateToken()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $createTokenRequest = new CreateTokenRequest();
         $createTokenRequest->paymentProductId = 705;
@@ -111,7 +107,7 @@ class TokenTest extends ClientTestCase
     public function testRetrieveToken($token)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $client->merchant($merchantId)->tokens()->get($token);
         return $token;
     }
@@ -125,7 +121,7 @@ class TokenTest extends ClientTestCase
     public function testUpdateToken($token)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $updateTokenRequest = new UpdateTokenRequest();
 
@@ -194,7 +190,7 @@ class TokenTest extends ClientTestCase
     public function testDeleteToken($token)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $deleteParams = new DeleteTokenParams();
         $deleteParams->mandateCancelDate = "20150102";
@@ -209,7 +205,7 @@ class TokenTest extends ClientTestCase
     public function testCreateSepaDirectDebitToken()
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST;
+        $merchantId = $this->getMerchantId();
 
         $createTokenRequest = new CreateTokenRequest();
         $createTokenRequest->paymentProductId = 701;
@@ -296,7 +292,7 @@ class TokenTest extends ClientTestCase
         $token = $createTokenResponse->token;
         if ($createTokenResponse->isNewToken) {
             $client = $this->getClient();
-            $merchantId = self::MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST;
+            $merchantId = $this->getMerchantId();
 
             $approveTokenRequest = new ApproveTokenRequest();
             $approveTokenRequest->mandateSignaturePlace = "Eindhoven";
@@ -316,7 +312,7 @@ class TokenTest extends ClientTestCase
     public function testDeleteSepaDirectDebitToken($token)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID_FOR_SEPA_DIRECT_DEBIT_TOKEN_TEST;
+        $merchantId = $this->getMerchantId();
 
         $deleteParams = new DeleteTokenParams();
         $deleteParams->mandateCancelDate = "20150102";

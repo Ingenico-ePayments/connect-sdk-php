@@ -21,8 +21,6 @@ use Ingenico\Connect\Sdk\Domain\Refund\Definitions\RefundReferences;
  */
 class RefundTest extends ClientTestCase
 {
-    const MERCHANT_ID = "1701";
-
     /**
      * @throws ApiException
      * @return RefundErrorResponse
@@ -33,7 +31,7 @@ class RefundTest extends ClientTestCase
         $this->markTestSkipped('No refundable payment is available at this time');
 
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $paymentId = "000000170110001962280000100001";
 
         $refundRequest = new RefundRequest();
@@ -76,7 +74,7 @@ class RefundTest extends ClientTestCase
     public function testRetrieveRefund($refundId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         /** @var RefundResponse $refundResponse */
         $refundResponse = $client->merchant($merchantId)->refunds()->get($refundId);
         return $refundResponse->id;
@@ -91,7 +89,7 @@ class RefundTest extends ClientTestCase
     public function testApproveRefund($refundId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
 
         $approveRefundRequest = new ApproveRefundRequest();
 
@@ -110,7 +108,7 @@ class RefundTest extends ClientTestCase
     public function testUndoApproveRefund($refundId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $client->merchant($merchantId)->refunds()->cancelapproval($refundId);
         return $refundId;
     }
@@ -124,7 +122,7 @@ class RefundTest extends ClientTestCase
     public function testCancelRefund($refundId)
     {
         $client = $this->getClient();
-        $merchantId = self::MERCHANT_ID;
+        $merchantId = $this->getMerchantId();
         $client->merchant($merchantId)->refunds()->cancel($refundId);
         return $refundId;
     }
