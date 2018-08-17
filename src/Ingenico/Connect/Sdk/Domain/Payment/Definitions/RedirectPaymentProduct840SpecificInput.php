@@ -15,6 +15,7 @@ class RedirectPaymentProduct840SpecificInput extends DataObject
 {
     /**
      * @var string
+     * @deprecated use order.references.descriptor instead.
      */
     public $custom = null;
 

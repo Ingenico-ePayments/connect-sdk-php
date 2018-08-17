@@ -29,6 +29,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\TokenizePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundRequest;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundResponse;
+use Ingenico\Connect\Sdk\Domain\Refund\RefundsResponse;
 use Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
@@ -433,6 +434,37 @@ class Payments extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/refund'),
             $this->getClientMetaInfo(),
             $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/refunds
+     * Get refunds of payment
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return RefundsResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/refunds.html Get refunds of payment
+     */
+    public function refunds($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\RefundsResponse');
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/refunds'),
+            $this->getClientMetaInfo(),
             null,
             $callContext
         );

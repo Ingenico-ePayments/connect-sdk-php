@@ -37,6 +37,11 @@ class CreatedPaymentOutput extends DataObject
     public $paymentStatusCategory = null;
 
     /**
+     * @var bool
+     */
+    public $tokenizationSucceeded = null;
+
+    /**
      * @var string
      */
     public $tokens = null;
@@ -72,6 +77,9 @@ class CreatedPaymentOutput extends DataObject
         }
         if (property_exists($object, 'paymentStatusCategory')) {
             $this->paymentStatusCategory = $object->paymentStatusCategory;
+        }
+        if (property_exists($object, 'tokenizationSucceeded')) {
+            $this->tokenizationSucceeded = $object->tokenizationSucceeded;
         }
         if (property_exists($object, 'tokens')) {
             $this->tokens = $object->tokens;
