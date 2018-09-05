@@ -6,8 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\Card;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInputBase;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ExternalCardholderAuthenticationData;
 use UnexpectedValueException;
 
 /**

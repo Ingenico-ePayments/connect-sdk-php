@@ -12,7 +12,6 @@ use Ingenico\Connect\Sdk\DeclinedPayoutException;
 use Ingenico\Connect\Sdk\Domain\Payout\ApprovePayoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payout\CreatePayoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payout\FindPayoutsResponse;
-use Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;

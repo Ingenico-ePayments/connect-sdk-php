@@ -5,11 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecificInputBase;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentProduct809SpecificInput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentProduct816SpecificInput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentProduct840SpecificInput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentProduct882SpecificInput;
 use UnexpectedValueException;
 
 /**

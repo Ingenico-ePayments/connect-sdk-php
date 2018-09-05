@@ -7,7 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\KeyValuePair;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectData;
 use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductField;
 use UnexpectedValueException;
 

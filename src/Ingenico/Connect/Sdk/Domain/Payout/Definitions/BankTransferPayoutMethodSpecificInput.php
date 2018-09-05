@@ -7,8 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payout\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountBban;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
-use Ingenico\Connect\Sdk\Domain\Payout\Definitions\AbstractPayoutMethodSpecificInput;
-use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutCustomer;
 use UnexpectedValueException;
 
 /**

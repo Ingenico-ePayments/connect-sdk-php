@@ -5,9 +5,6 @@ use stdClass;
 use Exception;
 use ErrorException;
 use ReflectionMethod;
-use Ingenico\Connect\Sdk\Communicator;
-use Ingenico\Connect\Sdk\CommunicatorLogger;
-use Ingenico\Connect\Sdk\DefaultConnection;
 use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Errors\Definitions\APIError;
 

@@ -5,8 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundPaymentProduct840SpecificOutput;
 use UnexpectedValueException;
 
 /**

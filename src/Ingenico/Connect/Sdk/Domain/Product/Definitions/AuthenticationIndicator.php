@@ -5,7 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Product\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\AbstractIndicator;
 use UnexpectedValueException;
 
 /**

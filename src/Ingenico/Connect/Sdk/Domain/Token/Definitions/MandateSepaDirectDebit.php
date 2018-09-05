@@ -5,8 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\Creditor;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateSepaDirectDebitWithMandateId;
 use UnexpectedValueException;
 
 /**

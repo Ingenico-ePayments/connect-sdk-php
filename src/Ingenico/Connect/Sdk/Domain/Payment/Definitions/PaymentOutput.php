@@ -5,16 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\InvoicePaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobilePaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentMethodSpecificOutput;
 use UnexpectedValueException;
 
 /**

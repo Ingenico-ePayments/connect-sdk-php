@@ -5,10 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk;
 
-use Ingenico\Connect\Sdk\Communicator;
-use Ingenico\Connect\Sdk\CommunicatorLogger;
-use Ingenico\Connect\Sdk\Merchant;
-use Ingenico\Connect\Sdk\Resource;
 
 /**
  * GlobalCollect server-to-server (S2S) API

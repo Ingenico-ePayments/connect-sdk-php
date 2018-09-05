@@ -5,7 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Mandates\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\CreateMandateBase;
 use UnexpectedValueException;
 
 /**

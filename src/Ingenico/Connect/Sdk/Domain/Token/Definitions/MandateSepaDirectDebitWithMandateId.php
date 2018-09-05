@@ -5,7 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateSepaDirectDebitWithoutCreditor;
 use UnexpectedValueException;
 
 /**

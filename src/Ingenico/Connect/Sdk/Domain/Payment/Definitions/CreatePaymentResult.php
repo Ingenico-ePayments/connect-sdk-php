@@ -6,9 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\MerchantAction;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Payment;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentCreationOutput;
 use UnexpectedValueException;
 
 /**

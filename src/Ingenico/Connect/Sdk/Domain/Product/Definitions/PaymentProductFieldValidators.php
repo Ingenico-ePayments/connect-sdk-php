@@ -6,12 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Product\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\BoletoBancarioRequirednessValidator;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\EmptyValidator;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\FixedListValidator;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\LengthValidator;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\RangeValidator;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\RegularExpressionValidator;
 use UnexpectedValueException;
 
 /**

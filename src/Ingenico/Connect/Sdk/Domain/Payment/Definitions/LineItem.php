@@ -7,9 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItemInvoiceData;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItemLevel3InterchangeInformation;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderLineDetails;
 use UnexpectedValueException;
 
 /**

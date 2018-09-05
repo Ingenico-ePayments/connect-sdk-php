@@ -6,9 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\AbstractOrderStatus;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\HostedCheckoutSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentStatusOutput;
 use UnexpectedValueException;
 
 /**

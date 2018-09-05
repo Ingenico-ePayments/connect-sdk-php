@@ -7,12 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AdditionalOrderInput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Customer;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItem;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderReferences;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Seller;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ShoppingCart;
 use UnexpectedValueException;
 
 /**

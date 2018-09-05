@@ -5,8 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\FraudResults;
-use Ingenico\Connect\Sdk\Domain\Definitions\FraudResultsRetailDecisions;
 use UnexpectedValueException;
 
 /**

@@ -5,7 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\CardEssentials;
 use UnexpectedValueException;
 
 /**

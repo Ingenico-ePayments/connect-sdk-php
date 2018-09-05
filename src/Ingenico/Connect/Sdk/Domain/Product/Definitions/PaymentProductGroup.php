@@ -6,9 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Product\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\AccountOnFile;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductDisplayHints;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductField;
 use UnexpectedValueException;
 
 /**

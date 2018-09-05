@@ -7,8 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\Debtor;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateApproval;
 use UnexpectedValueException;
 
 /**

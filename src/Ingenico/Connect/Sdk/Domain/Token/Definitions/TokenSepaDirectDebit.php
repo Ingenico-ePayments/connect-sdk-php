@@ -5,9 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\AbstractToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\CustomerTokenWithContactDetails;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateSepaDirectDebit;
 use UnexpectedValueException;
 
 /**

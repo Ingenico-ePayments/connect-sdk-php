@@ -1,10 +1,6 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-use Ingenico\Connect\Sdk\Client;
-use Ingenico\Connect\Sdk\Communicator;
-use Ingenico\Connect\Sdk\CommunicatorLogger;
-
 /**
  * @group logging
  */

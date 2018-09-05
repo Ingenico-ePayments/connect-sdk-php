@@ -6,8 +6,6 @@ use Ingenico\Connect\Sdk\Client;
 use Ingenico\Connect\Sdk\ConnectionResponse;
 use Ingenico\Connect\Sdk\ResponseClassMap;
 use Ingenico\Connect\Sdk\ResponseFactory;
-use Ingenico\Connect\Sdk\Webhooks\SignatureValidationException;
-use Ingenico\Connect\Sdk\Webhooks\WebhooksHelper;
 
 /**
  * @group webhooks
@@ -124,7 +122,7 @@ EOD;
         $requestHeaders = array(self::SIGNATURE_HEADER => self::SIGNATURE, self::KEY_ID_HEADER => self::KEY_ID);
 
         try {
-            $event = $helper->unmarshal($this->validBody, $requestHeaders);
+            $helper->unmarshal($this->validBody, $requestHeaders);
         } catch (SecretKeyNotAvailableException $e) {
             $this->assertEquals(self::KEY_ID, $e->getKeyId());
             return;

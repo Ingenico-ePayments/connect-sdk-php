@@ -6,7 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payout\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\Card;
-use Ingenico\Connect\Sdk\Domain\Payout\Definitions\AbstractPayoutMethodSpecificInput;
 use UnexpectedValueException;
 
 /**
@@ -25,6 +24,11 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
     public $paymentProductId = null;
 
     /**
+     * @var string
+     */
+    public $token = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -41,6 +45,9 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
         }
         if (property_exists($object, 'paymentProductId')) {
             $this->paymentProductId = $object->paymentProductId;
+        }
+        if (property_exists($object, 'token')) {
+            $this->token = $object->token;
         }
         return $this;
     }

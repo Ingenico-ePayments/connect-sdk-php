@@ -5,12 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundBankMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundCardMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundEInvoiceMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundEWalletMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundMobileMethodSpecificOutput;
 use UnexpectedValueException;
 
 /**

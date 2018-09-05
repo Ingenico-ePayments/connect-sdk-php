@@ -7,7 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Refund\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
-use Ingenico\Connect\Sdk\Domain\Refund\Definitions\BankAccountBbanRefund;
 use UnexpectedValueException;
 
 /**

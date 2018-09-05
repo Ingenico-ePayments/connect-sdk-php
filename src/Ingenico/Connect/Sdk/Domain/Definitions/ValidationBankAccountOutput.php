@@ -6,7 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Definitions\ValidationBankAccountCheck;
 use UnexpectedValueException;
 
 /**

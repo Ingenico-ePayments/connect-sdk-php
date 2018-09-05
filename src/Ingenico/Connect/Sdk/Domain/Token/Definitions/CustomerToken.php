@@ -7,7 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
 use Ingenico\Connect\Sdk\Domain\Definitions\CustomerBase;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\PersonalInformationToken;
 use UnexpectedValueException;
 
 /**

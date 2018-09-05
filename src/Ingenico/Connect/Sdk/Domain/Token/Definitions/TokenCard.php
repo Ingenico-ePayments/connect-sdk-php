@@ -5,9 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\AbstractToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\CustomerToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenCardData;
 use UnexpectedValueException;
 
 /**

@@ -6,8 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Product\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductFieldFormElement;
-use Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductFieldTooltip;
 use UnexpectedValueException;
 
 /**

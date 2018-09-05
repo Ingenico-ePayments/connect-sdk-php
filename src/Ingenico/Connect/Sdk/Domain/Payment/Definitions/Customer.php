@@ -7,9 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
 use Ingenico\Connect\Sdk\Domain\Definitions\CustomerBase;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AddressPersonal;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\ContactDetails;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PersonalInformation;
 use UnexpectedValueException;
 
 /**

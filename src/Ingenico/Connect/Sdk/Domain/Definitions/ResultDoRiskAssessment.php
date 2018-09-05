@@ -6,8 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Definitions\RetailDecisionsCCFraudCheckOutput;
-use Ingenico\Connect\Sdk\Domain\Definitions\ValidationBankAccountOutput;
 use UnexpectedValueException;
 
 /**

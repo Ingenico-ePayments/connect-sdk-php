@@ -1,6 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
+use StdClass;
 use Exception;
 
 /**

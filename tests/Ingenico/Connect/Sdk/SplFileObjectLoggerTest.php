@@ -1,10 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-use Exception;
 use SplTempFileObject;
-use Ingenico\Connect\Sdk\ResponseException;
-use Ingenico\Connect\Sdk\SplFileObjectLogger;
 use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 
 /**

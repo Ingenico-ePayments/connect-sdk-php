@@ -2,7 +2,6 @@
 namespace Ingenico\Connect\Sdk;
 
 use Exception;
-use Ingenico\Connect\Sdk\CommunicatorConfiguration;
 use Ingenico\Connect\Sdk\Domain\MetaData\ShoppingCartExtension;
 
 /**

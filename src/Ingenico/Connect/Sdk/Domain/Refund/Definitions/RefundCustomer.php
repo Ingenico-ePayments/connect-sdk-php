@@ -32,6 +32,11 @@ class RefundCustomer extends DataObject
     public $contactDetails = null;
 
     /**
+     * @var string
+     */
+    public $fiscalNumber = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -59,6 +64,9 @@ class RefundCustomer extends DataObject
             }
             $value = new ContactDetailsBase();
             $this->contactDetails = $value->fromObject($object->contactDetails);
+        }
+        if (property_exists($object, 'fiscalNumber')) {
+            $this->fiscalNumber = $object->fiscalNumber;
         }
         return $this;
     }

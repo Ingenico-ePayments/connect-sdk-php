@@ -5,8 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Capture\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Capture\Definitions\CaptureOutput;
-use Ingenico\Connect\Sdk\Domain\Capture\Definitions\CaptureStatusOutput;
 use Ingenico\Connect\Sdk\Domain\Definitions\AbstractOrderStatus;
 use UnexpectedValueException;
 

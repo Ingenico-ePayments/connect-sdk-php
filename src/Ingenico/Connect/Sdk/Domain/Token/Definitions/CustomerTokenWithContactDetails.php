@@ -5,8 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Token\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\ContactDetailsToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\CustomerToken;
 use UnexpectedValueException;
 
 /**

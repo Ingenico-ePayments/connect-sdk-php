@@ -6,7 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RefundPaymentProduct840CustomerAccount;
 use UnexpectedValueException;
 
 /**

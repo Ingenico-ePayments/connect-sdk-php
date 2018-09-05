@@ -1,9 +1,6 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-use Exception;
-use Ingenico\Connect\Sdk\ResourceLogger;
-use Ingenico\Connect\Sdk\ResponseException;
 use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 
 /**

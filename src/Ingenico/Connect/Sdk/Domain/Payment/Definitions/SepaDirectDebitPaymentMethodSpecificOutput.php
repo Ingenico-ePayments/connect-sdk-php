@@ -6,8 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\FraudResults;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentProduct771SpecificOutput;
 use UnexpectedValueException;
 
 /**

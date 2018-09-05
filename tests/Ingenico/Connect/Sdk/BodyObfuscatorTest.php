@@ -1,8 +1,6 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-use Ingenico\Connect\Sdk\BodyObfuscator;
-
 /**
  * @group obfuscation
  */

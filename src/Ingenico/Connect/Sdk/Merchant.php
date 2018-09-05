@@ -18,7 +18,6 @@ use Ingenico\Connect\Sdk\Merchant\Riskassessments;
 use Ingenico\Connect\Sdk\Merchant\Services;
 use Ingenico\Connect\Sdk\Merchant\Sessions;
 use Ingenico\Connect\Sdk\Merchant\Tokens;
-use Ingenico\Connect\Sdk\Resource;
 
 class Merchant extends Resource
 {

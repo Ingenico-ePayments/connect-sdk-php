@@ -7,7 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\FraudFields;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\OrderRiskAssessment;
 use UnexpectedValueException;
 
 /**

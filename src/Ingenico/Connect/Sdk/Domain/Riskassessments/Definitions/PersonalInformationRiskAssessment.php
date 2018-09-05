@@ -6,7 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\PersonalNameRiskAssessment;
 use UnexpectedValueException;
 
 /**

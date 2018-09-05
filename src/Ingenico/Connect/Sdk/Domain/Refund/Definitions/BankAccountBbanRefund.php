@@ -21,6 +21,11 @@ class BankAccountBbanRefund extends BankAccountBban
     /**
      * @var string
      */
+    public $patronymicName = null;
+
+    /**
+     * @var string
+     */
     public $swiftCode = null;
 
     /**
@@ -33,6 +38,9 @@ class BankAccountBbanRefund extends BankAccountBban
         parent::fromObject($object);
         if (property_exists($object, 'bankCity')) {
             $this->bankCity = $object->bankCity;
+        }
+        if (property_exists($object, 'patronymicName')) {
+            $this->patronymicName = $object->patronymicName;
         }
         if (property_exists($object, 'swiftCode')) {
             $this->swiftCode = $object->swiftCode;

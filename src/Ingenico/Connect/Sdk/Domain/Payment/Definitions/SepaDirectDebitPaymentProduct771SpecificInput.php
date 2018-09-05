@@ -6,7 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\CreateMandateWithReturnUrl;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractSepaDirectDebitPaymentProduct771SpecificInput;
 use UnexpectedValueException;
 
 /**

@@ -8,7 +8,6 @@ namespace Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions;
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AdditionalOrderInputAirlineData;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\CustomerRiskAssessment;
 use UnexpectedValueException;
 
 /**

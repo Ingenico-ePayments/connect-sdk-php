@@ -7,9 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
 use Ingenico\Connect\Sdk\Domain\Definitions\FraudResults;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AbstractPaymentMethodSpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentProduct836SpecificOutput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentProduct840SpecificOutput;
 use UnexpectedValueException;
 
 /**

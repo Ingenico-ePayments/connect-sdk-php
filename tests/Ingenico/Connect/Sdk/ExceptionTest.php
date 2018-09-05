@@ -103,7 +103,7 @@ EOD;
     {
         try {
             $invalidMerchantId = "123";
-            $response = $this->getClient()->merchant($invalidMerchantId)->services()->testconnection();
+            $this->getClient()->merchant($invalidMerchantId)->services()->testconnection();
         } catch (AuthorizationException $e) {
             return;
         }

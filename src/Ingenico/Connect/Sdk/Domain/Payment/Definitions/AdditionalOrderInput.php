@@ -7,8 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AirlineData;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Level3SummaryData;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderTypeInformation;
 use UnexpectedValueException;
 
 /**

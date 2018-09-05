@@ -7,9 +7,6 @@ namespace Ingenico\Connect\Sdk\Domain\Mandates\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
-use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\MandateAddress;
-use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\MandateContactDetails;
-use Ingenico\Connect\Sdk\Domain\Mandates\Definitions\MandatePersonalInformation;
 use UnexpectedValueException;
 
 /**

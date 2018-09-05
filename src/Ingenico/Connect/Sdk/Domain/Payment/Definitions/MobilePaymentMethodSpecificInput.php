@@ -6,8 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\Domain\Definitions\AbstractPaymentMethodSpecificInput;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobilePaymentProduct320SpecificInput;
 use UnexpectedValueException;
 
 /**

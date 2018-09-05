@@ -6,8 +6,6 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\AmountBreakdown;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\LineItem;
 use UnexpectedValueException;
 
 /**
