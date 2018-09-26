@@ -8,6 +8,8 @@ namespace Ingenico\Connect\Sdk\Merchant;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
+use Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintRequest;
+use Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroupResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroups;
 use Ingenico\Connect\Sdk\GlobalCollectException;
@@ -84,6 +86,39 @@ class Productgroups extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}'),
             $this->getClientMetaInfo(),
             $query,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint
+     * Get device fingerprint
+     *
+     * @param string $paymentProductGroupId
+     * @param DeviceFingerprintRequest $body
+     * @param CallContext $callContext
+     * @return DeviceFingerprintResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/deviceFingerprint.html Get device fingerprint
+     */
+    public function deviceFingerprint($paymentProductGroupId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentProductGroupId'] = $paymentProductGroupId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse');
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
             $callContext
         );
     }

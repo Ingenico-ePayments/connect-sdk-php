@@ -31,6 +31,11 @@ class CreateHostedCheckoutResponse extends DataObject
     /**
      * @var string
      */
+    public $merchantReference = null;
+
+    /**
+     * @var string
+     */
     public $partialRedirectUrl = null;
 
     /**
@@ -55,6 +60,9 @@ class CreateHostedCheckoutResponse extends DataObject
             foreach ($object->invalidTokens as $invalidTokensElementObject) {
                 $this->invalidTokens[] = $invalidTokensElementObject;
             }
+        }
+        if (property_exists($object, 'merchantReference')) {
+            $this->merchantReference = $object->merchantReference;
         }
         if (property_exists($object, 'partialRedirectUrl')) {
             $this->partialRedirectUrl = $object->partialRedirectUrl;

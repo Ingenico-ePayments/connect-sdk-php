@@ -21,6 +21,11 @@ class PaymentProductFieldDisplayElement extends DataObject
     /**
      * @var string
      */
+    public $label = null;
+
+    /**
+     * @var string
+     */
     public $type = null;
 
     /**
@@ -38,6 +43,9 @@ class PaymentProductFieldDisplayElement extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'id')) {
             $this->id = $object->id;
+        }
+        if (property_exists($object, 'label')) {
+            $this->label = $object->label;
         }
         if (property_exists($object, 'type')) {
             $this->type = $object->type;

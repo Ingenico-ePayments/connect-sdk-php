@@ -26,7 +26,22 @@ class AirlineFlightLeg extends DataObject
     /**
      * @var string
      */
+    public $arrivalTime = null;
+
+    /**
+     * @var string
+     */
     public $carrierCode = null;
+
+    /**
+     * @var string
+     */
+    public $conjunctionTicket = null;
+
+    /**
+     * @var string
+     */
+    public $couponNumber = null;
 
     /**
      * @var string
@@ -41,12 +56,27 @@ class AirlineFlightLeg extends DataObject
     /**
      * @var string
      */
+    public $endorsementOrRestriction = null;
+
+    /**
+     * @var string
+     */
+    public $exchangeTicket = null;
+
+    /**
+     * @var string
+     */
     public $fare = null;
 
     /**
      * @var string
      */
     public $fareBasis = null;
+
+    /**
+     * @var int
+     */
+    public $fee = null;
 
     /**
      * @var string
@@ -66,12 +96,23 @@ class AirlineFlightLeg extends DataObject
     /**
      * @var string
      */
+    public $passengerClass = null;
+
+    /**
+     * @var string
+     * @deprecated Use passengerClass instead
+     */
     public $serviceClass = null;
 
     /**
      * @var string
      */
     public $stopoverCode = null;
+
+    /**
+     * @var int
+     */
+    public $taxes = null;
 
     /**
      * @param object $object
@@ -87,8 +128,17 @@ class AirlineFlightLeg extends DataObject
         if (property_exists($object, 'arrivalAirport')) {
             $this->arrivalAirport = $object->arrivalAirport;
         }
+        if (property_exists($object, 'arrivalTime')) {
+            $this->arrivalTime = $object->arrivalTime;
+        }
         if (property_exists($object, 'carrierCode')) {
             $this->carrierCode = $object->carrierCode;
+        }
+        if (property_exists($object, 'conjunctionTicket')) {
+            $this->conjunctionTicket = $object->conjunctionTicket;
+        }
+        if (property_exists($object, 'couponNumber')) {
+            $this->couponNumber = $object->couponNumber;
         }
         if (property_exists($object, 'date')) {
             $this->date = $object->date;
@@ -96,11 +146,20 @@ class AirlineFlightLeg extends DataObject
         if (property_exists($object, 'departureTime')) {
             $this->departureTime = $object->departureTime;
         }
+        if (property_exists($object, 'endorsementOrRestriction')) {
+            $this->endorsementOrRestriction = $object->endorsementOrRestriction;
+        }
+        if (property_exists($object, 'exchangeTicket')) {
+            $this->exchangeTicket = $object->exchangeTicket;
+        }
         if (property_exists($object, 'fare')) {
             $this->fare = $object->fare;
         }
         if (property_exists($object, 'fareBasis')) {
             $this->fareBasis = $object->fareBasis;
+        }
+        if (property_exists($object, 'fee')) {
+            $this->fee = $object->fee;
         }
         if (property_exists($object, 'flightNumber')) {
             $this->flightNumber = $object->flightNumber;
@@ -111,11 +170,17 @@ class AirlineFlightLeg extends DataObject
         if (property_exists($object, 'originAirport')) {
             $this->originAirport = $object->originAirport;
         }
+        if (property_exists($object, 'passengerClass')) {
+            $this->passengerClass = $object->passengerClass;
+        }
         if (property_exists($object, 'serviceClass')) {
             $this->serviceClass = $object->serviceClass;
         }
         if (property_exists($object, 'stopoverCode')) {
             $this->stopoverCode = $object->stopoverCode;
+        }
+        if (property_exists($object, 'taxes')) {
+            $this->taxes = $object->taxes;
         }
         return $this;
     }
