@@ -45,7 +45,7 @@ class Riskassessments extends Resource
     public function bankaccounts($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/bankaccounts'),
@@ -76,7 +76,7 @@ class Riskassessments extends Resource
     public function cards($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/cards'),

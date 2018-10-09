@@ -45,7 +45,7 @@ class Hostedmandatemanagements extends Resource
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Hostedmandatemanagement\CreateHostedMandateManagementResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Hostedmandatemanagement\CreateHostedMandateManagementResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/hostedmandatemanagements'),
@@ -77,7 +77,7 @@ class Hostedmandatemanagements extends Resource
     {
         $this->context['hostedMandateManagementId'] = $hostedMandateManagementId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Hostedmandatemanagement\GetHostedMandateManagementResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Hostedmandatemanagement\GetHostedMandateManagementResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}'),

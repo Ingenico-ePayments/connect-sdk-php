@@ -49,7 +49,7 @@ class Services extends Resource
     public function convertAmount($query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\ConvertAmount');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\ConvertAmount';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/amount'),
@@ -79,7 +79,7 @@ class Services extends Resource
     public function bankaccount($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\BankDetailsResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\BankDetailsResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/bankaccount'),
@@ -110,7 +110,7 @@ class Services extends Resource
     public function getIINdetails($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/services/getIINdetails'),
@@ -140,7 +140,7 @@ class Services extends Resource
     public function testconnection(CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Services\TestConnection');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\TestConnection';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/services/testconnection'),

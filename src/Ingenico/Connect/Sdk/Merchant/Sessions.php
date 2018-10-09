@@ -44,7 +44,7 @@ class Sessions extends Resource
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Sessions\SessionResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Sessions\SessionResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/sessions'),

@@ -44,7 +44,7 @@ class Captures extends Resource
     {
         $this->context['captureId'] = $captureId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/captures/{captureId}'),

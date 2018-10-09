@@ -8,6 +8,12 @@ namespace Ingenico\Connect\Sdk;
  */
 class ResponseClassMap
 {
+    /** @var string */
+    public $defaultSuccessResponseClassName = '';
+
+    /** @var string */
+    public $defaultErrorResponseClassName = '';
+
     /** @var string[]  */
     protected $responseClassNamesByHttpStatusCode = array();
 
@@ -31,6 +37,9 @@ class ResponseClassMap
         if (array_key_exists($httpStatusCode, $this->responseClassNamesByHttpStatusCode)) {
             return $this->responseClassNamesByHttpStatusCode[$httpStatusCode];
         }
-        return '';
+        if ($httpStatusCode < 400) {
+            return $this->defaultSuccessResponseClassName;
+        }
+        return $this->defaultErrorResponseClassName;
     }
 }

@@ -24,6 +24,11 @@ class PaymentStatusOutput extends OrderStatusOutput
     public $isRefundable = null;
 
     /**
+     * @var string
+     */
+    public $threeDSecureStatus = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -36,6 +41,9 @@ class PaymentStatusOutput extends OrderStatusOutput
         }
         if (property_exists($object, 'isRefundable')) {
             $this->isRefundable = $object->isRefundable;
+        }
+        if (property_exists($object, 'threeDSecureStatus')) {
+            $this->threeDSecureStatus = $object->threeDSecureStatus;
         }
         return $this;
     }

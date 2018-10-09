@@ -65,12 +65,8 @@ class Payments extends Resource
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse');
-        $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(402, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(403, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(502, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
-        $responseClassMap->addResponseClassName(503, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse';
+        $responseClassMap->defaultErrorResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
@@ -101,7 +97,7 @@ class Payments extends Resource
     public function find($query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments'),
@@ -132,7 +128,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}'),
@@ -164,7 +160,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/complete'),
@@ -196,7 +192,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\ThirdPartyStatusResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\ThirdPartyStatusResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/thirdpartystatus'),
@@ -228,8 +224,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/tokenize'),
@@ -261,7 +256,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/processchallenged'),
@@ -294,7 +289,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/approve'),
@@ -327,7 +322,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/capture'),
@@ -359,7 +354,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancelapproval'),
@@ -391,7 +386,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/captures'),
@@ -424,9 +419,8 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse');
-        $responseClassMap->addResponseClassName(400, '\Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse');
-        $responseClassMap->addResponseClassName(404, '\Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse';
+        $responseClassMap->defaultErrorResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/refund'),
@@ -458,7 +452,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\RefundsResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\RefundsResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/refunds'),
@@ -489,7 +483,7 @@ class Payments extends Resource
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancel'),

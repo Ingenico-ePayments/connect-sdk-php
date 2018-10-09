@@ -46,7 +46,7 @@ class Refunds extends Resource
     public function find($query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\FindRefundsResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\FindRefundsResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/refunds'),
@@ -77,7 +77,7 @@ class Refunds extends Resource
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}'),
@@ -109,7 +109,6 @@ class Refunds extends Resource
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/approve'),
@@ -141,7 +140,6 @@ class Refunds extends Resource
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancel'),
@@ -173,7 +171,6 @@ class Refunds extends Resource
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancelapproval'),

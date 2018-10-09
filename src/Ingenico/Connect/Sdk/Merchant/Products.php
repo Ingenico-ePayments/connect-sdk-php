@@ -55,7 +55,7 @@ class Products extends Resource
     public function find($query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\PaymentProducts');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProducts';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products'),
@@ -87,7 +87,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}'),
@@ -119,7 +119,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\Directory');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\Directory';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/directory'),
@@ -151,7 +151,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails'),
@@ -184,7 +184,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/deviceFingerprint'),
@@ -217,7 +217,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductNetworksResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductNetworksResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/networks'),
@@ -248,7 +248,7 @@ class Products extends Resource
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Publickey\PublicKey');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Publickey\PublicKey';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/publicKey'),

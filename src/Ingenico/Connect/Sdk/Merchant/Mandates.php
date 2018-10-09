@@ -45,7 +45,7 @@ class Mandates extends Resource
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Mandates\CreateMandateResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\CreateMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates'),
@@ -78,7 +78,7 @@ class Mandates extends Resource
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Mandates\CreateMandateResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\CreateMandateResponse';
         return $this->getCommunicator()->put(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
@@ -110,7 +110,7 @@ class Mandates extends Resource
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
@@ -141,7 +141,7 @@ class Mandates extends Resource
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/block'),
@@ -173,7 +173,7 @@ class Mandates extends Resource
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/unblock'),
@@ -205,7 +205,7 @@ class Mandates extends Resource
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/revoke'),

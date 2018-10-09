@@ -48,8 +48,7 @@ class Tokens extends Resource
     public function create($body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
-        $responseClassMap->addResponseClassName(201, '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens'),
@@ -81,7 +80,7 @@ class Tokens extends Resource
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(200, '\Ingenico\Connect\Sdk\Domain\Token\TokenResponse');
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Token\TokenResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
@@ -113,7 +112,6 @@ class Tokens extends Resource
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->put(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
@@ -146,7 +144,6 @@ class Tokens extends Resource
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->delete(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
@@ -178,7 +175,6 @@ class Tokens extends Resource
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->addResponseClassName(204, '');
         return $this->getCommunicator()->post(
             $responseClassMap,
             $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
