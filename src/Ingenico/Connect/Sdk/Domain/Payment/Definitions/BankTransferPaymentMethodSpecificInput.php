@@ -10,7 +10,7 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class BankTransferPaymentMethodSpecificInput extends BankTransferPaymentMethodSpecificInputBase
+class BankTransferPaymentMethodSpecificInput extends AbstractBankTransferPaymentMethodSpecificInput
 {
     /**
      * @param object $object

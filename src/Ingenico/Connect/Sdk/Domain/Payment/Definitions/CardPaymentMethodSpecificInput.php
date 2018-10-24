@@ -11,7 +11,7 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class CardPaymentMethodSpecificInput extends CardPaymentMethodSpecificInputBase
+class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificInput
 {
     /**
      * @var Card

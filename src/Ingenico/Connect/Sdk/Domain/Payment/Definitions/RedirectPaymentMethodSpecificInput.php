@@ -10,7 +10,7 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectPaymentMethodSpecificInput extends RedirectPaymentMethodSpecificInputBase
+class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSpecificInput
 {
     /**
      * @var bool
@@ -31,6 +31,11 @@ class RedirectPaymentMethodSpecificInput extends RedirectPaymentMethodSpecificIn
      * @var RedirectPaymentProduct840SpecificInput
      */
     public $paymentProduct840SpecificInput = null;
+
+    /**
+     * @var RedirectPaymentProduct863SpecificInput
+     */
+    public $paymentProduct863SpecificInput = null;
 
     /**
      * @var RedirectPaymentProduct882SpecificInput
@@ -73,6 +78,13 @@ class RedirectPaymentMethodSpecificInput extends RedirectPaymentMethodSpecificIn
             }
             $value = new RedirectPaymentProduct840SpecificInput();
             $this->paymentProduct840SpecificInput = $value->fromObject($object->paymentProduct840SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct863SpecificInput')) {
+            if (!is_object($object->paymentProduct863SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct863SpecificInput, true) . '\' is not an object');
+            }
+            $value = new RedirectPaymentProduct863SpecificInput();
+            $this->paymentProduct863SpecificInput = $value->fromObject($object->paymentProduct863SpecificInput);
         }
         if (property_exists($object, 'paymentProduct882SpecificInput')) {
             if (!is_object($object->paymentProduct882SpecificInput)) {

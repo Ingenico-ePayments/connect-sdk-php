@@ -5,13 +5,19 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
+use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class EInvoicePaymentMethodSpecificInputBase extends AbstractEInvoicePaymentMethodSpecificInput
+class RedirectPaymentProduct863SpecificInput extends DataObject
 {
+    /**
+     * @var string
+     */
+    public $integrationType = null;
+
     /**
      * @param object $object
      * @return $this
@@ -20,6 +26,9 @@ class EInvoicePaymentMethodSpecificInputBase extends AbstractEInvoicePaymentMeth
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'integrationType')) {
+            $this->integrationType = $object->integrationType;
+        }
         return $this;
     }
 }

@@ -10,7 +10,7 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class EInvoicePaymentMethodSpecificInput extends EInvoicePaymentMethodSpecificInputBase
+class EInvoicePaymentMethodSpecificInput extends AbstractEInvoicePaymentMethodSpecificInput
 {
     /**
      * @var bool

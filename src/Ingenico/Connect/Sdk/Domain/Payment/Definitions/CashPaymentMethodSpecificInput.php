@@ -10,7 +10,7 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class CashPaymentMethodSpecificInput extends CashPaymentMethodSpecificInputBase
+class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificInput
 {
     /**
      * @var CashPaymentProduct1503SpecificInput
