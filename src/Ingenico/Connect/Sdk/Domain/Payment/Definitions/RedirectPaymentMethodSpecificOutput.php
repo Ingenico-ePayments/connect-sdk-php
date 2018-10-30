@@ -25,6 +25,11 @@ class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
     public $fraudResults = null;
 
     /**
+     * @var PaymentProduct3201SpecificOutput
+     */
+    public $paymentProduct3201SpecificOutput = null;
+
+    /**
      * @var PaymentProduct836SpecificOutput
      */
     public $paymentProduct836SpecificOutput = null;
@@ -60,6 +65,13 @@ class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
             }
             $value = new FraudResults();
             $this->fraudResults = $value->fromObject($object->fraudResults);
+        }
+        if (property_exists($object, 'paymentProduct3201SpecificOutput')) {
+            if (!is_object($object->paymentProduct3201SpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct3201SpecificOutput, true) . '\' is not an object');
+            }
+            $value = new PaymentProduct3201SpecificOutput();
+            $this->paymentProduct3201SpecificOutput = $value->fromObject($object->paymentProduct3201SpecificOutput);
         }
         if (property_exists($object, 'paymentProduct836SpecificOutput')) {
             if (!is_object($object->paymentProduct836SpecificOutput)) {
