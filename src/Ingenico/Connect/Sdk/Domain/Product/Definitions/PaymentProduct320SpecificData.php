@@ -14,6 +14,11 @@ use UnexpectedValueException;
 class PaymentProduct320SpecificData extends DataObject
 {
     /**
+     * @var string
+     */
+    public $gateway = null;
+
+    /**
      * @var string[]
      */
     public $networks = null;
@@ -26,6 +31,9 @@ class PaymentProduct320SpecificData extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'gateway')) {
+            $this->gateway = $object->gateway;
+        }
         if (property_exists($object, 'networks')) {
             if (!is_array($object->networks) && !is_object($object->networks)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->networks, true) . '\' is not an array or object');

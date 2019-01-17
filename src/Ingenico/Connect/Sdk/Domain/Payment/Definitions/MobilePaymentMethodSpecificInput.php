@@ -29,11 +29,6 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
     public $encryptedPaymentData = null;
 
     /**
-     * @var MobilePaymentProduct320SpecificInput
-     */
-    public $paymentProduct320SpecificInput = null;
-
-    /**
      * @var bool
      */
     public $requiresApproval = null;
@@ -42,11 +37,6 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
      * @var bool
      */
     public $skipFraudService = null;
-
-    /**
-     * @var string
-     */
-    public $transactionId = null;
 
     /**
      * @param object $object
@@ -69,21 +59,11 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
         if (property_exists($object, 'encryptedPaymentData')) {
             $this->encryptedPaymentData = $object->encryptedPaymentData;
         }
-        if (property_exists($object, 'paymentProduct320SpecificInput')) {
-            if (!is_object($object->paymentProduct320SpecificInput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct320SpecificInput, true) . '\' is not an object');
-            }
-            $value = new MobilePaymentProduct320SpecificInput();
-            $this->paymentProduct320SpecificInput = $value->fromObject($object->paymentProduct320SpecificInput);
-        }
         if (property_exists($object, 'requiresApproval')) {
             $this->requiresApproval = $object->requiresApproval;
         }
         if (property_exists($object, 'skipFraudService')) {
             $this->skipFraudService = $object->skipFraudService;
-        }
-        if (property_exists($object, 'transactionId')) {
-            $this->transactionId = $object->transactionId;
         }
         return $this;
     }

@@ -8,6 +8,7 @@ namespace Ingenico\Connect\Sdk\Domain\Hostedcheckout;
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\FraudFields;
 use Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\HostedCheckoutSpecificInput;
+use Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\MobilePaymentMethodSpecificInputHostedCheckout;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificInputBase;
@@ -51,6 +52,11 @@ class CreateHostedCheckoutRequest extends DataObject
      * @var HostedCheckoutSpecificInput
      */
     public $hostedCheckoutSpecificInput = null;
+
+    /**
+     * @var MobilePaymentMethodSpecificInputHostedCheckout
+     */
+    public $mobilePaymentMethodSpecificInput = null;
 
     /**
      * @var Order
@@ -116,6 +122,13 @@ class CreateHostedCheckoutRequest extends DataObject
             }
             $value = new HostedCheckoutSpecificInput();
             $this->hostedCheckoutSpecificInput = $value->fromObject($object->hostedCheckoutSpecificInput);
+        }
+        if (property_exists($object, 'mobilePaymentMethodSpecificInput')) {
+            if (!is_object($object->mobilePaymentMethodSpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->mobilePaymentMethodSpecificInput, true) . '\' is not an object');
+            }
+            $value = new MobilePaymentMethodSpecificInputHostedCheckout();
+            $this->mobilePaymentMethodSpecificInput = $value->fromObject($object->mobilePaymentMethodSpecificInput);
         }
         if (property_exists($object, 'order')) {
             if (!is_object($object->order)) {

@@ -69,6 +69,11 @@ class PaymentProduct extends DataObject
     public $id = null;
 
     /**
+     * @var bool
+     */
+    public $isJavaScriptRequired = null;
+
+    /**
      * @var int
      */
     public $maxAmount = null;
@@ -175,6 +180,9 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'id')) {
             $this->id = $object->id;
+        }
+        if (property_exists($object, 'isJavaScriptRequired')) {
+            $this->isJavaScriptRequired = $object->isJavaScriptRequired;
         }
         if (property_exists($object, 'maxAmount')) {
             $this->maxAmount = $object->maxAmount;

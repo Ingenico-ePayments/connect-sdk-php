@@ -32,6 +32,7 @@ class CreatedPaymentOutput extends DataObject
 
     /**
      * @var string
+     * @deprecated Use payment.statusOutput.statusCategory instead
      */
     public $paymentStatusCategory = null;
 

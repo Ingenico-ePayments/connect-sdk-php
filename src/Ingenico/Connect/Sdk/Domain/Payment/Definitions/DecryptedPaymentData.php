@@ -39,6 +39,16 @@ class DecryptedPaymentData extends DataObject
     public $expiryDate = null;
 
     /**
+     * @var string
+     */
+    public $pan = null;
+
+    /**
+     * @var string
+     */
+    public $paymentMethod = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -60,6 +70,12 @@ class DecryptedPaymentData extends DataObject
         }
         if (property_exists($object, 'expiryDate')) {
             $this->expiryDate = $object->expiryDate;
+        }
+        if (property_exists($object, 'pan')) {
+            $this->pan = $object->pan;
+        }
+        if (property_exists($object, 'paymentMethod')) {
+            $this->paymentMethod = $object->paymentMethod;
         }
         return $this;
     }

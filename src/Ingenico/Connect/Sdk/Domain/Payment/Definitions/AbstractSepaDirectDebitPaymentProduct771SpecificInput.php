@@ -15,6 +15,7 @@ class AbstractSepaDirectDebitPaymentProduct771SpecificInput extends DataObject
 {
     /**
      * @var string
+     * @deprecated Use existingUniqueMandateReference instead
      */
     public $mandateReference = null;
 
