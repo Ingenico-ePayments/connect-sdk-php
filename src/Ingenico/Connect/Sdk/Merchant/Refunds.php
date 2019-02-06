@@ -22,13 +22,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Refunds client.
- * Create, cancel and approve refunds
  */
 class Refunds extends Resource
 {
     /**
-     * Resource /{merchantId}/refunds
-     * Find refunds
+     * Resource /{merchantId}/refunds - Find refunds
      *
      * @param FindRefundsParams $query
      * @param CallContext $callContext
@@ -57,8 +55,7 @@ class Refunds extends Resource
     }
 
     /**
-     * Resource /{merchantId}/refunds/{refundId}
-     * Get refund
+     * Resource /{merchantId}/refunds/{refundId} - Get refund
      *
      * @param string $refundId
      * @param CallContext $callContext
@@ -88,8 +85,7 @@ class Refunds extends Resource
     }
 
     /**
-     * Resource /{merchantId}/refunds/{refundId}/approve
-     * Approve refund
+     * Resource /{merchantId}/refunds/{refundId}/approve - Approve refund
      *
      * @param string $refundId
      * @param ApproveRefundRequest $body
@@ -120,8 +116,7 @@ class Refunds extends Resource
     }
 
     /**
-     * Resource /{merchantId}/refunds/{refundId}/cancel
-     * Cancel refund
+     * Resource /{merchantId}/refunds/{refundId}/cancel - Cancel refund
      *
      * @param string $refundId
      * @param CallContext $callContext
@@ -151,8 +146,7 @@ class Refunds extends Resource
     }
 
     /**
-     * Resource /{merchantId}/refunds/{refundId}/cancelapproval
-     * Undo approve refund
+     * Resource /{merchantId}/refunds/{refundId}/cancelapproval - Undo approve refund
      *
      * @param string $refundId
      * @param CallContext $callContext

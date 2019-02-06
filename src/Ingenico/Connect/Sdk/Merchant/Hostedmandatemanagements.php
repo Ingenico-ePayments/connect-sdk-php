@@ -21,13 +21,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Hosted Mandate Management client.
- * Create new hosted mandate management
  */
 class Hostedmandatemanagements extends Resource
 {
     /**
-     * Resource /{merchantId}/hostedmandatemanagements
-     * Create hosted mandate management
+     * Resource /{merchantId}/hostedmandatemanagements - Create hosted mandate management
      *
      * @param CreateHostedMandateManagementRequest $body
      * @param CallContext $callContext
@@ -57,8 +55,7 @@ class Hostedmandatemanagements extends Resource
     }
 
     /**
-     * Resource /{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}
-     * Get hosted mandate management status
+     * Resource /{merchantId}/hostedmandatemanagements/{hostedMandateManagementId} - Get hosted mandate management status
      *
      * @param string $hostedMandateManagementId
      * @param CallContext $callContext

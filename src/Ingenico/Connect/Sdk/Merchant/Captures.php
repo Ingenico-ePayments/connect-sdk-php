@@ -19,13 +19,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Captures client.
- * Get capture
  */
 class Captures extends Resource
 {
     /**
-     * Resource /{merchantId}/captures/{captureId}
-     * Get capture
+     * Resource /{merchantId}/captures/{captureId} - Get capture
      *
      * @param string $captureId
      * @param CallContext $callContext

@@ -13,6 +13,11 @@ use UnexpectedValueException;
 class RedirectPaymentMethodSpecificInputBase extends AbstractRedirectPaymentMethodSpecificInput
 {
     /**
+     * @var RedirectPaymentProduct840SpecificInputBase
+     */
+    public $paymentProduct840SpecificInput = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -20,6 +25,13 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractRedirectPaymentMeth
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'paymentProduct840SpecificInput')) {
+            if (!is_object($object->paymentProduct840SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct840SpecificInput, true) . '\' is not an object');
+            }
+            $value = new RedirectPaymentProduct840SpecificInputBase();
+            $this->paymentProduct840SpecificInput = $value->fromObject($object->paymentProduct840SpecificInput);
+        }
         return $this;
     }
 }

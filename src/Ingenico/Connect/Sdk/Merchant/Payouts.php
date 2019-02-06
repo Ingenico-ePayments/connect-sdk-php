@@ -24,13 +24,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Payouts client.
- * Create, cancel and approve payouts
  */
 class Payouts extends Resource
 {
     /**
-     * Resource /{merchantId}/payouts
-     * Create payout
+     * Resource /{merchantId}/payouts - Create payout
      *
      * @param CreatePayoutRequest $body
      * @param CallContext $callContext
@@ -62,8 +60,7 @@ class Payouts extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payouts
-     * Find payouts
+     * Resource /{merchantId}/payouts - Find payouts
      *
      * @param FindPayoutsParams $query
      * @param CallContext $callContext
@@ -92,8 +89,7 @@ class Payouts extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payouts/{payoutId}
-     * Get payout
+     * Resource /{merchantId}/payouts/{payoutId} - Get payout
      *
      * @param string $payoutId
      * @param CallContext $callContext
@@ -123,8 +119,7 @@ class Payouts extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payouts/{payoutId}/approve
-     * Approve payout
+     * Resource /{merchantId}/payouts/{payoutId}/approve - Approve payout
      *
      * @param string $payoutId
      * @param ApprovePayoutRequest $body
@@ -156,8 +151,7 @@ class Payouts extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payouts/{payoutId}/cancel
-     * Cancel payout
+     * Resource /{merchantId}/payouts/{payoutId}/cancel - Cancel payout
      *
      * @param string $payoutId
      * @param CallContext $callContext
@@ -187,8 +181,7 @@ class Payouts extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payouts/{payoutId}/cancelapproval
-     * Undo approve payout
+     * Resource /{merchantId}/payouts/{payoutId}/cancelapproval - Undo approve payout
      *
      * @param string $payoutId
      * @param CallContext $callContext

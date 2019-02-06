@@ -24,13 +24,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Product Groups client.
- * Get information about payment product groups
  */
 class Productgroups extends Resource
 {
     /**
-     * Resource /{merchantId}/productgroups
-     * Get payment product groups
+     * Resource /{merchantId}/productgroups - Get payment product groups
      *
      * @param FindProductgroupsParams $query
      * @param CallContext $callContext
@@ -59,8 +57,7 @@ class Productgroups extends Resource
     }
 
     /**
-     * Resource /{merchantId}/productgroups/{paymentProductGroupId}
-     * Get payment product group
+     * Resource /{merchantId}/productgroups/{paymentProductGroupId} - Get payment product group
      *
      * @param string $paymentProductGroupId
      * @param GetProductgroupParams $query
@@ -91,8 +88,7 @@ class Productgroups extends Resource
     }
 
     /**
-     * Resource /{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint
-     * Get device fingerprint
+     * Resource /{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint - Get device fingerprint
      *
      * @param string $paymentProductGroupId
      * @param DeviceFingerprintRequest $body

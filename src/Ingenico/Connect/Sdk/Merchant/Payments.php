@@ -12,6 +12,9 @@ use Ingenico\Connect\Sdk\DeclinedPaymentException;
 use Ingenico\Connect\Sdk\DeclinedRefundException;
 use Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse;
 use Ingenico\Connect\Sdk\Domain\Capture\CapturesResponse;
+use Ingenico\Connect\Sdk\Domain\Dispute\CreateDisputeRequest;
+use Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse;
+use Ingenico\Connect\Sdk\Domain\Dispute\DisputesResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\ApprovePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelApprovalPaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CancelPaymentResponse;
@@ -40,13 +43,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Payments client.
- * Create, cancel and approve payments
  */
 class Payments extends Resource
 {
     /**
-     * Resource /{merchantId}/payments
-     * Create payment
+     * Resource /{merchantId}/payments - Create payment
      *
      * @param CreatePaymentRequest $body
      * @param CallContext $callContext
@@ -78,8 +79,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments
-     * Find payments
+     * Resource /{merchantId}/payments - Find payments
      *
      * @param FindPaymentsParams $query
      * @param CallContext $callContext
@@ -108,8 +108,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}
-     * Get payment
+     * Resource /{merchantId}/payments/{paymentId} - Get payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -139,8 +138,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/complete
-     * Complete payment
+     * Resource /{merchantId}/payments/{paymentId}/complete - Complete payment
      *
      * @param string $paymentId
      * @param CompletePaymentRequest $body
@@ -172,8 +170,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/thirdpartystatus
-     * Third party status poll
+     * Resource /{merchantId}/payments/{paymentId}/thirdpartystatus - Third party status poll
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -203,8 +200,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/tokenize
-     * Create a token from payment
+     * Resource /{merchantId}/payments/{paymentId}/tokenize - Create a token from payment
      *
      * @param string $paymentId
      * @param TokenizePaymentRequest $body
@@ -236,8 +232,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/processchallenged
-     * Approves challenged payment
+     * Resource /{merchantId}/payments/{paymentId}/processchallenged - Approves challenged payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -268,8 +263,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/approve
-     * Approve payment
+     * Resource /{merchantId}/payments/{paymentId}/approve - Approve payment
      *
      * @param string $paymentId
      * @param ApprovePaymentRequest $body
@@ -301,8 +295,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/capture
-     * Capture payment
+     * Resource /{merchantId}/payments/{paymentId}/capture - Capture payment
      *
      * @param string $paymentId
      * @param CapturePaymentRequest $body
@@ -334,8 +327,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/cancelapproval
-     * Undo capture payment
+     * Resource /{merchantId}/payments/{paymentId}/cancelapproval - Undo capture payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -366,8 +358,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/captures
-     * Get captures of payment
+     * Resource /{merchantId}/payments/{paymentId}/captures - Get captures of payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -397,8 +388,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/refund
-     * Create refund
+     * Resource /{merchantId}/payments/{paymentId}/refund - Create refund
      *
      * @param string $paymentId
      * @param RefundRequest $body
@@ -432,8 +422,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/refunds
-     * Get refunds of payment
+     * Resource /{merchantId}/payments/{paymentId}/refunds - Get refunds of payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -463,8 +452,7 @@ class Payments extends Resource
     }
 
     /**
-     * Resource /{merchantId}/payments/{paymentId}/cancel
-     * Cancel payment
+     * Resource /{merchantId}/payments/{paymentId}/cancel - Cancel payment
      *
      * @param string $paymentId
      * @param CallContext $callContext
@@ -489,6 +477,68 @@ class Payments extends Resource
             $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/cancel'),
             $this->getClientMetaInfo(),
             null,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/dispute - Create dispute
+     *
+     * @param string $paymentId
+     * @param CreateDisputeRequest $body
+     * @param CallContext $callContext
+     * @return DisputeResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/dispute.html Create dispute
+     */
+    public function dispute($paymentId, $body, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse';
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/dispute'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/disputes - Get disputes
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return DisputesResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/disputes.html Get disputes
+     */
+    public function disputes($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Dispute\DisputesResponse';
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/payments/{paymentId}/disputes'),
+            $this->getClientMetaInfo(),
             null,
             $callContext
         );

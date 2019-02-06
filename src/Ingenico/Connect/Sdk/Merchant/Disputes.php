@@ -8,9 +8,7 @@ namespace Ingenico\Connect\Sdk\Merchant;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentBankAccount;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentCard;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse;
+use Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
@@ -20,16 +18,16 @@ use Ingenico\Connect\Sdk\ResponseClassMap;
 use Ingenico\Connect\Sdk\ValidationException;
 
 /**
- * Risk assessments client.
+ * Disputes client.
  */
-class Riskassessments extends Resource
+class Disputes extends Resource
 {
     /**
-     * Resource /{merchantId}/riskassessments/bankaccounts - Risk-assess bankaccount
+     * Resource /{merchantId}/disputes/{disputeId} - Get dispute
      *
-     * @param RiskAssessmentBankAccount $body
+     * @param string $disputeId
      * @param CallContext $callContext
-     * @return RiskAssessmentResponse
+     * @return DisputeResponse
      *
      * @throws ValidationException
      * @throws AuthorizationException
@@ -38,28 +36,28 @@ class Riskassessments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/riskassessments/bankaccounts.html Risk-assess bankaccount
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/disputes/get.html Get dispute
      */
-    public function bankaccounts($body, CallContext $callContext = null)
+    public function get($disputeId, CallContext $callContext = null)
     {
+        $this->context['disputeId'] = $disputeId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse';
-        return $this->getCommunicator()->post(
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse';
+        return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/bankaccounts'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/disputes/{disputeId}'),
             $this->getClientMetaInfo(),
-            $body,
             null,
             $callContext
         );
     }
 
     /**
-     * Resource /{merchantId}/riskassessments/cards - Risk-assess card
+     * Resource /{merchantId}/disputes/{disputeId}/submit - Submit dispute
      *
-     * @param RiskAssessmentCard $body
+     * @param string $disputeId
      * @param CallContext $callContext
-     * @return RiskAssessmentResponse
+     * @return DisputeResponse
      *
      * @throws ValidationException
      * @throws AuthorizationException
@@ -68,17 +66,18 @@ class Riskassessments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/riskassessments/cards.html Risk-assess card
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/disputes/submit.html Submit dispute
      */
-    public function cards($body, CallContext $callContext = null)
+    public function submit($disputeId, CallContext $callContext = null)
     {
+        $this->context['disputeId'] = $disputeId;
         $responseClassMap = new ResponseClassMap();
-        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse';
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/cards'),
+            $this->instantiateUri('/{apiVersion}/{merchantId}/disputes/{disputeId}/submit'),
             $this->getClientMetaInfo(),
-            $body,
+            null,
             null,
             $callContext
         );

@@ -20,13 +20,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Sessions client.
- * Create new Session for Client2Server API calls
  */
 class Sessions extends Resource
 {
     /**
-     * Resource /{merchantId}/sessions
-     * Create session
+     * Resource /{merchantId}/sessions - Create session
      *
      * @param SessionRequest $body
      * @param CallContext $callContext

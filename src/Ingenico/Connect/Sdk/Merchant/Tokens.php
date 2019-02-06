@@ -24,13 +24,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Tokens client.
- * Create, delete and update tokens
  */
 class Tokens extends Resource
 {
     /**
-     * Resource /{merchantId}/tokens
-     * Create token
+     * Resource /{merchantId}/tokens - Create token
      *
      * @param CreateTokenRequest $body
      * @param CallContext $callContext
@@ -60,8 +58,7 @@ class Tokens extends Resource
     }
 
     /**
-     * Resource /{merchantId}/tokens/{tokenId}
-     * Get token
+     * Resource /{merchantId}/tokens/{tokenId} - Get token
      *
      * @param string $tokenId
      * @param CallContext $callContext
@@ -91,8 +88,7 @@ class Tokens extends Resource
     }
 
     /**
-     * Resource /{merchantId}/tokens/{tokenId}
-     * Update token
+     * Resource /{merchantId}/tokens/{tokenId} - Update token
      *
      * @param string $tokenId
      * @param UpdateTokenRequest $body
@@ -123,8 +119,7 @@ class Tokens extends Resource
     }
 
     /**
-     * Resource /{merchantId}/tokens/{tokenId}
-     * Delete token
+     * Resource /{merchantId}/tokens/{tokenId} - Delete token
      *
      * @param string $tokenId
      * @param DeleteTokenParams $query
@@ -154,8 +149,7 @@ class Tokens extends Resource
     }
 
     /**
-     * Resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit
-     * Approve SEPA DD mandate
+     * Resource /{merchantId}/tokens/{tokenId}/approvesepadirectdebit - Approve SEPA DD mandate
      *
      * @param string $tokenId
      * @param ApproveTokenRequest $body

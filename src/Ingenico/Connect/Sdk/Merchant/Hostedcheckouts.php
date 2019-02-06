@@ -21,13 +21,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Hosted Checkouts client.
- * Create new hosted checkout
  */
 class Hostedcheckouts extends Resource
 {
     /**
-     * Resource /{merchantId}/hostedcheckouts
-     * Create hosted checkout
+     * Resource /{merchantId}/hostedcheckouts - Create hosted checkout
      *
      * @param CreateHostedCheckoutRequest $body
      * @param CallContext $callContext
@@ -57,8 +55,7 @@ class Hostedcheckouts extends Resource
     }
 
     /**
-     * Resource /{merchantId}/hostedcheckouts/{hostedCheckoutId}
-     * Get hosted checkout status
+     * Resource /{merchantId}/hostedcheckouts/{hostedCheckoutId} - Get hosted checkout status
      *
      * @param string $hostedCheckoutId
      * @param CallContext $callContext

@@ -25,13 +25,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Services client.
- * Several services to help you
  */
 class Services extends Resource
 {
     /**
-     * Resource /{merchantId}/services/convert/amount
-     * Convert amount
+     * Resource /{merchantId}/services/convert/amount - Convert amount
      *
      * @param ConvertAmountParams $query
      * @param CallContext $callContext
@@ -60,8 +58,7 @@ class Services extends Resource
     }
 
     /**
-     * Resource /{merchantId}/services/convert/bankaccount
-     * Convert bankaccount
+     * Resource /{merchantId}/services/convert/bankaccount - Convert bankaccount
      *
      * @param BankDetailsRequest $body
      * @param CallContext $callContext
@@ -91,8 +88,7 @@ class Services extends Resource
     }
 
     /**
-     * Resource /{merchantId}/services/getIINdetails
-     * Get IIN details
+     * Resource /{merchantId}/services/getIINdetails - Get IIN details
      *
      * @param GetIINDetailsRequest $body
      * @param CallContext $callContext
@@ -122,8 +118,7 @@ class Services extends Resource
     }
 
     /**
-     * Resource /{merchantId}/services/testconnection
-     * Test connection
+     * Resource /{merchantId}/services/testconnection - Test connection
      *
      * @param CallContext $callContext
      * @return TestConnection

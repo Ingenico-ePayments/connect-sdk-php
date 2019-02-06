@@ -21,13 +21,11 @@ use Ingenico\Connect\Sdk\ValidationException;
 
 /**
  * Mandates client.
- * Create, get and update mandates
  */
 class Mandates extends Resource
 {
     /**
-     * Resource /{merchantId}/mandates
-     * Create mandate
+     * Resource /{merchantId}/mandates - Create mandate
      *
      * @param CreateMandateRequest $body
      * @param CallContext $callContext
@@ -57,8 +55,7 @@ class Mandates extends Resource
     }
 
     /**
-     * Resource /{merchantId}/mandates/{uniqueMandateReference}
-     * Create mandate with mandatereference
+     * Resource /{merchantId}/mandates/{uniqueMandateReference} - Create mandate with mandatereference
      *
      * @param string $uniqueMandateReference
      * @param CreateMandateRequest $body
@@ -90,8 +87,7 @@ class Mandates extends Resource
     }
 
     /**
-     * Resource /{merchantId}/mandates/{uniqueMandateReference}
-     * Get mandate
+     * Resource /{merchantId}/mandates/{uniqueMandateReference} - Get mandate
      *
      * @param string $uniqueMandateReference
      * @param CallContext $callContext
@@ -121,8 +117,7 @@ class Mandates extends Resource
     }
 
     /**
-     * Resource /{merchantId}/mandates/{uniqueMandateReference}/block
-     * Block mandate
+     * Resource /{merchantId}/mandates/{uniqueMandateReference}/block - Block mandate
      *
      * @param string $uniqueMandateReference
      * @param CallContext $callContext
@@ -153,8 +148,7 @@ class Mandates extends Resource
     }
 
     /**
-     * Resource /{merchantId}/mandates/{uniqueMandateReference}/unblock
-     * Unblock mandate
+     * Resource /{merchantId}/mandates/{uniqueMandateReference}/unblock - Unblock mandate
      *
      * @param string $uniqueMandateReference
      * @param CallContext $callContext
@@ -185,8 +179,7 @@ class Mandates extends Resource
     }
 
     /**
-     * Resource /{merchantId}/mandates/{uniqueMandateReference}/revoke
-     * Revoke mandate
+     * Resource /{merchantId}/mandates/{uniqueMandateReference}/revoke - Revoke mandate
      *
      * @param string $uniqueMandateReference
      * @param CallContext $callContext
