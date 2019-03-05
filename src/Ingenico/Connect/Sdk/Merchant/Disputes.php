@@ -82,4 +82,35 @@ class Disputes extends Resource
             $callContext
         );
     }
+
+    /**
+     * Resource /{merchantId}/disputes/{disputeId}/cancel - Cancel dispute
+     *
+     * @param string $disputeId
+     * @param CallContext $callContext
+     * @return DisputeResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/disputes/cancel.html Cancel dispute
+     */
+    public function cancel($disputeId, CallContext $callContext = null)
+    {
+        $this->context['disputeId'] = $disputeId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse';
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/disputes/{disputeId}/cancel'),
+            $this->getClientMetaInfo(),
+            null,
+            null,
+            $callContext
+        );
+    }
 }
