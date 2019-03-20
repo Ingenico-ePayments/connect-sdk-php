@@ -31,6 +31,11 @@ class PaymentProduct840CustomerAccount extends DataObject
     /**
      * @var string
      */
+    public $contactPhone = null;
+
+    /**
+     * @var string
+     */
     public $countryCode = null;
 
     /**
@@ -74,6 +79,9 @@ class PaymentProduct840CustomerAccount extends DataObject
         }
         if (property_exists($object, 'companyName')) {
             $this->companyName = $object->companyName;
+        }
+        if (property_exists($object, 'contactPhone')) {
+            $this->contactPhone = $object->contactPhone;
         }
         if (property_exists($object, 'countryCode')) {
             $this->countryCode = $object->countryCode;

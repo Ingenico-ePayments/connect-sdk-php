@@ -46,6 +46,11 @@ class Order extends DataObject
     public $seller = null;
 
     /**
+     * @var Shipping
+     */
+    public $shipping = null;
+
+    /**
      * @var ShoppingCart
      */
     public $shoppingCart = null;
@@ -102,6 +107,13 @@ class Order extends DataObject
             }
             $value = new Seller();
             $this->seller = $value->fromObject($object->seller);
+        }
+        if (property_exists($object, 'shipping')) {
+            if (!is_object($object->shipping)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->shipping, true) . '\' is not an object');
+            }
+            $value = new Shipping();
+            $this->shipping = $value->fromObject($object->shipping);
         }
         if (property_exists($object, 'shoppingCart')) {
             if (!is_object($object->shoppingCart)) {

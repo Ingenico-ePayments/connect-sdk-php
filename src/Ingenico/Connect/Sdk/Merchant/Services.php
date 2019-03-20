@@ -13,11 +13,13 @@ use Ingenico\Connect\Sdk\Domain\Services\BankDetailsResponse;
 use Ingenico\Connect\Sdk\Domain\Services\ConvertAmount;
 use Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsRequest;
 use Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsResponse;
+use Ingenico\Connect\Sdk\Domain\Services\GetPrivacyPolicyResponse;
 use Ingenico\Connect\Sdk\Domain\Services\TestConnection;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
 use Ingenico\Connect\Sdk\Merchant\Services\ConvertAmountParams;
+use Ingenico\Connect\Sdk\Merchant\Services\PrivacypolicyParams;
 use Ingenico\Connect\Sdk\ReferenceException;
 use Ingenico\Connect\Sdk\Resource;
 use Ingenico\Connect\Sdk\ResponseClassMap;
@@ -113,6 +115,35 @@ class Services extends Resource
             $this->getClientMetaInfo(),
             $body,
             null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/services/privacypolicy - Get privacy policy
+     *
+     * @param PrivacypolicyParams $query
+     * @param CallContext $callContext
+     * @return GetPrivacyPolicyResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/privacypolicy.html Get privacy policy
+     */
+    public function privacypolicy($query, CallContext $callContext = null)
+    {
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\GetPrivacyPolicyResponse';
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/{apiVersion}/{merchantId}/services/privacypolicy'),
+            $this->getClientMetaInfo(),
+            $query,
             $callContext
         );
     }
