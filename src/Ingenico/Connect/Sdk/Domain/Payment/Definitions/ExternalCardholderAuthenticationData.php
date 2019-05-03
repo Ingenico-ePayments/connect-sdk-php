@@ -24,9 +24,24 @@ class ExternalCardholderAuthenticationData extends DataObject
     public $cavvAlgorithm = null;
 
     /**
+     * @var string
+     */
+    public $directoryServerTransactionId = null;
+
+    /**
      * @var int
      */
     public $eci = null;
+
+    /**
+     * @var string
+     */
+    public $threeDSecureVersion = null;
+
+    /**
+     * @var string
+     */
+    public $threeDServerTransactionId = null;
 
     /**
      * @var string
@@ -52,8 +67,17 @@ class ExternalCardholderAuthenticationData extends DataObject
         if (property_exists($object, 'cavvAlgorithm')) {
             $this->cavvAlgorithm = $object->cavvAlgorithm;
         }
+        if (property_exists($object, 'directoryServerTransactionId')) {
+            $this->directoryServerTransactionId = $object->directoryServerTransactionId;
+        }
         if (property_exists($object, 'eci')) {
             $this->eci = $object->eci;
+        }
+        if (property_exists($object, 'threeDSecureVersion')) {
+            $this->threeDSecureVersion = $object->threeDSecureVersion;
+        }
+        if (property_exists($object, 'threeDServerTransactionId')) {
+            $this->threeDServerTransactionId = $object->threeDServerTransactionId;
         }
         if (property_exists($object, 'validationResult')) {
             $this->validationResult = $object->validationResult;

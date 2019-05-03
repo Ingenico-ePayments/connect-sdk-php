@@ -19,9 +19,29 @@ class ShoppingCart extends DataObject
     public $amountBreakdown = null;
 
     /**
+     * @var GiftCardPurchase
+     */
+    public $giftCardPurchase = null;
+
+    /**
+     * @var bool
+     */
+    public $isPreOrder = null;
+
+    /**
      * @var LineItem[]
      */
     public $items = null;
+
+    /**
+     * @var string
+     */
+    public $preOrderItemAvailabilityDate = null;
+
+    /**
+     * @var bool
+     */
+    public $reOrderIndicator = null;
 
     /**
      * @param object $object
@@ -41,6 +61,16 @@ class ShoppingCart extends DataObject
                 $this->amountBreakdown[] = $amountBreakdownElement->fromObject($amountBreakdownElementObject);
             }
         }
+        if (property_exists($object, 'giftCardPurchase')) {
+            if (!is_object($object->giftCardPurchase)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->giftCardPurchase, true) . '\' is not an object');
+            }
+            $value = new GiftCardPurchase();
+            $this->giftCardPurchase = $value->fromObject($object->giftCardPurchase);
+        }
+        if (property_exists($object, 'isPreOrder')) {
+            $this->isPreOrder = $object->isPreOrder;
+        }
         if (property_exists($object, 'items')) {
             if (!is_array($object->items) && !is_object($object->items)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->items, true) . '\' is not an array or object');
@@ -50,6 +80,12 @@ class ShoppingCart extends DataObject
                 $itemsElement = new LineItem();
                 $this->items[] = $itemsElement->fromObject($itemsElementObject);
             }
+        }
+        if (property_exists($object, 'preOrderItemAvailabilityDate')) {
+            $this->preOrderItemAvailabilityDate = $object->preOrderItemAvailabilityDate;
+        }
+        if (property_exists($object, 'reOrderIndicator')) {
+            $this->reOrderIndicator = $object->reOrderIndicator;
         }
         return $this;
     }

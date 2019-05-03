@@ -5,23 +5,23 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
+use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProduct840SpecificInput
+class PaymentAccountOnFile extends DataObject
 {
     /**
      * @var string
-     * @deprecated Use Order.references.descriptor instead
      */
-    public $custom = null;
+    public $createDate = null;
 
     /**
-     * @var bool
+     * @var int
      */
-    public $isShortcut = null;
+    public $numberOfCardOnFileCreationAttemptsLast24Hours = null;
 
     /**
      * @param object $object
@@ -31,11 +31,11 @@ class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProd
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'custom')) {
-            $this->custom = $object->custom;
+        if (property_exists($object, 'createDate')) {
+            $this->createDate = $object->createDate;
         }
-        if (property_exists($object, 'isShortcut')) {
-            $this->isShortcut = $object->isShortcut;
+        if (property_exists($object, 'numberOfCardOnFileCreationAttemptsLast24Hours')) {
+            $this->numberOfCardOnFileCreationAttemptsLast24Hours = $object->numberOfCardOnFileCreationAttemptsLast24Hours;
         }
         return $this;
     }

@@ -15,6 +15,7 @@ class FraudFields extends DataObject
 {
     /**
      * @var bool
+     * @deprecated For risk assessments there is no replacement. For other calls, use Order.shipping.addressIndicator instead
      */
     public $addressesAreIdentical = null;
 
@@ -25,6 +26,7 @@ class FraudFields extends DataObject
 
     /**
      * @var Address
+     * @deprecated This should be the same as Order.customer.billingAddress
      */
     public $cardOwnerAddress = null;
 
@@ -35,16 +37,19 @@ class FraudFields extends DataObject
 
     /**
      * @var string
+     * @deprecated Use Order.customer.device.defaultFormFill instead
      */
     public $defaultFormFill = null;
 
     /**
      * @var bool
+     * @deprecated No replacement
      */
     public $deviceFingerprintActivated = null;
 
     /**
      * @var string
+     * @deprecated Use Order.customer.device.deviceFingerprintTransactionId instead
      */
     public $deviceFingerprintTransactionId = null;
 
@@ -60,16 +65,19 @@ class FraudFields extends DataObject
 
     /**
      * @var bool
+     * @deprecated Use Order.customer.account.hasForgottenPassword instead
      */
     public $hasForgottenPwd = null;
 
     /**
      * @var bool
+     * @deprecated Use Order.customer.account.hasPassword instead
      */
     public $hasPassword = null;
 
     /**
      * @var bool
+     * @deprecated Use Order.customer.isPreviousCustomer instead
      */
     public $isPreviousCustomer = null;
 
@@ -80,16 +88,19 @@ class FraudFields extends DataObject
 
     /**
      * @var string
+     * @deprecated Use Order.shipping.comments instead
      */
     public $shipComments = null;
 
     /**
      * @var string
+     * @deprecated Use Order.shipping.trackingNumber instead
      */
     public $shipmentTrackingNumber = null;
 
     /**
      * @var FraudFieldsShippingDetails
+     * @deprecated No replacement
      */
     public $shippingDetails = null;
 
@@ -100,6 +111,7 @@ class FraudFields extends DataObject
 
     /**
      * @var string
+     * @deprecated Use Merchant.websiteUrl instead
      */
     public $website = null;
 

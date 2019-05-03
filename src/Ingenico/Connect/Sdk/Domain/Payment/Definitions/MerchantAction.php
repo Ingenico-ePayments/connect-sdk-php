@@ -26,6 +26,11 @@ class MerchantAction extends DataObject
     public $formFields = null;
 
     /**
+     * @var MobileThreeDSecureChallengeParameters
+     */
+    public $mobileThreeDSecureChallengeParameters = null;
+
+    /**
      * @var RedirectData
      */
     public $redirectData = null;
@@ -60,6 +65,13 @@ class MerchantAction extends DataObject
                 $formFieldsElement = new PaymentProductField();
                 $this->formFields[] = $formFieldsElement->fromObject($formFieldsElementObject);
             }
+        }
+        if (property_exists($object, 'mobileThreeDSecureChallengeParameters')) {
+            if (!is_object($object->mobileThreeDSecureChallengeParameters)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->mobileThreeDSecureChallengeParameters, true) . '\' is not an object');
+            }
+            $value = new MobileThreeDSecureChallengeParameters();
+            $this->mobileThreeDSecureChallengeParameters = $value->fromObject($object->mobileThreeDSecureChallengeParameters);
         }
         if (property_exists($object, 'redirectData')) {
             if (!is_object($object->redirectData)) {

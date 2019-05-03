@@ -5,23 +5,23 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
+use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProduct840SpecificInput
+class CustomerAccountAuthentication extends DataObject
 {
     /**
      * @var string
-     * @deprecated Use Order.references.descriptor instead
      */
-    public $custom = null;
+    public $method = null;
 
     /**
-     * @var bool
+     * @var string
      */
-    public $isShortcut = null;
+    public $utcTimestamp = null;
 
     /**
      * @param object $object
@@ -31,11 +31,11 @@ class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProd
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'custom')) {
-            $this->custom = $object->custom;
+        if (property_exists($object, 'method')) {
+            $this->method = $object->method;
         }
-        if (property_exists($object, 'isShortcut')) {
-            $this->isShortcut = $object->isShortcut;
+        if (property_exists($object, 'utcTimestamp')) {
+            $this->utcTimestamp = $object->utcTimestamp;
         }
         return $this;
     }

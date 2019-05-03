@@ -10,25 +10,25 @@ use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
- * @deprecated Use Order.shoppingCart instead
+ * @deprecated Use ShoppingCart.amountBreakdown instead
  */
 class Level3SummaryData extends DataObject
 {
     /**
      * @var int
-     * @deprecated Use ShoppingCart.amountbreakdown with type DISCOUNT instead
+     * @deprecated Use ShoppingCart.amountBreakdown with type DISCOUNT instead
      */
     public $discountAmount = null;
 
     /**
      * @var int
-     * @deprecated Use ShoppingCart.amountbreakdown with type DUTY instead
+     * @deprecated Use ShoppingCart.amountBreakdown with type DUTY instead
      */
     public $dutyAmount = null;
 
     /**
      * @var int
-     * @deprecated Use ShoppingCart.amountbreakdown with type SHIPPING instead
+     * @deprecated Use ShoppingCart.amountBreakdown with type SHIPPING instead
      */
     public $shippingAmount = null;
 

@@ -10,21 +10,25 @@ use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Definitions
+ * @deprecated No replacement
  */
 class FraudFieldsShippingDetails extends DataObject
 {
     /**
      * @var string
+     * @deprecated No replacement
      */
     public $methodDetails = null;
 
     /**
      * @var int
+     * @deprecated No replacement
      */
     public $methodSpeed = null;
 
     /**
      * @var int
+     * @deprecated No replacement
      */
     public $methodType = null;
 

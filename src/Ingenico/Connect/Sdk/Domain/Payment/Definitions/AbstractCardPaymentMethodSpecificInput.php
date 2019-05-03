@@ -24,7 +24,13 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
     public $customerReference = null;
 
     /**
+     * @var CardRecurrenceDetails
+     */
+    public $recurring = null;
+
+    /**
      * @var string
+     * @deprecated Use recurring.recurringPaymentSequenceIndicator instead
      */
     public $recurringPaymentSequenceIndicator = null;
 
@@ -35,6 +41,7 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
 
     /**
      * @var bool
+     * @deprecated Use threeDSecure.skipAuthentication instead
      */
     public $skipAuthentication = null;
 
@@ -60,6 +67,7 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
 
     /**
      * @var string
+     * @deprecated Use unscheduledCardOnFileSequenceIndicator instead
      */
     public $unscheduledCardOnFileIndicator = null;
 
@@ -67,6 +75,11 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
      * @var string
      */
     public $unscheduledCardOnFileRequestor = null;
+
+    /**
+     * @var string
+     */
+    public $unscheduledCardOnFileSequenceIndicator = null;
 
     /**
      * @param object $object
@@ -81,6 +94,13 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
         }
         if (property_exists($object, 'customerReference')) {
             $this->customerReference = $object->customerReference;
+        }
+        if (property_exists($object, 'recurring')) {
+            if (!is_object($object->recurring)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->recurring, true) . '\' is not an object');
+            }
+            $value = new CardRecurrenceDetails();
+            $this->recurring = $value->fromObject($object->recurring);
         }
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;
@@ -108,6 +128,9 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
         }
         if (property_exists($object, 'unscheduledCardOnFileRequestor')) {
             $this->unscheduledCardOnFileRequestor = $object->unscheduledCardOnFileRequestor;
+        }
+        if (property_exists($object, 'unscheduledCardOnFileSequenceIndicator')) {
+            $this->unscheduledCardOnFileSequenceIndicator = $object->unscheduledCardOnFileSequenceIndicator;
         }
         return $this;
     }

@@ -43,7 +43,13 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
     public $paymentProduct882SpecificInput = null;
 
     /**
+     * @var RedirectionData
+     */
+    public $redirectionData = null;
+
+    /**
      * @var string
+     * @deprecated Use redirectionData.returnUrl instead
      */
     public $returnUrl = null;
 
@@ -92,6 +98,13 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
             }
             $value = new RedirectPaymentProduct882SpecificInput();
             $this->paymentProduct882SpecificInput = $value->fromObject($object->paymentProduct882SpecificInput);
+        }
+        if (property_exists($object, 'redirectionData')) {
+            if (!is_object($object->redirectionData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->redirectionData, true) . '\' is not an object');
+            }
+            $value = new RedirectionData();
+            $this->redirectionData = $value->fromObject($object->redirectionData);
         }
         if (property_exists($object, 'returnUrl')) {
             $this->returnUrl = $object->returnUrl;

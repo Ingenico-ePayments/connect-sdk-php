@@ -31,7 +31,7 @@ class Order extends DataObject
 
     /**
      * @var LineItem[]
-     * @deprecated Use ShoppingCart.items instead
+     * @deprecated Use shoppingCart.items instead
      */
     public $items = null;
 
@@ -42,6 +42,7 @@ class Order extends DataObject
 
     /**
      * @var Seller
+     * @deprecated Use Merchant.seller instead
      */
     public $seller = null;
 

@@ -20,6 +20,7 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
 
     /**
      * @var ExternalCardholderAuthenticationData
+     * @deprecated Use threeDSecure.externalCardholderAuthenticationData instead
      */
     public $externalCardholderAuthenticationData = null;
 
@@ -30,8 +31,14 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
 
     /**
      * @var string
+     * @deprecated Use threeDSecure.redirectionData.returnUrl instead
      */
     public $returnUrl = null;
+
+    /**
+     * @var ThreeDSecure
+     */
+    public $threeDSecure = null;
 
     /**
      * @param object $object
@@ -60,6 +67,13 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
         }
         if (property_exists($object, 'returnUrl')) {
             $this->returnUrl = $object->returnUrl;
+        }
+        if (property_exists($object, 'threeDSecure')) {
+            if (!is_object($object->threeDSecure)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->threeDSecure, true) . '\' is not an object');
+            }
+            $value = new ThreeDSecure();
+            $this->threeDSecure = $value->fromObject($object->threeDSecure);
         }
         return $this;
     }

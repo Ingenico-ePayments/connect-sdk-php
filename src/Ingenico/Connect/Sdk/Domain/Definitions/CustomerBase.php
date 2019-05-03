@@ -25,6 +25,7 @@ class CustomerBase extends DataObject
 
     /**
      * @var string
+     * @deprecated Use companyInformation.vatNumber instead
      */
     public $vatNumber = null;
 

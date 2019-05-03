@@ -14,6 +14,7 @@ class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificIn
 {
     /**
      * @var CashPaymentProduct1503SpecificInput
+     * @deprecated No replacement
      */
     public $paymentProduct1503SpecificInput = null;
 

@@ -20,6 +20,11 @@ class OrderApprovePayment extends DataObject
     public $additionalInput = null;
 
     /**
+     * @var CustomerApprovePayment
+     */
+    public $customer = null;
+
+    /**
      * @var OrderReferencesApprovePayment
      */
     public $references = null;
@@ -38,6 +43,13 @@ class OrderApprovePayment extends DataObject
             }
             $value = new AdditionalOrderInputAirlineData();
             $this->additionalInput = $value->fromObject($object->additionalInput);
+        }
+        if (property_exists($object, 'customer')) {
+            if (!is_object($object->customer)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->customer, true) . '\' is not an object');
+            }
+            $value = new CustomerApprovePayment();
+            $this->customer = $value->fromObject($object->customer);
         }
         if (property_exists($object, 'references')) {
             if (!is_object($object->references)) {

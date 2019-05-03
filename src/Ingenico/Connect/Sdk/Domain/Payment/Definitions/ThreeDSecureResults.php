@@ -21,7 +21,32 @@ class ThreeDSecureResults extends DataObject
     /**
      * @var string
      */
+    public $directoryServerTransactionId = null;
+
+    /**
+     * @var string
+     */
     public $eci = null;
+
+    /**
+     * @var SdkDataOutput
+     */
+    public $sdkData = null;
+
+    /**
+     * @var ThreeDSecureData
+     */
+    public $threeDSecureData = null;
+
+    /**
+     * @var string
+     */
+    public $threeDSecureVersion = null;
+
+    /**
+     * @var string
+     */
+    public $threeDServerTransactionId = null;
 
     /**
      * @var string
@@ -39,8 +64,31 @@ class ThreeDSecureResults extends DataObject
         if (property_exists($object, 'cavv')) {
             $this->cavv = $object->cavv;
         }
+        if (property_exists($object, 'directoryServerTransactionId')) {
+            $this->directoryServerTransactionId = $object->directoryServerTransactionId;
+        }
         if (property_exists($object, 'eci')) {
             $this->eci = $object->eci;
+        }
+        if (property_exists($object, 'sdkData')) {
+            if (!is_object($object->sdkData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->sdkData, true) . '\' is not an object');
+            }
+            $value = new SdkDataOutput();
+            $this->sdkData = $value->fromObject($object->sdkData);
+        }
+        if (property_exists($object, 'threeDSecureData')) {
+            if (!is_object($object->threeDSecureData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->threeDSecureData, true) . '\' is not an object');
+            }
+            $value = new ThreeDSecureData();
+            $this->threeDSecureData = $value->fromObject($object->threeDSecureData);
+        }
+        if (property_exists($object, 'threeDSecureVersion')) {
+            $this->threeDSecureVersion = $object->threeDSecureVersion;
+        }
+        if (property_exists($object, 'threeDServerTransactionId')) {
+            $this->threeDServerTransactionId = $object->threeDServerTransactionId;
         }
         if (property_exists($object, 'xid')) {
             $this->xid = $object->xid;

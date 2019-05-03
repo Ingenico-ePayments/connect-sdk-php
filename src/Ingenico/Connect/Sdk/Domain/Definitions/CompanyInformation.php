@@ -19,6 +19,11 @@ class CompanyInformation extends DataObject
     public $name = null;
 
     /**
+     * @var string
+     */
+    public $vatNumber = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -28,6 +33,9 @@ class CompanyInformation extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'name')) {
             $this->name = $object->name;
+        }
+        if (property_exists($object, 'vatNumber')) {
+            $this->vatNumber = $object->vatNumber;
         }
         return $this;
     }

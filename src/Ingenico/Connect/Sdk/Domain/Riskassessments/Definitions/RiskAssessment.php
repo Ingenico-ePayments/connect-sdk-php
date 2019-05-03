@@ -20,6 +20,11 @@ class RiskAssessment extends DataObject
     public $fraudFields = null;
 
     /**
+     * @var MerchantRiskAssessment
+     */
+    public $merchant = null;
+
+    /**
      * @var OrderRiskAssessment
      */
     public $order = null;
@@ -43,6 +48,13 @@ class RiskAssessment extends DataObject
             }
             $value = new FraudFields();
             $this->fraudFields = $value->fromObject($object->fraudFields);
+        }
+        if (property_exists($object, 'merchant')) {
+            if (!is_object($object->merchant)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->merchant, true) . '\' is not an object');
+            }
+            $value = new MerchantRiskAssessment();
+            $this->merchant = $value->fromObject($object->merchant);
         }
         if (property_exists($object, 'order')) {
             if (!is_object($object->order)) {

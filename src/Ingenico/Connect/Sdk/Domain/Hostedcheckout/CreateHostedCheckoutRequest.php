@@ -13,6 +13,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpe
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificInputBase;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Merchant;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecificInputBase;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentMethodSpecificInputBase;
@@ -52,6 +53,11 @@ class CreateHostedCheckoutRequest extends DataObject
      * @var HostedCheckoutSpecificInput
      */
     public $hostedCheckoutSpecificInput = null;
+
+    /**
+     * @var Merchant
+     */
+    public $merchant = null;
 
     /**
      * @var MobilePaymentMethodSpecificInputHostedCheckout
@@ -122,6 +128,13 @@ class CreateHostedCheckoutRequest extends DataObject
             }
             $value = new HostedCheckoutSpecificInput();
             $this->hostedCheckoutSpecificInput = $value->fromObject($object->hostedCheckoutSpecificInput);
+        }
+        if (property_exists($object, 'merchant')) {
+            if (!is_object($object->merchant)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->merchant, true) . '\' is not an object');
+            }
+            $value = new Merchant();
+            $this->merchant = $value->fromObject($object->merchant);
         }
         if (property_exists($object, 'mobilePaymentMethodSpecificInput')) {
             if (!is_object($object->mobilePaymentMethodSpecificInput)) {

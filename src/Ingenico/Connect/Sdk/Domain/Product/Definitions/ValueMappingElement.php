@@ -20,7 +20,7 @@ class ValueMappingElement extends DataObject
 
     /**
      * @var string
-     * @deprecated use displayElement with ID 'displayName' instead.
+     * @deprecated Use displayElements instead with ID 'displayName'
      */
     public $displayName = null;
 

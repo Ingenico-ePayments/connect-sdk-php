@@ -21,7 +21,17 @@ class ContactDetails extends ContactDetailsBase
     /**
      * @var string
      */
+    public $mobilePhoneNumber = null;
+
+    /**
+     * @var string
+     */
     public $phoneNumber = null;
+
+    /**
+     * @var string
+     */
+    public $workPhoneNumber = null;
 
     /**
      * @param object $object
@@ -34,8 +44,14 @@ class ContactDetails extends ContactDetailsBase
         if (property_exists($object, 'faxNumber')) {
             $this->faxNumber = $object->faxNumber;
         }
+        if (property_exists($object, 'mobilePhoneNumber')) {
+            $this->mobilePhoneNumber = $object->mobilePhoneNumber;
+        }
         if (property_exists($object, 'phoneNumber')) {
             $this->phoneNumber = $object->phoneNumber;
+        }
+        if (property_exists($object, 'workPhoneNumber')) {
+            $this->workPhoneNumber = $object->workPhoneNumber;
         }
         return $this;
     }

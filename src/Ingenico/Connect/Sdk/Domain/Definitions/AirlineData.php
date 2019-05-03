@@ -45,6 +45,7 @@ class AirlineData extends DataObject
 
     /**
      * @var bool
+     * @deprecated Use Order.customer.accountType instead
      */
     public $isRegisteredCustomer = null;
 

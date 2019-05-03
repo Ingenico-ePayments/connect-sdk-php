@@ -11,22 +11,22 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class OrderTypeInformation extends DataObject
+class CardRecurrenceDetails extends DataObject
 {
     /**
      * @var string
      */
-    public $purchaseType = null;
+    public $endDate = null;
+
+    /**
+     * @var int
+     */
+    public $minFrequency = null;
 
     /**
      * @var string
      */
-    public $transactionType = null;
-
-    /**
-     * @var string
-     */
-    public $usageType = null;
+    public $recurringPaymentSequenceIndicator = null;
 
     /**
      * @param object $object
@@ -36,14 +36,14 @@ class OrderTypeInformation extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'purchaseType')) {
-            $this->purchaseType = $object->purchaseType;
+        if (property_exists($object, 'endDate')) {
+            $this->endDate = $object->endDate;
         }
-        if (property_exists($object, 'transactionType')) {
-            $this->transactionType = $object->transactionType;
+        if (property_exists($object, 'minFrequency')) {
+            $this->minFrequency = $object->minFrequency;
         }
-        if (property_exists($object, 'usageType')) {
-            $this->usageType = $object->usageType;
+        if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
+            $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;
         }
         return $this;
     }

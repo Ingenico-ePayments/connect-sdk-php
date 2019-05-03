@@ -27,13 +27,13 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var BankAccountBban
-     * @deprecated Use bankTransferPayoutMethodSpecificInput.bankAccountBban instead
+     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
     public $bankAccountBban = null;
 
     /**
      * @var BankAccountIban
-     * @deprecated Use bankTransferPayoutMethodSpecificInput.bankAccountIban instead
+     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
     public $bankAccountIban = null;
 
@@ -49,19 +49,19 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var PayoutCustomer
-     * @deprecated Use bankTransferPayoutMethodSpecificInput.customer instead
+     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
     public $customer = null;
 
     /**
      * @var string
-     * @deprecated Use bankTransferPayoutMethodSpecificInput.payoutDate instead
+     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
     public $payoutDate = null;
 
     /**
      * @var string
-     * @deprecated Use bankTransferPayoutMethodSpecificInput.payoutText instead
+     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
     public $payoutText = null;
 
@@ -72,7 +72,7 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var string
-     * @deprecated Use bankTransferPayoutMethodSpecificInput.swiftCode instead
+     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
     public $swiftCode = null;
 

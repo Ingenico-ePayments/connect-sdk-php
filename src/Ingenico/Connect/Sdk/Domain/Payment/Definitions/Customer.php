@@ -15,6 +15,16 @@ use UnexpectedValueException;
 class Customer extends CustomerBase
 {
     /**
+     * @var CustomerAccount
+     */
+    public $account = null;
+
+    /**
+     * @var string
+     */
+    public $accountType = null;
+
+    /**
      * @var Address
      */
     public $billingAddress = null;
@@ -25,9 +35,19 @@ class Customer extends CustomerBase
     public $contactDetails = null;
 
     /**
+     * @var CustomerDevice
+     */
+    public $device = null;
+
+    /**
      * @var string
      */
     public $fiscalNumber = null;
+
+    /**
+     * @var bool
+     */
+    public $isPreviousCustomer = null;
 
     /**
      * @var string
@@ -41,6 +61,7 @@ class Customer extends CustomerBase
 
     /**
      * @var AddressPersonal
+     * @deprecated Use Order.shipping.address instead
      */
     public $shippingAddress = null;
 
@@ -52,6 +73,16 @@ class Customer extends CustomerBase
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'account')) {
+            if (!is_object($object->account)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->account, true) . '\' is not an object');
+            }
+            $value = new CustomerAccount();
+            $this->account = $value->fromObject($object->account);
+        }
+        if (property_exists($object, 'accountType')) {
+            $this->accountType = $object->accountType;
+        }
         if (property_exists($object, 'billingAddress')) {
             if (!is_object($object->billingAddress)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->billingAddress, true) . '\' is not an object');
@@ -66,8 +97,18 @@ class Customer extends CustomerBase
             $value = new ContactDetails();
             $this->contactDetails = $value->fromObject($object->contactDetails);
         }
+        if (property_exists($object, 'device')) {
+            if (!is_object($object->device)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->device, true) . '\' is not an object');
+            }
+            $value = new CustomerDevice();
+            $this->device = $value->fromObject($object->device);
+        }
         if (property_exists($object, 'fiscalNumber')) {
             $this->fiscalNumber = $object->fiscalNumber;
+        }
+        if (property_exists($object, 'isPreviousCustomer')) {
+            $this->isPreviousCustomer = $object->isPreviousCustomer;
         }
         if (property_exists($object, 'locale')) {
             $this->locale = $object->locale;

@@ -13,6 +13,11 @@ use UnexpectedValueException;
 class CardPaymentMethodSpecificInputBase extends AbstractCardPaymentMethodSpecificInput
 {
     /**
+     * @var ThreeDSecureBase
+     */
+    public $threeDSecure = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -20,6 +25,13 @@ class CardPaymentMethodSpecificInputBase extends AbstractCardPaymentMethodSpecif
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'threeDSecure')) {
+            if (!is_object($object->threeDSecure)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->threeDSecure, true) . '\' is not an object');
+            }
+            $value = new ThreeDSecureBase();
+            $this->threeDSecure = $value->fromObject($object->threeDSecure);
+        }
         return $this;
     }
 }

@@ -31,6 +31,11 @@ class OrderRiskAssessment extends DataObject
     public $customer = null;
 
     /**
+     * @var ShippingRiskAssessment
+     */
+    public $shipping = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -58,6 +63,13 @@ class OrderRiskAssessment extends DataObject
             }
             $value = new CustomerRiskAssessment();
             $this->customer = $value->fromObject($object->customer);
+        }
+        if (property_exists($object, 'shipping')) {
+            if (!is_object($object->shipping)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->shipping, true) . '\' is not an object');
+            }
+            $value = new ShippingRiskAssessment();
+            $this->shipping = $value->fromObject($object->shipping);
         }
         return $this;
     }

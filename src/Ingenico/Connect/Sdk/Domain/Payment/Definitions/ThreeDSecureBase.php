@@ -10,19 +10,8 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProduct840SpecificInput
+class ThreeDSecureBase extends AbstractThreeDSecure
 {
-    /**
-     * @var string
-     * @deprecated Use Order.references.descriptor instead
-     */
-    public $custom = null;
-
-    /**
-     * @var bool
-     */
-    public $isShortcut = null;
-
     /**
      * @param object $object
      * @return $this
@@ -31,12 +20,6 @@ class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProd
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'custom')) {
-            $this->custom = $object->custom;
-        }
-        if (property_exists($object, 'isShortcut')) {
-            $this->isShortcut = $object->isShortcut;
-        }
         return $this;
     }
 }

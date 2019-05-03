@@ -16,6 +16,16 @@ use UnexpectedValueException;
 class CustomerRiskAssessment extends DataObject
 {
     /**
+     * @var CustomerAccountRiskAssessment
+     */
+    public $account = null;
+
+    /**
+     * @var string
+     */
+    public $accountType = null;
+
+    /**
      * @var Address
      */
     public $billingAddress = null;
@@ -24,6 +34,16 @@ class CustomerRiskAssessment extends DataObject
      * @var ContactDetailsRiskAssessment
      */
     public $contactDetails = null;
+
+    /**
+     * @var CustomerDeviceRiskAssessment
+     */
+    public $device = null;
+
+    /**
+     * @var bool
+     */
+    public $isPreviousCustomer = null;
 
     /**
      * @var string
@@ -37,6 +57,7 @@ class CustomerRiskAssessment extends DataObject
 
     /**
      * @var AddressPersonal
+     * @deprecated Use Order.shipping.address instead
      */
     public $shippingAddress = null;
 
@@ -48,6 +69,16 @@ class CustomerRiskAssessment extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'account')) {
+            if (!is_object($object->account)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->account, true) . '\' is not an object');
+            }
+            $value = new CustomerAccountRiskAssessment();
+            $this->account = $value->fromObject($object->account);
+        }
+        if (property_exists($object, 'accountType')) {
+            $this->accountType = $object->accountType;
+        }
         if (property_exists($object, 'billingAddress')) {
             if (!is_object($object->billingAddress)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->billingAddress, true) . '\' is not an object');
@@ -61,6 +92,16 @@ class CustomerRiskAssessment extends DataObject
             }
             $value = new ContactDetailsRiskAssessment();
             $this->contactDetails = $value->fromObject($object->contactDetails);
+        }
+        if (property_exists($object, 'device')) {
+            if (!is_object($object->device)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->device, true) . '\' is not an object');
+            }
+            $value = new CustomerDeviceRiskAssessment();
+            $this->device = $value->fromObject($object->device);
+        }
+        if (property_exists($object, 'isPreviousCustomer')) {
+            $this->isPreviousCustomer = $object->isPreviousCustomer;
         }
         if (property_exists($object, 'locale')) {
             $this->locale = $object->locale;

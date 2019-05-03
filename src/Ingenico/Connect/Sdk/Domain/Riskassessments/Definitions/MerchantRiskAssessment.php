@@ -3,22 +3,20 @@
  * This class was auto-generated from the API references found at
  * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
-namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
+namespace Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
- * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
- * @deprecated No replacement
+ * @package Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions
  */
-class CashPaymentProduct1503SpecificInput extends DataObject
+class MerchantRiskAssessment extends DataObject
 {
     /**
      * @var string
-     * @deprecated No replacement, since Boleto Bancario no longer needs a return URL
      */
-    public $returnUrl = null;
+    public $websiteUrl = null;
 
     /**
      * @param object $object
@@ -28,8 +26,8 @@ class CashPaymentProduct1503SpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'returnUrl')) {
-            $this->returnUrl = $object->returnUrl;
+        if (property_exists($object, 'websiteUrl')) {
+            $this->websiteUrl = $object->websiteUrl;
         }
         return $this;
     }
