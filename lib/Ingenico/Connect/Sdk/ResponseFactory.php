@@ -59,7 +59,7 @@ class ResponseFactory
             throw new UnexpectedValueException('HTTP status code is missing');
         }
         $contentType = $response->getHeaderValue('Content-Type');
-        if (!$contentType) {
+        if (!$contentType && $httpStatusCode !== 204) {
             throw new UnexpectedValueException('Content type is missing or empty');
         }
         if (!$this->isJsonContentType($contentType) && $httpStatusCode !== 204) {
