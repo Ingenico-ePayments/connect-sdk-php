@@ -46,6 +46,11 @@ class MerchantAction extends DataObject
     public $showData = null;
 
     /**
+     * @var ThirdPartyData
+     */
+    public $thirdPartyData = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -92,6 +97,13 @@ class MerchantAction extends DataObject
                 $showDataElement = new KeyValuePair();
                 $this->showData[] = $showDataElement->fromObject($showDataElementObject);
             }
+        }
+        if (property_exists($object, 'thirdPartyData')) {
+            if (!is_object($object->thirdPartyData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->thirdPartyData, true) . '\' is not an object');
+            }
+            $value = new ThirdPartyData();
+            $this->thirdPartyData = $value->fromObject($object->thirdPartyData);
         }
         return $this;
     }

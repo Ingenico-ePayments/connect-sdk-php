@@ -11,17 +11,12 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectPaymentProduct863SpecificInput extends DataObject
+class RedirectPaymentProduct861SpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var bool
      */
-    public $integrationType = null;
-
-    /**
-     * @var string
-     */
-    public $openId = null;
+    public $mobileDevice = null;
 
     /**
      * @param object $object
@@ -31,11 +26,8 @@ class RedirectPaymentProduct863SpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'integrationType')) {
-            $this->integrationType = $object->integrationType;
-        }
-        if (property_exists($object, 'openId')) {
-            $this->openId = $object->openId;
+        if (property_exists($object, 'mobileDevice')) {
+            $this->mobileDevice = $object->mobileDevice;
         }
         return $this;
     }

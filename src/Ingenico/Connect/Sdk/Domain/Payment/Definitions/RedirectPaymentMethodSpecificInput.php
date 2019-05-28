@@ -33,6 +33,11 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
     public $paymentProduct840SpecificInput = null;
 
     /**
+     * @var RedirectPaymentProduct861SpecificInput
+     */
+    public $paymentProduct861SpecificInput = null;
+
+    /**
      * @var RedirectPaymentProduct863SpecificInput
      */
     public $paymentProduct863SpecificInput = null;
@@ -84,6 +89,13 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
             }
             $value = new RedirectPaymentProduct840SpecificInput();
             $this->paymentProduct840SpecificInput = $value->fromObject($object->paymentProduct840SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct861SpecificInput')) {
+            if (!is_object($object->paymentProduct861SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct861SpecificInput, true) . '\' is not an object');
+            }
+            $value = new RedirectPaymentProduct861SpecificInput();
+            $this->paymentProduct861SpecificInput = $value->fromObject($object->paymentProduct861SpecificInput);
         }
         if (property_exists($object, 'paymentProduct863SpecificInput')) {
             if (!is_object($object->paymentProduct863SpecificInput)) {

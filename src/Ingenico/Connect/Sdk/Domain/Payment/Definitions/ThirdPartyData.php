@@ -11,17 +11,12 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class RedirectPaymentProduct863SpecificInput extends DataObject
+class ThirdPartyData extends DataObject
 {
     /**
-     * @var string
+     * @var PaymentProduct863ThirdPartyData
      */
-    public $integrationType = null;
-
-    /**
-     * @var string
-     */
-    public $openId = null;
+    public $paymentProduct863 = null;
 
     /**
      * @param object $object
@@ -31,11 +26,12 @@ class RedirectPaymentProduct863SpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'integrationType')) {
-            $this->integrationType = $object->integrationType;
-        }
-        if (property_exists($object, 'openId')) {
-            $this->openId = $object->openId;
+        if (property_exists($object, 'paymentProduct863')) {
+            if (!is_object($object->paymentProduct863)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct863, true) . '\' is not an object');
+            }
+            $value = new PaymentProduct863ThirdPartyData();
+            $this->paymentProduct863 = $value->fromObject($object->paymentProduct863);
         }
         return $this;
     }

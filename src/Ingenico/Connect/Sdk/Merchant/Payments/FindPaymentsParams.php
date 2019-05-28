@@ -18,6 +18,11 @@ class FindPaymentsParams extends RequestObject
     /**
      * @var string
      */
+    public $hostedCheckoutId;
+
+    /**
+     * @var string
+     */
     public $merchantReference;
 
     /**
