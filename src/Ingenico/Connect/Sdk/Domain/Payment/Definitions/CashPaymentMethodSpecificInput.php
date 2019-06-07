@@ -24,6 +24,31 @@ class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificIn
     public $paymentProduct1504SpecificInput = null;
 
     /**
+     * @var CashPaymentProduct1521SpecificInput
+     */
+    public $paymentProduct1521SpecificInput = null;
+
+    /**
+     * @var CashPaymentProduct1522SpecificInput
+     */
+    public $paymentProduct1522SpecificInput = null;
+
+    /**
+     * @var CashPaymentProduct1523SpecificInput
+     */
+    public $paymentProduct1523SpecificInput = null;
+
+    /**
+     * @var CashPaymentProduct1524SpecificInput
+     */
+    public $paymentProduct1524SpecificInput = null;
+
+    /**
+     * @var CashPaymentProduct1526SpecificInput
+     */
+    public $paymentProduct1526SpecificInput = null;
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -44,6 +69,41 @@ class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificIn
             }
             $value = new CashPaymentProduct1504SpecificInput();
             $this->paymentProduct1504SpecificInput = $value->fromObject($object->paymentProduct1504SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct1521SpecificInput')) {
+            if (!is_object($object->paymentProduct1521SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct1521SpecificInput, true) . '\' is not an object');
+            }
+            $value = new CashPaymentProduct1521SpecificInput();
+            $this->paymentProduct1521SpecificInput = $value->fromObject($object->paymentProduct1521SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct1522SpecificInput')) {
+            if (!is_object($object->paymentProduct1522SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct1522SpecificInput, true) . '\' is not an object');
+            }
+            $value = new CashPaymentProduct1522SpecificInput();
+            $this->paymentProduct1522SpecificInput = $value->fromObject($object->paymentProduct1522SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct1523SpecificInput')) {
+            if (!is_object($object->paymentProduct1523SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct1523SpecificInput, true) . '\' is not an object');
+            }
+            $value = new CashPaymentProduct1523SpecificInput();
+            $this->paymentProduct1523SpecificInput = $value->fromObject($object->paymentProduct1523SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct1524SpecificInput')) {
+            if (!is_object($object->paymentProduct1524SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct1524SpecificInput, true) . '\' is not an object');
+            }
+            $value = new CashPaymentProduct1524SpecificInput();
+            $this->paymentProduct1524SpecificInput = $value->fromObject($object->paymentProduct1524SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct1526SpecificInput')) {
+            if (!is_object($object->paymentProduct1526SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct1526SpecificInput, true) . '\' is not an object');
+            }
+            $value = new CashPaymentProduct1526SpecificInput();
+            $this->paymentProduct1526SpecificInput = $value->fromObject($object->paymentProduct1526SpecificInput);
         }
         return $this;
     }
