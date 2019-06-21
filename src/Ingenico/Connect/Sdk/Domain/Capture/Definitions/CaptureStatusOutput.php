@@ -19,6 +19,18 @@ class CaptureStatusOutput extends DataObject
     public $statusCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->statusCode)) {
+            $object->statusCode = $this->statusCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

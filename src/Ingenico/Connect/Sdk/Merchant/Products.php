@@ -16,7 +16,6 @@ use Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductNetworksResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProducts;
-use Ingenico\Connect\Sdk\Domain\Publickey\PublicKey;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
 use Ingenico\Connect\Sdk\InvalidResponseException;
@@ -50,13 +49,13 @@ class Products extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/find.html Get payment products
      */
-    public function find($query, CallContext $callContext = null)
+    public function find(FindProductsParams $query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProducts';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products'),
+            $this->instantiateUri('/v1/{merchantId}/products'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -80,14 +79,14 @@ class Products extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/get.html Get payment product
      */
-    public function get($paymentProductId, $query, CallContext $callContext = null)
+    public function get($paymentProductId, GetProductParams $query, CallContext $callContext = null)
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}'),
+            $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -111,14 +110,14 @@ class Products extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/directory.html Get payment product directory
      */
-    public function directory($paymentProductId, $query, CallContext $callContext = null)
+    public function directory($paymentProductId, DirectoryParams $query, CallContext $callContext = null)
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\Directory';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/directory'),
+            $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}/directory'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -142,14 +141,14 @@ class Products extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/customerDetails.html Get customer details
      */
-    public function customerDetails($paymentProductId, $body, CallContext $callContext = null)
+    public function customerDetails($paymentProductId, GetCustomerDetailsRequest $body, CallContext $callContext = null)
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\GetCustomerDetailsResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/customerDetails'),
+            $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}/customerDetails'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -174,14 +173,14 @@ class Products extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/deviceFingerprint.html Get device fingerprint
      */
-    public function deviceFingerprint($paymentProductId, $body, CallContext $callContext = null)
+    public function deviceFingerprint($paymentProductId, DeviceFingerprintRequest $body, CallContext $callContext = null)
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/deviceFingerprint'),
+            $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}/deviceFingerprint'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -206,46 +205,16 @@ class Products extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
      */
-    public function networks($paymentProductId, $query, CallContext $callContext = null)
+    public function networks($paymentProductId, NetworksParams $query, CallContext $callContext = null)
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductNetworksResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/networks'),
+            $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}/networks'),
             $this->getClientMetaInfo(),
             $query,
-            $callContext
-        );
-    }
-
-    /**
-     * Resource /{merchantId}/products/{paymentProductId}/publicKey - Get payment product specific public key
-     *
-     * @param int $paymentProductId
-     * @param CallContext $callContext
-     * @return PublicKey
-     *
-     * @throws ValidationException
-     * @throws AuthorizationException
-     * @throws IdempotenceException
-     * @throws ReferenceException
-     * @throws GlobalCollectException
-     * @throws ApiException
-     * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/publicKey.html Get payment product specific public key
-     */
-    public function publicKey($paymentProductId, CallContext $callContext = null)
-    {
-        $this->context['paymentProductId'] = $paymentProductId;
-        $responseClassMap = new ResponseClassMap();
-        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Publickey\PublicKey';
-        return $this->getCommunicator()->get(
-            $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/products/{paymentProductId}/publicKey'),
-            $this->getClientMetaInfo(),
-            null,
             $callContext
         );
     }

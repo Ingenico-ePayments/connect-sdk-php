@@ -45,6 +45,33 @@ class MandateSepaDirectDebitWithoutCreditor extends DataObject
     public $preNotification = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->customerContractIdentifier)) {
+            $object->customerContractIdentifier = $this->customerContractIdentifier;
+        }
+        if (!is_null($this->debtor)) {
+            $object->debtor = $this->debtor->toObject();
+        }
+        if (!is_null($this->isRecurring)) {
+            $object->isRecurring = $this->isRecurring;
+        }
+        if (!is_null($this->mandateApproval)) {
+            $object->mandateApproval = $this->mandateApproval->toObject();
+        }
+        if (!is_null($this->preNotification)) {
+            $object->preNotification = $this->preNotification;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

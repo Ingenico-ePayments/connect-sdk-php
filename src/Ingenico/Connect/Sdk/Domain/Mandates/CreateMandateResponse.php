@@ -26,6 +26,21 @@ class CreateMandateResponse extends DataObject
     public $merchantAction = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->mandate)) {
+            $object->mandate = $this->mandate->toObject();
+        }
+        if (!is_null($this->merchantAction)) {
+            $object->merchantAction = $this->merchantAction->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

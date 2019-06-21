@@ -33,6 +33,24 @@ class Level3SummaryData extends DataObject
     public $shippingAmount = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->discountAmount)) {
+            $object->discountAmount = $this->discountAmount;
+        }
+        if (!is_null($this->dutyAmount)) {
+            $object->dutyAmount = $this->dutyAmount;
+        }
+        if (!is_null($this->shippingAmount)) {
+            $object->shippingAmount = $this->shippingAmount;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

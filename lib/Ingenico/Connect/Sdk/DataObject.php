@@ -69,18 +69,7 @@ abstract class DataObject
      */
     public function toObject()
     {
-        $object = new stdClass();
-        foreach ($this as $propertyName => $propertyValue) {
-            if (is_null($propertyValue)) {
-                continue;
-            }
-            if ($propertyValue instanceof DataObject) {
-                $object->$propertyName = $propertyValue->toObject();
-            } else {
-                $object->$propertyName = $propertyValue;
-            }
-        }
-        return $object;
+        return new stdClass();
     }
 
     /**

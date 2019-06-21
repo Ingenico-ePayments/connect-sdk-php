@@ -39,6 +39,30 @@ class LineItemInvoiceData extends DataObject
     public $pricePerItem = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->description)) {
+            $object->description = $this->description;
+        }
+        if (!is_null($this->merchantLinenumber)) {
+            $object->merchantLinenumber = $this->merchantLinenumber;
+        }
+        if (!is_null($this->merchantPagenumber)) {
+            $object->merchantPagenumber = $this->merchantPagenumber;
+        }
+        if (!is_null($this->nrOfItems)) {
+            $object->nrOfItems = $this->nrOfItems;
+        }
+        if (!is_null($this->pricePerItem)) {
+            $object->pricePerItem = $this->pricePerItem;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

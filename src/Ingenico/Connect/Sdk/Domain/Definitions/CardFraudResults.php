@@ -33,6 +33,27 @@ class CardFraudResults extends FraudResults
     public $retailDecisions = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->avsResult)) {
+            $object->avsResult = $this->avsResult;
+        }
+        if (!is_null($this->cvvResult)) {
+            $object->cvvResult = $this->cvvResult;
+        }
+        if (!is_null($this->fraugster)) {
+            $object->fraugster = $this->fraugster->toObject();
+        }
+        if (!is_null($this->retailDecisions)) {
+            $object->retailDecisions = $this->retailDecisions->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

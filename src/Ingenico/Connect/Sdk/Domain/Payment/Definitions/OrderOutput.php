@@ -25,6 +25,21 @@ class OrderOutput extends DataObject
     public $references = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->references)) {
+            $object->references = $this->references->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

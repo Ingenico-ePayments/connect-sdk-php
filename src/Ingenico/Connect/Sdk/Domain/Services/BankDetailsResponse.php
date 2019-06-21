@@ -38,6 +38,27 @@ class BankDetailsResponse extends DataObject
     public $swift = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->bankData)) {
+            $object->bankData = $this->bankData->toObject();
+        }
+        if (!is_null($this->swift)) {
+            $object->swift = $this->swift->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

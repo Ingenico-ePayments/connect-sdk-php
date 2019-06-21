@@ -19,6 +19,18 @@ class AdditionalOrderInputAirlineData extends DataObject
     public $airlineData = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->airlineData)) {
+            $object->airlineData = $this->airlineData->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

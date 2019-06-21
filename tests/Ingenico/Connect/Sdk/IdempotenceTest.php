@@ -29,7 +29,7 @@ class IdempotenceTest extends TestCase
         $this->assertNotEquals($authorizationValueWithoutIdempotence, $authorizationValueWithIdempotence);
     }
 
-    public function testCreateResponseWithCallContext()
+    public function testGetWithCallContext()
     {
         $callContext = new CallContext();
         $idempotenceKey = 'test';
@@ -81,8 +81,9 @@ class IdempotenceTest extends TestCase
 }
 EOD;
         $response = new DefaultConnectionResponse(201, $responseHeaders, $responseBody);
-        $responseFactory = new ResponseFactory();
-        $responseFactory->createResponse($response, new ResponseClassMap(), $callContext);
+        $communicatorConfiguration = $this->getMockCommunicatorConfiguration();
+        $communicator = new Communicator(new TestingConnection($response), $communicatorConfiguration);
+        $communicator->get(new ResponseClassMap(), '/', '', null, $callContext);
         $this->assertEquals($idempotenceKey, $callContext->getIdempotenceKey());
         $this->assertEquals($idempotenceRequestTimestamp, $callContext->getIdempotenceRequestTimestamp());
     }
@@ -107,22 +108,19 @@ EOD;
 }
 EOD;
         $connectionResponse = new DefaultConnectionResponse(409, $responseHeaders, $responseBody);
-        $responseFactory = new ResponseFactory();
-        $responseExceptionFactory = new ResponseExceptionFactory();
-        $exception = $responseExceptionFactory->createException(
-            $connectionResponse->getHttpStatusCode(),
-            $responseFactory->createResponse($connectionResponse, new ResponseClassMap(), $callContext),
-            $callContext
-        );
-        if (!$exception instanceof IdempotenceException) {
-            $this->fail('expected IdempotenceException, but got ' . get_class($exception));
+        $communicatorConfiguration = $this->getMockCommunicatorConfiguration();
+        $communicator = new Communicator(new TestingConnection($connectionResponse), $communicatorConfiguration);
+        try {
+            $communicator->get(new ResponseClassMap(), '/', '', null, $callContext);
+            $this->fail('expected IdempotenceException');
+        } catch (IdempotenceException $exception) {
+            $this->assertEquals($callContext->getIdempotenceKey(), $exception->getIdempotenceKey());
+            $this->assertNotEmpty($exception->getIdempotenceRequestTimestamp());
+            $this->assertEquals(
+                $callContext->getIdempotenceRequestTimestamp(),
+                $exception->getIdempotenceRequestTimestamp()
+                );
         }
-        $this->assertEquals($callContext->getIdempotenceKey(), $exception->getIdempotenceKey());
-        $this->assertNotEmpty($exception->getIdempotenceRequestTimestamp());
-        $this->assertEquals(
-            $callContext->getIdempotenceRequestTimestamp(),
-            $exception->getIdempotenceRequestTimestamp()
-        );
     }
 
     public function testReferenceException()
@@ -148,9 +146,17 @@ EOD;
         $responseExceptionFactory = new ResponseExceptionFactory();
         $exception = $responseExceptionFactory->createException(
             $connectionResponse->getHttpStatusCode(),
-            $responseFactory->createResponse($connectionResponse, new ResponseClassMap(), $callContext),
+            $responseFactory->createResponse($connectionResponse, new ResponseClassMap()),
             $callContext
         );
         $this->assertInstanceOf('\Ingenico\Connect\Sdk\ReferenceException', $exception);
+    }
+
+    /**
+     * @return CommunicatorConfiguration
+     */
+    protected function getMockCommunicatorConfiguration()
+    {
+        return $this->getMockBuilder('\Ingenico\Connect\Sdk\CommunicatorConfiguration')->disableOriginalConstructor()->getMock();
     }
 }

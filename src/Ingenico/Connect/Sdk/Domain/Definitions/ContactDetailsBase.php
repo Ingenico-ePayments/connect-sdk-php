@@ -24,6 +24,21 @@ class ContactDetailsBase extends DataObject
     public $emailMessageType = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress;
+        }
+        if (!is_null($this->emailMessageType)) {
+            $object->emailMessageType = $this->emailMessageType;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

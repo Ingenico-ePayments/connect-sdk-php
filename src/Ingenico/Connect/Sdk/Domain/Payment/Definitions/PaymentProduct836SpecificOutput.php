@@ -19,6 +19,18 @@ class PaymentProduct836SpecificOutput extends DataObject
     public $securityIndicator = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->securityIndicator)) {
+            $object->securityIndicator = $this->securityIndicator;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

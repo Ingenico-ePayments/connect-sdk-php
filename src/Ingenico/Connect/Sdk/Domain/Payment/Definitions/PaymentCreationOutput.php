@@ -28,6 +28,24 @@ class PaymentCreationOutput extends PaymentCreationReferences
     public $tokenizationSucceeded = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isNewToken)) {
+            $object->isNewToken = $this->isNewToken;
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        if (!is_null($this->tokenizationSucceeded)) {
+            $object->tokenizationSucceeded = $this->tokenizationSucceeded;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

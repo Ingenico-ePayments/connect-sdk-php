@@ -24,6 +24,21 @@ class MandatePersonalName extends DataObject
     public $surname = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->firstName)) {
+            $object->firstName = $this->firstName;
+        }
+        if (!is_null($this->surname)) {
+            $object->surname = $this->surname;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -9,13 +9,14 @@ namespace Ingenico\Connect\Sdk;
  */
 class UuidGenerator
 {
-    /** @var string */
-    private $lastGeneratedUUID;
+    private function __construct()
+    {
+    }
 
     /** @return string */
-    public function generatedUuid()
+    public static function generatedUuid()
     {
-        $this->lastGeneratedUUID = sprintf(
+        return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
             mt_rand(0, 0xffff),
             mt_rand(0, 0xffff),
@@ -26,12 +27,5 @@ class UuidGenerator
             mt_rand(0, 0xffff),
             mt_rand(0, 0xffff)
         );
-        return $this->lastGeneratedUUID;
-    }
-
-    /** @return string */
-    public function getLastGeneratedUuid()
-    {
-        return $this->lastGeneratedUUID;
     }
 }

@@ -34,6 +34,27 @@ class Payment extends AbstractOrderStatus
     public $statusOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->hostedCheckoutSpecificOutput)) {
+            $object->hostedCheckoutSpecificOutput = $this->hostedCheckoutSpecificOutput->toObject();
+        }
+        if (!is_null($this->paymentOutput)) {
+            $object->paymentOutput = $this->paymentOutput->toObject();
+        }
+        if (!is_null($this->status)) {
+            $object->status = $this->status;
+        }
+        if (!is_null($this->statusOutput)) {
+            $object->statusOutput = $this->statusOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

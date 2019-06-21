@@ -41,13 +41,13 @@ class Refunds extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/find.html Find refunds
      */
-    public function find($query, CallContext $callContext = null)
+    public function find(FindRefundsParams $query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\FindRefundsResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds'),
+            $this->instantiateUri('/v1/{merchantId}/refunds'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -77,7 +77,7 @@ class Refunds extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Refund\RefundResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}'),
+            $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -101,13 +101,13 @@ class Refunds extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/refunds/approve.html Approve refund
      */
-    public function approve($refundId, $body, CallContext $callContext = null)
+    public function approve($refundId, ApproveRefundRequest $body, CallContext $callContext = null)
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/approve'),
+            $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}/approve'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -137,7 +137,7 @@ class Refunds extends Resource
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancel'),
+            $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}/cancel'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -167,7 +167,7 @@ class Refunds extends Resource
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/refunds/{refundId}/cancelapproval'),
+            $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}/cancelapproval'),
             $this->getClientMetaInfo(),
             null,
             null,

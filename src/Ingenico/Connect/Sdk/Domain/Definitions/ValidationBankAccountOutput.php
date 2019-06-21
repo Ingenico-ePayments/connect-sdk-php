@@ -39,6 +39,35 @@ class ValidationBankAccountOutput extends DataObject
     public $reformattedBranchCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->checks)) {
+            $object->checks = [];
+            foreach ($this->checks as $element) {
+                if (!is_null($element)) {
+                    $object->checks[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->newBankName)) {
+            $object->newBankName = $this->newBankName;
+        }
+        if (!is_null($this->reformattedAccountNumber)) {
+            $object->reformattedAccountNumber = $this->reformattedAccountNumber;
+        }
+        if (!is_null($this->reformattedBankCode)) {
+            $object->reformattedBankCode = $this->reformattedBankCode;
+        }
+        if (!is_null($this->reformattedBranchCode)) {
+            $object->reformattedBranchCode = $this->reformattedBranchCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -51,9 +80,9 @@ class ValidationBankAccountOutput extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->checks, true) . '\' is not an array or object');
             }
             $this->checks = [];
-            foreach ($object->checks as $checksElementObject) {
-                $checksElement = new ValidationBankAccountCheck();
-                $this->checks[] = $checksElement->fromObject($checksElementObject);
+            foreach ($object->checks as $element) {
+                $value = new ValidationBankAccountCheck();
+                $this->checks[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'newBankName')) {

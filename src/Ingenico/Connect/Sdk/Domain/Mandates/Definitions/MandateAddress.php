@@ -39,6 +39,30 @@ class MandateAddress extends DataObject
     public $zip = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->city)) {
+            $object->city = $this->city;
+        }
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        if (!is_null($this->houseNumber)) {
+            $object->houseNumber = $this->houseNumber;
+        }
+        if (!is_null($this->street)) {
+            $object->street = $this->street;
+        }
+        if (!is_null($this->zip)) {
+            $object->zip = $this->zip;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

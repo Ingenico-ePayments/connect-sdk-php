@@ -1,7 +1,6 @@
 <?php
 namespace Ingenico\Connect\Sdk\Webhooks;
 
-use Ingenico\Connect\Sdk\CallContext;
 use Ingenico\Connect\Sdk\Client;
 use Ingenico\Connect\Sdk\ConnectionResponse;
 use Ingenico\Connect\Sdk\ResponseClassMap;
@@ -94,6 +93,7 @@ EOD;
 
     public function __construct()
     {
+        parent::__construct();
         $this->validBody = preg_replace("/\r\n/", "\n", self::VALID_BODY_WITHOUT_LINEBREAK_FIX);
         $this->invalidBody = preg_replace("/\r\n/", "\n", self::INVALID_BODY_WITHOUT_LINEBREAK_FIX);
     }
@@ -256,10 +256,9 @@ class ApiVersionMismatchTestingResponseFactory extends ResponseFactory
 {
     public function createResponse(
         ConnectionResponse $response,
-        ResponseClassMap $responseClassMap,
-        CallContext $callContext = null
+        ResponseClassMap $responseClassMap
     ) {
-        $event = parent::createResponse($response, $responseClassMap, $callContext);
+        $event = parent::createResponse($response, $responseClassMap);
         $event->apiVersion = 'v0';
         return $event;
     }

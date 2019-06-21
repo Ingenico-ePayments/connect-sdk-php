@@ -19,6 +19,18 @@ class MandateContactDetails extends DataObject
     public $emailAddress = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

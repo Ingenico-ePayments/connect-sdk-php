@@ -34,6 +34,27 @@ class ResultDoRiskAssessment extends DataObject
     public $validationBankAccountOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->category)) {
+            $object->category = $this->category;
+        }
+        if (!is_null($this->result)) {
+            $object->result = $this->result;
+        }
+        if (!is_null($this->retaildecisionsCCFraudCheckOutput)) {
+            $object->retaildecisionsCCFraudCheckOutput = $this->retaildecisionsCCFraudCheckOutput->toObject();
+        }
+        if (!is_null($this->validationBankAccountOutput)) {
+            $object->validationBankAccountOutput = $this->validationBankAccountOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

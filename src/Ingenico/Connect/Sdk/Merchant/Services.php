@@ -46,13 +46,13 @@ class Services extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/convertAmount.html Convert amount
      */
-    public function convertAmount($query, CallContext $callContext = null)
+    public function convertAmount(ConvertAmountParams $query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\ConvertAmount';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/amount'),
+            $this->instantiateUri('/v1/{merchantId}/services/convert/amount'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -75,13 +75,13 @@ class Services extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/bankaccount.html Convert bankaccount
      */
-    public function bankaccount($body, CallContext $callContext = null)
+    public function bankaccount(BankDetailsRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\BankDetailsResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/convert/bankaccount'),
+            $this->instantiateUri('/v1/{merchantId}/services/convert/bankaccount'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -105,13 +105,13 @@ class Services extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/getIINdetails.html Get IIN details
      */
-    public function getIINdetails($body, CallContext $callContext = null)
+    public function getIINdetails(GetIINDetailsRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/getIINdetails'),
+            $this->instantiateUri('/v1/{merchantId}/services/getIINdetails'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -135,13 +135,13 @@ class Services extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/privacypolicy.html Get privacy policy
      */
-    public function privacypolicy($query, CallContext $callContext = null)
+    public function privacypolicy(PrivacypolicyParams $query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\GetPrivacyPolicyResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/privacypolicy'),
+            $this->instantiateUri('/v1/{merchantId}/services/privacypolicy'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -169,7 +169,7 @@ class Services extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\TestConnection';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/services/testconnection'),
+            $this->instantiateUri('/v1/{merchantId}/services/testconnection'),
             $this->getClientMetaInfo(),
             null,
             $callContext

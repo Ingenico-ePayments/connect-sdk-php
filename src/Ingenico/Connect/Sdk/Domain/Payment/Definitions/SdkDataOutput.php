@@ -19,6 +19,18 @@ class SdkDataOutput extends DataObject
     public $sdkTransactionId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->sdkTransactionId)) {
+            $object->sdkTransactionId = $this->sdkTransactionId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

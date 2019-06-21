@@ -48,6 +48,36 @@ class SepaDirectDebitPaymentMethodSpecificInput extends AbstractSepaDirectDebitP
     public $tokenize = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->dateCollect)) {
+            $object->dateCollect = $this->dateCollect;
+        }
+        if (!is_null($this->directDebitText)) {
+            $object->directDebitText = $this->directDebitText;
+        }
+        if (!is_null($this->isRecurring)) {
+            $object->isRecurring = $this->isRecurring;
+        }
+        if (!is_null($this->paymentProduct771SpecificInput)) {
+            $object->paymentProduct771SpecificInput = $this->paymentProduct771SpecificInput->toObject();
+        }
+        if (!is_null($this->recurringPaymentSequenceIndicator)) {
+            $object->recurringPaymentSequenceIndicator = $this->recurringPaymentSequenceIndicator;
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        if (!is_null($this->tokenize)) {
+            $object->tokenize = $this->tokenize;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

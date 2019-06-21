@@ -39,6 +39,35 @@ class CreateHostedCheckoutResponse extends DataObject
     public $partialRedirectUrl = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->RETURNMAC)) {
+            $object->RETURNMAC = $this->RETURNMAC;
+        }
+        if (!is_null($this->hostedCheckoutId)) {
+            $object->hostedCheckoutId = $this->hostedCheckoutId;
+        }
+        if (!is_null($this->invalidTokens)) {
+            $object->invalidTokens = [];
+            foreach ($this->invalidTokens as $element) {
+                if (!is_null($element)) {
+                    $object->invalidTokens[] = $element;
+                }
+            }
+        }
+        if (!is_null($this->merchantReference)) {
+            $object->merchantReference = $this->merchantReference;
+        }
+        if (!is_null($this->partialRedirectUrl)) {
+            $object->partialRedirectUrl = $this->partialRedirectUrl;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -57,8 +86,8 @@ class CreateHostedCheckoutResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->invalidTokens, true) . '\' is not an array or object');
             }
             $this->invalidTokens = [];
-            foreach ($object->invalidTokens as $invalidTokensElementObject) {
-                $this->invalidTokens[] = $invalidTokensElementObject;
+            foreach ($object->invalidTokens as $element) {
+                $this->invalidTokens[] = $element;
             }
         }
         if (property_exists($object, 'merchantReference')) {

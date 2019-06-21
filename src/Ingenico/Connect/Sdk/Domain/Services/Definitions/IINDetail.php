@@ -24,6 +24,21 @@ class IINDetail extends DataObject
     public $paymentProductId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isAllowedInContext)) {
+            $object->isAllowedInContext = $this->isAllowedInContext;
+        }
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

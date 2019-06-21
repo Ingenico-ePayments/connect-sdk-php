@@ -39,6 +39,30 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
     public $threeDSecureResults = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authorisationCode)) {
+            $object->authorisationCode = $this->authorisationCode;
+        }
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
+        if (!is_null($this->network)) {
+            $object->network = $this->network;
+        }
+        if (!is_null($this->paymentData)) {
+            $object->paymentData = $this->paymentData->toObject();
+        }
+        if (!is_null($this->threeDSecureResults)) {
+            $object->threeDSecureResults = $this->threeDSecureResults->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -25,6 +25,26 @@ class GetCustomerDetailsRequest extends DataObject
     public $values = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        if (!is_null($this->values)) {
+            $object->values = [];
+            foreach ($this->values as $element) {
+                if (!is_null($element)) {
+                    $object->values[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -40,9 +60,9 @@ class GetCustomerDetailsRequest extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->values, true) . '\' is not an array or object');
             }
             $this->values = [];
-            foreach ($object->values as $valuesElementObject) {
-                $valuesElement = new KeyValuePair();
-                $this->values[] = $valuesElement->fromObject($valuesElementObject);
+            foreach ($object->values as $element) {
+                $value = new KeyValuePair();
+                $this->values[] = $value->fromObject($element);
             }
         }
         return $this;

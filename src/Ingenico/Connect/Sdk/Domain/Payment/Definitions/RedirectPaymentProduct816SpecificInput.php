@@ -20,6 +20,18 @@ class RedirectPaymentProduct816SpecificInput extends DataObject
     public $bankAccountIban = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

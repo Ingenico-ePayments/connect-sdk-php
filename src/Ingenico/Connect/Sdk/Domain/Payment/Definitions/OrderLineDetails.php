@@ -69,6 +69,48 @@ class OrderLineDetails extends DataObject
     public $unit = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->discountAmount)) {
+            $object->discountAmount = $this->discountAmount;
+        }
+        if (!is_null($this->googleProductCategoryId)) {
+            $object->googleProductCategoryId = $this->googleProductCategoryId;
+        }
+        if (!is_null($this->lineAmountTotal)) {
+            $object->lineAmountTotal = $this->lineAmountTotal;
+        }
+        if (!is_null($this->productCategory)) {
+            $object->productCategory = $this->productCategory;
+        }
+        if (!is_null($this->productCode)) {
+            $object->productCode = $this->productCode;
+        }
+        if (!is_null($this->productName)) {
+            $object->productName = $this->productName;
+        }
+        if (!is_null($this->productPrice)) {
+            $object->productPrice = $this->productPrice;
+        }
+        if (!is_null($this->productType)) {
+            $object->productType = $this->productType;
+        }
+        if (!is_null($this->quantity)) {
+            $object->quantity = $this->quantity;
+        }
+        if (!is_null($this->taxAmount)) {
+            $object->taxAmount = $this->taxAmount;
+        }
+        if (!is_null($this->unit)) {
+            $object->unit = $this->unit;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

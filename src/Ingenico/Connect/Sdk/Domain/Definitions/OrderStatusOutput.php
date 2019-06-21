@@ -40,6 +40,35 @@ class OrderStatusOutput extends DataObject
     public $statusCodeChangeDateTime = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->errors)) {
+            $object->errors = [];
+            foreach ($this->errors as $element) {
+                if (!is_null($element)) {
+                    $object->errors[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->isCancellable)) {
+            $object->isCancellable = $this->isCancellable;
+        }
+        if (!is_null($this->statusCategory)) {
+            $object->statusCategory = $this->statusCategory;
+        }
+        if (!is_null($this->statusCode)) {
+            $object->statusCode = $this->statusCode;
+        }
+        if (!is_null($this->statusCodeChangeDateTime)) {
+            $object->statusCodeChangeDateTime = $this->statusCodeChangeDateTime;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -52,9 +81,9 @@ class OrderStatusOutput extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->errors, true) . '\' is not an array or object');
             }
             $this->errors = [];
-            foreach ($object->errors as $errorsElementObject) {
-                $errorsElement = new APIError();
-                $this->errors[] = $errorsElement->fromObject($errorsElementObject);
+            foreach ($object->errors as $element) {
+                $value = new APIError();
+                $this->errors[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'isCancellable')) {

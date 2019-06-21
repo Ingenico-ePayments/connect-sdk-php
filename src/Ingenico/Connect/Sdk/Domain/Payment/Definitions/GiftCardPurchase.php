@@ -25,6 +25,21 @@ class GiftCardPurchase extends DataObject
     public $numberOfGiftCards = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->numberOfGiftCards)) {
+            $object->numberOfGiftCards = $this->numberOfGiftCards;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

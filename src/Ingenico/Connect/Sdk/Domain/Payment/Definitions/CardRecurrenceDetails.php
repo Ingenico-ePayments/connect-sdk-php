@@ -29,6 +29,24 @@ class CardRecurrenceDetails extends DataObject
     public $recurringPaymentSequenceIndicator = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->endDate)) {
+            $object->endDate = $this->endDate;
+        }
+        if (!is_null($this->minFrequency)) {
+            $object->minFrequency = $this->minFrequency;
+        }
+        if (!is_null($this->recurringPaymentSequenceIndicator)) {
+            $object->recurringPaymentSequenceIndicator = $this->recurringPaymentSequenceIndicator;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

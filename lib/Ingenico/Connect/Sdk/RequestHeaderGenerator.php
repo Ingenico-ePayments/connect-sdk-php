@@ -11,7 +11,7 @@ use UnexpectedValueException;
  */
 class RequestHeaderGenerator
 {
-    const SDK_VERSION = '5.36.0';
+    const SDK_VERSION = '6.0.0';
 
     const AUTHORIZATION_ID = 'GCS';
 
@@ -20,8 +20,6 @@ class RequestHeaderGenerator
     const AUTHORIZATION_TYPE = 'v1HMAC';
 
     const HASH_ALGORITHM = 'sha256';
-
-    const MIME_APPLICATION_JSON = 'application/json';
 
     /** @var CommunicatorConfiguration */
     protected $communicatorConfiguration;
@@ -64,11 +62,11 @@ class RequestHeaderGenerator
     }
 
     /**
+     * @param string $contentType
      * @return string[]
      */
-    public function generateRequestHeaders()
+    public function generateRequestHeaders($contentType = Communicator::MIME_APPLICATION_JSON)
     {
-        $contentType = static::MIME_APPLICATION_JSON;
         $rfc2616Date = $this->getRfc161Date();
         $requestHeaders = array();
         $requestHeaders['Content-Type'] = $contentType;

@@ -18,6 +18,18 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractRedirectPaymentMeth
     public $paymentProduct840SpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct840SpecificInput)) {
+            $object->paymentProduct840SpecificInput = $this->paymentProduct840SpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

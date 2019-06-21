@@ -49,6 +49,36 @@ class APIError extends DataObject
     public $requestId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->category)) {
+            $object->category = $this->category;
+        }
+        if (!is_null($this->code)) {
+            $object->code = $this->code;
+        }
+        if (!is_null($this->httpStatusCode)) {
+            $object->httpStatusCode = $this->httpStatusCode;
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->message)) {
+            $object->message = $this->message;
+        }
+        if (!is_null($this->propertyName)) {
+            $object->propertyName = $this->propertyName;
+        }
+        if (!is_null($this->requestId)) {
+            $object->requestId = $this->requestId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

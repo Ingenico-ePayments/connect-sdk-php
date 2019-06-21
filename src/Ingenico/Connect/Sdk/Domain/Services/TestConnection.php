@@ -19,6 +19,18 @@ class TestConnection extends DataObject
     public $result = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->result)) {
+            $object->result = $this->result;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

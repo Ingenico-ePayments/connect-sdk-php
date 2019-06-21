@@ -54,6 +54,39 @@ class SdkDataInput extends DataObject
     public $sdkTransactionId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->deviceInfo)) {
+            $object->deviceInfo = $this->deviceInfo;
+        }
+        if (!is_null($this->deviceRenderOptions)) {
+            $object->deviceRenderOptions = $this->deviceRenderOptions->toObject();
+        }
+        if (!is_null($this->sdkAppId)) {
+            $object->sdkAppId = $this->sdkAppId;
+        }
+        if (!is_null($this->sdkEncryptedData)) {
+            $object->sdkEncryptedData = $this->sdkEncryptedData;
+        }
+        if (!is_null($this->sdkEphemeralPublicKey)) {
+            $object->sdkEphemeralPublicKey = $this->sdkEphemeralPublicKey;
+        }
+        if (!is_null($this->sdkMaxTimeout)) {
+            $object->sdkMaxTimeout = $this->sdkMaxTimeout;
+        }
+        if (!is_null($this->sdkReferenceNumber)) {
+            $object->sdkReferenceNumber = $this->sdkReferenceNumber;
+        }
+        if (!is_null($this->sdkTransactionId)) {
+            $object->sdkTransactionId = $this->sdkTransactionId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -29,6 +29,24 @@ class ValidationBankAccountCheck extends DataObject
     public $result = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->code)) {
+            $object->code = $this->code;
+        }
+        if (!is_null($this->description)) {
+            $object->description = $this->description;
+        }
+        if (!is_null($this->result)) {
+            $object->result = $this->result;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

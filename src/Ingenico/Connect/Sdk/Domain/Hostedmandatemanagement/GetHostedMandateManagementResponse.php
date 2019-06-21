@@ -25,6 +25,21 @@ class GetHostedMandateManagementResponse extends DataObject
     public $status = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->mandate)) {
+            $object->mandate = $this->mandate->toObject();
+        }
+        if (!is_null($this->status)) {
+            $object->status = $this->status;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

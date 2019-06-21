@@ -44,6 +44,33 @@ class AbstractThreeDSecure extends DataObject
     public $skipAuthentication = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authenticationFlow)) {
+            $object->authenticationFlow = $this->authenticationFlow;
+        }
+        if (!is_null($this->challengeCanvasSize)) {
+            $object->challengeCanvasSize = $this->challengeCanvasSize;
+        }
+        if (!is_null($this->challengeIndicator)) {
+            $object->challengeIndicator = $this->challengeIndicator;
+        }
+        if (!is_null($this->priorThreeDSecureData)) {
+            $object->priorThreeDSecureData = $this->priorThreeDSecureData->toObject();
+        }
+        if (!is_null($this->sdkData)) {
+            $object->sdkData = $this->sdkData->toObject();
+        }
+        if (!is_null($this->skipAuthentication)) {
+            $object->skipAuthentication = $this->skipAuthentication;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

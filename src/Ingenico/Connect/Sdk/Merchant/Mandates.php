@@ -40,13 +40,13 @@ class Mandates extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/mandates/create.html Create mandate
      */
-    public function create($body, CallContext $callContext = null)
+    public function create(CreateMandateRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\CreateMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates'),
+            $this->instantiateUri('/v1/{merchantId}/mandates'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -71,14 +71,14 @@ class Mandates extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/mandates/createWithMandateReference.html Create mandate with mandatereference
      */
-    public function createWithMandateReference($uniqueMandateReference, $body, CallContext $callContext = null)
+    public function createWithMandateReference($uniqueMandateReference, CreateMandateRequest $body, CallContext $callContext = null)
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\CreateMandateResponse';
         return $this->getCommunicator()->put(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
+            $this->instantiateUri('/v1/{merchantId}/mandates/{uniqueMandateReference}'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -109,7 +109,7 @@ class Mandates extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}'),
+            $this->instantiateUri('/v1/{merchantId}/mandates/{uniqueMandateReference}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -139,7 +139,7 @@ class Mandates extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/block'),
+            $this->instantiateUri('/v1/{merchantId}/mandates/{uniqueMandateReference}/block'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -170,7 +170,7 @@ class Mandates extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/unblock'),
+            $this->instantiateUri('/v1/{merchantId}/mandates/{uniqueMandateReference}/unblock'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -201,7 +201,7 @@ class Mandates extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Mandates\GetMandateResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/mandates/{uniqueMandateReference}/revoke'),
+            $this->instantiateUri('/v1/{merchantId}/mandates/{uniqueMandateReference}/revoke'),
             $this->getClientMetaInfo(),
             null,
             null,

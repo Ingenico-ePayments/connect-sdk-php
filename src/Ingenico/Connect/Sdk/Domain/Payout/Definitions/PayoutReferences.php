@@ -29,6 +29,24 @@ class PayoutReferences extends DataObject
     public $merchantReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->invoiceNumber)) {
+            $object->invoiceNumber = $this->invoiceNumber;
+        }
+        if (!is_null($this->merchantOrderId)) {
+            $object->merchantOrderId = $this->merchantOrderId;
+        }
+        if (!is_null($this->merchantReference)) {
+            $object->merchantReference = $this->merchantReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

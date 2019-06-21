@@ -80,6 +80,48 @@ class CreateHostedCheckoutRequest extends DataObject
     public $sepaDirectDebitPaymentMethodSpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankTransferPaymentMethodSpecificInput)) {
+            $object->bankTransferPaymentMethodSpecificInput = $this->bankTransferPaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->cardPaymentMethodSpecificInput)) {
+            $object->cardPaymentMethodSpecificInput = $this->cardPaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->cashPaymentMethodSpecificInput)) {
+            $object->cashPaymentMethodSpecificInput = $this->cashPaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->eInvoicePaymentMethodSpecificInput)) {
+            $object->eInvoicePaymentMethodSpecificInput = $this->eInvoicePaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->fraudFields)) {
+            $object->fraudFields = $this->fraudFields->toObject();
+        }
+        if (!is_null($this->hostedCheckoutSpecificInput)) {
+            $object->hostedCheckoutSpecificInput = $this->hostedCheckoutSpecificInput->toObject();
+        }
+        if (!is_null($this->merchant)) {
+            $object->merchant = $this->merchant->toObject();
+        }
+        if (!is_null($this->mobilePaymentMethodSpecificInput)) {
+            $object->mobilePaymentMethodSpecificInput = $this->mobilePaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->order)) {
+            $object->order = $this->order->toObject();
+        }
+        if (!is_null($this->redirectPaymentMethodSpecificInput)) {
+            $object->redirectPaymentMethodSpecificInput = $this->redirectPaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->sepaDirectDebitPaymentMethodSpecificInput)) {
+            $object->sepaDirectDebitPaymentMethodSpecificInput = $this->sepaDirectDebitPaymentMethodSpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

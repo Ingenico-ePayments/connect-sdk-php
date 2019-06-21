@@ -54,6 +54,39 @@ class Shipping extends DataObject
     public $type = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->address)) {
+            $object->address = $this->address->toObject();
+        }
+        if (!is_null($this->addressIndicator)) {
+            $object->addressIndicator = $this->addressIndicator;
+        }
+        if (!is_null($this->comments)) {
+            $object->comments = $this->comments;
+        }
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress;
+        }
+        if (!is_null($this->firstUsageDate)) {
+            $object->firstUsageDate = $this->firstUsageDate;
+        }
+        if (!is_null($this->isFirstUsage)) {
+            $object->isFirstUsage = $this->isFirstUsage;
+        }
+        if (!is_null($this->trackingNumber)) {
+            $object->trackingNumber = $this->trackingNumber;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

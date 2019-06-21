@@ -47,6 +47,33 @@ class CreatedPaymentOutput extends DataObject
     public $tokens = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->displayedData)) {
+            $object->displayedData = $this->displayedData->toObject();
+        }
+        if (!is_null($this->payment)) {
+            $object->payment = $this->payment->toObject();
+        }
+        if (!is_null($this->paymentCreationReferences)) {
+            $object->paymentCreationReferences = $this->paymentCreationReferences->toObject();
+        }
+        if (!is_null($this->paymentStatusCategory)) {
+            $object->paymentStatusCategory = $this->paymentStatusCategory;
+        }
+        if (!is_null($this->tokenizationSucceeded)) {
+            $object->tokenizationSucceeded = $this->tokenizationSucceeded;
+        }
+        if (!is_null($this->tokens)) {
+            $object->tokens = $this->tokens;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

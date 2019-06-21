@@ -18,6 +18,18 @@ class CardPaymentMethodSpecificInputBase extends AbstractCardPaymentMethodSpecif
     public $threeDSecure = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->threeDSecure)) {
+            $object->threeDSecure = $this->threeDSecure->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

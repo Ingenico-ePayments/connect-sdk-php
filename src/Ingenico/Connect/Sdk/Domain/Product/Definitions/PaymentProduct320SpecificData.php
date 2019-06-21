@@ -24,6 +24,26 @@ class PaymentProduct320SpecificData extends DataObject
     public $networks = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->gateway)) {
+            $object->gateway = $this->gateway;
+        }
+        if (!is_null($this->networks)) {
+            $object->networks = [];
+            foreach ($this->networks as $element) {
+                if (!is_null($element)) {
+                    $object->networks[] = $element;
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -39,8 +59,8 @@ class PaymentProduct320SpecificData extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->networks, true) . '\' is not an array or object');
             }
             $this->networks = [];
-            foreach ($object->networks as $networksElementObject) {
-                $this->networks[] = $networksElementObject;
+            foreach ($object->networks as $element) {
+                $this->networks[] = $element;
             }
         }
         return $this;

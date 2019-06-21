@@ -11,11 +11,11 @@ use Ingenico\Connect\Sdk\Domain\Errors\Definitions\APIError;
 /**
  * @group logging
  */
-class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
+class CommunicatorLoggingTest extends ClientTestCase
 {
     public function testOnlyLogWhileLoggingIsEnabled()
     {
-        $connection = new CommunicatorLoggingTestingConnection(
+        $connection = new TestingConnection(
             $this->getMockConnectionResponse(200, array('Content-Type' => 'application/json'), '{}')
         );
         /** @var Connection $connection */
@@ -47,7 +47,7 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
     public function testLoggingForSuccessResponse()
     {
         $relativeRequestUri = '/foo/bar';
-        $connection = new CommunicatorLoggingTestingConnection(
+        $connection = new TestingConnection(
             $this->getMockConnectionResponse(200, array('Content-Type' => 'application/json'), '{}')
         );
         /** @var Connection $connection */
@@ -55,7 +55,6 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
             $connection,
             $this->getMockCommunicatorConfiguration()
         );
-        $uuidGenerator = $this->getCommunicatorUuidGenerator($connection);
         $relativeRequestUriWithRequestParameters = $relativeRequestUri;
         $requestHeaders =
             $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
@@ -69,10 +68,8 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
         );
         $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($uuidGenerator, $rawObfuscatedRequest) {
+            $this->returnCallback(function ($message) use ($rawObfuscatedRequest) {
                 $messageHeader = strstr($message, "\n", true);
-                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
-                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $messageHeader);
                 if (strpos($messageHeader, 'Outgoing request') === 0) {
                     $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
                 }
@@ -89,7 +86,7 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
     public function testLoggingForSuccessUTF8Response()
     {
         $relativeRequestUri = '/foo/bar';
-        $connection = new CommunicatorLoggingTestingConnection(
+        $connection = new TestingConnection(
             $this->getMockConnectionResponse(200, array('Content-Type' => 'application/json;charset=UTF-8'), '{}')
         );
         /** @var Connection $connection */
@@ -97,7 +94,6 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
             $connection,
             $this->getMockCommunicatorConfiguration()
         );
-        $uuidGenerator = $this->getCommunicatorUuidGenerator($connection);
         $relativeRequestUriWithRequestParameters = $relativeRequestUri;
         $requestHeaders =
             $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
@@ -111,10 +107,8 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
         );
         $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($uuidGenerator, $rawObfuscatedRequest) {
+            $this->returnCallback(function ($message) use ($rawObfuscatedRequest) {
                 $messageHeader = strstr($message, "\n", true);
-                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
-                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $messageHeader);
                 if (strpos($messageHeader, 'Outgoing request') === 0) {
                     $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
                 }
@@ -134,21 +128,18 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
         $responseHeaders = array('Content-Type' => 'application/json');
         $errorResponse = $this->getErrorResponseDataObject();
         $connectionResponse = $this->getMockConnectionResponse(400, $responseHeaders, $errorResponse->toJson());
-        $connection = new CommunicatorLoggingTestingConnection($connectionResponse);
+        $connection = new TestingConnection($connectionResponse);
         /** @var Connection $connection */
         $communicator = new Communicator(
             $connection,
             $this->getMockCommunicatorConfiguration()
         );
-        $uuidGenerator = $this->getCommunicatorUuidGenerator($connection);
         $httpObfuscator = new HttpObfuscator();
         $rawObfuscatedResponse = $httpObfuscator->getRawObfuscatedResponse($connectionResponse);
         $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($uuidGenerator, $rawObfuscatedResponse) {
+            $this->returnCallback(function ($message) use ($rawObfuscatedResponse) {
                 $messageHeader = strstr($message, "\n", true);
-                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
-                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $messageHeader);
                 if (strpos($messageHeader, 'Incoming response') === 0) {
                     $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedResponse);
                 }
@@ -173,21 +164,18 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
         $responseHeaders = array('Content-Type' => 'text/html');
         $responseBody = 'an error occurred';
         $connectionResponse = $this->getMockConnectionResponse(400, $responseHeaders, $responseBody);
-        $connection = new CommunicatorLoggingTestingConnection($connectionResponse);
+        $connection = new TestingConnection($connectionResponse);
         /** @var Connection $connection */
         $communicator = new Communicator(
             $connection,
             $this->getMockCommunicatorConfiguration()
         );
-        $uuidGenerator = $this->getCommunicatorUuidGenerator($connection);
         $httpObfuscator = new HttpObfuscator();
         $rawObfuscatedResponse = $httpObfuscator->getRawObfuscatedResponse($connectionResponse);
         $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($uuidGenerator, $rawObfuscatedResponse) {
+            $this->returnCallback(function ($message) use ($rawObfuscatedResponse) {
                 $messageHeader = strstr($message, "\n", true);
-                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
-                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $messageHeader);
                 if (strpos($messageHeader, 'Incoming response') === 0) {
                     $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedResponse);
                 }
@@ -201,7 +189,9 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
         try {
             $communicator->get($responseClassMap, $relativeRequestUri);
         } catch (InvalidResponseException $e) {
-            $this->assertEquals($connectionResponse, $e->getResponse());
+            $this->assertEquals($connectionResponse->getHttpStatusCode(), $e->getResponse()->getHttpStatusCode());
+            $this->assertEquals($connectionResponse->getHeaders(), $e->getResponse()->getHeaders());
+            $this->assertEquals($connectionResponse->getBody(), $e->getResponse()->getBody());
             return;
         }
         $this->fail('an expected exception has not been raised');
@@ -211,26 +201,22 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
     {
         $relativeRequestUri = '/foo/bar';
         $errorException = new ErrorException('Test error exception');
-        $connection = new CommunicatorLoggingTestingConnection(null, $errorException);
+        $connection = new TestingConnection(null, $errorException);
         /** @var Connection $connection */
         $communicator = new Communicator(
             $connection,
             $this->getMockCommunicatorConfiguration()
         );
-        $uuidGenerator = $this->getCommunicatorUuidGenerator($connection);
         $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
         $logger->expects($this->once())->method('log')->will(
-            $this->returnCallback(function ($message) use ($uuidGenerator) {
+            $this->returnCallback(function ($message) {
                 $messageHeader = strstr($message, "\n", true);
-                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
-                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $messageHeader);
+                $this->assertContains('Outgoing request', $messageHeader);
             })
         );
         $logger->expects($this->once())->method('logException')->will(
-            $this->returnCallback(function ($message, $exception) use ($uuidGenerator, $errorException) {
+            $this->returnCallback(function ($message, $exception) use ($errorException) {
                 $this->assertNotContains("\n", $message);
-                $this->assertNotEmpty($uuidGenerator->getLastGeneratedUuid());
-                $this->assertContains($uuidGenerator->getLastGeneratedUuid(), $message);
                 $this->assertEquals($errorException, $exception);
             })
         );
@@ -244,6 +230,25 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
             return;
         }
         $this->fail('an expected exception has not been raised');
+    }
+
+    public function testLogWithRealRequest()
+    {
+        $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
+        $logger->expects($this->exactly(2))->method('log')->will(
+            $this->returnCallback(function ($message) {
+                $messageParts = explode("\n", $message);
+                $this->assertGreaterThanOrEqual(2, count($messageParts));
+                if (strpos($messageParts[0], 'Outgoing request') === 0) {
+                    $this->assertContains('/services/testconnection', $messageParts[1]);
+                }
+            })
+            );
+        $logger->expects($this->never())->method('logException');
+        /** @var CommunicatorLogger $logger */
+        $this->getClient()->enableLogging($logger);
+        $this->getClient()->merchant($this->getMerchantId())->services()->testconnection();
+        $this->getClient()->disableLogging();
     }
 
     /**
@@ -319,18 +324,6 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param Connection $connection
-     * @return UuidGenerator
-     */
-    protected function getCommunicatorUuidGenerator(Connection $connection)
-    {
-        $communicatorLoggerHelper = $this->getCommunicatorLoggerHelper($connection);
-        $method = new ReflectionMethod($communicatorLoggerHelper, 'getUuidGenerator');
-        $method->setAccessible(true);
-        return $method->invoke($communicatorLoggerHelper);
-    }
-
-    /**
      * @param Communicator $communicator
      * @param $httpMethod
      * @param $relativeUriPathWithRequestParameters
@@ -351,34 +344,9 @@ class CommunicatorLoggingTest extends \PHPUnit_Framework_TestCase
             $communicator,
             $httpMethod,
             $relativeUriPathWithRequestParameters,
+            Communicator::MIME_APPLICATION_JSON,
             $clientMetaInfo,
             $callContext
         );
-    }
-}
-
-class CommunicatorLoggingTestingConnection extends DefaultConnection
-{
-    private $response;
-    private $exception;
-
-    function __construct(ConnectionResponse $response = null, Exception $exception = null)
-    {
-        $this->response = $response;
-        $this->exception = $exception;
-    }
-
-    protected function executeRequest(
-        $httpMethod,
-        $requestUri,
-        $requestHeaders,
-        $body,
-        ProxyConfiguration $proxyConfiguration = null
-    ) {
-        if (!is_null($this->exception)) {
-            throw $this->exception;
-        } else {
-            return $this->response;
-        }
     }
 }

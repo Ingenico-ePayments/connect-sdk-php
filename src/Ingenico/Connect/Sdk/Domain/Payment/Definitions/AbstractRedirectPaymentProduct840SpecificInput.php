@@ -19,6 +19,18 @@ class AbstractRedirectPaymentProduct840SpecificInput extends DataObject
     public $addressSelectionAtPayPal = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->addressSelectionAtPayPal)) {
+            $object->addressSelectionAtPayPal = $this->addressSelectionAtPayPal;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

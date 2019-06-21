@@ -24,6 +24,21 @@ class CustomerDeviceRiskAssessment extends DataObject
     public $deviceFingerprintTransactionId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->defaultFormFill)) {
+            $object->defaultFormFill = $this->defaultFormFill;
+        }
+        if (!is_null($this->deviceFingerprintTransactionId)) {
+            $object->deviceFingerprintTransactionId = $this->deviceFingerprintTransactionId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

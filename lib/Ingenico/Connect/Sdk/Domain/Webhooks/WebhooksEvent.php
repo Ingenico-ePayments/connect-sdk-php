@@ -61,6 +61,42 @@ class WebhooksEvent extends DataObject
     public $token = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->apiVersion)) {
+            $object->apiVersion = $this->apiVersion;
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->created)) {
+            $object->created = $this->created;
+        }
+        if (!is_null($this->merchantId)) {
+            $object->merchantId = $this->merchantId;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        if (!is_null($this->payment)) {
+            $object->payment = $this->payment->toObject();
+        }
+        if (!is_null($this->refund)) {
+            $object->refund = $this->refund->toObject();
+        }
+        if (!is_null($this->payout)) {
+            $object->payout = $this->payout->toObject();
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

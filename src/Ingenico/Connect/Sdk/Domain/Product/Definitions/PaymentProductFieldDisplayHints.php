@@ -64,6 +64,45 @@ class PaymentProductFieldDisplayHints extends DataObject
     public $tooltip = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->alwaysShow)) {
+            $object->alwaysShow = $this->alwaysShow;
+        }
+        if (!is_null($this->displayOrder)) {
+            $object->displayOrder = $this->displayOrder;
+        }
+        if (!is_null($this->formElement)) {
+            $object->formElement = $this->formElement->toObject();
+        }
+        if (!is_null($this->label)) {
+            $object->label = $this->label;
+        }
+        if (!is_null($this->link)) {
+            $object->link = $this->link;
+        }
+        if (!is_null($this->mask)) {
+            $object->mask = $this->mask;
+        }
+        if (!is_null($this->obfuscate)) {
+            $object->obfuscate = $this->obfuscate;
+        }
+        if (!is_null($this->placeholderLabel)) {
+            $object->placeholderLabel = $this->placeholderLabel;
+        }
+        if (!is_null($this->preferredInputType)) {
+            $object->preferredInputType = $this->preferredInputType;
+        }
+        if (!is_null($this->tooltip)) {
+            $object->tooltip = $this->tooltip->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

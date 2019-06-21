@@ -82,6 +82,54 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
     public $unscheduledCardOnFileSequenceIndicator = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authorizationMode)) {
+            $object->authorizationMode = $this->authorizationMode;
+        }
+        if (!is_null($this->customerReference)) {
+            $object->customerReference = $this->customerReference;
+        }
+        if (!is_null($this->recurring)) {
+            $object->recurring = $this->recurring->toObject();
+        }
+        if (!is_null($this->recurringPaymentSequenceIndicator)) {
+            $object->recurringPaymentSequenceIndicator = $this->recurringPaymentSequenceIndicator;
+        }
+        if (!is_null($this->requiresApproval)) {
+            $object->requiresApproval = $this->requiresApproval;
+        }
+        if (!is_null($this->skipAuthentication)) {
+            $object->skipAuthentication = $this->skipAuthentication;
+        }
+        if (!is_null($this->skipFraudService)) {
+            $object->skipFraudService = $this->skipFraudService;
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        if (!is_null($this->tokenize)) {
+            $object->tokenize = $this->tokenize;
+        }
+        if (!is_null($this->transactionChannel)) {
+            $object->transactionChannel = $this->transactionChannel;
+        }
+        if (!is_null($this->unscheduledCardOnFileIndicator)) {
+            $object->unscheduledCardOnFileIndicator = $this->unscheduledCardOnFileIndicator;
+        }
+        if (!is_null($this->unscheduledCardOnFileRequestor)) {
+            $object->unscheduledCardOnFileRequestor = $this->unscheduledCardOnFileRequestor;
+        }
+        if (!is_null($this->unscheduledCardOnFileSequenceIndicator)) {
+            $object->unscheduledCardOnFileSequenceIndicator = $this->unscheduledCardOnFileSequenceIndicator;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -37,6 +37,27 @@ class ApprovePaymentRequest extends DataObject
     public $sepaDirectDebitPaymentMethodSpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amount)) {
+            $object->amount = $this->amount;
+        }
+        if (!is_null($this->directDebitPaymentMethodSpecificInput)) {
+            $object->directDebitPaymentMethodSpecificInput = $this->directDebitPaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->order)) {
+            $object->order = $this->order->toObject();
+        }
+        if (!is_null($this->sepaDirectDebitPaymentMethodSpecificInput)) {
+            $object->sepaDirectDebitPaymentMethodSpecificInput = $this->sepaDirectDebitPaymentMethodSpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

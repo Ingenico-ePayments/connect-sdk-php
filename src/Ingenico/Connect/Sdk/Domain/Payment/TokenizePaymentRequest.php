@@ -19,6 +19,18 @@ class TokenizePaymentRequest extends DataObject
     public $alias = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->alias)) {
+            $object->alias = $this->alias;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

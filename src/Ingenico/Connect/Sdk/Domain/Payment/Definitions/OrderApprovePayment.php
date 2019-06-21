@@ -30,6 +30,24 @@ class OrderApprovePayment extends DataObject
     public $references = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalInput)) {
+            $object->additionalInput = $this->additionalInput->toObject();
+        }
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->references)) {
+            $object->references = $this->references->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

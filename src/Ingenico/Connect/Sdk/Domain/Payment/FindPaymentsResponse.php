@@ -35,6 +35,32 @@ class FindPaymentsResponse extends DataObject
     public $totalCount = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->limit)) {
+            $object->limit = $this->limit;
+        }
+        if (!is_null($this->offset)) {
+            $object->offset = $this->offset;
+        }
+        if (!is_null($this->payments)) {
+            $object->payments = [];
+            foreach ($this->payments as $element) {
+                if (!is_null($element)) {
+                    $object->payments[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->totalCount)) {
+            $object->totalCount = $this->totalCount;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -53,9 +79,9 @@ class FindPaymentsResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->payments, true) . '\' is not an array or object');
             }
             $this->payments = [];
-            foreach ($object->payments as $paymentsElementObject) {
-                $paymentsElement = new Payment();
-                $this->payments[] = $paymentsElement->fromObject($paymentsElementObject);
+            foreach ($object->payments as $element) {
+                $value = new Payment();
+                $this->payments[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'totalCount')) {

@@ -20,7 +20,7 @@ class SecretKeyNotAvailableException extends SignatureValidationException
      */
     public function __construct($keyId, $message = null, $previous = null)
     {
-        parent::__construct($message);
+        parent::__construct($message, $previous);
         $this->keyId = $keyId;
     }
 

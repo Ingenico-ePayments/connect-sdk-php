@@ -44,6 +44,33 @@ class PaymentReferences extends DataObject
     public $referenceOrigPayment = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->merchantOrderId)) {
+            $object->merchantOrderId = $this->merchantOrderId;
+        }
+        if (!is_null($this->merchantReference)) {
+            $object->merchantReference = $this->merchantReference;
+        }
+        if (!is_null($this->paymentReference)) {
+            $object->paymentReference = $this->paymentReference;
+        }
+        if (!is_null($this->providerId)) {
+            $object->providerId = $this->providerId;
+        }
+        if (!is_null($this->providerReference)) {
+            $object->providerReference = $this->providerReference;
+        }
+        if (!is_null($this->referenceOrigPayment)) {
+            $object->referenceOrigPayment = $this->referenceOrigPayment;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

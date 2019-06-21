@@ -18,6 +18,18 @@ class SepaDirectDebitPaymentMethodSpecificInputBase extends AbstractSepaDirectDe
     public $paymentProduct771SpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct771SpecificInput)) {
+            $object->paymentProduct771SpecificInput = $this->paymentProduct771SpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

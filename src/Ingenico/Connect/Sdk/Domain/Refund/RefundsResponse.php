@@ -20,6 +20,23 @@ class RefundsResponse extends DataObject
     public $refunds = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->refunds)) {
+            $object->refunds = [];
+            foreach ($this->refunds as $element) {
+                if (!is_null($element)) {
+                    $object->refunds[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -32,9 +49,9 @@ class RefundsResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->refunds, true) . '\' is not an array or object');
             }
             $this->refunds = [];
-            foreach ($object->refunds as $refundsElementObject) {
-                $refundsElement = new RefundResult();
-                $this->refunds[] = $refundsElement->fromObject($refundsElementObject);
+            foreach ($object->refunds as $element) {
+                $value = new RefundResult();
+                $this->refunds[] = $value->fromObject($element);
             }
         }
         return $this;

@@ -33,6 +33,24 @@ class FraudFieldsShippingDetails extends DataObject
     public $methodType = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->methodDetails)) {
+            $object->methodDetails = $this->methodDetails;
+        }
+        if (!is_null($this->methodSpeed)) {
+            $object->methodSpeed = $this->methodSpeed;
+        }
+        if (!is_null($this->methodType)) {
+            $object->methodType = $this->methodType;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

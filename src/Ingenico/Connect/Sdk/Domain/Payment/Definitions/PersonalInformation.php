@@ -29,6 +29,24 @@ class PersonalInformation extends DataObject
     public $name = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->dateOfBirth)) {
+            $object->dateOfBirth = $this->dateOfBirth;
+        }
+        if (!is_null($this->gender)) {
+            $object->gender = $this->gender;
+        }
+        if (!is_null($this->name)) {
+            $object->name = $this->name->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

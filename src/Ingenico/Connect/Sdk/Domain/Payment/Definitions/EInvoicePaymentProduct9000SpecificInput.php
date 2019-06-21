@@ -25,6 +25,21 @@ class EInvoicePaymentProduct9000SpecificInput extends DataObject
     public $installmentId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->installmentId)) {
+            $object->installmentId = $this->installmentId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

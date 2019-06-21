@@ -24,6 +24,21 @@ class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProd
     public $isShortcut = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->custom)) {
+            $object->custom = $this->custom;
+        }
+        if (!is_null($this->isShortcut)) {
+            $object->isShortcut = $this->isShortcut;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -19,6 +19,23 @@ class PaymentProduct863SpecificData extends DataObject
     public $integrationTypes = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->integrationTypes)) {
+            $object->integrationTypes = [];
+            foreach ($this->integrationTypes as $element) {
+                if (!is_null($element)) {
+                    $object->integrationTypes[] = $element;
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -31,8 +48,8 @@ class PaymentProduct863SpecificData extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->integrationTypes, true) . '\' is not an array or object');
             }
             $this->integrationTypes = [];
-            foreach ($object->integrationTypes as $integrationTypesElementObject) {
-                $this->integrationTypes[] = $integrationTypesElementObject;
+            foreach ($object->integrationTypes as $element) {
+                $this->integrationTypes[] = $element;
             }
         }
         return $this;

@@ -20,6 +20,23 @@ class Directory extends DataObject
     public $entries = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->entries)) {
+            $object->entries = [];
+            foreach ($this->entries as $element) {
+                if (!is_null($element)) {
+                    $object->entries[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -32,9 +49,9 @@ class Directory extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->entries, true) . '\' is not an array or object');
             }
             $this->entries = [];
-            foreach ($object->entries as $entriesElementObject) {
-                $entriesElement = new DirectoryEntry();
-                $this->entries[] = $entriesElement->fromObject($entriesElementObject);
+            foreach ($object->entries as $element) {
+                $value = new DirectoryEntry();
+                $this->entries[] = $value->fromObject($element);
             }
         }
         return $this;

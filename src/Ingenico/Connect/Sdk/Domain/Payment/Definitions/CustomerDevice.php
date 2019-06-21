@@ -54,6 +54,39 @@ class CustomerDevice extends DataObject
     public $userAgent = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->acceptHeader)) {
+            $object->acceptHeader = $this->acceptHeader;
+        }
+        if (!is_null($this->browserData)) {
+            $object->browserData = $this->browserData->toObject();
+        }
+        if (!is_null($this->defaultFormFill)) {
+            $object->defaultFormFill = $this->defaultFormFill;
+        }
+        if (!is_null($this->deviceFingerprintTransactionId)) {
+            $object->deviceFingerprintTransactionId = $this->deviceFingerprintTransactionId;
+        }
+        if (!is_null($this->ipAddress)) {
+            $object->ipAddress = $this->ipAddress;
+        }
+        if (!is_null($this->locale)) {
+            $object->locale = $this->locale;
+        }
+        if (!is_null($this->timezoneOffsetUtcMinutes)) {
+            $object->timezoneOffsetUtcMinutes = $this->timezoneOffsetUtcMinutes;
+        }
+        if (!is_null($this->userAgent)) {
+            $object->userAgent = $this->userAgent;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

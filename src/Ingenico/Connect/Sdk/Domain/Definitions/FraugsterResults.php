@@ -24,6 +24,21 @@ class FraugsterResults extends DataObject
     public $fraudScore = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fraudInvestigationPoints)) {
+            $object->fraudInvestigationPoints = $this->fraudInvestigationPoints;
+        }
+        if (!is_null($this->fraudScore)) {
+            $object->fraudScore = $this->fraudScore;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

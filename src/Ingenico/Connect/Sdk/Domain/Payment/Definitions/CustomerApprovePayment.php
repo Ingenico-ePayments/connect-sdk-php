@@ -19,6 +19,18 @@ class CustomerApprovePayment extends DataObject
     public $accountType = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->accountType)) {
+            $object->accountType = $this->accountType;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -40,13 +40,13 @@ class Riskassessments extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/riskassessments/bankaccounts.html Risk-assess bankaccount
      */
-    public function bankaccounts($body, CallContext $callContext = null)
+    public function bankaccounts(RiskAssessmentBankAccount $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/bankaccounts'),
+            $this->instantiateUri('/v1/{merchantId}/riskassessments/bankaccounts'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -70,13 +70,13 @@ class Riskassessments extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/riskassessments/cards.html Risk-assess card
      */
-    public function cards($body, CallContext $callContext = null)
+    public function cards(RiskAssessmentCard $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/riskassessments/cards'),
+            $this->instantiateUri('/v1/{merchantId}/riskassessments/cards'),
             $this->getClientMetaInfo(),
             $body,
             null,

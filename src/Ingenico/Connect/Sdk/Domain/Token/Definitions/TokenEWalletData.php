@@ -19,6 +19,18 @@ class TokenEWalletData extends DataObject
     public $billingAgreementId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->billingAgreementId)) {
+            $object->billingAgreementId = $this->billingAgreementId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

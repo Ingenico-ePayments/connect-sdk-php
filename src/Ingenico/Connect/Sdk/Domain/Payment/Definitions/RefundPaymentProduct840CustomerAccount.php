@@ -29,6 +29,24 @@ class RefundPaymentProduct840CustomerAccount extends DataObject
     public $payerId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->customerAccountStatus)) {
+            $object->customerAccountStatus = $this->customerAccountStatus;
+        }
+        if (!is_null($this->customerAddressStatus)) {
+            $object->customerAddressStatus = $this->customerAddressStatus;
+        }
+        if (!is_null($this->payerId)) {
+            $object->payerId = $this->payerId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

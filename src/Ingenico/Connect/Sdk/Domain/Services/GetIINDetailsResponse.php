@@ -35,6 +35,32 @@ class GetIINDetailsResponse extends DataObject
     public $paymentProductId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->coBrands)) {
+            $object->coBrands = [];
+            foreach ($this->coBrands as $element) {
+                if (!is_null($element)) {
+                    $object->coBrands[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        if (!is_null($this->isAllowedInContext)) {
+            $object->isAllowedInContext = $this->isAllowedInContext;
+        }
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -47,9 +73,9 @@ class GetIINDetailsResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->coBrands, true) . '\' is not an array or object');
             }
             $this->coBrands = [];
-            foreach ($object->coBrands as $coBrandsElementObject) {
-                $coBrandsElement = new IINDetail();
-                $this->coBrands[] = $coBrandsElement->fromObject($coBrandsElementObject);
+            foreach ($object->coBrands as $element) {
+                $value = new IINDetail();
+                $this->coBrands[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'countryCode')) {

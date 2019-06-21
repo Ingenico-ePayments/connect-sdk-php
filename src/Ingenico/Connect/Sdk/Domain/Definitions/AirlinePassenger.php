@@ -34,6 +34,27 @@ class AirlinePassenger extends DataObject
     public $title = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->firstName)) {
+            $object->firstName = $this->firstName;
+        }
+        if (!is_null($this->surname)) {
+            $object->surname = $this->surname;
+        }
+        if (!is_null($this->surnamePrefix)) {
+            $object->surnamePrefix = $this->surnamePrefix;
+        }
+        if (!is_null($this->title)) {
+            $object->title = $this->title;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

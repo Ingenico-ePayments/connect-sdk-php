@@ -34,6 +34,27 @@ class ContactDetails extends ContactDetailsBase
     public $workPhoneNumber = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->faxNumber)) {
+            $object->faxNumber = $this->faxNumber;
+        }
+        if (!is_null($this->mobilePhoneNumber)) {
+            $object->mobilePhoneNumber = $this->mobilePhoneNumber;
+        }
+        if (!is_null($this->phoneNumber)) {
+            $object->phoneNumber = $this->phoneNumber;
+        }
+        if (!is_null($this->workPhoneNumber)) {
+            $object->workPhoneNumber = $this->workPhoneNumber;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

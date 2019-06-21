@@ -19,6 +19,18 @@ class NonSepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMetho
     public $fraudResults = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

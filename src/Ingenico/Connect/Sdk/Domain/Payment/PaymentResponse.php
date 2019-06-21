@@ -14,6 +14,15 @@ use UnexpectedValueException;
 class PaymentResponse extends Payment
 {
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

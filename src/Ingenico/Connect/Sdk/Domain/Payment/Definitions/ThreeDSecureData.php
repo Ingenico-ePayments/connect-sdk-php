@@ -29,6 +29,24 @@ class ThreeDSecureData extends DataObject
     public $utcTimestamp = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->acsTransactionId)) {
+            $object->acsTransactionId = $this->acsTransactionId;
+        }
+        if (!is_null($this->method)) {
+            $object->method = $this->method;
+        }
+        if (!is_null($this->utcTimestamp)) {
+            $object->utcTimestamp = $this->utcTimestamp;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

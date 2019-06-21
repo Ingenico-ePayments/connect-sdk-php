@@ -49,6 +49,36 @@ class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificIn
     public $paymentProduct1526SpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct1503SpecificInput)) {
+            $object->paymentProduct1503SpecificInput = $this->paymentProduct1503SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct1504SpecificInput)) {
+            $object->paymentProduct1504SpecificInput = $this->paymentProduct1504SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct1521SpecificInput)) {
+            $object->paymentProduct1521SpecificInput = $this->paymentProduct1521SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct1522SpecificInput)) {
+            $object->paymentProduct1522SpecificInput = $this->paymentProduct1522SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct1523SpecificInput)) {
+            $object->paymentProduct1523SpecificInput = $this->paymentProduct1523SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct1524SpecificInput)) {
+            $object->paymentProduct1524SpecificInput = $this->paymentProduct1524SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct1526SpecificInput)) {
+            $object->paymentProduct1526SpecificInput = $this->paymentProduct1526SpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -19,6 +19,18 @@ class BankAccount extends DataObject
     public $accountHolderName = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->accountHolderName)) {
+            $object->accountHolderName = $this->accountHolderName;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

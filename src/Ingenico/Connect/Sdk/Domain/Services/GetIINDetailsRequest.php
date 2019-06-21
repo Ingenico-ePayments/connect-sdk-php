@@ -25,6 +25,21 @@ class GetIINDetailsRequest extends DataObject
     public $paymentContext = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bin)) {
+            $object->bin = $this->bin;
+        }
+        if (!is_null($this->paymentContext)) {
+            $object->paymentContext = $this->paymentContext->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -14,6 +14,15 @@ use UnexpectedValueException;
 class AbstractPayoutMethodSpecificInput extends DataObject
 {
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

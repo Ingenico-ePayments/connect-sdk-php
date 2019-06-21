@@ -64,6 +64,45 @@ class GetCustomerDetailsResponse extends DataObject
     public $zip = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->city)) {
+            $object->city = $this->city;
+        }
+        if (!is_null($this->country)) {
+            $object->country = $this->country;
+        }
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress;
+        }
+        if (!is_null($this->firstName)) {
+            $object->firstName = $this->firstName;
+        }
+        if (!is_null($this->fiscalNumber)) {
+            $object->fiscalNumber = $this->fiscalNumber;
+        }
+        if (!is_null($this->languageCode)) {
+            $object->languageCode = $this->languageCode;
+        }
+        if (!is_null($this->phoneNumber)) {
+            $object->phoneNumber = $this->phoneNumber;
+        }
+        if (!is_null($this->street)) {
+            $object->street = $this->street;
+        }
+        if (!is_null($this->surname)) {
+            $object->surname = $this->surname;
+        }
+        if (!is_null($this->zip)) {
+            $object->zip = $this->zip;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

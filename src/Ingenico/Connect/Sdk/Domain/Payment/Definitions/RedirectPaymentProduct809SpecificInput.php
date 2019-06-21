@@ -25,6 +25,21 @@ class RedirectPaymentProduct809SpecificInput extends DataObject
     public $issuerId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->expirationPeriod)) {
+            $object->expirationPeriod = $this->expirationPeriod;
+        }
+        if (!is_null($this->issuerId)) {
+            $object->issuerId = $this->issuerId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

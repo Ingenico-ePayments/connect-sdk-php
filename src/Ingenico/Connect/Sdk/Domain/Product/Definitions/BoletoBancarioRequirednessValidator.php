@@ -19,6 +19,18 @@ class BoletoBancarioRequirednessValidator extends DataObject
     public $fiscalNumberLength = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fiscalNumberLength)) {
+            $object->fiscalNumberLength = $this->fiscalNumberLength;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -24,6 +24,21 @@ class AmountBreakdown extends DataObject
     public $type = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amount)) {
+            $object->amount = $this->amount;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

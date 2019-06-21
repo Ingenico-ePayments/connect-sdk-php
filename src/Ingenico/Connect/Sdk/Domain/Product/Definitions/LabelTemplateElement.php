@@ -24,6 +24,21 @@ class LabelTemplateElement extends DataObject
     public $mask = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->attributeKey)) {
+            $object->attributeKey = $this->attributeKey;
+        }
+        if (!is_null($this->mask)) {
+            $object->mask = $this->mask;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

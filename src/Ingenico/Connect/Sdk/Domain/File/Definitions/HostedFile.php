@@ -34,6 +34,27 @@ class HostedFile extends DataObject
     public $id = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fileName)) {
+            $object->fileName = $this->fileName;
+        }
+        if (!is_null($this->fileSize)) {
+            $object->fileSize = $this->fileSize;
+        }
+        if (!is_null($this->fileType)) {
+            $object->fileType = $this->fileType;
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

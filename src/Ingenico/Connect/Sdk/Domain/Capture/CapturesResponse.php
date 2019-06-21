@@ -20,6 +20,23 @@ class CapturesResponse extends DataObject
     public $captures = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->captures)) {
+            $object->captures = [];
+            foreach ($this->captures as $element) {
+                if (!is_null($element)) {
+                    $object->captures[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -32,9 +49,9 @@ class CapturesResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->captures, true) . '\' is not an array or object');
             }
             $this->captures = [];
-            foreach ($object->captures as $capturesElementObject) {
-                $capturesElement = new Capture();
-                $this->captures[] = $capturesElement->fromObject($capturesElementObject);
+            foreach ($object->captures as $element) {
+                $value = new Capture();
+                $this->captures[] = $value->fromObject($element);
             }
         }
         return $this;

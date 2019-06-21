@@ -29,6 +29,24 @@ class FraudResultsRetailDecisions extends DataObject
     public $fraudRCF = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fraudCode)) {
+            $object->fraudCode = $this->fraudCode;
+        }
+        if (!is_null($this->fraudNeural)) {
+            $object->fraudNeural = $this->fraudNeural;
+        }
+        if (!is_null($this->fraudRCF)) {
+            $object->fraudRCF = $this->fraudRCF;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -19,6 +19,18 @@ class OrderReferencesApprovePayment extends DataObject
     public $merchantReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->merchantReference)) {
+            $object->merchantReference = $this->merchantReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

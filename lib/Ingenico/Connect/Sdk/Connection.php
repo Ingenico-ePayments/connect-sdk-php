@@ -11,36 +11,40 @@ interface Connection
     /**
      * @param string $requestUri
      * @param string[] $requestHeaders
+     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
      * @param ProxyConfiguration|null $proxyConfiguration
-     * @return ConnectionResponse
      */
-    public function get($requestUri, $requestHeaders, ProxyConfiguration $proxyConfiguration = null);
+    public function get($requestUri, $requestHeaders, callable $responseHandler,
+        ProxyConfiguration $proxyConfiguration = null);
 
     /**
      * @param string $requestUri
      * @param string[] $requestHeaders
+     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
      * @param ProxyConfiguration|null $proxyConfiguration
-     * @return ConnectionResponse
      */
-    public function delete($requestUri, $requestHeaders, ProxyConfiguration $proxyConfiguration = null);
+    public function delete($requestUri, $requestHeaders, callable $responseHandler,
+        ProxyConfiguration $proxyConfiguration = null);
 
     /**
      * @param string $requestUri
      * @param string[] $requestHeaders
-     * @param string $body
+     * @param string|MultipartFormDataObject $body
+     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
      * @param ProxyConfiguration|null $proxyConfiguration
-     * @return ConnectionResponse
      */
-    public function post($requestUri, $requestHeaders, $body, ProxyConfiguration $proxyConfiguration = null);
+    public function post($requestUri, $requestHeaders, $body, callable $responseHandler,
+        ProxyConfiguration $proxyConfiguration = null);
 
     /**
      * @param string $requestUri
      * @param string[] $requestHeaders
-     * @param string $body
+     * @param string|MultipartFormDataObject $body
+     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
      * @param ProxyConfiguration|null $proxyConfiguration
-     * @return ConnectionResponse
      */
-    public function put($requestUri, $requestHeaders, $body, ProxyConfiguration $proxyConfiguration = null);
+    public function put($requestUri, $requestHeaders, $body, callable $responseHandler,
+        ProxyConfiguration $proxyConfiguration = null);
 
     /**
      * @param CommunicatorLogger $communicatorLogger

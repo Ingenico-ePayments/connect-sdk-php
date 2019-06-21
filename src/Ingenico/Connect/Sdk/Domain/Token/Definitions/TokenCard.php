@@ -23,6 +23,21 @@ class TokenCard extends AbstractToken
     public $data = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->data)) {
+            $object->data = $this->data->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

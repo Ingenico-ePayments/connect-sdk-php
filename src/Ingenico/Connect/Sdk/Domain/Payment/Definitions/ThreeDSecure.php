@@ -23,6 +23,21 @@ class ThreeDSecure extends AbstractThreeDSecure
     public $redirectionData = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->externalCardholderAuthenticationData)) {
+            $object->externalCardholderAuthenticationData = $this->externalCardholderAuthenticationData->toObject();
+        }
+        if (!is_null($this->redirectionData)) {
+            $object->redirectionData = $this->redirectionData->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

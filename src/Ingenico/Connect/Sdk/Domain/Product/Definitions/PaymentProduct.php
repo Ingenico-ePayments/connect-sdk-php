@@ -119,6 +119,88 @@ class PaymentProduct extends DataObject
     public $usesRedirectionTo3rdParty = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->accountsOnFile)) {
+            $object->accountsOnFile = [];
+            foreach ($this->accountsOnFile as $element) {
+                if (!is_null($element)) {
+                    $object->accountsOnFile[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->allowsRecurring)) {
+            $object->allowsRecurring = $this->allowsRecurring;
+        }
+        if (!is_null($this->allowsTokenization)) {
+            $object->allowsTokenization = $this->allowsTokenization;
+        }
+        if (!is_null($this->authenticationIndicator)) {
+            $object->authenticationIndicator = $this->authenticationIndicator->toObject();
+        }
+        if (!is_null($this->autoTokenized)) {
+            $object->autoTokenized = $this->autoTokenized;
+        }
+        if (!is_null($this->canBeIframed)) {
+            $object->canBeIframed = $this->canBeIframed;
+        }
+        if (!is_null($this->deviceFingerprintEnabled)) {
+            $object->deviceFingerprintEnabled = $this->deviceFingerprintEnabled;
+        }
+        if (!is_null($this->displayHints)) {
+            $object->displayHints = $this->displayHints->toObject();
+        }
+        if (!is_null($this->fields)) {
+            $object->fields = [];
+            foreach ($this->fields as $element) {
+                if (!is_null($element)) {
+                    $object->fields[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->fieldsWarning)) {
+            $object->fieldsWarning = $this->fieldsWarning;
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->isJavaScriptRequired)) {
+            $object->isJavaScriptRequired = $this->isJavaScriptRequired;
+        }
+        if (!is_null($this->maxAmount)) {
+            $object->maxAmount = $this->maxAmount;
+        }
+        if (!is_null($this->minAmount)) {
+            $object->minAmount = $this->minAmount;
+        }
+        if (!is_null($this->mobileIntegrationLevel)) {
+            $object->mobileIntegrationLevel = $this->mobileIntegrationLevel;
+        }
+        if (!is_null($this->paymentMethod)) {
+            $object->paymentMethod = $this->paymentMethod;
+        }
+        if (!is_null($this->paymentProduct302SpecificData)) {
+            $object->paymentProduct302SpecificData = $this->paymentProduct302SpecificData->toObject();
+        }
+        if (!is_null($this->paymentProduct320SpecificData)) {
+            $object->paymentProduct320SpecificData = $this->paymentProduct320SpecificData->toObject();
+        }
+        if (!is_null($this->paymentProduct863SpecificData)) {
+            $object->paymentProduct863SpecificData = $this->paymentProduct863SpecificData->toObject();
+        }
+        if (!is_null($this->paymentProductGroup)) {
+            $object->paymentProductGroup = $this->paymentProductGroup;
+        }
+        if (!is_null($this->usesRedirectionTo3rdParty)) {
+            $object->usesRedirectionTo3rdParty = $this->usesRedirectionTo3rdParty;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -131,9 +213,9 @@ class PaymentProduct extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->accountsOnFile, true) . '\' is not an array or object');
             }
             $this->accountsOnFile = [];
-            foreach ($object->accountsOnFile as $accountsOnFileElementObject) {
-                $accountsOnFileElement = new AccountOnFile();
-                $this->accountsOnFile[] = $accountsOnFileElement->fromObject($accountsOnFileElementObject);
+            foreach ($object->accountsOnFile as $element) {
+                $value = new AccountOnFile();
+                $this->accountsOnFile[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'allowsRecurring')) {
@@ -170,9 +252,9 @@ class PaymentProduct extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->fields, true) . '\' is not an array or object');
             }
             $this->fields = [];
-            foreach ($object->fields as $fieldsElementObject) {
-                $fieldsElement = new PaymentProductField();
-                $this->fields[] = $fieldsElement->fromObject($fieldsElementObject);
+            foreach ($object->fields as $element) {
+                $value = new PaymentProductField();
+                $this->fields[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'fieldsWarning')) {

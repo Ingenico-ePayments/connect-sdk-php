@@ -23,6 +23,21 @@ class CardWithoutCvv extends CardEssentials
     public $issueNumber = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cardholderName)) {
+            $object->cardholderName = $this->cardholderName;
+        }
+        if (!is_null($this->issueNumber)) {
+            $object->issueNumber = $this->issueNumber;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

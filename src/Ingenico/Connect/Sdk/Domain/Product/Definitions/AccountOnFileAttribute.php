@@ -24,6 +24,21 @@ class AccountOnFileAttribute extends KeyValuePair
     public $status = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->mustWriteReason)) {
+            $object->mustWriteReason = $this->mustWriteReason;
+        }
+        if (!is_null($this->status)) {
+            $object->status = $this->status;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

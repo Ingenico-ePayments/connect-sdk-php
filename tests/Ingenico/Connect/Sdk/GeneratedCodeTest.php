@@ -36,7 +36,7 @@ class GeneratedCodeTest extends ClientTestCase
         $apiError->propertyName = 'test';
         $errorResponse->errors = array($apiError);
         $jsonErrorResponse = $errorResponse->toJson();
-        $this->assertEquals($jsonErrorResponse, json_encode($errorResponse));
+        $this->assertEquals('{"errorId":"123","errors":[{"code":"1","message":"Test message","propertyName":"test"}]}', $jsonErrorResponse);
         $actualErrorResponse = new ErrorResponse();
         $actualErrorResponse->fromJson($jsonErrorResponse);
         $this->assertEquals($errorResponse, $actualErrorResponse);

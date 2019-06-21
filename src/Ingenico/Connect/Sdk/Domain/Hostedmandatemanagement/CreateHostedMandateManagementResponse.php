@@ -29,6 +29,24 @@ class CreateHostedMandateManagementResponse extends DataObject
     public $partialRedirectUrl = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->RETURNMAC)) {
+            $object->RETURNMAC = $this->RETURNMAC;
+        }
+        if (!is_null($this->hostedMandateManagementId)) {
+            $object->hostedMandateManagementId = $this->hostedMandateManagementId;
+        }
+        if (!is_null($this->partialRedirectUrl)) {
+            $object->partialRedirectUrl = $this->partialRedirectUrl;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

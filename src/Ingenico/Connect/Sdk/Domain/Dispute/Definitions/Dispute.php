@@ -39,6 +39,30 @@ class Dispute extends DataObject
     public $statusOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->disputeOutput)) {
+            $object->disputeOutput = $this->disputeOutput->toObject();
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->paymentId)) {
+            $object->paymentId = $this->paymentId;
+        }
+        if (!is_null($this->status)) {
+            $object->status = $this->status;
+        }
+        if (!is_null($this->statusOutput)) {
+            $object->statusOutput = $this->statusOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

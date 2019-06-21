@@ -30,6 +30,24 @@ class PaymentProductFiltersHostedCheckout extends DataObject
     public $tokensOnly = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->exclude)) {
+            $object->exclude = $this->exclude->toObject();
+        }
+        if (!is_null($this->restrictTo)) {
+            $object->restrictTo = $this->restrictTo->toObject();
+        }
+        if (!is_null($this->tokensOnly)) {
+            $object->tokensOnly = $this->tokensOnly;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

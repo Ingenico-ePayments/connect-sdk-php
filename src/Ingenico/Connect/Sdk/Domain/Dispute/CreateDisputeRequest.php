@@ -40,6 +40,30 @@ class CreateDisputeRequest extends DataObject
     public $requestMessage = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->contactPerson)) {
+            $object->contactPerson = $this->contactPerson;
+        }
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress;
+        }
+        if (!is_null($this->replyTo)) {
+            $object->replyTo = $this->replyTo;
+        }
+        if (!is_null($this->requestMessage)) {
+            $object->requestMessage = $this->requestMessage;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

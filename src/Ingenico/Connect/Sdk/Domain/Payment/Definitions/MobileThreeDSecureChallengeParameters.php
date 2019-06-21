@@ -34,6 +34,27 @@ class MobileThreeDSecureChallengeParameters extends DataObject
     public $threeDServerTransactionId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->acsReferenceNumber)) {
+            $object->acsReferenceNumber = $this->acsReferenceNumber;
+        }
+        if (!is_null($this->acsSignedContent)) {
+            $object->acsSignedContent = $this->acsSignedContent;
+        }
+        if (!is_null($this->acsTransactionId)) {
+            $object->acsTransactionId = $this->acsTransactionId;
+        }
+        if (!is_null($this->threeDServerTransactionId)) {
+            $object->threeDServerTransactionId = $this->threeDServerTransactionId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

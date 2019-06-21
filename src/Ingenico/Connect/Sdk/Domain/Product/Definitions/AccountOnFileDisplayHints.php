@@ -24,6 +24,26 @@ class AccountOnFileDisplayHints extends DataObject
     public $logo = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->labelTemplate)) {
+            $object->labelTemplate = [];
+            foreach ($this->labelTemplate as $element) {
+                if (!is_null($element)) {
+                    $object->labelTemplate[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->logo)) {
+            $object->logo = $this->logo;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -36,9 +56,9 @@ class AccountOnFileDisplayHints extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->labelTemplate, true) . '\' is not an array or object');
             }
             $this->labelTemplate = [];
-            foreach ($object->labelTemplate as $labelTemplateElementObject) {
-                $labelTemplateElement = new LabelTemplateElement();
-                $this->labelTemplate[] = $labelTemplateElement->fromObject($labelTemplateElementObject);
+            foreach ($object->labelTemplate as $element) {
+                $value = new LabelTemplateElement();
+                $this->labelTemplate[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'logo')) {

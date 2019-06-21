@@ -24,6 +24,21 @@ class MandateMerchantAction extends DataObject
     public $redirectData = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->actionType)) {
+            $object->actionType = $this->actionType;
+        }
+        if (!is_null($this->redirectData)) {
+            $object->redirectData = $this->redirectData->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

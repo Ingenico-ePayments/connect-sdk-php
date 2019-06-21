@@ -40,6 +40,27 @@ class ShoppingCartExtension extends DataObject
     }
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->creator)) {
+            $object->creator = $this->creator;
+        }
+        if (!is_null($this->name)) {
+            $object->name = $this->name;
+        }
+        if (!is_null($this->version)) {
+            $object->version = $this->version;
+        }
+        if (!is_null($this->extensionId)) {
+            $object->extensionId = $this->extensionId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -24,6 +24,21 @@ class PaymentCreationReferences extends DataObject
     public $externalReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalReference)) {
+            $object->additionalReference = $this->additionalReference;
+        }
+        if (!is_null($this->externalReference)) {
+            $object->externalReference = $this->externalReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

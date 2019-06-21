@@ -66,6 +66,45 @@ class Customer extends CustomerBase
     public $shippingAddress = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->account)) {
+            $object->account = $this->account->toObject();
+        }
+        if (!is_null($this->accountType)) {
+            $object->accountType = $this->accountType;
+        }
+        if (!is_null($this->billingAddress)) {
+            $object->billingAddress = $this->billingAddress->toObject();
+        }
+        if (!is_null($this->contactDetails)) {
+            $object->contactDetails = $this->contactDetails->toObject();
+        }
+        if (!is_null($this->device)) {
+            $object->device = $this->device->toObject();
+        }
+        if (!is_null($this->fiscalNumber)) {
+            $object->fiscalNumber = $this->fiscalNumber;
+        }
+        if (!is_null($this->isPreviousCustomer)) {
+            $object->isPreviousCustomer = $this->isPreviousCustomer;
+        }
+        if (!is_null($this->locale)) {
+            $object->locale = $this->locale;
+        }
+        if (!is_null($this->personalInformation)) {
+            $object->personalInformation = $this->personalInformation->toObject();
+        }
+        if (!is_null($this->shippingAddress)) {
+            $object->shippingAddress = $this->shippingAddress->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

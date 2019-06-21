@@ -30,6 +30,24 @@ class PaymentProduct840SpecificOutput extends DataObject
     public $protectionEligibility = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->customerAccount)) {
+            $object->customerAccount = $this->customerAccount->toObject();
+        }
+        if (!is_null($this->customerAddress)) {
+            $object->customerAddress = $this->customerAddress->toObject();
+        }
+        if (!is_null($this->protectionEligibility)) {
+            $object->protectionEligibility = $this->protectionEligibility->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

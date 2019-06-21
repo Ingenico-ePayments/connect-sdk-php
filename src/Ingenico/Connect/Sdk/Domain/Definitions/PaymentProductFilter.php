@@ -24,6 +24,31 @@ class PaymentProductFilter extends DataObject
     public $products = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->groups)) {
+            $object->groups = [];
+            foreach ($this->groups as $element) {
+                if (!is_null($element)) {
+                    $object->groups[] = $element;
+                }
+            }
+        }
+        if (!is_null($this->products)) {
+            $object->products = [];
+            foreach ($this->products as $element) {
+                if (!is_null($element)) {
+                    $object->products[] = $element;
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -36,8 +61,8 @@ class PaymentProductFilter extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->groups, true) . '\' is not an array or object');
             }
             $this->groups = [];
-            foreach ($object->groups as $groupsElementObject) {
-                $this->groups[] = $groupsElementObject;
+            foreach ($object->groups as $element) {
+                $this->groups[] = $element;
             }
         }
         if (property_exists($object, 'products')) {
@@ -45,8 +70,8 @@ class PaymentProductFilter extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->products, true) . '\' is not an array or object');
             }
             $this->products = [];
-            foreach ($object->products as $productsElementObject) {
-                $this->products[] = $productsElementObject;
+            foreach ($object->products as $element) {
+                $this->products[] = $element;
             }
         }
         return $this;

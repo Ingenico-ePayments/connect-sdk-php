@@ -30,6 +30,29 @@ class ValueMappingElement extends DataObject
     public $value = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->displayElements)) {
+            $object->displayElements = [];
+            foreach ($this->displayElements as $element) {
+                if (!is_null($element)) {
+                    $object->displayElements[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->displayName)) {
+            $object->displayName = $this->displayName;
+        }
+        if (!is_null($this->value)) {
+            $object->value = $this->value;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -42,9 +65,9 @@ class ValueMappingElement extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->displayElements, true) . '\' is not an array or object');
             }
             $this->displayElements = [];
-            foreach ($object->displayElements as $displayElementsElementObject) {
-                $displayElementsElement = new PaymentProductFieldDisplayElement();
-                $this->displayElements[] = $displayElementsElement->fromObject($displayElementsElementObject);
+            foreach ($object->displayElements as $element) {
+                $value = new PaymentProductFieldDisplayElement();
+                $this->displayElements[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'displayName')) {

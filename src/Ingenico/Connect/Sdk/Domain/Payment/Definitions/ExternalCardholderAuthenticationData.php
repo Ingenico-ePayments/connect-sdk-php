@@ -54,6 +54,39 @@ class ExternalCardholderAuthenticationData extends DataObject
     public $xid = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cavv)) {
+            $object->cavv = $this->cavv;
+        }
+        if (!is_null($this->cavvAlgorithm)) {
+            $object->cavvAlgorithm = $this->cavvAlgorithm;
+        }
+        if (!is_null($this->directoryServerTransactionId)) {
+            $object->directoryServerTransactionId = $this->directoryServerTransactionId;
+        }
+        if (!is_null($this->eci)) {
+            $object->eci = $this->eci;
+        }
+        if (!is_null($this->threeDSecureVersion)) {
+            $object->threeDSecureVersion = $this->threeDSecureVersion;
+        }
+        if (!is_null($this->threeDServerTransactionId)) {
+            $object->threeDServerTransactionId = $this->threeDServerTransactionId;
+        }
+        if (!is_null($this->validationResult)) {
+            $object->validationResult = $this->validationResult;
+        }
+        if (!is_null($this->xid)) {
+            $object->xid = $this->xid;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

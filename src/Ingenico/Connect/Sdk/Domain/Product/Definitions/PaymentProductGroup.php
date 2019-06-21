@@ -39,6 +39,40 @@ class PaymentProductGroup extends DataObject
     public $id = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->accountsOnFile)) {
+            $object->accountsOnFile = [];
+            foreach ($this->accountsOnFile as $element) {
+                if (!is_null($element)) {
+                    $object->accountsOnFile[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->deviceFingerprintEnabled)) {
+            $object->deviceFingerprintEnabled = $this->deviceFingerprintEnabled;
+        }
+        if (!is_null($this->displayHints)) {
+            $object->displayHints = $this->displayHints->toObject();
+        }
+        if (!is_null($this->fields)) {
+            $object->fields = [];
+            foreach ($this->fields as $element) {
+                if (!is_null($element)) {
+                    $object->fields[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -51,9 +85,9 @@ class PaymentProductGroup extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->accountsOnFile, true) . '\' is not an array or object');
             }
             $this->accountsOnFile = [];
-            foreach ($object->accountsOnFile as $accountsOnFileElementObject) {
-                $accountsOnFileElement = new AccountOnFile();
-                $this->accountsOnFile[] = $accountsOnFileElement->fromObject($accountsOnFileElementObject);
+            foreach ($object->accountsOnFile as $element) {
+                $value = new AccountOnFile();
+                $this->accountsOnFile[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'deviceFingerprintEnabled')) {
@@ -71,9 +105,9 @@ class PaymentProductGroup extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->fields, true) . '\' is not an array or object');
             }
             $this->fields = [];
-            foreach ($object->fields as $fieldsElementObject) {
-                $fieldsElement = new PaymentProductField();
-                $this->fields[] = $fieldsElement->fromObject($fieldsElementObject);
+            foreach ($object->fields as $element) {
+                $value = new PaymentProductField();
+                $this->fields[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'id')) {

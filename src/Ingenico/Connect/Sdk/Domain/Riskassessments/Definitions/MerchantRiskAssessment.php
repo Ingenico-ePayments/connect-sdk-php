@@ -19,6 +19,18 @@ class MerchantRiskAssessment extends DataObject
     public $websiteUrl = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->websiteUrl)) {
+            $object->websiteUrl = $this->websiteUrl;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

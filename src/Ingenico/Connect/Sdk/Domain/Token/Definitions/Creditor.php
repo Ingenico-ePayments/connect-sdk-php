@@ -69,6 +69,48 @@ class Creditor extends DataObject
     public $zip = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalAddressInfo)) {
+            $object->additionalAddressInfo = $this->additionalAddressInfo;
+        }
+        if (!is_null($this->city)) {
+            $object->city = $this->city;
+        }
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        if (!is_null($this->houseNumber)) {
+            $object->houseNumber = $this->houseNumber;
+        }
+        if (!is_null($this->iban)) {
+            $object->iban = $this->iban;
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->name)) {
+            $object->name = $this->name;
+        }
+        if (!is_null($this->referenceParty)) {
+            $object->referenceParty = $this->referenceParty;
+        }
+        if (!is_null($this->referencePartyId)) {
+            $object->referencePartyId = $this->referencePartyId;
+        }
+        if (!is_null($this->street)) {
+            $object->street = $this->street;
+        }
+        if (!is_null($this->zip)) {
+            $object->zip = $this->zip;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

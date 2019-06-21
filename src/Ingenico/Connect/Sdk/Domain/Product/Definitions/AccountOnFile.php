@@ -34,6 +34,32 @@ class AccountOnFile extends DataObject
     public $paymentProductId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->attributes)) {
+            $object->attributes = [];
+            foreach ($this->attributes as $element) {
+                if (!is_null($element)) {
+                    $object->attributes[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->displayHints)) {
+            $object->displayHints = $this->displayHints->toObject();
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -46,9 +72,9 @@ class AccountOnFile extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->attributes, true) . '\' is not an array or object');
             }
             $this->attributes = [];
-            foreach ($object->attributes as $attributesElementObject) {
-                $attributesElement = new AccountOnFileAttribute();
-                $this->attributes[] = $attributesElement->fromObject($attributesElementObject);
+            foreach ($object->attributes as $element) {
+                $value = new AccountOnFileAttribute();
+                $this->attributes[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'displayHints')) {

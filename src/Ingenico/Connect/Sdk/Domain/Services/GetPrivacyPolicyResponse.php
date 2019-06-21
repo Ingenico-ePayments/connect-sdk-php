@@ -19,6 +19,18 @@ class GetPrivacyPolicyResponse extends DataObject
     public $htmlContent = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->htmlContent)) {
+            $object->htmlContent = $this->htmlContent;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

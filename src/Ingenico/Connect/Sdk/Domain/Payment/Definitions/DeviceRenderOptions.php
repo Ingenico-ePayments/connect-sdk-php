@@ -24,6 +24,21 @@ class DeviceRenderOptions extends DataObject
     public $sdkUiType = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->sdkInterface)) {
+            $object->sdkInterface = $this->sdkInterface;
+        }
+        if (!is_null($this->sdkUiType)) {
+            $object->sdkUiType = $this->sdkUiType;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

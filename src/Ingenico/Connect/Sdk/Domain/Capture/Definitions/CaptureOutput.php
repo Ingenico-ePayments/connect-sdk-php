@@ -78,6 +78,48 @@ class CaptureOutput extends OrderOutput
     public $sepaDirectDebitPaymentMethodSpecificOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountPaid)) {
+            $object->amountPaid = $this->amountPaid;
+        }
+        if (!is_null($this->bankTransferPaymentMethodSpecificOutput)) {
+            $object->bankTransferPaymentMethodSpecificOutput = $this->bankTransferPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->cardPaymentMethodSpecificOutput)) {
+            $object->cardPaymentMethodSpecificOutput = $this->cardPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->cashPaymentMethodSpecificOutput)) {
+            $object->cashPaymentMethodSpecificOutput = $this->cashPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->directDebitPaymentMethodSpecificOutput)) {
+            $object->directDebitPaymentMethodSpecificOutput = $this->directDebitPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->eInvoicePaymentMethodSpecificOutput)) {
+            $object->eInvoicePaymentMethodSpecificOutput = $this->eInvoicePaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->invoicePaymentMethodSpecificOutput)) {
+            $object->invoicePaymentMethodSpecificOutput = $this->invoicePaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->mobilePaymentMethodSpecificOutput)) {
+            $object->mobilePaymentMethodSpecificOutput = $this->mobilePaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->paymentMethod)) {
+            $object->paymentMethod = $this->paymentMethod;
+        }
+        if (!is_null($this->redirectPaymentMethodSpecificOutput)) {
+            $object->redirectPaymentMethodSpecificOutput = $this->redirectPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->sepaDirectDebitPaymentMethodSpecificOutput)) {
+            $object->sepaDirectDebitPaymentMethodSpecificOutput = $this->sepaDirectDebitPaymentMethodSpecificOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

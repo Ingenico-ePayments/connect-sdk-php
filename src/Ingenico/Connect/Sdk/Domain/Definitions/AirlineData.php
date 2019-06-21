@@ -135,6 +135,97 @@ class AirlineData extends DataObject
     public $travelAgencyName = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->agentNumericCode)) {
+            $object->agentNumericCode = $this->agentNumericCode;
+        }
+        if (!is_null($this->code)) {
+            $object->code = $this->code;
+        }
+        if (!is_null($this->flightDate)) {
+            $object->flightDate = $this->flightDate;
+        }
+        if (!is_null($this->flightLegs)) {
+            $object->flightLegs = [];
+            foreach ($this->flightLegs as $element) {
+                if (!is_null($element)) {
+                    $object->flightLegs[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->invoiceNumber)) {
+            $object->invoiceNumber = $this->invoiceNumber;
+        }
+        if (!is_null($this->isETicket)) {
+            $object->isETicket = $this->isETicket;
+        }
+        if (!is_null($this->isRegisteredCustomer)) {
+            $object->isRegisteredCustomer = $this->isRegisteredCustomer;
+        }
+        if (!is_null($this->isRestrictedTicket)) {
+            $object->isRestrictedTicket = $this->isRestrictedTicket;
+        }
+        if (!is_null($this->isThirdParty)) {
+            $object->isThirdParty = $this->isThirdParty;
+        }
+        if (!is_null($this->issueDate)) {
+            $object->issueDate = $this->issueDate;
+        }
+        if (!is_null($this->merchantCustomerId)) {
+            $object->merchantCustomerId = $this->merchantCustomerId;
+        }
+        if (!is_null($this->name)) {
+            $object->name = $this->name;
+        }
+        if (!is_null($this->passengerName)) {
+            $object->passengerName = $this->passengerName;
+        }
+        if (!is_null($this->passengers)) {
+            $object->passengers = [];
+            foreach ($this->passengers as $element) {
+                if (!is_null($element)) {
+                    $object->passengers[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->placeOfIssue)) {
+            $object->placeOfIssue = $this->placeOfIssue;
+        }
+        if (!is_null($this->pnr)) {
+            $object->pnr = $this->pnr;
+        }
+        if (!is_null($this->pointOfSale)) {
+            $object->pointOfSale = $this->pointOfSale;
+        }
+        if (!is_null($this->posCityCode)) {
+            $object->posCityCode = $this->posCityCode;
+        }
+        if (!is_null($this->ticketDeliveryMethod)) {
+            $object->ticketDeliveryMethod = $this->ticketDeliveryMethod;
+        }
+        if (!is_null($this->ticketNumber)) {
+            $object->ticketNumber = $this->ticketNumber;
+        }
+        if (!is_null($this->totalFare)) {
+            $object->totalFare = $this->totalFare;
+        }
+        if (!is_null($this->totalFee)) {
+            $object->totalFee = $this->totalFee;
+        }
+        if (!is_null($this->totalTaxes)) {
+            $object->totalTaxes = $this->totalTaxes;
+        }
+        if (!is_null($this->travelAgencyName)) {
+            $object->travelAgencyName = $this->travelAgencyName;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -156,9 +247,9 @@ class AirlineData extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->flightLegs, true) . '\' is not an array or object');
             }
             $this->flightLegs = [];
-            foreach ($object->flightLegs as $flightLegsElementObject) {
-                $flightLegsElement = new AirlineFlightLeg();
-                $this->flightLegs[] = $flightLegsElement->fromObject($flightLegsElementObject);
+            foreach ($object->flightLegs as $element) {
+                $value = new AirlineFlightLeg();
+                $this->flightLegs[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'invoiceNumber')) {
@@ -193,9 +284,9 @@ class AirlineData extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->passengers, true) . '\' is not an array or object');
             }
             $this->passengers = [];
-            foreach ($object->passengers as $passengersElementObject) {
-                $passengersElement = new AirlinePassenger();
-                $this->passengers[] = $passengersElement->fromObject($passengersElementObject);
+            foreach ($object->passengers as $element) {
+                $value = new AirlinePassenger();
+                $this->passengers[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'placeOfIssue')) {

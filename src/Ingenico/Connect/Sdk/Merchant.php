@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk;
 
 use Ingenico\Connect\Sdk\Merchant\Captures;
 use Ingenico\Connect\Sdk\Merchant\Disputes;
+use Ingenico\Connect\Sdk\Merchant\Files;
 use Ingenico\Connect\Sdk\Merchant\Hostedcheckouts;
 use Ingenico\Connect\Sdk\Merchant\Hostedmandatemanagements;
 use Ingenico\Connect\Sdk\Merchant\Mandates;
@@ -160,5 +161,15 @@ class Merchant extends Resource
     public function sessions()
     {
         return new Sessions($this, $this->context);
+    }
+
+    /**
+     * Resource /{merchantId}/files
+     *
+     * @return Files
+     */
+    public function files()
+    {
+        return new Files($this, $this->context);
     }
 }

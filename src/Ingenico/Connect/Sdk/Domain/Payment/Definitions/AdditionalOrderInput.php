@@ -41,6 +41,30 @@ class AdditionalOrderInput extends DataObject
     public $typeInformation = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->airlineData)) {
+            $object->airlineData = $this->airlineData->toObject();
+        }
+        if (!is_null($this->level3SummaryData)) {
+            $object->level3SummaryData = $this->level3SummaryData->toObject();
+        }
+        if (!is_null($this->numberOfInstallments)) {
+            $object->numberOfInstallments = $this->numberOfInstallments;
+        }
+        if (!is_null($this->orderDate)) {
+            $object->orderDate = $this->orderDate;
+        }
+        if (!is_null($this->typeInformation)) {
+            $object->typeInformation = $this->typeInformation->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -13,6 +13,15 @@ use UnexpectedValueException;
 class RedirectPaymentProduct840SpecificInputBase extends AbstractRedirectPaymentProduct840SpecificInput
 {
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -45,6 +45,33 @@ class BankTransferPayoutMethodSpecificInput extends AbstractPayoutMethodSpecific
     public $swiftCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->payoutDate)) {
+            $object->payoutDate = $this->payoutDate;
+        }
+        if (!is_null($this->payoutText)) {
+            $object->payoutText = $this->payoutText;
+        }
+        if (!is_null($this->swiftCode)) {
+            $object->swiftCode = $this->swiftCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

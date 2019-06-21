@@ -19,6 +19,18 @@ class MobilePaymentMethodSpecificInputHostedCheckout extends AbstractPaymentMeth
     public $paymentProduct320SpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct320SpecificInput)) {
+            $object->paymentProduct320SpecificInput = $this->paymentProduct320SpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

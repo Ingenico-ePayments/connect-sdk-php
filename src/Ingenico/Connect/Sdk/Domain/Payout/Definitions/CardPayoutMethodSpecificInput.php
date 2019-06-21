@@ -29,6 +29,24 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
     public $token = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->card)) {
+            $object->card = $this->card->toObject();
+        }
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

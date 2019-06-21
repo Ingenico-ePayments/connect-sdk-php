@@ -29,6 +29,24 @@ class DisputeCreationDetail extends DataObject
     public $userName = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->disputeCreationDate)) {
+            $object->disputeCreationDate = $this->disputeCreationDate;
+        }
+        if (!is_null($this->disputeOriginator)) {
+            $object->disputeOriginator = $this->disputeOriginator;
+        }
+        if (!is_null($this->userName)) {
+            $object->userName = $this->userName;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

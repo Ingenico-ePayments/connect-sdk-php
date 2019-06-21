@@ -25,6 +25,26 @@ class SessionRequest extends DataObject
     public $tokens = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProductFilters)) {
+            $object->paymentProductFilters = $this->paymentProductFilters->toObject();
+        }
+        if (!is_null($this->tokens)) {
+            $object->tokens = [];
+            foreach ($this->tokens as $element) {
+                if (!is_null($element)) {
+                    $object->tokens[] = $element;
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -44,8 +64,8 @@ class SessionRequest extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->tokens, true) . '\' is not an array or object');
             }
             $this->tokens = [];
-            foreach ($object->tokens as $tokensElementObject) {
-                $this->tokens[] = $tokensElementObject;
+            foreach ($object->tokens as $element) {
+                $this->tokens[] = $element;
             }
         }
         return $this;

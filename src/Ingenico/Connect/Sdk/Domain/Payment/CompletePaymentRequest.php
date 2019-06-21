@@ -32,6 +32,24 @@ class CompletePaymentRequest extends DataObject
     public $order = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cardPaymentMethodSpecificInput)) {
+            $object->cardPaymentMethodSpecificInput = $this->cardPaymentMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->merchant)) {
+            $object->merchant = $this->merchant->toObject();
+        }
+        if (!is_null($this->order)) {
+            $object->order = $this->order->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

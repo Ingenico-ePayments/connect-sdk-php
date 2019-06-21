@@ -23,6 +23,21 @@ class TokenNonSepaDirectDebit extends AbstractToken
     public $mandate = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->mandate)) {
+            $object->mandate = $this->mandate->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

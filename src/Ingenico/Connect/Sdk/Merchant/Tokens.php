@@ -43,13 +43,13 @@ class Tokens extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/create.html Create token
      */
-    public function create($body, CallContext $callContext = null)
+    public function create(CreateTokenRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens'),
+            $this->instantiateUri('/v1/{merchantId}/tokens'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -80,7 +80,7 @@ class Tokens extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Token\TokenResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/v1/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -104,13 +104,13 @@ class Tokens extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/update.html Update token
      */
-    public function update($tokenId, $body, CallContext $callContext = null)
+    public function update($tokenId, UpdateTokenRequest $body, CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->put(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/v1/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -135,13 +135,13 @@ class Tokens extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/delete.html Delete token
      */
-    public function delete($tokenId, $query, CallContext $callContext = null)
+    public function delete($tokenId, DeleteTokenParams $query, CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->delete(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}'),
+            $this->instantiateUri('/v1/{merchantId}/tokens/{tokenId}'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -165,13 +165,13 @@ class Tokens extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/tokens/approvesepadirectdebit.html Approve SEPA DD mandate
      */
-    public function approvesepadirectdebit($tokenId, $body, CallContext $callContext = null)
+    public function approvesepadirectdebit($tokenId, ApproveTokenRequest $body, CallContext $callContext = null)
     {
         $this->context['tokenId'] = $tokenId;
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
+            $this->instantiateUri('/v1/{merchantId}/tokens/{tokenId}/approvesepadirectdebit'),
             $this->getClientMetaInfo(),
             $body,
             null,

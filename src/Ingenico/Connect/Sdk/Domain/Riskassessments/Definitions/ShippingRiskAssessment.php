@@ -30,6 +30,24 @@ class ShippingRiskAssessment extends DataObject
     public $trackingNumber = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->address)) {
+            $object->address = $this->address->toObject();
+        }
+        if (!is_null($this->comments)) {
+            $object->comments = $this->comments;
+        }
+        if (!is_null($this->trackingNumber)) {
+            $object->trackingNumber = $this->trackingNumber;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

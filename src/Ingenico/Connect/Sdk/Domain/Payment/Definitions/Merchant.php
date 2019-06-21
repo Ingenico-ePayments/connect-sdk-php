@@ -29,6 +29,24 @@ class Merchant extends DataObject
     public $websiteUrl = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->contactWebsiteUrl)) {
+            $object->contactWebsiteUrl = $this->contactWebsiteUrl;
+        }
+        if (!is_null($this->seller)) {
+            $object->seller = $this->seller->toObject();
+        }
+        if (!is_null($this->websiteUrl)) {
+            $object->websiteUrl = $this->websiteUrl;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

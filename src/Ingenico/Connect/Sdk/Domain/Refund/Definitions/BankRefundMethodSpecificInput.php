@@ -30,6 +30,24 @@ class BankRefundMethodSpecificInput extends DataObject
     public $countryCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

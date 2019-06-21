@@ -29,6 +29,24 @@ class PaymentStatusOutput extends OrderStatusOutput
     public $threeDSecureStatus = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isAuthorized)) {
+            $object->isAuthorized = $this->isAuthorized;
+        }
+        if (!is_null($this->isRefundable)) {
+            $object->isRefundable = $this->isRefundable;
+        }
+        if (!is_null($this->threeDSecureStatus)) {
+            $object->threeDSecureStatus = $this->threeDSecureStatus;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

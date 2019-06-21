@@ -29,6 +29,24 @@ class CustomerPaymentActivity extends DataObject
     public $numberOfPurchasesLast6Months = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->numberOfPaymentAttemptsLast24Hours)) {
+            $object->numberOfPaymentAttemptsLast24Hours = $this->numberOfPaymentAttemptsLast24Hours;
+        }
+        if (!is_null($this->numberOfPaymentAttemptsLastYear)) {
+            $object->numberOfPaymentAttemptsLastYear = $this->numberOfPaymentAttemptsLastYear;
+        }
+        if (!is_null($this->numberOfPurchasesLast6Months)) {
+            $object->numberOfPurchasesLast6Months = $this->numberOfPurchasesLast6Months;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

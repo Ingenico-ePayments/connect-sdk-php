@@ -19,6 +19,18 @@ class EInvoicePaymentProduct9000SpecificOutput extends DataObject
     public $installmentId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->installmentId)) {
+            $object->installmentId = $this->installmentId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

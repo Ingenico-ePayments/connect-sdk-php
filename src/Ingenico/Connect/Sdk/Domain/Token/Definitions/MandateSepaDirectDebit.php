@@ -18,6 +18,18 @@ class MandateSepaDirectDebit extends MandateSepaDirectDebitWithMandateId
     public $creditor = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->creditor)) {
+            $object->creditor = $this->creditor->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

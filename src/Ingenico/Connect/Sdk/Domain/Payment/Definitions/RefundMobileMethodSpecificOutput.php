@@ -18,6 +18,18 @@ class RefundMobileMethodSpecificOutput extends RefundMethodSpecificOutput
     public $network = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->network)) {
+            $object->network = $this->network;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

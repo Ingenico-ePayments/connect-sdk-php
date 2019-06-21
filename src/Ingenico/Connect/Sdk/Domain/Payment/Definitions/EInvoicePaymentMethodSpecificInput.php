@@ -23,6 +23,21 @@ class EInvoicePaymentMethodSpecificInput extends AbstractEInvoicePaymentMethodSp
     public $paymentProduct9000SpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->acceptedTermsAndConditions)) {
+            $object->acceptedTermsAndConditions = $this->acceptedTermsAndConditions;
+        }
+        if (!is_null($this->paymentProduct9000SpecificInput)) {
+            $object->paymentProduct9000SpecificInput = $this->paymentProduct9000SpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

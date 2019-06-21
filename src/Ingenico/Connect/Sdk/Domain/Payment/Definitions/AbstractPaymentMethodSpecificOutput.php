@@ -19,6 +19,18 @@ class AbstractPaymentMethodSpecificOutput extends DataObject
     public $paymentProductId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

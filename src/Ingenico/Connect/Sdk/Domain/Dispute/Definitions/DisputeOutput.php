@@ -61,6 +61,47 @@ class DisputeOutput extends DataObject
     public $responseMessage = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->contactPerson)) {
+            $object->contactPerson = $this->contactPerson;
+        }
+        if (!is_null($this->creationDetails)) {
+            $object->creationDetails = $this->creationDetails->toObject();
+        }
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress;
+        }
+        if (!is_null($this->files)) {
+            $object->files = [];
+            foreach ($this->files as $element) {
+                if (!is_null($element)) {
+                    $object->files[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->reference)) {
+            $object->reference = $this->reference->toObject();
+        }
+        if (!is_null($this->replyTo)) {
+            $object->replyTo = $this->replyTo;
+        }
+        if (!is_null($this->requestMessage)) {
+            $object->requestMessage = $this->requestMessage;
+        }
+        if (!is_null($this->responseMessage)) {
+            $object->responseMessage = $this->responseMessage;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -93,9 +134,9 @@ class DisputeOutput extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->files, true) . '\' is not an array or object');
             }
             $this->files = [];
-            foreach ($object->files as $filesElementObject) {
-                $filesElement = new HostedFile();
-                $this->files[] = $filesElement->fromObject($filesElementObject);
+            foreach ($object->files as $element) {
+                $value = new HostedFile();
+                $this->files[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'reference')) {

@@ -30,6 +30,24 @@ class NonSepaDirectDebitPaymentProduct705SpecificInput extends DataObject
     public $transactionType = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authorisationId)) {
+            $object->authorisationId = $this->authorisationId;
+        }
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        if (!is_null($this->transactionType)) {
+            $object->transactionType = $this->transactionType;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

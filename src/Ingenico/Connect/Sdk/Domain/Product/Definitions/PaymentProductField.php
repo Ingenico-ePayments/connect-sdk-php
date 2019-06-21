@@ -39,6 +39,30 @@ class PaymentProductField extends DataObject
     public $usedForLookup = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->dataRestrictions)) {
+            $object->dataRestrictions = $this->dataRestrictions->toObject();
+        }
+        if (!is_null($this->displayHints)) {
+            $object->displayHints = $this->displayHints->toObject();
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        if (!is_null($this->usedForLookup)) {
+            $object->usedForLookup = $this->usedForLookup;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -20,6 +20,23 @@ class PaymentProducts extends DataObject
     public $paymentProducts = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProducts)) {
+            $object->paymentProducts = [];
+            foreach ($this->paymentProducts as $element) {
+                if (!is_null($element)) {
+                    $object->paymentProducts[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -32,9 +49,9 @@ class PaymentProducts extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->paymentProducts, true) . '\' is not an array or object');
             }
             $this->paymentProducts = [];
-            foreach ($object->paymentProducts as $paymentProductsElementObject) {
-                $paymentProductsElement = new PaymentProduct();
-                $this->paymentProducts[] = $paymentProductsElement->fromObject($paymentProductsElementObject);
+            foreach ($object->paymentProducts as $element) {
+                $value = new PaymentProduct();
+                $this->paymentProducts[] = $value->fromObject($element);
             }
         }
         return $this;

@@ -29,6 +29,24 @@ class BankAccountBbanRefund extends BankAccountBban
     public $swiftCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankCity)) {
+            $object->bankCity = $this->bankCity;
+        }
+        if (!is_null($this->patronymicName)) {
+            $object->patronymicName = $this->patronymicName;
+        }
+        if (!is_null($this->swiftCode)) {
+            $object->swiftCode = $this->swiftCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

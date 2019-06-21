@@ -18,6 +18,18 @@ class BankAccountIban extends BankAccount
     public $iban = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->iban)) {
+            $object->iban = $this->iban;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

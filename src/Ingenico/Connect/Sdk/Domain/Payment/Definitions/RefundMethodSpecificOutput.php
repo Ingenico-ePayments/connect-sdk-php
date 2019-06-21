@@ -24,6 +24,21 @@ class RefundMethodSpecificOutput extends DataObject
     public $totalAmountRefunded = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->totalAmountPaid)) {
+            $object->totalAmountPaid = $this->totalAmountPaid;
+        }
+        if (!is_null($this->totalAmountRefunded)) {
+            $object->totalAmountRefunded = $this->totalAmountRefunded;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

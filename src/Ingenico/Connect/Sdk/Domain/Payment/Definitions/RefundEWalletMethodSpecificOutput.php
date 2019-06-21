@@ -18,6 +18,18 @@ class RefundEWalletMethodSpecificOutput extends RefundMethodSpecificOutput
     public $paymentProduct840SpecificOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct840SpecificOutput)) {
+            $object->paymentProduct840SpecificOutput = $this->paymentProduct840SpecificOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

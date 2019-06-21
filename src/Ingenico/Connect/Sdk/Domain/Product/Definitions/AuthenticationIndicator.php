@@ -13,6 +13,15 @@ use UnexpectedValueException;
 class AuthenticationIndicator extends AbstractIndicator
 {
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

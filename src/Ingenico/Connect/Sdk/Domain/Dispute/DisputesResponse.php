@@ -20,6 +20,23 @@ class DisputesResponse extends DataObject
     public $disputes = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->disputes)) {
+            $object->disputes = [];
+            foreach ($this->disputes as $element) {
+                if (!is_null($element)) {
+                    $object->disputes[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -32,9 +49,9 @@ class DisputesResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->disputes, true) . '\' is not an array or object');
             }
             $this->disputes = [];
-            foreach ($object->disputes as $disputesElementObject) {
-                $disputesElement = new Dispute();
-                $this->disputes[] = $disputesElement->fromObject($disputesElementObject);
+            foreach ($object->disputes as $element) {
+                $value = new Dispute();
+                $this->disputes[] = $value->fromObject($element);
             }
         }
         return $this;

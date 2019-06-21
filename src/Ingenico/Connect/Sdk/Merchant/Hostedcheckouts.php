@@ -40,13 +40,13 @@ class Hostedcheckouts extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/hostedcheckouts/create.html Create hosted checkout
      */
-    public function create($body, CallContext $callContext = null)
+    public function create(CreateHostedCheckoutRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Hostedcheckout\CreateHostedCheckoutResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/hostedcheckouts'),
+            $this->instantiateUri('/v1/{merchantId}/hostedcheckouts'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -77,7 +77,7 @@ class Hostedcheckouts extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Hostedcheckout\GetHostedCheckoutResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),
+            $this->instantiateUri('/v1/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext

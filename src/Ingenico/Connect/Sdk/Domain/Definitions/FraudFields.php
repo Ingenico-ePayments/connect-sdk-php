@@ -116,6 +116,74 @@ class FraudFields extends DataObject
     public $website = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->addressesAreIdentical)) {
+            $object->addressesAreIdentical = $this->addressesAreIdentical;
+        }
+        if (!is_null($this->blackListData)) {
+            $object->blackListData = $this->blackListData;
+        }
+        if (!is_null($this->cardOwnerAddress)) {
+            $object->cardOwnerAddress = $this->cardOwnerAddress->toObject();
+        }
+        if (!is_null($this->customerIpAddress)) {
+            $object->customerIpAddress = $this->customerIpAddress;
+        }
+        if (!is_null($this->defaultFormFill)) {
+            $object->defaultFormFill = $this->defaultFormFill;
+        }
+        if (!is_null($this->deviceFingerprintActivated)) {
+            $object->deviceFingerprintActivated = $this->deviceFingerprintActivated;
+        }
+        if (!is_null($this->deviceFingerprintTransactionId)) {
+            $object->deviceFingerprintTransactionId = $this->deviceFingerprintTransactionId;
+        }
+        if (!is_null($this->giftCardType)) {
+            $object->giftCardType = $this->giftCardType;
+        }
+        if (!is_null($this->giftMessage)) {
+            $object->giftMessage = $this->giftMessage;
+        }
+        if (!is_null($this->hasForgottenPwd)) {
+            $object->hasForgottenPwd = $this->hasForgottenPwd;
+        }
+        if (!is_null($this->hasPassword)) {
+            $object->hasPassword = $this->hasPassword;
+        }
+        if (!is_null($this->isPreviousCustomer)) {
+            $object->isPreviousCustomer = $this->isPreviousCustomer;
+        }
+        if (!is_null($this->orderTimezone)) {
+            $object->orderTimezone = $this->orderTimezone;
+        }
+        if (!is_null($this->shipComments)) {
+            $object->shipComments = $this->shipComments;
+        }
+        if (!is_null($this->shipmentTrackingNumber)) {
+            $object->shipmentTrackingNumber = $this->shipmentTrackingNumber;
+        }
+        if (!is_null($this->shippingDetails)) {
+            $object->shippingDetails = $this->shippingDetails->toObject();
+        }
+        if (!is_null($this->userData)) {
+            $object->userData = [];
+            foreach ($this->userData as $element) {
+                if (!is_null($element)) {
+                    $object->userData[] = $element;
+                }
+            }
+        }
+        if (!is_null($this->website)) {
+            $object->website = $this->website;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -184,8 +252,8 @@ class FraudFields extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->userData, true) . '\' is not an array or object');
             }
             $this->userData = [];
-            foreach ($object->userData as $userDataElementObject) {
-                $this->userData[] = $userDataElementObject;
+            foreach ($object->userData as $element) {
+                $this->userData[] = $element;
             }
         }
         if (property_exists($object, 'website')) {

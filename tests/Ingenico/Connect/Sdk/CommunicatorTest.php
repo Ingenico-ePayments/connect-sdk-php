@@ -36,7 +36,6 @@ class CommunicatorTest extends TestCase
 
     public function testConnectionSharing()
     {
-        $relativeUri = sprintf('/%s/%s/services/testconnection', Client::API_VERSION, $this->getMerchantId());
         $sharedConnection = new DefaultConnection();
         $relativeUri = sprintf('/%s/%s/services/testconnection', Client::API_VERSION, $this->getMerchantId());
         $communicator1 = new Communicator($sharedConnection, $this->getCommunicatorConfiguration());
@@ -45,7 +44,6 @@ class CommunicatorTest extends TestCase
         $communicator2->get($this->defaultResponseClassMap, $relativeUri);
         $this->assertEquals($communicator1->getConnection(), $communicator2->getConnection());
     }
-
 
     public function testApiRequestGet()
     {
@@ -97,6 +95,72 @@ class CommunicatorTest extends TestCase
             $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, $this->getMerchantId());
             $this->defaultCommunicator->delete($this->defaultResponseClassMap, $relativeUri);
         } catch (ReferenceException $e) {
+            return;
+        }
+        $this->fail();
+    }
+
+    public function testApiRequestGetWithBinaryResponse()
+    {
+        $bodyHandler = new AppendingBodyHandler();
+        $relativeUri = sprintf('/%s/%s/products', Client::API_VERSION, $this->getMerchantId());
+        $findParams = new FindProductsParams();
+        $findParams->countryCode = 'NL';
+        $findParams->currencyCode = 'EUR';
+        $clientHeaders = [];
+        $this->defaultCommunicator->getWithBinaryResponse($this->defaultResponseClassMap, $relativeUri, $clientHeaders, $findParams, array($bodyHandler, 'handleBodyPart'));
+        $this->assertNotEquals('', $bodyHandler->getBody());
+        $this->assertStringStartsWith('{', $bodyHandler->getBody());
+        $this->assertStringEndsWith('}', $bodyHandler->getBody());
+    }
+
+    public function testApiRequestGetWithBinaryResponseWithoutBodyHandler()
+    {
+        $relativeUri = sprintf('/%s/%s/products', Client::API_VERSION, $this->getMerchantId());
+        $findParams = new FindProductsParams();
+        $findParams->countryCode = 'NL';
+        $findParams->currencyCode = 'EUR';
+        $clientHeaders = [];
+        $this->defaultCommunicator->getWithBinaryResponse($this->defaultResponseClassMap, $relativeUri, $clientHeaders, $findParams);
+    }
+
+    public function testApiRequestPostWithBinaryResponse()
+    {
+        $bodyHandler = new AppendingBodyHandler();
+        try {
+            $relativeUri = sprintf('/%s/%s/payments/1/tokenize', Client::API_VERSION, $this->getMerchantId());
+            $this->defaultCommunicator->postWithBinaryResponse($this->defaultResponseClassMap, $relativeUri, '', null, null, array($bodyHandler, 'handleBodyPart'));
+        } catch (ReferenceException $e) {
+            // the body handler is not called
+            $this->assertEquals('', $bodyHandler->getBody());
+            return;
+        }
+        $this->fail();
+    }
+
+    public function testApiRequestPutWithBinaryResponse()
+    {
+        $bodyHandler = new AppendingBodyHandler();
+        try {
+            $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, $this->getMerchantId());
+            $this->defaultCommunicator->putWithBinaryResponse($this->defaultResponseClassMap, $relativeUri, '', null, null, array($bodyHandler, 'handleBodyPart'));
+        } catch (InvalidResponseException $e) {
+            // the body handler is not called
+            $this->assertEquals('', $bodyHandler->getBody());
+            return;
+        }
+        $this->fail();
+    }
+
+    public function testApiRequestDeleteWithBinaryResponse()
+    {
+        $bodyHandler = new AppendingBodyHandler();
+        try {
+            $relativeUri = sprintf('/%s/%s/tokens/1', Client::API_VERSION, $this->getMerchantId());
+            $this->defaultCommunicator->deleteWithBinaryResponse($this->defaultResponseClassMap, $relativeUri, '', null, array($bodyHandler, 'handleBodyPart'));
+        } catch (ReferenceException $e) {
+            // the body handler is not called
+            $this->assertEquals('', $bodyHandler->getBody());
             return;
         }
         $this->fail();

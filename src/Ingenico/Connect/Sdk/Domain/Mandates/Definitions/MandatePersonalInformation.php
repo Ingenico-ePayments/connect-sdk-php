@@ -24,6 +24,21 @@ class MandatePersonalInformation extends DataObject
     public $title = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->name)) {
+            $object->name = $this->name->toObject();
+        }
+        if (!is_null($this->title)) {
+            $object->title = $this->title;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

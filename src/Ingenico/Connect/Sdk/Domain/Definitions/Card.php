@@ -18,6 +18,18 @@ class Card extends CardWithoutCvv
     public $cvv = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cvv)) {
+            $object->cvv = $this->cvv;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

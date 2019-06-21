@@ -49,6 +49,36 @@ class CreateMandateBase extends DataObject
     public $uniqueMandateReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->alias)) {
+            $object->alias = $this->alias;
+        }
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->customerReference)) {
+            $object->customerReference = $this->customerReference;
+        }
+        if (!is_null($this->language)) {
+            $object->language = $this->language;
+        }
+        if (!is_null($this->recurrenceType)) {
+            $object->recurrenceType = $this->recurrenceType;
+        }
+        if (!is_null($this->signatureType)) {
+            $object->signatureType = $this->signatureType;
+        }
+        if (!is_null($this->uniqueMandateReference)) {
+            $object->uniqueMandateReference = $this->uniqueMandateReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

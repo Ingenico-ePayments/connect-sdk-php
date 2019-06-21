@@ -20,6 +20,18 @@ class NonSepaDirectDebitPaymentProduct730SpecificInput extends DataObject
     public $bankAccountBban = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

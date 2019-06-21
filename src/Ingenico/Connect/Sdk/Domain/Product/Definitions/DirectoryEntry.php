@@ -34,6 +34,32 @@ class DirectoryEntry extends DataObject
     public $issuerName = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->countryNames)) {
+            $object->countryNames = [];
+            foreach ($this->countryNames as $element) {
+                if (!is_null($element)) {
+                    $object->countryNames[] = $element;
+                }
+            }
+        }
+        if (!is_null($this->issuerId)) {
+            $object->issuerId = $this->issuerId;
+        }
+        if (!is_null($this->issuerList)) {
+            $object->issuerList = $this->issuerList;
+        }
+        if (!is_null($this->issuerName)) {
+            $object->issuerName = $this->issuerName;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -46,8 +72,8 @@ class DirectoryEntry extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->countryNames, true) . '\' is not an array or object');
             }
             $this->countryNames = [];
-            foreach ($object->countryNames as $countryNamesElementObject) {
-                $this->countryNames[] = $countryNamesElementObject;
+            foreach ($object->countryNames as $element) {
+                $this->countryNames[] = $element;
             }
         }
         if (property_exists($object, 'issuerId')) {

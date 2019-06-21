@@ -45,6 +45,33 @@ class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
     public $token = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
+        if (!is_null($this->paymentProduct3201SpecificOutput)) {
+            $object->paymentProduct3201SpecificOutput = $this->paymentProduct3201SpecificOutput->toObject();
+        }
+        if (!is_null($this->paymentProduct836SpecificOutput)) {
+            $object->paymentProduct836SpecificOutput = $this->paymentProduct836SpecificOutput->toObject();
+        }
+        if (!is_null($this->paymentProduct840SpecificOutput)) {
+            $object->paymentProduct840SpecificOutput = $this->paymentProduct840SpecificOutput->toObject();
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

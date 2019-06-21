@@ -30,6 +30,24 @@ class TokenCardData extends DataObject
     public $providerReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cardWithoutCvv)) {
+            $object->cardWithoutCvv = $this->cardWithoutCvv->toObject();
+        }
+        if (!is_null($this->firstTransactionDate)) {
+            $object->firstTransactionDate = $this->firstTransactionDate;
+        }
+        if (!is_null($this->providerReference)) {
+            $object->providerReference = $this->providerReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

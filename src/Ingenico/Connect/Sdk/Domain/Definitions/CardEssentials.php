@@ -24,6 +24,21 @@ class CardEssentials extends DataObject
     public $expiryDate = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cardNumber)) {
+            $object->cardNumber = $this->cardNumber;
+        }
+        if (!is_null($this->expiryDate)) {
+            $object->expiryDate = $this->expiryDate;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

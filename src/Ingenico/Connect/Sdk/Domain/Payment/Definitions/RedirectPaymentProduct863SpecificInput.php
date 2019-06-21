@@ -24,6 +24,21 @@ class RedirectPaymentProduct863SpecificInput extends DataObject
     public $openId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->integrationType)) {
+            $object->integrationType = $this->integrationType;
+        }
+        if (!is_null($this->openId)) {
+            $object->openId = $this->openId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -24,6 +24,26 @@ class PaymentProductFieldFormElement extends DataObject
     public $valueMapping = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        if (!is_null($this->valueMapping)) {
+            $object->valueMapping = [];
+            foreach ($this->valueMapping as $element) {
+                if (!is_null($element)) {
+                    $object->valueMapping[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -39,9 +59,9 @@ class PaymentProductFieldFormElement extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->valueMapping, true) . '\' is not an array or object');
             }
             $this->valueMapping = [];
-            foreach ($object->valueMapping as $valueMappingElementObject) {
-                $valueMappingElement = new ValueMappingElement();
-                $this->valueMapping[] = $valueMappingElement->fromObject($valueMappingElementObject);
+            foreach ($object->valueMapping as $element) {
+                $value = new ValueMappingElement();
+                $this->valueMapping[] = $value->fromObject($element);
             }
         }
         return $this;

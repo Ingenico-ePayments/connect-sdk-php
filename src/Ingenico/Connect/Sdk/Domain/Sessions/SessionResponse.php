@@ -44,6 +44,38 @@ class SessionResponse extends DataObject
     public $region = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->assetUrl)) {
+            $object->assetUrl = $this->assetUrl;
+        }
+        if (!is_null($this->clientApiUrl)) {
+            $object->clientApiUrl = $this->clientApiUrl;
+        }
+        if (!is_null($this->clientSessionId)) {
+            $object->clientSessionId = $this->clientSessionId;
+        }
+        if (!is_null($this->customerId)) {
+            $object->customerId = $this->customerId;
+        }
+        if (!is_null($this->invalidTokens)) {
+            $object->invalidTokens = [];
+            foreach ($this->invalidTokens as $element) {
+                if (!is_null($element)) {
+                    $object->invalidTokens[] = $element;
+                }
+            }
+        }
+        if (!is_null($this->region)) {
+            $object->region = $this->region;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -68,8 +100,8 @@ class SessionResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->invalidTokens, true) . '\' is not an array or object');
             }
             $this->invalidTokens = [];
-            foreach ($object->invalidTokens as $invalidTokensElementObject) {
-                $this->invalidTokens[] = $invalidTokensElementObject;
+            foreach ($object->invalidTokens as $element) {
+                $this->invalidTokens[] = $element;
             }
         }
         if (property_exists($object, 'region')) {

@@ -29,6 +29,24 @@ class MandateApproval extends DataObject
     public $mandateSigned = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->mandateSignatureDate)) {
+            $object->mandateSignatureDate = $this->mandateSignatureDate;
+        }
+        if (!is_null($this->mandateSignaturePlace)) {
+            $object->mandateSignaturePlace = $this->mandateSignaturePlace;
+        }
+        if (!is_null($this->mandateSigned)) {
+            $object->mandateSigned = $this->mandateSigned;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

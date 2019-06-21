@@ -35,6 +35,27 @@ class RiskAssessment extends DataObject
     public $paymentProductId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fraudFields)) {
+            $object->fraudFields = $this->fraudFields->toObject();
+        }
+        if (!is_null($this->merchant)) {
+            $object->merchant = $this->merchant->toObject();
+        }
+        if (!is_null($this->order)) {
+            $object->order = $this->order->toObject();
+        }
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

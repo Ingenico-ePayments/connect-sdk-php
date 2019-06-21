@@ -40,6 +40,30 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     public $token = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authorisationCode)) {
+            $object->authorisationCode = $this->authorisationCode;
+        }
+        if (!is_null($this->card)) {
+            $object->card = $this->card->toObject();
+        }
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
+        if (!is_null($this->threeDSecureResults)) {
+            $object->threeDSecureResults = $this->threeDSecureResults->toObject();
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

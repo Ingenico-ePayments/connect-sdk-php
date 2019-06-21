@@ -37,6 +37,27 @@ class RefundCustomer extends DataObject
     public $fiscalNumber = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->address)) {
+            $object->address = $this->address->toObject();
+        }
+        if (!is_null($this->companyInformation)) {
+            $object->companyInformation = $this->companyInformation->toObject();
+        }
+        if (!is_null($this->contactDetails)) {
+            $object->contactDetails = $this->contactDetails->toObject();
+        }
+        if (!is_null($this->fiscalNumber)) {
+            $object->fiscalNumber = $this->fiscalNumber;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

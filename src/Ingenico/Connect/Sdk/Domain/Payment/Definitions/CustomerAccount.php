@@ -74,6 +74,51 @@ class CustomerAccount extends DataObject
     public $paymentActivity = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authentication)) {
+            $object->authentication = $this->authentication->toObject();
+        }
+        if (!is_null($this->changeDate)) {
+            $object->changeDate = $this->changeDate;
+        }
+        if (!is_null($this->changedDuringCheckout)) {
+            $object->changedDuringCheckout = $this->changedDuringCheckout;
+        }
+        if (!is_null($this->createDate)) {
+            $object->createDate = $this->createDate;
+        }
+        if (!is_null($this->hadSuspiciousActivity)) {
+            $object->hadSuspiciousActivity = $this->hadSuspiciousActivity;
+        }
+        if (!is_null($this->hasForgottenPassword)) {
+            $object->hasForgottenPassword = $this->hasForgottenPassword;
+        }
+        if (!is_null($this->hasPassword)) {
+            $object->hasPassword = $this->hasPassword;
+        }
+        if (!is_null($this->passwordChangeDate)) {
+            $object->passwordChangeDate = $this->passwordChangeDate;
+        }
+        if (!is_null($this->passwordChangedDuringCheckout)) {
+            $object->passwordChangedDuringCheckout = $this->passwordChangedDuringCheckout;
+        }
+        if (!is_null($this->paymentAccountOnFile)) {
+            $object->paymentAccountOnFile = $this->paymentAccountOnFile->toObject();
+        }
+        if (!is_null($this->paymentAccountOnFileType)) {
+            $object->paymentAccountOnFileType = $this->paymentAccountOnFileType;
+        }
+        if (!is_null($this->paymentActivity)) {
+            $object->paymentActivity = $this->paymentActivity->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -40,13 +40,13 @@ class Hostedmandatemanagements extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/hostedmandatemanagements/create.html Create hosted mandate management
      */
-    public function create($body, CallContext $callContext = null)
+    public function create(CreateHostedMandateManagementRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Hostedmandatemanagement\CreateHostedMandateManagementResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/hostedmandatemanagements'),
+            $this->instantiateUri('/v1/{merchantId}/hostedmandatemanagements'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -77,7 +77,7 @@ class Hostedmandatemanagements extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Hostedmandatemanagement\GetHostedMandateManagementResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}'),
+            $this->instantiateUri('/v1/{merchantId}/hostedmandatemanagements/{hostedMandateManagementId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext

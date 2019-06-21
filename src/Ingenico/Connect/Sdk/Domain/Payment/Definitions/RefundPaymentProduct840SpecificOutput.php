@@ -19,6 +19,18 @@ class RefundPaymentProduct840SpecificOutput extends DataObject
     public $customerAccount = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->customerAccount)) {
+            $object->customerAccount = $this->customerAccount->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

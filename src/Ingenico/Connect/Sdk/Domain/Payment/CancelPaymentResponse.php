@@ -32,6 +32,24 @@ class CancelPaymentResponse extends DataObject
     public $payment = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cardPaymentMethodSpecificOutput)) {
+            $object->cardPaymentMethodSpecificOutput = $this->cardPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->mobilePaymentMethodSpecificOutput)) {
+            $object->mobilePaymentMethodSpecificOutput = $this->mobilePaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->payment)) {
+            $object->payment = $this->payment->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

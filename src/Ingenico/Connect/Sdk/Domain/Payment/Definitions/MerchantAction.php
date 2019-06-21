@@ -51,6 +51,46 @@ class MerchantAction extends DataObject
     public $thirdPartyData = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->actionType)) {
+            $object->actionType = $this->actionType;
+        }
+        if (!is_null($this->formFields)) {
+            $object->formFields = [];
+            foreach ($this->formFields as $element) {
+                if (!is_null($element)) {
+                    $object->formFields[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->mobileThreeDSecureChallengeParameters)) {
+            $object->mobileThreeDSecureChallengeParameters = $this->mobileThreeDSecureChallengeParameters->toObject();
+        }
+        if (!is_null($this->redirectData)) {
+            $object->redirectData = $this->redirectData->toObject();
+        }
+        if (!is_null($this->renderingData)) {
+            $object->renderingData = $this->renderingData;
+        }
+        if (!is_null($this->showData)) {
+            $object->showData = [];
+            foreach ($this->showData as $element) {
+                if (!is_null($element)) {
+                    $object->showData[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->thirdPartyData)) {
+            $object->thirdPartyData = $this->thirdPartyData->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -66,9 +106,9 @@ class MerchantAction extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->formFields, true) . '\' is not an array or object');
             }
             $this->formFields = [];
-            foreach ($object->formFields as $formFieldsElementObject) {
-                $formFieldsElement = new PaymentProductField();
-                $this->formFields[] = $formFieldsElement->fromObject($formFieldsElementObject);
+            foreach ($object->formFields as $element) {
+                $value = new PaymentProductField();
+                $this->formFields[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'mobileThreeDSecureChallengeParameters')) {
@@ -93,9 +133,9 @@ class MerchantAction extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->showData, true) . '\' is not an array or object');
             }
             $this->showData = [];
-            foreach ($object->showData as $showDataElementObject) {
-                $showDataElement = new KeyValuePair();
-                $this->showData[] = $showDataElement->fromObject($showDataElementObject);
+            foreach ($object->showData as $element) {
+                $value = new KeyValuePair();
+                $this->showData[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'thirdPartyData')) {

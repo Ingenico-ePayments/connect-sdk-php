@@ -24,6 +24,21 @@ class CapturePaymentRequest extends DataObject
     public $isFinal = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amount)) {
+            $object->amount = $this->amount;
+        }
+        if (!is_null($this->isFinal)) {
+            $object->isFinal = $this->isFinal;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

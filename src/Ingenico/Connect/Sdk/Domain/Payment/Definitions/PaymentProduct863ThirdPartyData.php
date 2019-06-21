@@ -49,6 +49,36 @@ class PaymentProduct863ThirdPartyData extends DataObject
     public $timeStamp = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->appId)) {
+            $object->appId = $this->appId;
+        }
+        if (!is_null($this->nonceStr)) {
+            $object->nonceStr = $this->nonceStr;
+        }
+        if (!is_null($this->packageSign)) {
+            $object->packageSign = $this->packageSign;
+        }
+        if (!is_null($this->paySign)) {
+            $object->paySign = $this->paySign;
+        }
+        if (!is_null($this->prepayId)) {
+            $object->prepayId = $this->prepayId;
+        }
+        if (!is_null($this->signType)) {
+            $object->signType = $this->signType;
+        }
+        if (!is_null($this->timeStamp)) {
+            $object->timeStamp = $this->timeStamp;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

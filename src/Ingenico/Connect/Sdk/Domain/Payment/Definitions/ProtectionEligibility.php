@@ -24,6 +24,21 @@ class ProtectionEligibility extends DataObject
     public $type = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->eligibility)) {
+            $object->eligibility = $this->eligibility;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -36,6 +36,27 @@ class OrderRiskAssessment extends DataObject
     public $shipping = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalInput)) {
+            $object->additionalInput = $this->additionalInput->toObject();
+        }
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->shipping)) {
+            $object->shipping = $this->shipping->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

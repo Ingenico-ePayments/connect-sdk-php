@@ -24,6 +24,21 @@ class PaymentProductFieldDataRestrictions extends DataObject
     public $validators = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isRequired)) {
+            $object->isRequired = $this->isRequired;
+        }
+        if (!is_null($this->validators)) {
+            $object->validators = $this->validators->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

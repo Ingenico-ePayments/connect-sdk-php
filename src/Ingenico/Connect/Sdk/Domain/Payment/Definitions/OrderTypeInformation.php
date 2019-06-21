@@ -29,6 +29,24 @@ class OrderTypeInformation extends DataObject
     public $usageType = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->purchaseType)) {
+            $object->purchaseType = $this->purchaseType;
+        }
+        if (!is_null($this->transactionType)) {
+            $object->transactionType = $this->transactionType;
+        }
+        if (!is_null($this->usageType)) {
+            $object->usageType = $this->usageType;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -49,6 +49,36 @@ class DecryptedPaymentData extends DataObject
     public $paymentMethod = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->cardholderName)) {
+            $object->cardholderName = $this->cardholderName;
+        }
+        if (!is_null($this->cryptogram)) {
+            $object->cryptogram = $this->cryptogram;
+        }
+        if (!is_null($this->dpan)) {
+            $object->dpan = $this->dpan;
+        }
+        if (!is_null($this->eci)) {
+            $object->eci = $this->eci;
+        }
+        if (!is_null($this->expiryDate)) {
+            $object->expiryDate = $this->expiryDate;
+        }
+        if (!is_null($this->pan)) {
+            $object->pan = $this->pan;
+        }
+        if (!is_null($this->paymentMethod)) {
+            $object->paymentMethod = $this->paymentMethod;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

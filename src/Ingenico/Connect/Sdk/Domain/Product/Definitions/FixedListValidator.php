@@ -19,6 +19,23 @@ class FixedListValidator extends DataObject
     public $allowedValues = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->allowedValues)) {
+            $object->allowedValues = [];
+            foreach ($this->allowedValues as $element) {
+                if (!is_null($element)) {
+                    $object->allowedValues[] = $element;
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -31,8 +48,8 @@ class FixedListValidator extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->allowedValues, true) . '\' is not an array or object');
             }
             $this->allowedValues = [];
-            foreach ($object->allowedValues as $allowedValuesElementObject) {
-                $this->allowedValues[] = $allowedValuesElementObject;
+            foreach ($object->allowedValues as $element) {
+                $this->allowedValues[] = $element;
             }
         }
         return $this;

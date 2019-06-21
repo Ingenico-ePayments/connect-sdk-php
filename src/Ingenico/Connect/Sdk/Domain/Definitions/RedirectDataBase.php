@@ -24,6 +24,21 @@ class RedirectDataBase extends DataObject
     public $redirectURL = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->RETURNMAC)) {
+            $object->RETURNMAC = $this->RETURNMAC;
+        }
+        if (!is_null($this->redirectURL)) {
+            $object->redirectURL = $this->redirectURL;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

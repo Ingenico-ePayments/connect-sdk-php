@@ -39,13 +39,13 @@ class Sessions extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/sessions/create.html Create session
      */
-    public function create($body, CallContext $callContext = null)
+    public function create(SessionRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Sessions\SessionResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/sessions'),
+            $this->instantiateUri('/v1/{merchantId}/sessions'),
             $this->getClientMetaInfo(),
             $body,
             null,

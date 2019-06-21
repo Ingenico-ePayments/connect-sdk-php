@@ -18,6 +18,18 @@ class CustomerTokenWithContactDetails extends CustomerToken
     public $contactDetails = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->contactDetails)) {
+            $object->contactDetails = $this->contactDetails->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -34,6 +34,27 @@ class OrderReferences extends DataObject
     public $merchantReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->descriptor)) {
+            $object->descriptor = $this->descriptor;
+        }
+        if (!is_null($this->invoiceData)) {
+            $object->invoiceData = $this->invoiceData->toObject();
+        }
+        if (!is_null($this->merchantOrderId)) {
+            $object->merchantOrderId = $this->merchantOrderId;
+        }
+        if (!is_null($this->merchantReference)) {
+            $object->merchantReference = $this->merchantReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -19,6 +19,18 @@ class DeviceFingerprintRequest extends DataObject
     public $collectorCallback = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->collectorCallback)) {
+            $object->collectorCallback = $this->collectorCallback;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

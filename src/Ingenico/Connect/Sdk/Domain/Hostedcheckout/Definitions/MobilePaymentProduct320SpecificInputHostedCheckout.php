@@ -24,6 +24,21 @@ class MobilePaymentProduct320SpecificInputHostedCheckout extends DataObject
     public $merchantOrigin = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->merchantName)) {
+            $object->merchantName = $this->merchantName;
+        }
+        if (!is_null($this->merchantOrigin)) {
+            $object->merchantOrigin = $this->merchantOrigin;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

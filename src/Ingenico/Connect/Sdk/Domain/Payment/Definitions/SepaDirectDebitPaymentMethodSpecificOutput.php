@@ -24,6 +24,21 @@ class SepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSp
     public $paymentProduct771SpecificOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
+        if (!is_null($this->paymentProduct771SpecificOutput)) {
+            $object->paymentProduct771SpecificOutput = $this->paymentProduct771SpecificOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

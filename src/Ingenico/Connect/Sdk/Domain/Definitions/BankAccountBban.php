@@ -43,6 +43,33 @@ class BankAccountBban extends BankAccount
     public $countryCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->accountNumber)) {
+            $object->accountNumber = $this->accountNumber;
+        }
+        if (!is_null($this->bankCode)) {
+            $object->bankCode = $this->bankCode;
+        }
+        if (!is_null($this->bankName)) {
+            $object->bankName = $this->bankName;
+        }
+        if (!is_null($this->branchCode)) {
+            $object->branchCode = $this->branchCode;
+        }
+        if (!is_null($this->checkDigit)) {
+            $object->checkDigit = $this->checkDigit;
+        }
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

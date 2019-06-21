@@ -24,6 +24,21 @@ class SepaDirectDebitPaymentProduct771SpecificInputBase extends AbstractSepaDire
     public $mandate = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->existingUniqueMandateReference)) {
+            $object->existingUniqueMandateReference = $this->existingUniqueMandateReference;
+        }
+        if (!is_null($this->mandate)) {
+            $object->mandate = $this->mandate->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

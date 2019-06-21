@@ -36,6 +36,27 @@ class LineItem extends DataObject
     public $orderLineDetails = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->invoiceData)) {
+            $object->invoiceData = $this->invoiceData->toObject();
+        }
+        if (!is_null($this->level3InterchangeInformation)) {
+            $object->level3InterchangeInformation = $this->level3InterchangeInformation->toObject();
+        }
+        if (!is_null($this->orderLineDetails)) {
+            $object->orderLineDetails = $this->orderLineDetails->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

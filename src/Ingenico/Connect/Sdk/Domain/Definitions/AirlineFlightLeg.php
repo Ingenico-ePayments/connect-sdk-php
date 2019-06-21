@@ -115,6 +115,75 @@ class AirlineFlightLeg extends DataObject
     public $taxes = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->airlineClass)) {
+            $object->airlineClass = $this->airlineClass;
+        }
+        if (!is_null($this->arrivalAirport)) {
+            $object->arrivalAirport = $this->arrivalAirport;
+        }
+        if (!is_null($this->arrivalTime)) {
+            $object->arrivalTime = $this->arrivalTime;
+        }
+        if (!is_null($this->carrierCode)) {
+            $object->carrierCode = $this->carrierCode;
+        }
+        if (!is_null($this->conjunctionTicket)) {
+            $object->conjunctionTicket = $this->conjunctionTicket;
+        }
+        if (!is_null($this->couponNumber)) {
+            $object->couponNumber = $this->couponNumber;
+        }
+        if (!is_null($this->date)) {
+            $object->date = $this->date;
+        }
+        if (!is_null($this->departureTime)) {
+            $object->departureTime = $this->departureTime;
+        }
+        if (!is_null($this->endorsementOrRestriction)) {
+            $object->endorsementOrRestriction = $this->endorsementOrRestriction;
+        }
+        if (!is_null($this->exchangeTicket)) {
+            $object->exchangeTicket = $this->exchangeTicket;
+        }
+        if (!is_null($this->fare)) {
+            $object->fare = $this->fare;
+        }
+        if (!is_null($this->fareBasis)) {
+            $object->fareBasis = $this->fareBasis;
+        }
+        if (!is_null($this->fee)) {
+            $object->fee = $this->fee;
+        }
+        if (!is_null($this->flightNumber)) {
+            $object->flightNumber = $this->flightNumber;
+        }
+        if (!is_null($this->number)) {
+            $object->number = $this->number;
+        }
+        if (!is_null($this->originAirport)) {
+            $object->originAirport = $this->originAirport;
+        }
+        if (!is_null($this->passengerClass)) {
+            $object->passengerClass = $this->passengerClass;
+        }
+        if (!is_null($this->serviceClass)) {
+            $object->serviceClass = $this->serviceClass;
+        }
+        if (!is_null($this->stopoverCode)) {
+            $object->stopoverCode = $this->stopoverCode;
+        }
+        if (!is_null($this->taxes)) {
+            $object->taxes = $this->taxes;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

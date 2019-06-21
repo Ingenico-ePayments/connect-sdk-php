@@ -19,6 +19,18 @@ class ThirdPartyData extends DataObject
     public $paymentProduct863 = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct863)) {
+            $object->paymentProduct863 = $this->paymentProduct863->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -25,6 +25,21 @@ class CustomerToken extends CustomerBase
     public $personalInformation = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->billingAddress)) {
+            $object->billingAddress = $this->billingAddress->toObject();
+        }
+        if (!is_null($this->personalInformation)) {
+            $object->personalInformation = $this->personalInformation->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

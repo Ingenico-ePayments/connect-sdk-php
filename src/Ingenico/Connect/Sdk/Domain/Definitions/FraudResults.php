@@ -19,6 +19,18 @@ class FraudResults extends DataObject
     public $fraudServiceResult = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->fraudServiceResult)) {
+            $object->fraudServiceResult = $this->fraudServiceResult;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

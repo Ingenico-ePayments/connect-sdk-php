@@ -19,6 +19,18 @@ class AbstractBankTransferPaymentMethodSpecificInput extends AbstractPaymentMeth
     public $additionalReference = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalReference)) {
+            $object->additionalReference = $this->additionalReference;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

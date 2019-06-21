@@ -20,6 +20,23 @@ class RiskAssessmentResponse extends DataObject
     public $results = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->results)) {
+            $object->results = [];
+            foreach ($this->results as $element) {
+                if (!is_null($element)) {
+                    $object->results[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -32,9 +49,9 @@ class RiskAssessmentResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->results, true) . '\' is not an array or object');
             }
             $this->results = [];
-            foreach ($object->results as $resultsElementObject) {
-                $resultsElement = new ResultDoRiskAssessment();
-                $this->results[] = $resultsElement->fromObject($resultsElementObject);
+            foreach ($object->results as $element) {
+                $value = new ResultDoRiskAssessment();
+                $this->results[] = $value->fromObject($element);
             }
         }
         return $this;

@@ -49,6 +49,36 @@ class BrowserData extends DataObject
     public $screenWidth = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->colorDepth)) {
+            $object->colorDepth = $this->colorDepth;
+        }
+        if (!is_null($this->innerHeight)) {
+            $object->innerHeight = $this->innerHeight;
+        }
+        if (!is_null($this->innerWidth)) {
+            $object->innerWidth = $this->innerWidth;
+        }
+        if (!is_null($this->javaEnabled)) {
+            $object->javaEnabled = $this->javaEnabled;
+        }
+        if (!is_null($this->javaScriptEnabled)) {
+            $object->javaScriptEnabled = $this->javaScriptEnabled;
+        }
+        if (!is_null($this->screenHeight)) {
+            $object->screenHeight = $this->screenHeight;
+        }
+        if (!is_null($this->screenWidth)) {
+            $object->screenWidth = $this->screenWidth;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

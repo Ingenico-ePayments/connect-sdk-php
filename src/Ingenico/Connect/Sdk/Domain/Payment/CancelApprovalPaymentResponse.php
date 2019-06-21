@@ -20,6 +20,18 @@ class CancelApprovalPaymentResponse extends DataObject
     public $payment = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->payment)) {
+            $object->payment = $this->payment->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

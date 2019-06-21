@@ -24,6 +24,21 @@ class LengthValidator extends DataObject
     public $minLength = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->maxLength)) {
+            $object->maxLength = $this->maxLength;
+        }
+        if (!is_null($this->minLength)) {
+            $object->minLength = $this->minLength;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

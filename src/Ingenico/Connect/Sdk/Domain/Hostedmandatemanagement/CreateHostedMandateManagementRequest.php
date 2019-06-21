@@ -26,6 +26,21 @@ class CreateHostedMandateManagementRequest extends DataObject
     public $hostedMandateManagementSpecificInput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->createMandateInfo)) {
+            $object->createMandateInfo = $this->createMandateInfo->toObject();
+        }
+        if (!is_null($this->hostedMandateManagementSpecificInput)) {
+            $object->hostedMandateManagementSpecificInput = $this->hostedMandateManagementSpecificInput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

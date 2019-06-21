@@ -77,6 +77,45 @@ class CreatePayoutRequest extends DataObject
     public $swiftCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->bankTransferPayoutMethodSpecificInput)) {
+            $object->bankTransferPayoutMethodSpecificInput = $this->bankTransferPayoutMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->cardPayoutMethodSpecificInput)) {
+            $object->cardPayoutMethodSpecificInput = $this->cardPayoutMethodSpecificInput->toObject();
+        }
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->payoutDate)) {
+            $object->payoutDate = $this->payoutDate;
+        }
+        if (!is_null($this->payoutText)) {
+            $object->payoutText = $this->payoutText;
+        }
+        if (!is_null($this->references)) {
+            $object->references = $this->references->toObject();
+        }
+        if (!is_null($this->swiftCode)) {
+            $object->swiftCode = $this->swiftCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

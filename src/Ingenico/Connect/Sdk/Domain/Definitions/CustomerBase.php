@@ -30,6 +30,24 @@ class CustomerBase extends DataObject
     public $vatNumber = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->companyInformation)) {
+            $object->companyInformation = $this->companyInformation->toObject();
+        }
+        if (!is_null($this->merchantCustomerId)) {
+            $object->merchantCustomerId = $this->merchantCustomerId;
+        }
+        if (!is_null($this->vatNumber)) {
+            $object->vatNumber = $this->vatNumber;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -24,6 +24,21 @@ class MandateNonSepaDirectDebit extends DataObject
     public $paymentProduct730SpecificData = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct705SpecificData)) {
+            $object->paymentProduct705SpecificData = $this->paymentProduct705SpecificData->toObject();
+        }
+        if (!is_null($this->paymentProduct730SpecificData)) {
+            $object->paymentProduct730SpecificData = $this->paymentProduct730SpecificData->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

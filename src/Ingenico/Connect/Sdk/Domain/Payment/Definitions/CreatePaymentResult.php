@@ -29,6 +29,24 @@ class CreatePaymentResult extends DataObject
     public $payment = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->creationOutput)) {
+            $object->creationOutput = $this->creationOutput->toObject();
+        }
+        if (!is_null($this->merchantAction)) {
+            $object->merchantAction = $this->merchantAction->toObject();
+        }
+        if (!is_null($this->payment)) {
+            $object->payment = $this->payment->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

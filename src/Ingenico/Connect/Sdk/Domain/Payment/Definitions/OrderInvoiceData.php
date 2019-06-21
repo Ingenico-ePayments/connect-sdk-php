@@ -34,6 +34,32 @@ class OrderInvoiceData extends DataObject
     public $textQualifiers = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalData)) {
+            $object->additionalData = $this->additionalData;
+        }
+        if (!is_null($this->invoiceDate)) {
+            $object->invoiceDate = $this->invoiceDate;
+        }
+        if (!is_null($this->invoiceNumber)) {
+            $object->invoiceNumber = $this->invoiceNumber;
+        }
+        if (!is_null($this->textQualifiers)) {
+            $object->textQualifiers = [];
+            foreach ($this->textQualifiers as $element) {
+                if (!is_null($element)) {
+                    $object->textQualifiers[] = $element;
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -55,8 +81,8 @@ class OrderInvoiceData extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->textQualifiers, true) . '\' is not an array or object');
             }
             $this->textQualifiers = [];
-            foreach ($object->textQualifiers as $textQualifiersElementObject) {
-                $this->textQualifiers[] = $textQualifiersElementObject;
+            foreach ($object->textQualifiers as $element) {
+                $this->textQualifiers[] = $element;
             }
         }
         return $this;

@@ -24,6 +24,21 @@ class CreateTokenResponse extends DataObject
     public $token = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isNewToken)) {
+            $object->isNewToken = $this->isNewToken;
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

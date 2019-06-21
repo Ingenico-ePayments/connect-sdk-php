@@ -21,18 +21,33 @@ class DefaultConnectionTest extends TestCase
 
     public function test404WithBareApiEndpoint()
     {
-        $response = $this->connection->get($this->getApiEndpoint(), []);
-        $this->assertEquals(404, $response->getHttpStatusCode());
+        $responseBuilder = new ResponseBuilder();
+        $responseHandler = function($httpStatusCode, $data, $headers) use ($responseBuilder) {
+            $responseBuilder->setHttpStatusCode($httpStatusCode);
+            $responseBuilder->setHeaders($headers);
+            $responseBuilder->appendBody($data);
+        };
+
+        $this->connection->get($this->getApiEndpoint(), [], $responseHandler);
+        $this->assertEquals(404, $responseBuilder->getResponse()->getHttpStatusCode());
     }
 
     public function testTestConnection()
     {
-        $merchantId = $this->getMerchantId();
+        $responseBuilder = new ResponseBuilder();
+        $responseHandler = function($httpStatusCode, $data, $headers) use ($responseBuilder) {
+            $responseBuilder->setHttpStatusCode($httpStatusCode);
+            $responseBuilder->setHeaders($headers);
+            $responseBuilder->appendBody($data);
+        };
+
+        $merchantId = '20000';
         $relativeUriPath = '/' . Client::API_VERSION . '/' . $merchantId  . '/services/testconnection';
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
         $requestHeaderGenerator = new RequestHeaderGenerator($communicatorConfiguration, 'GET', $relativeUriPath);
         $requestHeaders = $requestHeaderGenerator->generateRequestHeaders();
-        $response = $this->connection->get($this->getApiEndpoint() . $relativeUriPath, $requestHeaders);
+        $this->connection->get($this->getApiEndpoint() . $relativeUriPath, $requestHeaders, $responseHandler);
+        $response = $responseBuilder->getResponse();
         $this->assertEquals(200, $response->getHttpStatusCode());
         $this->assertStringStartsWith('application/json', $response->getHeaderValue('Content-Type'));
         $this->assertEquals(array('result' => 'OK'), json_decode($response->getBody(), true));
@@ -48,7 +63,10 @@ class DefaultConnectionTest extends TestCase
         );
         foreach ($expectedErrorCodeByDomain as $domain => $expectedErrorCode) {
             try {
-                $this->connection->get($domain, []);
+                $responseHandler = function($httpStatusCode, $data, $headers) {
+                };
+
+                $this->connection->get($domain, [], $responseHandler);
             } catch (ErrorException $e) {
                 $expectedErrorMessage = 'cURL error ' . $expectedErrorCode;
                 if (function_exists('curl_strerror')) {

@@ -64,6 +64,45 @@ class PaymentProductFieldValidators extends DataObject
     public $termsAndConditions = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->boletoBancarioRequiredness)) {
+            $object->boletoBancarioRequiredness = $this->boletoBancarioRequiredness->toObject();
+        }
+        if (!is_null($this->emailAddress)) {
+            $object->emailAddress = $this->emailAddress->toObject();
+        }
+        if (!is_null($this->expirationDate)) {
+            $object->expirationDate = $this->expirationDate->toObject();
+        }
+        if (!is_null($this->fixedList)) {
+            $object->fixedList = $this->fixedList->toObject();
+        }
+        if (!is_null($this->iban)) {
+            $object->iban = $this->iban->toObject();
+        }
+        if (!is_null($this->length)) {
+            $object->length = $this->length->toObject();
+        }
+        if (!is_null($this->luhn)) {
+            $object->luhn = $this->luhn->toObject();
+        }
+        if (!is_null($this->range)) {
+            $object->range = $this->range->toObject();
+        }
+        if (!is_null($this->regularExpression)) {
+            $object->regularExpression = $this->regularExpression->toObject();
+        }
+        if (!is_null($this->termsAndConditions)) {
+            $object->termsAndConditions = $this->termsAndConditions->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

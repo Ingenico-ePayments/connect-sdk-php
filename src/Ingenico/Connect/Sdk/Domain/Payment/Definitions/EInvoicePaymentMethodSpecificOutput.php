@@ -18,6 +18,18 @@ class EInvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
     public $paymentProduct9000SpecificOutput = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->paymentProduct9000SpecificOutput)) {
+            $object->paymentProduct9000SpecificOutput = $this->paymentProduct9000SpecificOutput->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

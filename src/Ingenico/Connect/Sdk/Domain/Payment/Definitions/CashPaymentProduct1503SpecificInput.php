@@ -21,6 +21,18 @@ class CashPaymentProduct1503SpecificInput extends DataObject
     public $returnUrl = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->returnUrl)) {
+            $object->returnUrl = $this->returnUrl;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

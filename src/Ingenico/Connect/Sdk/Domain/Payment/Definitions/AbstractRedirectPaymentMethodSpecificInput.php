@@ -39,6 +39,30 @@ class AbstractRedirectPaymentMethodSpecificInput extends AbstractPaymentMethodSp
     public $tokenize = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->expirationPeriod)) {
+            $object->expirationPeriod = $this->expirationPeriod;
+        }
+        if (!is_null($this->recurringPaymentSequenceIndicator)) {
+            $object->recurringPaymentSequenceIndicator = $this->recurringPaymentSequenceIndicator;
+        }
+        if (!is_null($this->requiresApproval)) {
+            $object->requiresApproval = $this->requiresApproval;
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
+        }
+        if (!is_null($this->tokenize)) {
+            $object->tokenize = $this->tokenize;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

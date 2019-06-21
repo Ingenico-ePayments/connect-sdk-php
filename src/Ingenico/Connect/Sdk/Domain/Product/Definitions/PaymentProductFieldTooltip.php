@@ -24,6 +24,21 @@ class PaymentProductFieldTooltip extends DataObject
     public $label = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->image)) {
+            $object->image = $this->image;
+        }
+        if (!is_null($this->label)) {
+            $object->label = $this->label;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

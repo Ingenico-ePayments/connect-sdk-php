@@ -19,6 +19,18 @@ class ApprovePaymentCardPaymentMethodSpecificOutput extends DataObject
     public $voidResponseId = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->voidResponseId)) {
+            $object->voidResponseId = $this->voidResponseId;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

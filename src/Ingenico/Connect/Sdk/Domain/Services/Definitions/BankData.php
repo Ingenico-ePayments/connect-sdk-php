@@ -34,6 +34,27 @@ class BankData extends DataObject
     public $reformattedBranchCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->newBankName)) {
+            $object->newBankName = $this->newBankName;
+        }
+        if (!is_null($this->reformattedAccountNumber)) {
+            $object->reformattedAccountNumber = $this->reformattedAccountNumber;
+        }
+        if (!is_null($this->reformattedBankCode)) {
+            $object->reformattedBankCode = $this->reformattedBankCode;
+        }
+        if (!is_null($this->reformattedBranchCode)) {
+            $object->reformattedBranchCode = $this->reformattedBranchCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

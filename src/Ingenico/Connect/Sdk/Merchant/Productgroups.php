@@ -43,13 +43,13 @@ class Productgroups extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/find.html Get payment product groups
      */
-    public function find($query, CallContext $callContext = null)
+    public function find(FindProductgroupsParams $query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroups';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/productgroups'),
+            $this->instantiateUri('/v1/{merchantId}/productgroups'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -73,14 +73,14 @@ class Productgroups extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/get.html Get payment product group
      */
-    public function get($paymentProductGroupId, $query, CallContext $callContext = null)
+    public function get($paymentProductGroupId, GetProductgroupParams $query, CallContext $callContext = null)
     {
         $this->context['paymentProductGroupId'] = $paymentProductGroupId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\PaymentProductGroupResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}'),
+            $this->instantiateUri('/v1/{merchantId}/productgroups/{paymentProductGroupId}'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -104,14 +104,14 @@ class Productgroups extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/productgroups/deviceFingerprint.html Get device fingerprint
      */
-    public function deviceFingerprint($paymentProductGroupId, $body, CallContext $callContext = null)
+    public function deviceFingerprint($paymentProductGroupId, DeviceFingerprintRequest $body, CallContext $callContext = null)
     {
         $this->context['paymentProductGroupId'] = $paymentProductGroupId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint'),
+            $this->instantiateUri('/v1/{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint'),
             $this->getClientMetaInfo(),
             $body,
             null,

@@ -19,6 +19,18 @@ class ConvertAmount extends DataObject
     public $convertedAmount = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->convertedAmount)) {
+            $object->convertedAmount = $this->convertedAmount;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -64,6 +64,45 @@ class PaymentProduct840CustomerAccount extends DataObject
     public $surname = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->accountId)) {
+            $object->accountId = $this->accountId;
+        }
+        if (!is_null($this->billingAgreementId)) {
+            $object->billingAgreementId = $this->billingAgreementId;
+        }
+        if (!is_null($this->companyName)) {
+            $object->companyName = $this->companyName;
+        }
+        if (!is_null($this->contactPhone)) {
+            $object->contactPhone = $this->contactPhone;
+        }
+        if (!is_null($this->countryCode)) {
+            $object->countryCode = $this->countryCode;
+        }
+        if (!is_null($this->customerAccountStatus)) {
+            $object->customerAccountStatus = $this->customerAccountStatus;
+        }
+        if (!is_null($this->customerAddressStatus)) {
+            $object->customerAddressStatus = $this->customerAddressStatus;
+        }
+        if (!is_null($this->firstName)) {
+            $object->firstName = $this->firstName;
+        }
+        if (!is_null($this->payerId)) {
+            $object->payerId = $this->payerId;
+        }
+        if (!is_null($this->surname)) {
+            $object->surname = $this->surname;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

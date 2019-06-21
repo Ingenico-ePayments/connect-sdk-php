@@ -48,6 +48,33 @@ class TokenResponse extends DataObject
     public $sepaDirectDebit = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->card)) {
+            $object->card = $this->card->toObject();
+        }
+        if (!is_null($this->eWallet)) {
+            $object->eWallet = $this->eWallet->toObject();
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->nonSepaDirectDebit)) {
+            $object->nonSepaDirectDebit = $this->nonSepaDirectDebit->toObject();
+        }
+        if (!is_null($this->paymentProductId)) {
+            $object->paymentProductId = $this->paymentProductId;
+        }
+        if (!is_null($this->sepaDirectDebit)) {
+            $object->sepaDirectDebit = $this->sepaDirectDebit->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

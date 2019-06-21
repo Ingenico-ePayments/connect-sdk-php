@@ -19,6 +19,18 @@ class ApproveRefundRequest extends DataObject
     public $amount = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amount)) {
+            $object->amount = $this->amount;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

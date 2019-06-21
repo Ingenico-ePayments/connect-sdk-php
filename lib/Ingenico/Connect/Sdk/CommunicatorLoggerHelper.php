@@ -10,14 +10,12 @@ use Exception;
  */
 class CommunicatorLoggerHelper
 {
-    /** @var UuidGenerator|null */
-    private $uuidGenerator = null;
-
     /** @var HttpObfuscator|null */
     private $httpObfuscator = null;
 
     /**
      * @param CommunicatorLogger $communicatorLogger
+     * @param string $requestId
      * @param string $requestMethod
      * @param string $requestUri
      * @param array $requestHeaders
@@ -25,6 +23,7 @@ class CommunicatorLoggerHelper
      */
     public function logRequest(
         CommunicatorLogger $communicatorLogger,
+        $requestId,
         $requestMethod,
         $requestUri,
         array $requestHeaders,
@@ -34,7 +33,7 @@ class CommunicatorLoggerHelper
             $communicatorLogger->log(sprintf(
                 "Outgoing request to %s (requestId='%s')\n%s",
                 $this->getEndpoint($requestUri),
-                $this->getUuidGenerator()->generatedUuid(),
+                $requestId,
                 $this->getHttpObfuscator()->getRawObfuscatedRequest(
                     $requestMethod,
                     $this->getRelativeUriPathWithRequestParameters($requestUri),
@@ -47,16 +46,17 @@ class CommunicatorLoggerHelper
 
     /**
      * @param CommunicatorLogger $communicatorLogger
+     * @param string $requestId
      * @param string $requestUri
      * @param ConnectionResponse $response
      */
-    public function logResponse(CommunicatorLogger $communicatorLogger, $requestUri, ConnectionResponse $response)
+    public function logResponse(CommunicatorLogger $communicatorLogger, $requestId, $requestUri, ConnectionResponse $response)
     {
         if ($communicatorLogger) {
             $communicatorLogger->log(sprintf(
                 "Incoming response from %s (requestId='%s')\n%s",
                 $this->getEndpoint($requestUri),
-                $this->getUuidGenerator()->getLastGeneratedUuid(),
+                $requestId,
                 $this->getHttpObfuscator()->getRawObfuscatedResponse($response)
             ));
         }
@@ -64,27 +64,19 @@ class CommunicatorLoggerHelper
 
     /**
      * @param CommunicatorLogger $communicatorLogger
+     * @param string $requestId
      * @param string $requestUri
      * @param Exception $exception
      */
-    public function logException(CommunicatorLogger $communicatorLogger, $requestUri, Exception $exception)
+    public function logException(CommunicatorLogger $communicatorLogger, $requestId, $requestUri, Exception $exception)
     {
         if ($communicatorLogger) {
             $communicatorLogger->logException(sprintf(
                 "Error occurred while executing request to %s (requestId='%s')",
                 $this->getEndpoint($requestUri),
-                $this->getUuidGenerator()->getLastGeneratedUuid()
+                $requestId
             ), $exception);
         }
-    }
-
-    /** @return UuidGenerator */
-    protected function getUuidGenerator()
-    {
-        if (is_null($this->uuidGenerator)) {
-            $this->uuidGenerator = new UuidGenerator();
-        }
-        return $this->uuidGenerator;
     }
 
     /** @return HttpObfuscator */

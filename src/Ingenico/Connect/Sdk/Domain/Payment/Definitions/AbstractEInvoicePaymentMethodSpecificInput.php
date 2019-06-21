@@ -19,6 +19,18 @@ class AbstractEInvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSp
     public $requiresApproval = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->requiresApproval)) {
+            $object->requiresApproval = $this->requiresApproval;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

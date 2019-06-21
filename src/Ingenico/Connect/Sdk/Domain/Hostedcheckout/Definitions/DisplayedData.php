@@ -30,6 +30,29 @@ class DisplayedData extends DataObject
     public $showData = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->displayedDataType)) {
+            $object->displayedDataType = $this->displayedDataType;
+        }
+        if (!is_null($this->renderingData)) {
+            $object->renderingData = $this->renderingData;
+        }
+        if (!is_null($this->showData)) {
+            $object->showData = [];
+            foreach ($this->showData as $element) {
+                if (!is_null($element)) {
+                    $object->showData[] = $element->toObject();
+                }
+            }
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -48,9 +71,9 @@ class DisplayedData extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->showData, true) . '\' is not an array or object');
             }
             $this->showData = [];
-            foreach ($object->showData as $showDataElementObject) {
-                $showDataElement = new KeyValuePair();
-                $this->showData[] = $showDataElement->fromObject($showDataElementObject);
+            foreach ($object->showData as $element) {
+                $value = new KeyValuePair();
+                $this->showData[] = $value->fromObject($element);
             }
         }
         return $this;

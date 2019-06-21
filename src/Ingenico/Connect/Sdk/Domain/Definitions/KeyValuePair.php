@@ -24,6 +24,21 @@ class KeyValuePair extends DataObject
     public $value = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->key)) {
+            $object->key = $this->key;
+        }
+        if (!is_null($this->value)) {
+            $object->value = $this->value;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

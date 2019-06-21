@@ -29,6 +29,24 @@ class PaymentProductDisplayHints extends DataObject
     public $logo = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->displayOrder)) {
+            $object->displayOrder = $this->displayOrder;
+        }
+        if (!is_null($this->label)) {
+            $object->label = $this->label;
+        }
+        if (!is_null($this->logo)) {
+            $object->logo = $this->logo;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

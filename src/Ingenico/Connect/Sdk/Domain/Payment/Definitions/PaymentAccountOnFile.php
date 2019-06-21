@@ -24,6 +24,21 @@ class PaymentAccountOnFile extends DataObject
     public $numberOfCardOnFileCreationAttemptsLast24Hours = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->createDate)) {
+            $object->createDate = $this->createDate;
+        }
+        if (!is_null($this->numberOfCardOnFileCreationAttemptsLast24Hours)) {
+            $object->numberOfCardOnFileCreationAttemptsLast24Hours = $this->numberOfCardOnFileCreationAttemptsLast24Hours;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

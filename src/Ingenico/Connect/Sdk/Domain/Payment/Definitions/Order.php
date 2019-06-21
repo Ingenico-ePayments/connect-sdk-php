@@ -57,6 +57,44 @@ class Order extends DataObject
     public $shoppingCart = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->additionalInput)) {
+            $object->additionalInput = $this->additionalInput->toObject();
+        }
+        if (!is_null($this->amountOfMoney)) {
+            $object->amountOfMoney = $this->amountOfMoney->toObject();
+        }
+        if (!is_null($this->customer)) {
+            $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->items)) {
+            $object->items = [];
+            foreach ($this->items as $element) {
+                if (!is_null($element)) {
+                    $object->items[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->references)) {
+            $object->references = $this->references->toObject();
+        }
+        if (!is_null($this->seller)) {
+            $object->seller = $this->seller->toObject();
+        }
+        if (!is_null($this->shipping)) {
+            $object->shipping = $this->shipping->toObject();
+        }
+        if (!is_null($this->shoppingCart)) {
+            $object->shoppingCart = $this->shoppingCart->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -90,9 +128,9 @@ class Order extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->items, true) . '\' is not an array or object');
             }
             $this->items = [];
-            foreach ($object->items as $itemsElementObject) {
-                $itemsElement = new LineItem();
-                $this->items[] = $itemsElement->fromObject($itemsElementObject);
+            foreach ($object->items as $element) {
+                $value = new LineItem();
+                $this->items[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'references')) {

@@ -59,6 +59,42 @@ class HostedCheckoutSpecificInput extends DataObject
     public $variant = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isRecurring)) {
+            $object->isRecurring = $this->isRecurring;
+        }
+        if (!is_null($this->locale)) {
+            $object->locale = $this->locale;
+        }
+        if (!is_null($this->paymentProductFilters)) {
+            $object->paymentProductFilters = $this->paymentProductFilters->toObject();
+        }
+        if (!is_null($this->returnCancelState)) {
+            $object->returnCancelState = $this->returnCancelState;
+        }
+        if (!is_null($this->returnUrl)) {
+            $object->returnUrl = $this->returnUrl;
+        }
+        if (!is_null($this->showResultPage)) {
+            $object->showResultPage = $this->showResultPage;
+        }
+        if (!is_null($this->tokens)) {
+            $object->tokens = $this->tokens;
+        }
+        if (!is_null($this->validateShoppingCart)) {
+            $object->validateShoppingCart = $this->validateShoppingCart;
+        }
+        if (!is_null($this->variant)) {
+            $object->variant = $this->variant;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

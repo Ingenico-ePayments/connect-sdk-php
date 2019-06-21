@@ -60,6 +60,42 @@ class Seller extends DataObject
     public $type = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->address)) {
+            $object->address = $this->address->toObject();
+        }
+        if (!is_null($this->channelCode)) {
+            $object->channelCode = $this->channelCode;
+        }
+        if (!is_null($this->description)) {
+            $object->description = $this->description;
+        }
+        if (!is_null($this->geocode)) {
+            $object->geocode = $this->geocode;
+        }
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->invoiceNumber)) {
+            $object->invoiceNumber = $this->invoiceNumber;
+        }
+        if (!is_null($this->mcc)) {
+            $object->mcc = $this->mcc;
+        }
+        if (!is_null($this->name)) {
+            $object->name = $this->name;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -39,6 +39,30 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
     public $skipFraudService = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authorizationMode)) {
+            $object->authorizationMode = $this->authorizationMode;
+        }
+        if (!is_null($this->decryptedPaymentData)) {
+            $object->decryptedPaymentData = $this->decryptedPaymentData->toObject();
+        }
+        if (!is_null($this->encryptedPaymentData)) {
+            $object->encryptedPaymentData = $this->encryptedPaymentData;
+        }
+        if (!is_null($this->requiresApproval)) {
+            $object->requiresApproval = $this->requiresApproval;
+        }
+        if (!is_null($this->skipFraudService)) {
+            $object->skipFraudService = $this->skipFraudService;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

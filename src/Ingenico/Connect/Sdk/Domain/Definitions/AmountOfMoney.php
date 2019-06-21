@@ -24,6 +24,21 @@ class AmountOfMoney extends DataObject
     public $currencyCode = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amount)) {
+            $object->amount = $this->amount;
+        }
+        if (!is_null($this->currencyCode)) {
+            $object->currencyCode = $this->currencyCode;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

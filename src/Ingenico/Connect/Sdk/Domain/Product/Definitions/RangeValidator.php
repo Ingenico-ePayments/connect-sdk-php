@@ -24,6 +24,21 @@ class RangeValidator extends DataObject
     public $minValue = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->maxValue)) {
+            $object->maxValue = $this->maxValue;
+        }
+        if (!is_null($this->minValue)) {
+            $object->minValue = $this->minValue;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

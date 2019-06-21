@@ -31,6 +31,29 @@ class PaymentErrorResponse extends DataObject
     public $paymentResult = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->errorId)) {
+            $object->errorId = $this->errorId;
+        }
+        if (!is_null($this->errors)) {
+            $object->errors = [];
+            foreach ($this->errors as $element) {
+                if (!is_null($element)) {
+                    $object->errors[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->paymentResult)) {
+            $object->paymentResult = $this->paymentResult->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -46,9 +69,9 @@ class PaymentErrorResponse extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->errors, true) . '\' is not an array or object');
             }
             $this->errors = [];
-            foreach ($object->errors as $errorsElementObject) {
-                $errorsElement = new APIError();
-                $this->errors[] = $errorsElement->fromObject($errorsElementObject);
+            foreach ($object->errors as $element) {
+                $value = new APIError();
+                $this->errors[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'paymentResult')) {

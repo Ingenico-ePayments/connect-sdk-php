@@ -44,14 +44,14 @@ class Payouts extends Resource
      * @throws DeclinedPayoutException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/create.html Create payout
      */
-    public function create($body, CallContext $callContext = null)
+    public function create(CreatePayoutRequest $body, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse';
         $responseClassMap->defaultErrorResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
+            $this->instantiateUri('/v1/{merchantId}/payouts'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -75,13 +75,13 @@ class Payouts extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
      */
-    public function find($query, CallContext $callContext = null)
+    public function find(FindPayoutsParams $query, CallContext $callContext = null)
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payout\FindPayoutsResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts'),
+            $this->instantiateUri('/v1/{merchantId}/payouts'),
             $this->getClientMetaInfo(),
             $query,
             $callContext
@@ -111,7 +111,7 @@ class Payouts extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}'),
+            $this->instantiateUri('/v1/{merchantId}/payouts/{payoutId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
@@ -135,14 +135,14 @@ class Payouts extends Resource
      * @throws InvalidResponseException
      * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payouts/approve.html Approve payout
      */
-    public function approve($payoutId, $body, CallContext $callContext = null)
+    public function approve($payoutId, ApprovePayoutRequest $body, CallContext $callContext = null)
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse';
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/approve'),
+            $this->instantiateUri('/v1/{merchantId}/payouts/{payoutId}/approve'),
             $this->getClientMetaInfo(),
             $body,
             null,
@@ -172,7 +172,7 @@ class Payouts extends Resource
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/cancel'),
+            $this->instantiateUri('/v1/{merchantId}/payouts/{payoutId}/cancel'),
             $this->getClientMetaInfo(),
             null,
             null,
@@ -202,7 +202,7 @@ class Payouts extends Resource
         $responseClassMap = new ResponseClassMap();
         return $this->getCommunicator()->post(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/payouts/{payoutId}/cancelapproval'),
+            $this->instantiateUri('/v1/{merchantId}/payouts/{payoutId}/cancelapproval'),
             $this->getClientMetaInfo(),
             null,
             null,

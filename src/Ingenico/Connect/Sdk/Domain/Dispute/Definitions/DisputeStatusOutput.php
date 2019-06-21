@@ -34,6 +34,27 @@ class DisputeStatusOutput extends DataObject
     public $statusCodeChangeDateTime = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isCancellable)) {
+            $object->isCancellable = $this->isCancellable;
+        }
+        if (!is_null($this->statusCategory)) {
+            $object->statusCategory = $this->statusCategory;
+        }
+        if (!is_null($this->statusCode)) {
+            $object->statusCode = $this->statusCode;
+        }
+        if (!is_null($this->statusCodeChangeDateTime)) {
+            $object->statusCodeChangeDateTime = $this->statusCodeChangeDateTime;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

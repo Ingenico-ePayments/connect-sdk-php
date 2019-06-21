@@ -15,34 +15,18 @@ class ResponseFactory
     /**
      * @param ConnectionResponse $response
      * @param ResponseClassMap $responseClassMap
-     * @param CallContext $callContext
      * @return DataObject|null
      */
     public function createResponse(
         ConnectionResponse $response,
-        ResponseClassMap $responseClassMap,
-        CallContext $callContext = null
+        ResponseClassMap $responseClassMap
     ) {
         try {
-            if ($callContext) {
-                $this->updateCallContext($response, $callContext);
-            }
             $responseObject = $this->getResponseObject($response, $responseClassMap);
         } catch (UnexpectedValueException $e) {
             throw new InvalidResponseException($response, $e->getMessage());
         }
         return $responseObject;
-    }
-
-    /**
-     * @param ConnectionResponse $response
-     * @param CallContext $callContext
-     */
-    protected function updateCallContext(ConnectionResponse $response, CallContext $callContext)
-    {
-        $callContext->setIdempotenceRequestTimestamp(
-            $response->getHeaderValue('X-GCS-Idempotence-Request-Timestamp')
-        );
     }
 
     /**

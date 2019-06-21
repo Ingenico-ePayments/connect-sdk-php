@@ -59,6 +59,42 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
     public $returnUrl = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->isRecurring)) {
+            $object->isRecurring = $this->isRecurring;
+        }
+        if (!is_null($this->paymentProduct809SpecificInput)) {
+            $object->paymentProduct809SpecificInput = $this->paymentProduct809SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct816SpecificInput)) {
+            $object->paymentProduct816SpecificInput = $this->paymentProduct816SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct840SpecificInput)) {
+            $object->paymentProduct840SpecificInput = $this->paymentProduct840SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct861SpecificInput)) {
+            $object->paymentProduct861SpecificInput = $this->paymentProduct861SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct863SpecificInput)) {
+            $object->paymentProduct863SpecificInput = $this->paymentProduct863SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct882SpecificInput)) {
+            $object->paymentProduct882SpecificInput = $this->paymentProduct882SpecificInput->toObject();
+        }
+        if (!is_null($this->redirectionData)) {
+            $object->redirectionData = $this->redirectionData->toObject();
+        }
+        if (!is_null($this->returnUrl)) {
+            $object->returnUrl = $this->returnUrl;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

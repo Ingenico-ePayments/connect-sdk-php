@@ -44,6 +44,43 @@ class ShoppingCart extends DataObject
     public $reOrderIndicator = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountBreakdown)) {
+            $object->amountBreakdown = [];
+            foreach ($this->amountBreakdown as $element) {
+                if (!is_null($element)) {
+                    $object->amountBreakdown[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->giftCardPurchase)) {
+            $object->giftCardPurchase = $this->giftCardPurchase->toObject();
+        }
+        if (!is_null($this->isPreOrder)) {
+            $object->isPreOrder = $this->isPreOrder;
+        }
+        if (!is_null($this->items)) {
+            $object->items = [];
+            foreach ($this->items as $element) {
+                if (!is_null($element)) {
+                    $object->items[] = $element->toObject();
+                }
+            }
+        }
+        if (!is_null($this->preOrderItemAvailabilityDate)) {
+            $object->preOrderItemAvailabilityDate = $this->preOrderItemAvailabilityDate;
+        }
+        if (!is_null($this->reOrderIndicator)) {
+            $object->reOrderIndicator = $this->reOrderIndicator;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
@@ -56,9 +93,9 @@ class ShoppingCart extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->amountBreakdown, true) . '\' is not an array or object');
             }
             $this->amountBreakdown = [];
-            foreach ($object->amountBreakdown as $amountBreakdownElementObject) {
-                $amountBreakdownElement = new AmountBreakdown();
-                $this->amountBreakdown[] = $amountBreakdownElement->fromObject($amountBreakdownElementObject);
+            foreach ($object->amountBreakdown as $element) {
+                $value = new AmountBreakdown();
+                $this->amountBreakdown[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'giftCardPurchase')) {
@@ -76,9 +113,9 @@ class ShoppingCart extends DataObject
                 throw new UnexpectedValueException('value \'' . print_r($object->items, true) . '\' is not an array or object');
             }
             $this->items = [];
-            foreach ($object->items as $itemsElementObject) {
-                $itemsElement = new LineItem();
-                $this->items[] = $itemsElement->fromObject($itemsElementObject);
+            foreach ($object->items as $element) {
+                $value = new LineItem();
+                $this->items[] = $value->fromObject($element);
             }
         }
         if (property_exists($object, 'preOrderItemAvailabilityDate')) {

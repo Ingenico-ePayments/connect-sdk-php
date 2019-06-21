@@ -19,6 +19,18 @@ class AbstractOrderStatus extends DataObject
     public $id = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

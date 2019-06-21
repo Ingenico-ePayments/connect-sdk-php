@@ -48,6 +48,36 @@ class RefundOutput extends OrderOutput
     public $paymentMethod = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->amountPaid)) {
+            $object->amountPaid = $this->amountPaid;
+        }
+        if (!is_null($this->bankRefundMethodSpecificOutput)) {
+            $object->bankRefundMethodSpecificOutput = $this->bankRefundMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->cardRefundMethodSpecificOutput)) {
+            $object->cardRefundMethodSpecificOutput = $this->cardRefundMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->eInvoiceRefundMethodSpecificOutput)) {
+            $object->eInvoiceRefundMethodSpecificOutput = $this->eInvoiceRefundMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->eWalletRefundMethodSpecificOutput)) {
+            $object->eWalletRefundMethodSpecificOutput = $this->eWalletRefundMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->mobileRefundMethodSpecificOutput)) {
+            $object->mobileRefundMethodSpecificOutput = $this->mobileRefundMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->paymentMethod)) {
+            $object->paymentMethod = $this->paymentMethod;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

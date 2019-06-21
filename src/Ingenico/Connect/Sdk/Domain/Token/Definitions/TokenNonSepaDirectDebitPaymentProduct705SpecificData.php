@@ -25,6 +25,21 @@ class TokenNonSepaDirectDebitPaymentProduct705SpecificData extends DataObject
     public $bankAccountBban = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->authorisationId)) {
+            $object->authorisationId = $this->authorisationId;
+        }
+        if (!is_null($this->bankAccountBban)) {
+            $object->bankAccountBban = $this->bankAccountBban->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

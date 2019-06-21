@@ -34,6 +34,27 @@ class PaymentProductFieldDisplayElement extends DataObject
     public $value = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->id)) {
+            $object->id = $this->id;
+        }
+        if (!is_null($this->label)) {
+            $object->label = $this->label;
+        }
+        if (!is_null($this->type)) {
+            $object->type = $this->type;
+        }
+        if (!is_null($this->value)) {
+            $object->value = $this->value;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

@@ -19,6 +19,18 @@ class ThirdPartyStatusResponse extends DataObject
     public $thirdPartyStatus = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->thirdPartyStatus)) {
+            $object->thirdPartyStatus = $this->thirdPartyStatus;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

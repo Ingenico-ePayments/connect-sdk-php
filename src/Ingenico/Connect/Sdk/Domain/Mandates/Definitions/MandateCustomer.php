@@ -40,6 +40,30 @@ class MandateCustomer extends DataObject
     public $personalInformation = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->bankAccountIban)) {
+            $object->bankAccountIban = $this->bankAccountIban->toObject();
+        }
+        if (!is_null($this->companyName)) {
+            $object->companyName = $this->companyName;
+        }
+        if (!is_null($this->contactDetails)) {
+            $object->contactDetails = $this->contactDetails->toObject();
+        }
+        if (!is_null($this->mandateAddress)) {
+            $object->mandateAddress = $this->mandateAddress->toObject();
+        }
+        if (!is_null($this->personalInformation)) {
+            $object->personalInformation = $this->personalInformation->toObject();
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException

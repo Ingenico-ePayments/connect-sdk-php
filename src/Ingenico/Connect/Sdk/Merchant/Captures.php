@@ -45,7 +45,7 @@ class Captures extends Resource
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Capture\CaptureResponse';
         return $this->getCommunicator()->get(
             $responseClassMap,
-            $this->instantiateUri('/{apiVersion}/{merchantId}/captures/{captureId}'),
+            $this->instantiateUri('/v1/{merchantId}/captures/{captureId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext

@@ -19,6 +19,18 @@ class RedirectPaymentProduct861SpecificInput extends DataObject
     public $mobileDevice = null;
 
     /**
+     * @return object
+     */
+    public function toObject()
+    {
+        $object = parent::toObject();
+        if (!is_null($this->mobileDevice)) {
+            $object->mobileDevice = $this->mobileDevice;
+        }
+        return $object;
+    }
+
+    /**
      * @param object $object
      * @return $this
      * @throws UnexpectedValueException
