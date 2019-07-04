@@ -26,6 +26,11 @@ class AdditionalOrderInput extends DataObject
     public $level3SummaryData = null;
 
     /**
+     * @var LoanRecipient
+     */
+    public $loanRecipient = null;
+
+    /**
      * @var int
      */
     public $numberOfInstallments = null;
@@ -51,6 +56,9 @@ class AdditionalOrderInput extends DataObject
         }
         if (!is_null($this->level3SummaryData)) {
             $object->level3SummaryData = $this->level3SummaryData->toObject();
+        }
+        if (!is_null($this->loanRecipient)) {
+            $object->loanRecipient = $this->loanRecipient->toObject();
         }
         if (!is_null($this->numberOfInstallments)) {
             $object->numberOfInstallments = $this->numberOfInstallments;
@@ -85,6 +93,13 @@ class AdditionalOrderInput extends DataObject
             }
             $value = new Level3SummaryData();
             $this->level3SummaryData = $value->fromObject($object->level3SummaryData);
+        }
+        if (property_exists($object, 'loanRecipient')) {
+            if (!is_object($object->loanRecipient)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->loanRecipient, true) . '\' is not an object');
+            }
+            $value = new LoanRecipient();
+            $this->loanRecipient = $value->fromObject($object->loanRecipient);
         }
         if (property_exists($object, 'numberOfInstallments')) {
             $this->numberOfInstallments = $object->numberOfInstallments;
