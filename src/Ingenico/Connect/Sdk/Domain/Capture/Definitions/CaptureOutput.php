@@ -28,6 +28,11 @@ class CaptureOutput extends OrderOutput
     public $amountPaid = null;
 
     /**
+     * @var int
+     */
+    public $amountReversed = null;
+
+    /**
      * @var BankTransferPaymentMethodSpecificOutput
      */
     public $bankTransferPaymentMethodSpecificOutput = null;
@@ -86,6 +91,9 @@ class CaptureOutput extends OrderOutput
         if (!is_null($this->amountPaid)) {
             $object->amountPaid = $this->amountPaid;
         }
+        if (!is_null($this->amountReversed)) {
+            $object->amountReversed = $this->amountReversed;
+        }
         if (!is_null($this->bankTransferPaymentMethodSpecificOutput)) {
             $object->bankTransferPaymentMethodSpecificOutput = $this->bankTransferPaymentMethodSpecificOutput->toObject();
         }
@@ -129,6 +137,9 @@ class CaptureOutput extends OrderOutput
         parent::fromObject($object);
         if (property_exists($object, 'amountPaid')) {
             $this->amountPaid = $object->amountPaid;
+        }
+        if (property_exists($object, 'amountReversed')) {
+            $this->amountReversed = $object->amountReversed;
         }
         if (property_exists($object, 'bankTransferPaymentMethodSpecificOutput')) {
             if (!is_object($object->bankTransferPaymentMethodSpecificOutput)) {
