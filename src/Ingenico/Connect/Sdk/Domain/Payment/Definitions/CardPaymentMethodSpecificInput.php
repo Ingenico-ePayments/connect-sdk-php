@@ -31,6 +31,11 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
 
     /**
      * @var string
+     */
+    public $merchantInitiatedReasonIndicator = null;
+
+    /**
+     * @var string
      * @deprecated Use threeDSecure.redirectionData.returnUrl instead
      */
     public $returnUrl = null;
@@ -54,6 +59,9 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
         }
         if (!is_null($this->isRecurring)) {
             $object->isRecurring = $this->isRecurring;
+        }
+        if (!is_null($this->merchantInitiatedReasonIndicator)) {
+            $object->merchantInitiatedReasonIndicator = $this->merchantInitiatedReasonIndicator;
         }
         if (!is_null($this->returnUrl)) {
             $object->returnUrl = $this->returnUrl;
@@ -88,6 +96,9 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
         }
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;
+        }
+        if (property_exists($object, 'merchantInitiatedReasonIndicator')) {
+            $this->merchantInitiatedReasonIndicator = $object->merchantInitiatedReasonIndicator;
         }
         if (property_exists($object, 'returnUrl')) {
             $this->returnUrl = $object->returnUrl;

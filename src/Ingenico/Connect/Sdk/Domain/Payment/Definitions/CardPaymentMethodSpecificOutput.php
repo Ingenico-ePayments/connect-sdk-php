@@ -30,6 +30,16 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     public $fraudResults = null;
 
     /**
+     * @var string
+     */
+    public $initialSchemeTransactionId = null;
+
+    /**
+     * @var string
+     */
+    public $schemeTransactionId = null;
+
+    /**
      * @var ThreeDSecureResults
      */
     public $threeDSecureResults = null;
@@ -53,6 +63,12 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         }
         if (!is_null($this->fraudResults)) {
             $object->fraudResults = $this->fraudResults->toObject();
+        }
+        if (!is_null($this->initialSchemeTransactionId)) {
+            $object->initialSchemeTransactionId = $this->initialSchemeTransactionId;
+        }
+        if (!is_null($this->schemeTransactionId)) {
+            $object->schemeTransactionId = $this->schemeTransactionId;
         }
         if (!is_null($this->threeDSecureResults)) {
             $object->threeDSecureResults = $this->threeDSecureResults->toObject();
@@ -87,6 +103,12 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
             }
             $value = new CardFraudResults();
             $this->fraudResults = $value->fromObject($object->fraudResults);
+        }
+        if (property_exists($object, 'initialSchemeTransactionId')) {
+            $this->initialSchemeTransactionId = $object->initialSchemeTransactionId;
+        }
+        if (property_exists($object, 'schemeTransactionId')) {
+            $this->schemeTransactionId = $object->schemeTransactionId;
         }
         if (property_exists($object, 'threeDSecureResults')) {
             if (!is_object($object->threeDSecureResults)) {

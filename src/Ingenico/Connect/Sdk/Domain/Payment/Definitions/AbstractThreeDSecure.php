@@ -29,6 +29,11 @@ class AbstractThreeDSecure extends DataObject
     public $challengeIndicator = null;
 
     /**
+     * @var string
+     */
+    public $exemptionRequest = null;
+
+    /**
      * @var ThreeDSecureData
      */
     public $priorThreeDSecureData = null;
@@ -58,6 +63,9 @@ class AbstractThreeDSecure extends DataObject
         if (!is_null($this->challengeIndicator)) {
             $object->challengeIndicator = $this->challengeIndicator;
         }
+        if (!is_null($this->exemptionRequest)) {
+            $object->exemptionRequest = $this->exemptionRequest;
+        }
         if (!is_null($this->priorThreeDSecureData)) {
             $object->priorThreeDSecureData = $this->priorThreeDSecureData->toObject();
         }
@@ -86,6 +94,9 @@ class AbstractThreeDSecure extends DataObject
         }
         if (property_exists($object, 'challengeIndicator')) {
             $this->challengeIndicator = $object->challengeIndicator;
+        }
+        if (property_exists($object, 'exemptionRequest')) {
+            $this->exemptionRequest = $object->exemptionRequest;
         }
         if (property_exists($object, 'priorThreeDSecureData')) {
             if (!is_object($object->priorThreeDSecureData)) {

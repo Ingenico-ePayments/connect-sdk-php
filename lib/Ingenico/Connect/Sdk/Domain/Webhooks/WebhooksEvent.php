@@ -2,6 +2,7 @@
 namespace Ingenico\Connect\Sdk\Domain\Webhooks;
 
 use Ingenico\Connect\Sdk\DataObject;
+use Ingenico\Connect\Sdk\Domain\Dispute\DisputeResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payout\PayoutResponse;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundResponse;
@@ -61,6 +62,11 @@ class WebhooksEvent extends DataObject
     public $token = null;
 
     /**
+     * @var DisputeResponse
+     */
+    public $dispute = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -92,6 +98,9 @@ class WebhooksEvent extends DataObject
         }
         if (!is_null($this->token)) {
             $object->token = $this->token->toObject();
+        }
+        if (!is_null($this->dispute)) {
+            $object->dispute = $this->dispute->toObject();
         }
         return $object;
     }
@@ -146,6 +155,13 @@ class WebhooksEvent extends DataObject
             }
             $value = new TokenResponse();
             $this->token = $value->fromObject($object->token);
+        }
+        if (property_exists($object, 'dispute')) {
+            if (!is_object($object->dispute)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->dispute, true) . '\' is not an object');
+            }
+            $value = new DisputeResponse();
+            $this->dispute = $value->fromObject($object->dispute);
         }
         return $this;
     }

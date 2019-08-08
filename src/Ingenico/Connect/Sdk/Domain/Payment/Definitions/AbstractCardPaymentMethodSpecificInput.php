@@ -24,6 +24,11 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
     public $customerReference = null;
 
     /**
+     * @var string
+     */
+    public $initialSchemeTransactionId = null;
+
+    /**
      * @var CardRecurrenceDetails
      */
     public $recurring = null;
@@ -93,6 +98,9 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
         if (!is_null($this->customerReference)) {
             $object->customerReference = $this->customerReference;
         }
+        if (!is_null($this->initialSchemeTransactionId)) {
+            $object->initialSchemeTransactionId = $this->initialSchemeTransactionId;
+        }
         if (!is_null($this->recurring)) {
             $object->recurring = $this->recurring->toObject();
         }
@@ -142,6 +150,9 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
         }
         if (property_exists($object, 'customerReference')) {
             $this->customerReference = $object->customerReference;
+        }
+        if (property_exists($object, 'initialSchemeTransactionId')) {
+            $this->initialSchemeTransactionId = $object->initialSchemeTransactionId;
         }
         if (property_exists($object, 'recurring')) {
             if (!is_object($object->recurring)) {
