@@ -24,6 +24,11 @@ class SepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSp
     public $paymentProduct771SpecificOutput = null;
 
     /**
+     * @var string
+     */
+    public $token = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -34,6 +39,9 @@ class SepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSp
         }
         if (!is_null($this->paymentProduct771SpecificOutput)) {
             $object->paymentProduct771SpecificOutput = $this->paymentProduct771SpecificOutput->toObject();
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
         }
         return $object;
     }
@@ -59,6 +67,9 @@ class SepaDirectDebitPaymentMethodSpecificOutput extends AbstractPaymentMethodSp
             }
             $value = new PaymentProduct771SpecificOutput();
             $this->paymentProduct771SpecificOutput = $value->fromObject($object->paymentProduct771SpecificOutput);
+        }
+        if (property_exists($object, 'token')) {
+            $this->token = $object->token;
         }
         return $this;
     }
