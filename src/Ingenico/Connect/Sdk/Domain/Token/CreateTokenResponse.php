@@ -21,6 +21,11 @@ class CreateTokenResponse extends DataObject
     /**
      * @var string
      */
+    public $originalPaymentId = null;
+
+    /**
+     * @var string
+     */
     public $token = null;
 
     /**
@@ -31,6 +36,9 @@ class CreateTokenResponse extends DataObject
         $object = parent::toObject();
         if (!is_null($this->isNewToken)) {
             $object->isNewToken = $this->isNewToken;
+        }
+        if (!is_null($this->originalPaymentId)) {
+            $object->originalPaymentId = $this->originalPaymentId;
         }
         if (!is_null($this->token)) {
             $object->token = $this->token;
@@ -48,6 +56,9 @@ class CreateTokenResponse extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'isNewToken')) {
             $this->isNewToken = $object->isNewToken;
+        }
+        if (property_exists($object, 'originalPaymentId')) {
+            $this->originalPaymentId = $object->originalPaymentId;
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;

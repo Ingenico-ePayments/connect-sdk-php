@@ -38,6 +38,11 @@ class TokenResponse extends DataObject
     public $nonSepaDirectDebit = null;
 
     /**
+     * @var string
+     */
+    public $originalPaymentId = null;
+
+    /**
      * @var int
      */
     public $paymentProductId = null;
@@ -64,6 +69,9 @@ class TokenResponse extends DataObject
         }
         if (!is_null($this->nonSepaDirectDebit)) {
             $object->nonSepaDirectDebit = $this->nonSepaDirectDebit->toObject();
+        }
+        if (!is_null($this->originalPaymentId)) {
+            $object->originalPaymentId = $this->originalPaymentId;
         }
         if (!is_null($this->paymentProductId)) {
             $object->paymentProductId = $this->paymentProductId;
@@ -105,6 +113,9 @@ class TokenResponse extends DataObject
             }
             $value = new TokenNonSepaDirectDebit();
             $this->nonSepaDirectDebit = $value->fromObject($object->nonSepaDirectDebit);
+        }
+        if (property_exists($object, 'originalPaymentId')) {
+            $this->originalPaymentId = $object->originalPaymentId;
         }
         if (property_exists($object, 'paymentProductId')) {
             $this->paymentProductId = $object->paymentProductId;

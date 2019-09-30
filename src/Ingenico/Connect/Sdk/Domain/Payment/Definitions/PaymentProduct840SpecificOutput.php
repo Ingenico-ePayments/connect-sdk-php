@@ -15,6 +15,11 @@ use UnexpectedValueException;
 class PaymentProduct840SpecificOutput extends DataObject
 {
     /**
+     * @var Address
+     */
+    public $billingAddress = null;
+
+    /**
      * @var PaymentProduct840CustomerAccount
      */
     public $customerAccount = null;
@@ -35,6 +40,9 @@ class PaymentProduct840SpecificOutput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->billingAddress)) {
+            $object->billingAddress = $this->billingAddress->toObject();
+        }
         if (!is_null($this->customerAccount)) {
             $object->customerAccount = $this->customerAccount->toObject();
         }
@@ -55,6 +63,13 @@ class PaymentProduct840SpecificOutput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'billingAddress')) {
+            if (!is_object($object->billingAddress)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->billingAddress, true) . '\' is not an object');
+            }
+            $value = new Address();
+            $this->billingAddress = $value->fromObject($object->billingAddress);
+        }
         if (property_exists($object, 'customerAccount')) {
             if (!is_object($object->customerAccount)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->customerAccount, true) . '\' is not an object');
