@@ -19,6 +19,11 @@ class FraudResults extends DataObject
     public $fraudServiceResult = null;
 
     /**
+     * @var InAuth
+     */
+    public $inAuth = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -26,6 +31,9 @@ class FraudResults extends DataObject
         $object = parent::toObject();
         if (!is_null($this->fraudServiceResult)) {
             $object->fraudServiceResult = $this->fraudServiceResult;
+        }
+        if (!is_null($this->inAuth)) {
+            $object->inAuth = $this->inAuth->toObject();
         }
         return $object;
     }
@@ -40,6 +48,13 @@ class FraudResults extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'fraudServiceResult')) {
             $this->fraudServiceResult = $object->fraudServiceResult;
+        }
+        if (property_exists($object, 'inAuth')) {
+            if (!is_object($object->inAuth)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->inAuth, true) . '\' is not an object');
+            }
+            $value = new InAuth();
+            $this->inAuth = $value->fromObject($object->inAuth);
         }
         return $this;
     }

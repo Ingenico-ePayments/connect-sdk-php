@@ -5,6 +5,7 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
+use Ingenico\Connect\Sdk\Domain\Definitions\FraudResults;
 use UnexpectedValueException;
 
 /**
@@ -13,11 +14,19 @@ use UnexpectedValueException;
 class InvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
+     * @var FraudResults
+     */
+    public $fraudResults = null;
+
+    /**
      * @return object
      */
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
         return $object;
     }
 
@@ -29,6 +38,13 @@ class InvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOu
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'fraudResults')) {
+            if (!is_object($object->fraudResults)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->fraudResults, true) . '\' is not an object');
+            }
+            $value = new FraudResults();
+            $this->fraudResults = $value->fromObject($object->fraudResults);
+        }
         return $this;
     }
 }

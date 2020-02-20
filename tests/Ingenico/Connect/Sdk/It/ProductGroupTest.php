@@ -1,5 +1,5 @@
 <?php
-namespace Ingenico\Connect\Sdk\Examples;
+namespace Ingenico\Connect\Sdk\It;
 
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
@@ -9,32 +9,11 @@ use Ingenico\Connect\Sdk\Merchant\Productgroups\FindProductgroupsParams;
 use Ingenico\Connect\Sdk\Merchant\Productgroups\GetProductgroupParams;
 
 /**
- * @group examples
+ * @group integration
  *
  */
 class ProductGroupTest extends ClientTestCase
 {
-    /**
-     * @return PaymentProductGroups
-     */
-    public function testRetrievePaymentProductGroups()
-    {
-        $client = $this->getClient();
-        $merchantId = $this->getMerchantId();
-
-        $findParams = new FindProductgroupsParams();
-
-        $findParams->amount = 1000;
-        $findParams->countryCode = "US";
-        $findParams->currencyCode = "USD";
-        $findParams->hide = "fields";
-        $findParams->isRecurring = true;
-        $findParams->locale = "en_US";
-
-        $paymentProducts = $client->merchant($merchantId)->productgroups()->find($findParams);
-        return $paymentProducts;
-    }
-
     /**
      * @throws ApiException
      * @return PaymentProductGroupResponse
@@ -53,6 +32,7 @@ class ProductGroupTest extends ClientTestCase
         $getParams->isRecurring = true;
 
         $paymentProductResponse = $client->merchant($merchantId)->productgroups()->get("cards", $getParams);
+        $this->assertEquals("cards", $paymentProductResponse->id);
         return $paymentProductResponse;
     }
 }

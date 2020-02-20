@@ -43,6 +43,11 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
     public $paymentProduct863SpecificInput = null;
 
     /**
+     * @var RedirectPaymentProduct869SpecificInput
+     */
+    public $paymentProduct869SpecificInput = null;
+
+    /**
      * @var RedirectPaymentProduct882SpecificInput
      */
     public $paymentProduct882SpecificInput = null;
@@ -81,6 +86,9 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
         }
         if (!is_null($this->paymentProduct863SpecificInput)) {
             $object->paymentProduct863SpecificInput = $this->paymentProduct863SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct869SpecificInput)) {
+            $object->paymentProduct869SpecificInput = $this->paymentProduct869SpecificInput->toObject();
         }
         if (!is_null($this->paymentProduct882SpecificInput)) {
             $object->paymentProduct882SpecificInput = $this->paymentProduct882SpecificInput->toObject();
@@ -139,6 +147,13 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
             }
             $value = new RedirectPaymentProduct863SpecificInput();
             $this->paymentProduct863SpecificInput = $value->fromObject($object->paymentProduct863SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct869SpecificInput')) {
+            if (!is_object($object->paymentProduct869SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct869SpecificInput, true) . '\' is not an object');
+            }
+            $value = new RedirectPaymentProduct869SpecificInput();
+            $this->paymentProduct869SpecificInput = $value->fromObject($object->paymentProduct869SpecificInput);
         }
         if (property_exists($object, 'paymentProduct882SpecificInput')) {
             if (!is_object($object->paymentProduct882SpecificInput)) {

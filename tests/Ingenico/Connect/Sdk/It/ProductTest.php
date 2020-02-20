@@ -1,0 +1,37 @@
+<?php
+namespace Ingenico\Connect\Sdk\It;
+
+use Ingenico\Connect\Sdk\ApiException;
+use Ingenico\Connect\Sdk\ClientTestCase;
+use Ingenico\Connect\Sdk\Domain\Product\Directory;
+use Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse;
+use Ingenico\Connect\Sdk\Domain\Product\PaymentProducts;
+use Ingenico\Connect\Sdk\Merchant\Products\DirectoryParams;
+use Ingenico\Connect\Sdk\Merchant\Products\FindProductsParams;
+use Ingenico\Connect\Sdk\Merchant\Products\GetProductParams;
+
+/**
+ * @group integration
+ *
+ */
+class ProductTest extends ClientTestCase
+{
+    /**
+     * @throws ApiException
+     * @return Directory
+     */
+    public function testRetrievePaymentProductDirectory()
+    {
+        $client = $this->getClient();
+        $merchantId = $this->getMerchantId();
+        $directoryParams = new DirectoryParams();
+
+        $directoryParams->currencyCode = "EUR";
+        $directoryParams->countryCode = "NL";
+
+        $productDirectory =
+            $client->merchant($merchantId)->products()->directory(809, $directoryParams);
+        $this->assertTrue(count($productDirectory->entries) > 0);
+        return $productDirectory;
+    }
+}

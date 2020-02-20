@@ -11,7 +11,7 @@ use Ingenico\Connect\Sdk\Domain\Errors\Definitions\APIError;
 /**
  * @group logging
  */
-class CommunicatorLoggingTest extends ClientTestCase
+class CommunicatorLoggingTest extends TestCase
 {
     public function testOnlyLogWhileLoggingIsEnabled()
     {
@@ -230,25 +230,6 @@ class CommunicatorLoggingTest extends ClientTestCase
             return;
         }
         $this->fail('an expected exception has not been raised');
-    }
-
-    public function testLogWithRealRequest()
-    {
-        $logger = $this->getMock('\Ingenico\Connect\Sdk\CommunicatorLogger');
-        $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) {
-                $messageParts = explode("\n", $message);
-                $this->assertGreaterThanOrEqual(2, count($messageParts));
-                if (strpos($messageParts[0], 'Outgoing request') === 0) {
-                    $this->assertContains('/services/testconnection', $messageParts[1]);
-                }
-            })
-            );
-        $logger->expects($this->never())->method('logException');
-        /** @var CommunicatorLogger $logger */
-        $this->getClient()->enableLogging($logger);
-        $this->getClient()->merchant($this->getMerchantId())->services()->testconnection();
-        $this->getClient()->disableLogging();
     }
 
     /**
