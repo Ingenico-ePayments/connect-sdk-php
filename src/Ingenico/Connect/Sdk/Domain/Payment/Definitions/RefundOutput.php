@@ -28,6 +28,11 @@ class RefundOutput extends OrderOutput
     public $cardRefundMethodSpecificOutput = null;
 
     /**
+     * @var RefundCashMethodSpecificOutput
+     */
+    public $cashRefundMethodSpecificOutput = null;
+
+    /**
      * @var RefundEInvoiceMethodSpecificOutput
      */
     public $eInvoiceRefundMethodSpecificOutput = null;
@@ -61,6 +66,9 @@ class RefundOutput extends OrderOutput
         }
         if (!is_null($this->cardRefundMethodSpecificOutput)) {
             $object->cardRefundMethodSpecificOutput = $this->cardRefundMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->cashRefundMethodSpecificOutput)) {
+            $object->cashRefundMethodSpecificOutput = $this->cashRefundMethodSpecificOutput->toObject();
         }
         if (!is_null($this->eInvoiceRefundMethodSpecificOutput)) {
             $object->eInvoiceRefundMethodSpecificOutput = $this->eInvoiceRefundMethodSpecificOutput->toObject();
@@ -101,6 +109,13 @@ class RefundOutput extends OrderOutput
             }
             $value = new RefundCardMethodSpecificOutput();
             $this->cardRefundMethodSpecificOutput = $value->fromObject($object->cardRefundMethodSpecificOutput);
+        }
+        if (property_exists($object, 'cashRefundMethodSpecificOutput')) {
+            if (!is_object($object->cashRefundMethodSpecificOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->cashRefundMethodSpecificOutput, true) . '\' is not an object');
+            }
+            $value = new RefundCashMethodSpecificOutput();
+            $this->cashRefundMethodSpecificOutput = $value->fromObject($object->cashRefundMethodSpecificOutput);
         }
         if (property_exists($object, 'eInvoiceRefundMethodSpecificOutput')) {
             if (!is_object($object->eInvoiceRefundMethodSpecificOutput)) {

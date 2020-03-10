@@ -61,6 +61,11 @@ class PaymentProductFieldValidators extends DataObject
     /**
      * @var EmptyValidator
      */
+    public $residentIdNumber = null;
+
+    /**
+     * @var EmptyValidator
+     */
     public $termsAndConditions = null;
 
     /**
@@ -95,6 +100,9 @@ class PaymentProductFieldValidators extends DataObject
         }
         if (!is_null($this->regularExpression)) {
             $object->regularExpression = $this->regularExpression->toObject();
+        }
+        if (!is_null($this->residentIdNumber)) {
+            $object->residentIdNumber = $this->residentIdNumber->toObject();
         }
         if (!is_null($this->termsAndConditions)) {
             $object->termsAndConditions = $this->termsAndConditions->toObject();
@@ -172,6 +180,13 @@ class PaymentProductFieldValidators extends DataObject
             }
             $value = new RegularExpressionValidator();
             $this->regularExpression = $value->fromObject($object->regularExpression);
+        }
+        if (property_exists($object, 'residentIdNumber')) {
+            if (!is_object($object->residentIdNumber)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->residentIdNumber, true) . '\' is not an object');
+            }
+            $value = new EmptyValidator();
+            $this->residentIdNumber = $value->fromObject($object->residentIdNumber);
         }
         if (property_exists($object, 'termsAndConditions')) {
             if (!is_object($object->termsAndConditions)) {

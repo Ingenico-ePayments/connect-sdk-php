@@ -28,6 +28,11 @@ class CreateTokenRequest extends DataObject
     public $eWallet = null;
 
     /**
+     * @var string
+     */
+    public $encryptedCustomerInput = null;
+
+    /**
      * @var TokenNonSepaDirectDebit
      */
     public $nonSepaDirectDebit = null;
@@ -53,6 +58,9 @@ class CreateTokenRequest extends DataObject
         }
         if (!is_null($this->eWallet)) {
             $object->eWallet = $this->eWallet->toObject();
+        }
+        if (!is_null($this->encryptedCustomerInput)) {
+            $object->encryptedCustomerInput = $this->encryptedCustomerInput;
         }
         if (!is_null($this->nonSepaDirectDebit)) {
             $object->nonSepaDirectDebit = $this->nonSepaDirectDebit->toObject();
@@ -87,6 +95,9 @@ class CreateTokenRequest extends DataObject
             }
             $value = new TokenEWallet();
             $this->eWallet = $value->fromObject($object->eWallet);
+        }
+        if (property_exists($object, 'encryptedCustomerInput')) {
+            $this->encryptedCustomerInput = $object->encryptedCustomerInput;
         }
         if (property_exists($object, 'nonSepaDirectDebit')) {
             if (!is_object($object->nonSepaDirectDebit)) {

@@ -16,6 +16,11 @@ class RefundMethodSpecificOutput extends DataObject
     /**
      * @var int
      */
+    public $refundProductId = null;
+
+    /**
+     * @var int
+     */
     public $totalAmountPaid = null;
 
     /**
@@ -29,6 +34,9 @@ class RefundMethodSpecificOutput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->refundProductId)) {
+            $object->refundProductId = $this->refundProductId;
+        }
         if (!is_null($this->totalAmountPaid)) {
             $object->totalAmountPaid = $this->totalAmountPaid;
         }
@@ -46,6 +54,9 @@ class RefundMethodSpecificOutput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'refundProductId')) {
+            $this->refundProductId = $object->refundProductId;
+        }
         if (property_exists($object, 'totalAmountPaid')) {
             $this->totalAmountPaid = $object->totalAmountPaid;
         }
