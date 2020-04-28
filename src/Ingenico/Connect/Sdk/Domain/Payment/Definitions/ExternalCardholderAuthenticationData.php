@@ -16,6 +16,16 @@ class ExternalCardholderAuthenticationData extends DataObject
     /**
      * @var string
      */
+    public $acsTransactionId = null;
+
+    /**
+     * @var string
+     */
+    public $appliedExemption = null;
+
+    /**
+     * @var string
+     */
     public $cavv = null;
 
     /**
@@ -34,12 +44,18 @@ class ExternalCardholderAuthenticationData extends DataObject
     public $eci = null;
 
     /**
+     * @var int
+     */
+    public $schemeRiskScore = null;
+
+    /**
      * @var string
      */
     public $threeDSecureVersion = null;
 
     /**
      * @var string
+     * @deprecated No replacement
      */
     public $threeDServerTransactionId = null;
 
@@ -59,6 +75,12 @@ class ExternalCardholderAuthenticationData extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->acsTransactionId)) {
+            $object->acsTransactionId = $this->acsTransactionId;
+        }
+        if (!is_null($this->appliedExemption)) {
+            $object->appliedExemption = $this->appliedExemption;
+        }
         if (!is_null($this->cavv)) {
             $object->cavv = $this->cavv;
         }
@@ -70,6 +92,9 @@ class ExternalCardholderAuthenticationData extends DataObject
         }
         if (!is_null($this->eci)) {
             $object->eci = $this->eci;
+        }
+        if (!is_null($this->schemeRiskScore)) {
+            $object->schemeRiskScore = $this->schemeRiskScore;
         }
         if (!is_null($this->threeDSecureVersion)) {
             $object->threeDSecureVersion = $this->threeDSecureVersion;
@@ -94,6 +119,12 @@ class ExternalCardholderAuthenticationData extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'acsTransactionId')) {
+            $this->acsTransactionId = $object->acsTransactionId;
+        }
+        if (property_exists($object, 'appliedExemption')) {
+            $this->appliedExemption = $object->appliedExemption;
+        }
         if (property_exists($object, 'cavv')) {
             $this->cavv = $object->cavv;
         }
@@ -105,6 +136,9 @@ class ExternalCardholderAuthenticationData extends DataObject
         }
         if (property_exists($object, 'eci')) {
             $this->eci = $object->eci;
+        }
+        if (property_exists($object, 'schemeRiskScore')) {
+            $this->schemeRiskScore = $object->schemeRiskScore;
         }
         if (property_exists($object, 'threeDSecureVersion')) {
             $this->threeDSecureVersion = $object->threeDSecureVersion;
