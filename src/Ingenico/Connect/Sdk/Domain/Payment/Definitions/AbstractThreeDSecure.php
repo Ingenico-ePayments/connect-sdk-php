@@ -6,6 +6,7 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
+use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
 use UnexpectedValueException;
 
 /**
@@ -13,6 +14,11 @@ use UnexpectedValueException;
  */
 class AbstractThreeDSecure extends DataObject
 {
+    /**
+     * @var AmountOfMoney
+     */
+    public $authenticationAmount = null;
+
     /**
      * @var string
      */
@@ -54,6 +60,9 @@ class AbstractThreeDSecure extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->authenticationAmount)) {
+            $object->authenticationAmount = $this->authenticationAmount->toObject();
+        }
         if (!is_null($this->authenticationFlow)) {
             $object->authenticationFlow = $this->authenticationFlow;
         }
@@ -86,6 +95,13 @@ class AbstractThreeDSecure extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'authenticationAmount')) {
+            if (!is_object($object->authenticationAmount)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->authenticationAmount, true) . '\' is not an object');
+            }
+            $value = new AmountOfMoney();
+            $this->authenticationAmount = $value->fromObject($object->authenticationAmount);
+        }
         if (property_exists($object, 'authenticationFlow')) {
             $this->authenticationFlow = $object->authenticationFlow;
         }

@@ -6,6 +6,7 @@
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
+use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
 use UnexpectedValueException;
 
 /**
@@ -22,6 +23,11 @@ class ThreeDSecureResults extends DataObject
      * @var string
      */
     public $appliedExemption = null;
+
+    /**
+     * @var AmountOfMoney
+     */
+    public $authenticationAmount = null;
 
     /**
      * @var string
@@ -80,6 +86,9 @@ class ThreeDSecureResults extends DataObject
         if (!is_null($this->appliedExemption)) {
             $object->appliedExemption = $this->appliedExemption;
         }
+        if (!is_null($this->authenticationAmount)) {
+            $object->authenticationAmount = $this->authenticationAmount->toObject();
+        }
         if (!is_null($this->cavv)) {
             $object->cavv = $this->cavv;
         }
@@ -123,6 +132,13 @@ class ThreeDSecureResults extends DataObject
         }
         if (property_exists($object, 'appliedExemption')) {
             $this->appliedExemption = $object->appliedExemption;
+        }
+        if (property_exists($object, 'authenticationAmount')) {
+            if (!is_object($object->authenticationAmount)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->authenticationAmount, true) . '\' is not an object');
+            }
+            $value = new AmountOfMoney();
+            $this->authenticationAmount = $value->fromObject($object->authenticationAmount);
         }
         if (property_exists($object, 'cavv')) {
             $this->cavv = $object->cavv;
