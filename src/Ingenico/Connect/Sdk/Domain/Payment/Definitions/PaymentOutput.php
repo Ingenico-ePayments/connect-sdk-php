@@ -68,6 +68,11 @@ class PaymentOutput extends OrderOutput
     public $redirectPaymentMethodSpecificOutput = null;
 
     /**
+     * @var string
+     */
+    public $reversalReason = null;
+
+    /**
      * @var SepaDirectDebitPaymentMethodSpecificOutput
      */
     public $sepaDirectDebitPaymentMethodSpecificOutput = null;
@@ -110,6 +115,9 @@ class PaymentOutput extends OrderOutput
         }
         if (!is_null($this->redirectPaymentMethodSpecificOutput)) {
             $object->redirectPaymentMethodSpecificOutput = $this->redirectPaymentMethodSpecificOutput->toObject();
+        }
+        if (!is_null($this->reversalReason)) {
+            $object->reversalReason = $this->reversalReason;
         }
         if (!is_null($this->sepaDirectDebitPaymentMethodSpecificOutput)) {
             $object->sepaDirectDebitPaymentMethodSpecificOutput = $this->sepaDirectDebitPaymentMethodSpecificOutput->toObject();
@@ -189,6 +197,9 @@ class PaymentOutput extends OrderOutput
             }
             $value = new RedirectPaymentMethodSpecificOutput();
             $this->redirectPaymentMethodSpecificOutput = $value->fromObject($object->redirectPaymentMethodSpecificOutput);
+        }
+        if (property_exists($object, 'reversalReason')) {
+            $this->reversalReason = $object->reversalReason;
         }
         if (property_exists($object, 'sepaDirectDebitPaymentMethodSpecificOutput')) {
             if (!is_object($object->sepaDirectDebitPaymentMethodSpecificOutput)) {
