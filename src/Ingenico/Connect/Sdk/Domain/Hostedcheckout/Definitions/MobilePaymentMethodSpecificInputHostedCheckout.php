@@ -14,6 +14,11 @@ use UnexpectedValueException;
 class MobilePaymentMethodSpecificInputHostedCheckout extends AbstractPaymentMethodSpecificInput
 {
     /**
+     * @var MobilePaymentProduct302SpecificInputHostedCheckout
+     */
+    public $paymentProduct302SpecificInput = null;
+
+    /**
      * @var MobilePaymentProduct320SpecificInputHostedCheckout
      */
     public $paymentProduct320SpecificInput = null;
@@ -24,6 +29,9 @@ class MobilePaymentMethodSpecificInputHostedCheckout extends AbstractPaymentMeth
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->paymentProduct302SpecificInput)) {
+            $object->paymentProduct302SpecificInput = $this->paymentProduct302SpecificInput->toObject();
+        }
         if (!is_null($this->paymentProduct320SpecificInput)) {
             $object->paymentProduct320SpecificInput = $this->paymentProduct320SpecificInput->toObject();
         }
@@ -38,6 +46,13 @@ class MobilePaymentMethodSpecificInputHostedCheckout extends AbstractPaymentMeth
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'paymentProduct302SpecificInput')) {
+            if (!is_object($object->paymentProduct302SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct302SpecificInput, true) . '\' is not an object');
+            }
+            $value = new MobilePaymentProduct302SpecificInputHostedCheckout();
+            $this->paymentProduct302SpecificInput = $value->fromObject($object->paymentProduct302SpecificInput);
+        }
         if (property_exists($object, 'paymentProduct320SpecificInput')) {
             if (!is_object($object->paymentProduct320SpecificInput)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct320SpecificInput, true) . '\' is not an object');

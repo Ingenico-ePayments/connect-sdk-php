@@ -8,6 +8,8 @@ namespace Ingenico\Connect\Sdk\Merchant;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\AuthorizationException;
 use Ingenico\Connect\Sdk\CallContext;
+use Ingenico\Connect\Sdk\Domain\Product\CreatePaymentProductSessionRequest;
+use Ingenico\Connect\Sdk\Domain\Product\CreatePaymentProductSessionResponse;
 use Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintRequest;
 use Ingenico\Connect\Sdk\Domain\Product\DeviceFingerprintResponse;
 use Ingenico\Connect\Sdk\Domain\Product\Directory;
@@ -215,6 +217,38 @@ class Products extends Resource
             $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}/networks'),
             $this->getClientMetaInfo(),
             $query,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/products/{paymentProductId}/sessions - Create session for payment product
+     *
+     * @param int $paymentProductId
+     * @param CreatePaymentProductSessionRequest $body
+     * @param CallContext $callContext
+     * @return CreatePaymentProductSessionResponse
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/products/sessions.html Create session for payment product
+     */
+    public function sessions($paymentProductId, CreatePaymentProductSessionRequest $body, CallContext $callContext = null)
+    {
+        $this->context['paymentProductId'] = $paymentProductId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Product\CreatePaymentProductSessionResponse';
+        return $this->getCommunicator()->post(
+            $responseClassMap,
+            $this->instantiateUri('/v1/{merchantId}/products/{paymentProductId}/sessions'),
+            $this->getClientMetaInfo(),
+            $body,
+            null,
             $callContext
         );
     }
