@@ -21,6 +21,11 @@ class PaymentProductGroup extends DataObject
     /**
      * @var bool
      */
+    public $allowsInstallments = null;
+
+    /**
+     * @var bool
+     */
     public $deviceFingerprintEnabled = null;
 
     /**
@@ -51,6 +56,9 @@ class PaymentProductGroup extends DataObject
                     $object->accountsOnFile[] = $element->toObject();
                 }
             }
+        }
+        if (!is_null($this->allowsInstallments)) {
+            $object->allowsInstallments = $this->allowsInstallments;
         }
         if (!is_null($this->deviceFingerprintEnabled)) {
             $object->deviceFingerprintEnabled = $this->deviceFingerprintEnabled;
@@ -89,6 +97,9 @@ class PaymentProductGroup extends DataObject
                 $value = new AccountOnFile();
                 $this->accountsOnFile[] = $value->fromObject($element);
             }
+        }
+        if (property_exists($object, 'allowsInstallments')) {
+            $this->allowsInstallments = $object->allowsInstallments;
         }
         if (property_exists($object, 'deviceFingerprintEnabled')) {
             $this->deviceFingerprintEnabled = $object->deviceFingerprintEnabled;

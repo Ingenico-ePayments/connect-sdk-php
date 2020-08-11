@@ -23,6 +23,7 @@ use Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CompletePaymentResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentResponse;
+use Ingenico\Connect\Sdk\Domain\Payment\DeviceFingerprintDetails;
 use Ingenico\Connect\Sdk\Domain\Payment\FindPaymentsResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentApprovalResponse;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentResponse;
@@ -538,6 +539,36 @@ class Payments extends Resource
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/v1/{merchantId}/payments/{paymentId}/disputes'),
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/payments/{paymentId}/devicefingerprint - Get Device Fingerprint details
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return DeviceFingerprintDetails
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/payments/devicefingerprint.html Get Device Fingerprint details
+     */
+    public function devicefingerprint($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Payment\DeviceFingerprintDetails';
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/v1/{merchantId}/payments/{paymentId}/devicefingerprint'),
             $this->getClientMetaInfo(),
             null,
             $callContext

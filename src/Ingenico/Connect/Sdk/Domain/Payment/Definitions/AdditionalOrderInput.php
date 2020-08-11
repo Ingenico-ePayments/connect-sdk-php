@@ -20,6 +20,11 @@ class AdditionalOrderInput extends DataObject
     public $airlineData = null;
 
     /**
+     * @var Installments
+     */
+    public $installments = null;
+
+    /**
      * @var Level3SummaryData
      * @deprecated Use Order.shoppingCart.amountBreakdown instead
      */
@@ -32,6 +37,7 @@ class AdditionalOrderInput extends DataObject
 
     /**
      * @var int
+     * @deprecated Use installments.numberOfInstallments instead
      */
     public $numberOfInstallments = null;
 
@@ -53,6 +59,9 @@ class AdditionalOrderInput extends DataObject
         $object = parent::toObject();
         if (!is_null($this->airlineData)) {
             $object->airlineData = $this->airlineData->toObject();
+        }
+        if (!is_null($this->installments)) {
+            $object->installments = $this->installments->toObject();
         }
         if (!is_null($this->level3SummaryData)) {
             $object->level3SummaryData = $this->level3SummaryData->toObject();
@@ -86,6 +95,13 @@ class AdditionalOrderInput extends DataObject
             }
             $value = new AirlineData();
             $this->airlineData = $value->fromObject($object->airlineData);
+        }
+        if (property_exists($object, 'installments')) {
+            if (!is_object($object->installments)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->installments, true) . '\' is not an object');
+            }
+            $value = new Installments();
+            $this->installments = $value->fromObject($object->installments);
         }
         if (property_exists($object, 'level3SummaryData')) {
             if (!is_object($object->level3SummaryData)) {
