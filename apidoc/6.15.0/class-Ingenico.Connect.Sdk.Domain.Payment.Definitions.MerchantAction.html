@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData | Ingenico Connect PHP SDK</title>
+	<title>Class Ingenico\Connect\Sdk\Domain\Payment\Definitions\MerchantAction | Ingenico Connect PHP SDK</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -348,7 +348,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerApprovePayment.html">CustomerApprovePayment</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerDevice.html">CustomerDevice</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerPaymentActivity.html">CustomerPaymentActivity</a></li>
-				<li class="active"><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DecryptedPaymentData.html">DecryptedPaymentData</a></li>
+				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DecryptedPaymentData.html">DecryptedPaymentData</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DeviceRenderOptions.html">DeviceRenderOptions</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificInput.html">EInvoicePaymentMethodSpecificInput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificInputBase.html">EInvoicePaymentMethodSpecificInputBase</a></li>
@@ -367,7 +367,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.LineItemLevel3InterchangeInformation.html">LineItemLevel3InterchangeInformation</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.LoanRecipient.html">LoanRecipient</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.Merchant.html">Merchant</a></li>
-				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MerchantAction.html">MerchantAction</a></li>
+				<li class="active"><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MerchantAction.html">MerchantAction</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MobilePaymentData.html">MobilePaymentData</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MobilePaymentMethodSpecificInput.html">MobilePaymentMethodSpecificInput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MobilePaymentMethodSpecificOutput.html">MobilePaymentMethodSpecificOutput</a></li>
@@ -483,7 +483,7 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class DecryptedPaymentData</h1>
+	<h1>Class MerchantAction</h1>
 
 
 
@@ -496,7 +496,7 @@
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData</span></b>			
+<b><span>Ingenico\Connect\Sdk\Domain\Payment\Definitions\MerchantAction</span></b>			
 			
 			
 		</dd>
@@ -515,7 +515,7 @@
 		<b>Namespace:</b> <a href="namespace-Ingenico.html">Ingenico</a>\<a href="namespace-Ingenico.Connect.html">Connect</a>\<a href="namespace-Ingenico.Connect.Sdk.html">Sdk</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.html">Domain</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.Payment.html">Payment</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.Payment.Definitions.html">Definitions</a><br>
 		<b>Package:</b> Ingenico\Connect\Sdk\Domain\Payment\Definitions<br>
 
-			<b>Located at</b> Ingenico/Connect/Sdk/Domain/Payment/Definitions/DecryptedPaymentData.php		<br>
+			<b>Located at</b> Ingenico/Connect/Sdk/Domain/Payment/Definitions/MerchantAction.php		<br>
 	</div>
 
 
@@ -629,14 +629,14 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="authMethod" id="$authMethod">
+	<tr data-order="actionType" id="$actionType">
 		<td class="attributes"><code>
 			public  
 			string
 		</code></td>
 
 		<td class="name">
-<var>$authMethod</var>
+<var>$actionType</var>
 			<div class="description short">
 				
 			</div>
@@ -648,19 +648,91 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$authMethod" class="anchor">#</a>
+				<a href="#$actionType" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="cardholderName" id="$cardholderName">
+	<tr data-order="formFields" id="$formFields">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Product.Definitions.PaymentProductField.html">Ingenico\Connect\Sdk\Domain\Product\Definitions\PaymentProductField</a>[]</code>
+		</code></td>
+
+		<td class="name">
+<var>$formFields</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$formFields" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="mobileThreeDSecureChallengeParameters" id="$mobileThreeDSecureChallengeParameters">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MobileThreeDSecureChallengeParameters.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobileThreeDSecureChallengeParameters</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$mobileThreeDSecureChallengeParameters</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$mobileThreeDSecureChallengeParameters" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="redirectData" id="$redirectData">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.RedirectData.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectData</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$redirectData</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$redirectData" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="renderingData" id="$renderingData">
 		<td class="attributes"><code>
 			public  
 			string
 		</code></td>
 
 		<td class="name">
-<var>$cardholderName</var>
+<var>$renderingData</var>
 			<div class="description short">
 				
 			</div>
@@ -672,19 +744,19 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$cardholderName" class="anchor">#</a>
+				<a href="#$renderingData" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="cryptogram" id="$cryptogram">
+	<tr data-order="showData" id="$showData">
 		<td class="attributes"><code>
 			public  
-			string
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Definitions.KeyValuePair.html">Ingenico\Connect\Sdk\Domain\Definitions\KeyValuePair</a>[]</code>
 		</code></td>
 
 		<td class="name">
-<var>$cryptogram</var>
+<var>$showData</var>
 			<div class="description short">
 				
 			</div>
@@ -696,19 +768,19 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$cryptogram" class="anchor">#</a>
+				<a href="#$showData" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="dpan" id="$dpan">
+	<tr data-order="thirdPartyData" id="$thirdPartyData">
 		<td class="attributes"><code>
 			public  
-			string
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.ThirdPartyData.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\ThirdPartyData</a></code>
 		</code></td>
 
 		<td class="name">
-<var>$dpan</var>
+<var>$thirdPartyData</var>
 			<div class="description short">
 				
 			</div>
@@ -720,103 +792,7 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$dpan" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="eci" id="$eci">
-		<td class="attributes"><code>
-			public  
-			integer
-		</code></td>
-
-		<td class="name">
-<var>$eci</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$eci" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="expiryDate" id="$expiryDate">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$expiryDate</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$expiryDate" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="pan" id="$pan">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$pan</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$pan" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="paymentMethod" id="$paymentMethod">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$paymentMethod</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$paymentMethod" class="anchor">#</a>
+				<a href="#$thirdPartyData" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>

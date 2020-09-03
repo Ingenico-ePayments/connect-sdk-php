@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Ingenico\Connect\Sdk\RequestHeaderGenerator | Ingenico Connect PHP SDK</title>
+	<title>Class Ingenico\Connect\Sdk\ResponseClassMap | Ingenico Connect PHP SDK</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -317,12 +317,12 @@
 				<li><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">MultipartDataObject</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.MultipartFormDataObject.html">MultipartFormDataObject</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ProxyConfiguration.html">ProxyConfiguration</a></li>
-				<li class="active"><a href="class-Ingenico.Connect.Sdk.RequestHeaderGenerator.html">RequestHeaderGenerator</a></li>
+				<li><a href="class-Ingenico.Connect.Sdk.RequestHeaderGenerator.html">RequestHeaderGenerator</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.RequestObject.html">RequestObject</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Resource.html">Resource</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ResourceLogger.html">ResourceLogger</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ResponseBuilder.html">ResponseBuilder</a></li>
-				<li><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">ResponseClassMap</a></li>
+				<li class="active"><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">ResponseClassMap</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">ResponseExceptionFactory</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ResponseFactory.html">ResponseFactory</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ResponseHeaderBuilder.html">ResponseHeaderBuilder</a></li>
@@ -393,11 +393,11 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class RequestHeaderGenerator</h1>
+	<h1>Class ResponseClassMap</h1>
 
 
 	<div class="description">
-	<p>Class RequestHeaderGenerator</p>
+	<p>Class ResponseClassMap</p>
 	</div>
 
 
@@ -414,14 +414,14 @@
 		<b>Namespace:</b> <a href="namespace-Ingenico.html">Ingenico</a>\<a href="namespace-Ingenico.Connect.html">Connect</a>\<a href="namespace-Ingenico.Connect.Sdk.html">Sdk</a><br>
 		<b>Package:</b> Ingenico\Connect\Sdk<br>
 
-			<b>Located at</b> Ingenico/Connect/Sdk/RequestHeaderGenerator.php		<br>
+			<b>Located at</b> Ingenico/Connect/Sdk/ResponseClassMap.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="addResponseClassName" id="_addResponseClassName">
 
 		<td class="attributes"><code>
 			 public 
@@ -432,8 +432,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span><code><a href="class-Ingenico.Connect.Sdk.CommunicatorConfiguration.html">Ingenico\Connect\Sdk\CommunicatorConfiguration</a></code> <var>$communicatorConfiguration</var></span>, <span>string <var>$httpMethodText</var></span>, <span>string <var>$uriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<a class="anchor" href="#_addResponseClassName">#</a>
+		<code>addResponseClassName( <span>integer <var>$httpStatusCode</var></span>, <span>string <var>$responseClassName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -445,42 +445,36 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$communicatorConfiguration</var></dt>
+					<dt><var>$httpStatusCode</var></dt>
 					<dd></dd>
-					<dt><var>$httpMethodText</var></dt>
-					<dd></dd>
-					<dt><var>$uriPath</var></dt>
-					<dd></dd>
-					<dt><var>$clientMetaInfo</var></dt>
-					<dd></dd>
-					<dt><var>$callContext</var></dt>
+					<dt><var>$responseClassName</var></dt>
 					<dd></dd>
 				</dl></div>
 
-
-				<h4>Throws</h4>
+				<h4>Returns</h4>
 				<div class="list">
-					UnexpectedValueException
+					<br>$this
 				</div>
+
 
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="generateRequestHeaders" id="_generateRequestHeaders">
+	<tr data-order="getResponseClassName" id="_getResponseClassName">
 
 		<td class="attributes"><code>
 			 public 
 
-			string[]
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_generateRequestHeaders">#</a>
-		<code>generateRequestHeaders( <span>string <var>$contentType</var> = Communicator::MIME_APPLICATION_JSON</span> )</code>
+		<a class="anchor" href="#_getResponseClassName">#</a>
+		<code>getResponseClassName( <span>integer <var>$httpStatusCode</var></span> )</code>
 
 		<div class="description short">
 			
@@ -492,149 +486,7 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$contentType</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string[]
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getRfc161Date" id="_getRfc161Date">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getRfc161Date">#</a>
-		<code>getRfc161Date( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getServerMetaInfoValue" id="_getServerMetaInfoValue">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getServerMetaInfoValue">#</a>
-		<code>getServerMetaInfoValue( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAuthorizationHeaderValue" id="_getAuthorizationHeaderValue">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAuthorizationHeaderValue">#</a>
-		<code>getAuthorizationHeaderValue( <span>string[] <var>$requestHeaders</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$requestHeaders</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSignData" id="_getSignData">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getSignData">#</a>
-		<code>getSignData( <span>string[] <var>$requestHeaders</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$requestHeaders</var></dt>
+					<dt><var>$httpStatusCode</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -658,162 +510,20 @@
 
 
 
-	<table class="summary constants" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="SDK_VERSION" id="SDK_VERSION">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>SDK_VERSION</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#SDK_VERSION" class="anchor">#</a>
-				<code><span class="php-quote">'6.15.0'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="AUTHORIZATION_ID" id="AUTHORIZATION_ID">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>AUTHORIZATION_ID</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#AUTHORIZATION_ID" class="anchor">#</a>
-				<code><span class="php-quote">'GCS'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="DATE_RFC2616" id="DATE_RFC2616">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>DATE_RFC2616</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#DATE_RFC2616" class="anchor">#</a>
-				<code><span class="php-quote">'D, d M Y H:i:s T'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="AUTHORIZATION_TYPE" id="AUTHORIZATION_TYPE">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>AUTHORIZATION_TYPE</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#AUTHORIZATION_TYPE" class="anchor">#</a>
-				<code><span class="php-quote">'v1HMAC'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="HASH_ALGORITHM" id="HASH_ALGORITHM">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>HASH_ALGORITHM</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#HASH_ALGORITHM" class="anchor">#</a>
-				<code><span class="php-quote">'sha256'</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="communicatorConfiguration" id="$communicatorConfiguration">
+	<tr data-order="defaultSuccessResponseClassName" id="$defaultSuccessResponseClassName">
 		<td class="attributes"><code>
-			protected  
-			<code><a href="class-Ingenico.Connect.Sdk.CommunicatorConfiguration.html">Ingenico\Connect\Sdk\CommunicatorConfiguration</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$communicatorConfiguration</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$communicatorConfiguration" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="httpMethodText" id="$httpMethodText">
-		<td class="attributes"><code>
-			protected  
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-<var>$httpMethodText</var>
+<var>$defaultSuccessResponseClassName</var>
 			<div class="description short">
 				
 			</div>
@@ -825,19 +535,19 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$httpMethodText" class="anchor">#</a>
-				<code></code>
+				<a href="#$defaultSuccessResponseClassName" class="anchor">#</a>
+				<code><span class="php-quote">''</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="uriPath" id="$uriPath">
+	<tr data-order="defaultErrorResponseClassName" id="$defaultErrorResponseClassName">
 		<td class="attributes"><code>
-			protected  
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-<var>$uriPath</var>
+<var>$defaultErrorResponseClassName</var>
 			<div class="description short">
 				
 			</div>
@@ -849,19 +559,19 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$uriPath" class="anchor">#</a>
-				<code></code>
+				<a href="#$defaultErrorResponseClassName" class="anchor">#</a>
+				<code><span class="php-quote">''</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="clientMetaInfo" id="$clientMetaInfo">
+	<tr data-order="responseClassNamesByHttpStatusCode" id="$responseClassNamesByHttpStatusCode">
 		<td class="attributes"><code>
 			protected  
-			string
+			string[]
 		</code></td>
 
 		<td class="name">
-<var>$clientMetaInfo</var>
+<var>$responseClassNamesByHttpStatusCode</var>
 			<div class="description short">
 				
 			</div>
@@ -873,32 +583,8 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$clientMetaInfo" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="callContext" id="$callContext">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$callContext</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$callContext" class="anchor">#</a>
-				<code></code>
+				<a href="#$responseClassNamesByHttpStatusCode" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
 			</div>
 		</td>
 	</tr>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Ingenico\Connect\Sdk\RequestHeaderGenerator | Ingenico Connect PHP SDK</title>
+	<title>Class Ingenico\Connect\Sdk\BodyHandler | Ingenico Connect PHP SDK</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -300,7 +300,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Ingenico.Connect.Sdk.BodyHandler.html">BodyHandler</a></li>
+				<li class="active"><a href="class-Ingenico.Connect.Sdk.BodyHandler.html">BodyHandler</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.BodyObfuscator.html">BodyObfuscator</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.CallContext.html">CallContext</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Client.html">Client</a></li>
@@ -317,7 +317,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">MultipartDataObject</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.MultipartFormDataObject.html">MultipartFormDataObject</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ProxyConfiguration.html">ProxyConfiguration</a></li>
-				<li class="active"><a href="class-Ingenico.Connect.Sdk.RequestHeaderGenerator.html">RequestHeaderGenerator</a></li>
+				<li><a href="class-Ingenico.Connect.Sdk.RequestHeaderGenerator.html">RequestHeaderGenerator</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.RequestObject.html">RequestObject</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Resource.html">Resource</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.ResourceLogger.html">ResourceLogger</a></li>
@@ -393,11 +393,13 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class RequestHeaderGenerator</h1>
+	<h1>Class BodyHandler</h1>
 
 
 	<div class="description">
-	<p>Class RequestHeaderGenerator</p>
+	<p>Class BodyHandler
+A utility class that can be used to support binary responses. Its handleBodyPart method can be used as
+callback to methods that require a body handler callable.</p>
 	</div>
 
 
@@ -414,17 +416,17 @@
 		<b>Namespace:</b> <a href="namespace-Ingenico.html">Ingenico</a>\<a href="namespace-Ingenico.Connect.html">Connect</a>\<a href="namespace-Ingenico.Connect.Sdk.html">Sdk</a><br>
 		<b>Package:</b> Ingenico\Connect\Sdk<br>
 
-			<b>Located at</b> Ingenico/Connect/Sdk/RequestHeaderGenerator.php		<br>
+			<b>Located at</b> Ingenico/Connect/Sdk/BodyHandler.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="handleBodyPart" id="_handleBodyPart">
 
 		<td class="attributes"><code>
-			 public 
+			final public 
 
 			
 			
@@ -432,74 +434,57 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span><code><a href="class-Ingenico.Connect.Sdk.CommunicatorConfiguration.html">Ingenico\Connect\Sdk\CommunicatorConfiguration</a></code> <var>$communicatorConfiguration</var></span>, <span>string <var>$httpMethodText</var></span>, <span>string <var>$uriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<a class="anchor" href="#_handleBodyPart">#</a>
+		<code>handleBodyPart( <span>string <var>$bodyPart</var></span>, <span>array <var>$headers</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Initializes this body handler if not done yet, then calls doHandleBodyPart.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Initializes this body handler if not done yet, then calls doHandleBodyPart.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$communicatorConfiguration</var></dt>
+					<dt><var>$bodyPart</var></dt>
 					<dd></dd>
-					<dt><var>$httpMethodText</var></dt>
-					<dd></dd>
-					<dt><var>$uriPath</var></dt>
-					<dd></dd>
-					<dt><var>$clientMetaInfo</var></dt>
-					<dd></dd>
-					<dt><var>$callContext</var></dt>
+					<dt><var>$headers</var></dt>
 					<dd></dd>
 				</dl></div>
 
 
-				<h4>Throws</h4>
-				<div class="list">
-					UnexpectedValueException
-				</div>
 
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="generateRequestHeaders" id="_generateRequestHeaders">
+	<tr data-order="close" id="_close">
 
 		<td class="attributes"><code>
-			 public 
+			final public 
 
-			string[]
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_generateRequestHeaders">#</a>
-		<code>generateRequestHeaders( <span>string <var>$contentType</var> = Communicator::MIME_APPLICATION_JSON</span> )</code>
+		<a class="anchor" href="#_close">#</a>
+		<code>close( )</code>
 
 		<div class="description short">
-			
+			<p>Calls doCleanup, then marks this body handler as not initialized.
+Afterwards this instance can be reused again.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Calls doCleanup, then marks this body handler as not initialized.
+Afterwards this instance can be reused again.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$contentType</var></dt>
-					<dd></dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string[]
-				</div>
 
 
 
@@ -507,41 +492,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getRfc161Date" id="_getRfc161Date">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getRfc161Date">#</a>
-		<code>getRfc161Date( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getServerMetaInfoValue" id="_getServerMetaInfoValue">
+	<tr data-order="initialize" id="_initialize">
 
 		<td class="attributes"><code>
 			 protected 
@@ -552,17 +503,24 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getServerMetaInfoValue">#</a>
-		<code>getServerMetaInfoValue( )</code>
+		<a class="anchor" href="#_initialize">#</a>
+		<code>initialize( <span>array <var>$headers</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Can be used to initialize this body handler based on the given headers.
+The default implementation does nothing.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Can be used to initialize this body handler based on the given headers.
+The default implementation does nothing.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$headers</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -571,38 +529,36 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getAuthorizationHeaderValue" id="_getAuthorizationHeaderValue">
+	<tr data-order="doHandleBodyPart" id="_doHandleBodyPart">
 
 		<td class="attributes"><code>
 			 protected 
 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getAuthorizationHeaderValue">#</a>
-		<code>getAuthorizationHeaderValue( <span>string[] <var>$requestHeaders</var></span> )</code>
+		<a class="anchor" href="#_doHandleBodyPart">#</a>
+		<code>doHandleBodyPart( <span>string <var>$bodyPart</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Can be used to handle a single body part.
+The default implementation does nothing.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Can be used to handle a single body part.
+The default implementation does nothing.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$requestHeaders</var></dt>
+					<dt><var>$bodyPart</var></dt>
 					<dd></dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
 
 
@@ -610,38 +566,31 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getSignData" id="_getSignData">
+	<tr data-order="doCleanup" id="_doCleanup">
 
 		<td class="attributes"><code>
 			 protected 
 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getSignData">#</a>
-		<code>getSignData( <span>string[] <var>$requestHeaders</var></span> )</code>
+		<a class="anchor" href="#_doCleanup">#</a>
+		<code>doCleanup( )</code>
 
 		<div class="description short">
-			
+			<p>Can be used to do cleanup resources allocated by this body handler.
+The default implementation does nothing.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Can be used to do cleanup resources allocated by this body handler.
+The default implementation does nothing.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$requestHeaders</var></dt>
-					<dd></dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
 
 
@@ -658,251 +607,10 @@
 
 
 
-	<table class="summary constants" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="SDK_VERSION" id="SDK_VERSION">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>SDK_VERSION</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#SDK_VERSION" class="anchor">#</a>
-				<code><span class="php-quote">'6.15.0'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="AUTHORIZATION_ID" id="AUTHORIZATION_ID">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>AUTHORIZATION_ID</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#AUTHORIZATION_ID" class="anchor">#</a>
-				<code><span class="php-quote">'GCS'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="DATE_RFC2616" id="DATE_RFC2616">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>DATE_RFC2616</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#DATE_RFC2616" class="anchor">#</a>
-				<code><span class="php-quote">'D, d M Y H:i:s T'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="AUTHORIZATION_TYPE" id="AUTHORIZATION_TYPE">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>AUTHORIZATION_TYPE</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#AUTHORIZATION_TYPE" class="anchor">#</a>
-				<code><span class="php-quote">'v1HMAC'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="HASH_ALGORITHM" id="HASH_ALGORITHM">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>HASH_ALGORITHM</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#HASH_ALGORITHM" class="anchor">#</a>
-				<code><span class="php-quote">'sha256'</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="communicatorConfiguration" id="$communicatorConfiguration">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-Ingenico.Connect.Sdk.CommunicatorConfiguration.html">Ingenico\Connect\Sdk\CommunicatorConfiguration</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$communicatorConfiguration</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$communicatorConfiguration" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="httpMethodText" id="$httpMethodText">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$httpMethodText</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$httpMethodText" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="uriPath" id="$uriPath">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$uriPath</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$uriPath" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="clientMetaInfo" id="$clientMetaInfo">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$clientMetaInfo</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$clientMetaInfo" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="callContext" id="$callContext">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$callContext</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$callContext" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 

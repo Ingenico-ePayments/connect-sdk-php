@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData | Ingenico Connect PHP SDK</title>
+	<title>Deprecated Class Ingenico\Connect\Sdk\Domain\Payment\Definitions\Level3SummaryData | Ingenico Connect PHP SDK</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -348,7 +348,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerApprovePayment.html">CustomerApprovePayment</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerDevice.html">CustomerDevice</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerPaymentActivity.html">CustomerPaymentActivity</a></li>
-				<li class="active"><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DecryptedPaymentData.html">DecryptedPaymentData</a></li>
+				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DecryptedPaymentData.html">DecryptedPaymentData</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DeviceRenderOptions.html">DeviceRenderOptions</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificInput.html">EInvoicePaymentMethodSpecificInput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificInputBase.html">EInvoicePaymentMethodSpecificInputBase</a></li>
@@ -361,7 +361,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.Installments.html">Installments</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.InvoicePaymentMethodSpecificInput.html">InvoicePaymentMethodSpecificInput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.InvoicePaymentMethodSpecificOutput.html">InvoicePaymentMethodSpecificOutput</a></li>
-				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.Level3SummaryData.html" class="deprecated">Level3SummaryData</a></li>
+				<li class="active"><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.Level3SummaryData.html" class="deprecated">Level3SummaryData</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.LineItem.html">LineItem</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.LineItemInvoiceData.html">LineItemInvoiceData</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.LineItemLevel3InterchangeInformation.html">LineItemLevel3InterchangeInformation</a></li>
@@ -483,7 +483,7 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class DecryptedPaymentData</h1>
+	<h1 class="deprecated">Class Level3SummaryData</h1>
 
 
 
@@ -496,7 +496,7 @@
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData</span></b>			
+<b><span class="deprecated">Ingenico\Connect\Sdk\Domain\Payment\Definitions\Level3SummaryData</span></b>			
 			
 			
 		</dd>
@@ -515,14 +515,16 @@
 		<b>Namespace:</b> <a href="namespace-Ingenico.html">Ingenico</a>\<a href="namespace-Ingenico.Connect.html">Connect</a>\<a href="namespace-Ingenico.Connect.Sdk.html">Sdk</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.html">Domain</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.Payment.html">Payment</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.Payment.Definitions.html">Definitions</a><br>
 		<b>Package:</b> Ingenico\Connect\Sdk\Domain\Payment\Definitions<br>
 
-			<b>Located at</b> Ingenico/Connect/Sdk/Domain/Payment/Definitions/DecryptedPaymentData.php		<br>
+				<b>Deprecated:</b>
+				Use ShoppingCart.amountBreakdown instead<br>
+			<b>Located at</b> Ingenico/Connect/Sdk/Domain/Payment/Definitions/Level3SummaryData.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="toObject" id="_toObject">
+	<tr data-order="toObject" id="_toObject" class="deprecated">
 
 		<td class="attributes"><code>
 			 public 
@@ -558,7 +560,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="fromObject" id="_fromObject">
+	<tr data-order="fromObject" id="_fromObject" class="deprecated">
 
 		<td class="attributes"><code>
 			 public 
@@ -629,110 +631,14 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="authMethod" id="$authMethod">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$authMethod</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$authMethod" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="cardholderName" id="$cardholderName">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$cardholderName</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$cardholderName" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="cryptogram" id="$cryptogram">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$cryptogram</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$cryptogram" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="dpan" id="$dpan">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$dpan</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$dpan" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="eci" id="$eci">
+	<tr data-order="discountAmount" id="$discountAmount">
 		<td class="attributes"><code>
 			public  
 			integer
 		</code></td>
 
 		<td class="name">
-<var>$eci</var>
+<var>$discountAmount</var>
 			<div class="description short">
 				
 			</div>
@@ -740,23 +646,27 @@
 			<div class="description detailed hidden">
 				
 
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use ShoppingCart.amountBreakdown with type DISCOUNT instead<br>
+					</div>
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$eci" class="anchor">#</a>
+				<a href="#$discountAmount" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="expiryDate" id="$expiryDate">
+	<tr data-order="dutyAmount" id="$dutyAmount">
 		<td class="attributes"><code>
 			public  
-			string
+			integer
 		</code></td>
 
 		<td class="name">
-<var>$expiryDate</var>
+<var>$dutyAmount</var>
 			<div class="description short">
 				
 			</div>
@@ -764,23 +674,27 @@
 			<div class="description detailed hidden">
 				
 
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use ShoppingCart.amountBreakdown with type DUTY instead<br>
+					</div>
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$expiryDate" class="anchor">#</a>
+				<a href="#$dutyAmount" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="pan" id="$pan">
+	<tr data-order="shippingAmount" id="$shippingAmount">
 		<td class="attributes"><code>
 			public  
-			string
+			integer
 		</code></td>
 
 		<td class="name">
-<var>$pan</var>
+<var>$shippingAmount</var>
 			<div class="description short">
 				
 			</div>
@@ -788,35 +702,15 @@
 			<div class="description detailed hidden">
 				
 
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use ShoppingCart.amountBreakdown with type SHIPPING instead<br>
+					</div>
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$pan" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="paymentMethod" id="$paymentMethod">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$paymentMethod</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$paymentMethod" class="anchor">#</a>
+				<a href="#$shippingAmount" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>

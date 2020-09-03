@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData | Ingenico Connect PHP SDK</title>
+	<title>Class Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentOutput | Ingenico Connect PHP SDK</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -348,7 +348,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerApprovePayment.html">CustomerApprovePayment</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerDevice.html">CustomerDevice</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CustomerPaymentActivity.html">CustomerPaymentActivity</a></li>
-				<li class="active"><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DecryptedPaymentData.html">DecryptedPaymentData</a></li>
+				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DecryptedPaymentData.html">DecryptedPaymentData</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.DeviceRenderOptions.html">DeviceRenderOptions</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificInput.html">EInvoicePaymentMethodSpecificInput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificInputBase.html">EInvoicePaymentMethodSpecificInputBase</a></li>
@@ -388,7 +388,7 @@
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentAccountOnFile.html">PaymentAccountOnFile</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentCreationOutput.html">PaymentCreationOutput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentCreationReferences.html">PaymentCreationReferences</a></li>
-				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentOutput.html">PaymentOutput</a></li>
+				<li class="active"><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentOutput.html">PaymentOutput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentProduct3201SpecificOutput.html">PaymentProduct3201SpecificOutput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentProduct771SpecificOutput.html">PaymentProduct771SpecificOutput</a></li>
 				<li><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.PaymentProduct806SpecificOutput.html">PaymentProduct806SpecificOutput</a></li>
@@ -483,7 +483,7 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class DecryptedPaymentData</h1>
+	<h1>Class PaymentOutput</h1>
 
 
 
@@ -496,7 +496,14 @@
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Ingenico\Connect\Sdk\Domain\Payment\Definitions\DecryptedPaymentData</span></b>			
+			<a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.OrderOutput.html"><span>Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Ingenico\Connect\Sdk\Domain\Payment\Definitions\PaymentOutput</span></b>			
 			
 			
 		</dd>
@@ -515,7 +522,7 @@
 		<b>Namespace:</b> <a href="namespace-Ingenico.html">Ingenico</a>\<a href="namespace-Ingenico.Connect.html">Connect</a>\<a href="namespace-Ingenico.Connect.Sdk.html">Sdk</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.html">Domain</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.Payment.html">Payment</a>\<a href="namespace-Ingenico.Connect.Sdk.Domain.Payment.Definitions.html">Definitions</a><br>
 		<b>Package:</b> Ingenico\Connect\Sdk\Domain\Payment\Definitions<br>
 
-			<b>Located at</b> Ingenico/Connect/Sdk/Domain/Payment/Definitions/DecryptedPaymentData.php		<br>
+			<b>Located at</b> Ingenico/Connect/Sdk/Domain/Payment/Definitions/PaymentOutput.php		<br>
 	</div>
 
 
@@ -553,7 +560,7 @@
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Ingenico.Connect.Sdk.DataObject.html#_toObject">Ingenico\Connect\Sdk\DataObject::toObject()</a></code></div>
+				<div class="list"><code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.OrderOutput.html#_toObject">Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput::toObject()</a></code></div>
 
 		</div>
 		</div></td>
@@ -598,7 +605,7 @@
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Ingenico.Connect.Sdk.DataObject.html#_fromObject">Ingenico\Connect\Sdk\DataObject::fromObject()</a></code></div>
+				<div class="list"><code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.OrderOutput.html#_fromObject">Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput::fromObject()</a></code></div>
 
 		</div>
 		</div></td>
@@ -629,110 +636,14 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="authMethod" id="$authMethod">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$authMethod</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$authMethod" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="cardholderName" id="$cardholderName">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$cardholderName</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$cardholderName" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="cryptogram" id="$cryptogram">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$cryptogram</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$cryptogram" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="dpan" id="$dpan">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$dpan</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$dpan" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="eci" id="$eci">
+	<tr data-order="amountPaid" id="$amountPaid">
 		<td class="attributes"><code>
 			public  
 			integer
 		</code></td>
 
 		<td class="name">
-<var>$eci</var>
+<var>$amountPaid</var>
 			<div class="description short">
 				
 			</div>
@@ -744,19 +655,19 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$eci" class="anchor">#</a>
+				<a href="#$amountPaid" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="expiryDate" id="$expiryDate">
+	<tr data-order="amountReversed" id="$amountReversed">
 		<td class="attributes"><code>
 			public  
-			string
+			integer
 		</code></td>
 
 		<td class="name">
-<var>$expiryDate</var>
+<var>$amountReversed</var>
 			<div class="description short">
 				
 			</div>
@@ -768,19 +679,19 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$expiryDate" class="anchor">#</a>
+				<a href="#$amountReversed" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="pan" id="$pan">
+	<tr data-order="bankTransferPaymentMethodSpecificOutput" id="$bankTransferPaymentMethodSpecificOutput">
 		<td class="attributes"><code>
 			public  
-			string
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.BankTransferPaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\BankTransferPaymentMethodSpecificOutput</a></code>
 		</code></td>
 
 		<td class="name">
-<var>$pan</var>
+<var>$bankTransferPaymentMethodSpecificOutput</var>
 			<div class="description short">
 				
 			</div>
@@ -792,7 +703,151 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$pan" class="anchor">#</a>
+				<a href="#$bankTransferPaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="cardPaymentMethodSpecificOutput" id="$cardPaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CardPaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$cardPaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$cardPaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="cashPaymentMethodSpecificOutput" id="$cashPaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.CashPaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\CashPaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$cashPaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$cashPaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="directDebitPaymentMethodSpecificOutput" id="$directDebitPaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.NonSepaDirectDebitPaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\NonSepaDirectDebitPaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$directDebitPaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$directDebitPaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="eInvoicePaymentMethodSpecificOutput" id="$eInvoicePaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.EInvoicePaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\EInvoicePaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$eInvoicePaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$eInvoicePaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="invoicePaymentMethodSpecificOutput" id="$invoicePaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.InvoicePaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\InvoicePaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$invoicePaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$invoicePaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="mobilePaymentMethodSpecificOutput" id="$mobilePaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.MobilePaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\MobilePaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$mobilePaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$mobilePaymentMethodSpecificOutput" class="anchor">#</a>
 				<code><span class="php-keyword1">null</span></code>
 			</div>
 		</td>
@@ -821,8 +876,89 @@
 			</div>
 		</td>
 	</tr>
+	<tr data-order="redirectPaymentMethodSpecificOutput" id="$redirectPaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.RedirectPaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\RedirectPaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$redirectPaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$redirectPaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="reversalReason" id="$reversalReason">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$reversalReason</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$reversalReason" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="sepaDirectDebitPaymentMethodSpecificOutput" id="$sepaDirectDebitPaymentMethodSpecificOutput">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.SepaDirectDebitPaymentMethodSpecificOutput.html">Ingenico\Connect\Sdk\Domain\Payment\Definitions\SepaDirectDebitPaymentMethodSpecificOutput</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$sepaDirectDebitPaymentMethodSpecificOutput</var>
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$sepaDirectDebitPaymentMethodSpecificOutput" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.OrderOutput.html#properties">Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderOutput</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.OrderOutput.html#$amountOfMoney"><var>$amountOfMoney</var></a>, 
+			<a href="class-Ingenico.Connect.Sdk.Domain.Payment.Definitions.OrderOutput.html#$references"><var>$references</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
