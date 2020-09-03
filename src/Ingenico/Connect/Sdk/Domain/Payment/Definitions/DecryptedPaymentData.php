@@ -16,6 +16,11 @@ class DecryptedPaymentData extends DataObject
     /**
      * @var string
      */
+    public $authMethod = null;
+
+    /**
+     * @var string
+     */
     public $cardholderName = null;
 
     /**
@@ -54,6 +59,9 @@ class DecryptedPaymentData extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->authMethod)) {
+            $object->authMethod = $this->authMethod;
+        }
         if (!is_null($this->cardholderName)) {
             $object->cardholderName = $this->cardholderName;
         }
@@ -86,6 +94,9 @@ class DecryptedPaymentData extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'authMethod')) {
+            $this->authMethod = $object->authMethod;
+        }
         if (property_exists($object, 'cardholderName')) {
             $this->cardholderName = $object->cardholderName;
         }
