@@ -19,6 +19,11 @@ class PaymentProduct extends DataObject
     public $accountsOnFile = null;
 
     /**
+     * @var string
+     */
+    public $acquirerCountry = null;
+
+    /**
      * @var bool
      */
     public $allowsInstallments = null;
@@ -137,6 +142,9 @@ class PaymentProduct extends DataObject
                 }
             }
         }
+        if (!is_null($this->acquirerCountry)) {
+            $object->acquirerCountry = $this->acquirerCountry;
+        }
         if (!is_null($this->allowsInstallments)) {
             $object->allowsInstallments = $this->allowsInstallments;
         }
@@ -225,6 +233,9 @@ class PaymentProduct extends DataObject
                 $value = new AccountOnFile();
                 $this->accountsOnFile[] = $value->fromObject($element);
             }
+        }
+        if (property_exists($object, 'acquirerCountry')) {
+            $this->acquirerCountry = $object->acquirerCountry;
         }
         if (property_exists($object, 'allowsInstallments')) {
             $this->allowsInstallments = $object->allowsInstallments;

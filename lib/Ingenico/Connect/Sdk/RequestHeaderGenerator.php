@@ -11,7 +11,7 @@ use UnexpectedValueException;
  */
 class RequestHeaderGenerator
 {
-    const SDK_VERSION = '6.15.0';
+    const SDK_VERSION = '6.16.0';
 
     const AUTHORIZATION_ID = 'GCS';
 

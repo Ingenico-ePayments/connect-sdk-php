@@ -49,7 +49,7 @@ class TokenTest extends ClientTestCase
         $cardWithoutCvv->cardholderName = "Jan";
         $cardWithoutCvv->issueNumber = "12";
         $cardWithoutCvv->cardNumber = "4567350000427977";
-        $cardWithoutCvv->expiryDate = "0820";
+        $cardWithoutCvv->expiryDate = "1225";
 
         $mandate = new TokenCardData();
         $mandate->cardWithoutCvv = $cardWithoutCvv;
