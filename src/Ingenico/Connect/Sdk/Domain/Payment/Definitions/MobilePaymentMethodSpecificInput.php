@@ -19,6 +19,11 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
     public $authorizationMode = null;
 
     /**
+     * @var string
+     */
+    public $customerReference = null;
+
+    /**
      * @var DecryptedPaymentData
      */
     public $decryptedPaymentData = null;
@@ -27,6 +32,11 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
      * @var string
      */
     public $encryptedPaymentData = null;
+
+    /**
+     * @var MobilePaymentProduct320SpecificInput
+     */
+    public $paymentProduct320SpecificInput = null;
 
     /**
      * @var bool
@@ -47,11 +57,17 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
         if (!is_null($this->authorizationMode)) {
             $object->authorizationMode = $this->authorizationMode;
         }
+        if (!is_null($this->customerReference)) {
+            $object->customerReference = $this->customerReference;
+        }
         if (!is_null($this->decryptedPaymentData)) {
             $object->decryptedPaymentData = $this->decryptedPaymentData->toObject();
         }
         if (!is_null($this->encryptedPaymentData)) {
             $object->encryptedPaymentData = $this->encryptedPaymentData;
+        }
+        if (!is_null($this->paymentProduct320SpecificInput)) {
+            $object->paymentProduct320SpecificInput = $this->paymentProduct320SpecificInput->toObject();
         }
         if (!is_null($this->requiresApproval)) {
             $object->requiresApproval = $this->requiresApproval;
@@ -73,6 +89,9 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
         if (property_exists($object, 'authorizationMode')) {
             $this->authorizationMode = $object->authorizationMode;
         }
+        if (property_exists($object, 'customerReference')) {
+            $this->customerReference = $object->customerReference;
+        }
         if (property_exists($object, 'decryptedPaymentData')) {
             if (!is_object($object->decryptedPaymentData)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->decryptedPaymentData, true) . '\' is not an object');
@@ -82,6 +101,13 @@ class MobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInpu
         }
         if (property_exists($object, 'encryptedPaymentData')) {
             $this->encryptedPaymentData = $object->encryptedPaymentData;
+        }
+        if (property_exists($object, 'paymentProduct320SpecificInput')) {
+            if (!is_object($object->paymentProduct320SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct320SpecificInput, true) . '\' is not an object');
+            }
+            $value = new MobilePaymentProduct320SpecificInput();
+            $this->paymentProduct320SpecificInput = $value->fromObject($object->paymentProduct320SpecificInput);
         }
         if (property_exists($object, 'requiresApproval')) {
             $this->requiresApproval = $object->requiresApproval;
