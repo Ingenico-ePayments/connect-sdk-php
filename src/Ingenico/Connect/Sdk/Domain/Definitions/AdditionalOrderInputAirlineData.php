@@ -19,6 +19,11 @@ class AdditionalOrderInputAirlineData extends DataObject
     public $airlineData = null;
 
     /**
+     * @var LodgingData
+     */
+    public $lodgingData = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -26,6 +31,9 @@ class AdditionalOrderInputAirlineData extends DataObject
         $object = parent::toObject();
         if (!is_null($this->airlineData)) {
             $object->airlineData = $this->airlineData->toObject();
+        }
+        if (!is_null($this->lodgingData)) {
+            $object->lodgingData = $this->lodgingData->toObject();
         }
         return $object;
     }
@@ -44,6 +52,13 @@ class AdditionalOrderInputAirlineData extends DataObject
             }
             $value = new AirlineData();
             $this->airlineData = $value->fromObject($object->airlineData);
+        }
+        if (property_exists($object, 'lodgingData')) {
+            if (!is_object($object->lodgingData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->lodgingData, true) . '\' is not an object');
+            }
+            $value = new LodgingData();
+            $this->lodgingData = $value->fromObject($object->lodgingData);
         }
         return $this;
     }

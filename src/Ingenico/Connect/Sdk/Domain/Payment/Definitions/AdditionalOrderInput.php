@@ -7,6 +7,7 @@ namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use Ingenico\Connect\Sdk\DataObject;
 use Ingenico\Connect\Sdk\Domain\Definitions\AirlineData;
+use Ingenico\Connect\Sdk\Domain\Definitions\LodgingData;
 use UnexpectedValueException;
 
 /**
@@ -34,6 +35,11 @@ class AdditionalOrderInput extends DataObject
      * @var LoanRecipient
      */
     public $loanRecipient = null;
+
+    /**
+     * @var LodgingData
+     */
+    public $lodgingData = null;
 
     /**
      * @var int
@@ -68,6 +74,9 @@ class AdditionalOrderInput extends DataObject
         }
         if (!is_null($this->loanRecipient)) {
             $object->loanRecipient = $this->loanRecipient->toObject();
+        }
+        if (!is_null($this->lodgingData)) {
+            $object->lodgingData = $this->lodgingData->toObject();
         }
         if (!is_null($this->numberOfInstallments)) {
             $object->numberOfInstallments = $this->numberOfInstallments;
@@ -116,6 +125,13 @@ class AdditionalOrderInput extends DataObject
             }
             $value = new LoanRecipient();
             $this->loanRecipient = $value->fromObject($object->loanRecipient);
+        }
+        if (property_exists($object, 'lodgingData')) {
+            if (!is_object($object->lodgingData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->lodgingData, true) . '\' is not an object');
+            }
+            $value = new LodgingData();
+            $this->lodgingData = $value->fromObject($object->lodgingData);
         }
         if (property_exists($object, 'numberOfInstallments')) {
             $this->numberOfInstallments = $object->numberOfInstallments;

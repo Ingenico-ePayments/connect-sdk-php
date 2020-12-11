@@ -8,7 +8,7 @@ use Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProducts;
 use Ingenico\Connect\Sdk\Merchant\Products\DirectoryParams;
 use Ingenico\Connect\Sdk\Merchant\Products\FindProductsParams;
-use Ingenico\Connect\Sdk\Merchant\Products\GetProductParams;
+use Ingenico\Connect\Sdk\Merchant\Products\GetProductsParams;
 
 /**
  * @group integration
@@ -16,6 +16,25 @@ use Ingenico\Connect\Sdk\Merchant\Products\GetProductParams;
  */
 class ProductTest extends ClientTestCase
 {
+    /**
+     * @throws ApiException
+     * @return PaymentProducts
+     */
+    public function testRetrievePaymentProducts()
+    {
+        $client = $this->getClient();
+        $merchantId = $this->getMerchantId();
+        $findParams = new FindProductsParams();
+
+        $findParams->currencyCode = "EUR";
+        $findParams->countryCode = "NL";
+
+        $paymentProducts =
+            $client->merchant($merchantId)->products()->find($findParams);
+        $this->assertTrue(count($paymentProducts->paymentProducts) > 0);
+        return $paymentProducts;
+    }
+
     /**
      * @throws ApiException
      * @return Directory

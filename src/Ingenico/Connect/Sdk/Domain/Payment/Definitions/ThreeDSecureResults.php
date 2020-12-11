@@ -45,6 +45,11 @@ class ThreeDSecureResults extends DataObject
     public $eci = null;
 
     /**
+     * @var ExemptionOutput
+     */
+    public $exemptionOutput = null;
+
+    /**
      * @var int
      */
     public $schemeRiskScore = null;
@@ -98,6 +103,9 @@ class ThreeDSecureResults extends DataObject
         if (!is_null($this->eci)) {
             $object->eci = $this->eci;
         }
+        if (!is_null($this->exemptionOutput)) {
+            $object->exemptionOutput = $this->exemptionOutput->toObject();
+        }
         if (!is_null($this->schemeRiskScore)) {
             $object->schemeRiskScore = $this->schemeRiskScore;
         }
@@ -148,6 +156,13 @@ class ThreeDSecureResults extends DataObject
         }
         if (property_exists($object, 'eci')) {
             $this->eci = $object->eci;
+        }
+        if (property_exists($object, 'exemptionOutput')) {
+            if (!is_object($object->exemptionOutput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->exemptionOutput, true) . '\' is not an object');
+            }
+            $value = new ExemptionOutput();
+            $this->exemptionOutput = $value->fromObject($object->exemptionOutput);
         }
         if (property_exists($object, 'schemeRiskScore')) {
             $this->schemeRiskScore = $object->schemeRiskScore;
