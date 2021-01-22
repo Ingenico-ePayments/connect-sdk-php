@@ -15,6 +15,7 @@ class DecryptedPaymentData extends DataObject
 {
     /**
      * @var string
+     * @deprecated Use decryptedPaymentData.paymentMethod instead
      */
     public $authMethod = null;
 
