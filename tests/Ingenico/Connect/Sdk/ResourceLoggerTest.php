@@ -6,7 +6,7 @@ use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 /**
  * @group logging
  */
-class ResourceLoggerTest extends \PHPUnit_Framework_TestCase
+class ResourceLoggerTest extends \PHPUnit\Framework\TestCase
 {
     public function testLog()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-class UuidGeneratorTest extends \PHPUnit_Framework_TestCase
+class UuidGeneratorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidUuidV4()
     {

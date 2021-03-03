@@ -4,7 +4,7 @@ namespace Ingenico\Connect\Sdk;
 /**
  * @group obfuscation
  */
-class BodyObfuscatorTest extends \PHPUnit_Framework_TestCase
+class BodyObfuscatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider jsonObfuscationProvider

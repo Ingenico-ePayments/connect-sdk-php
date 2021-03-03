@@ -5,7 +5,7 @@ namespace Ingenico\Connect\Sdk;
  * @group default_connection
  *
  */
-class DefaultConnectionResponseGetDispositionFilenameTest extends \PHPUnit_Framework_TestCase
+class DefaultConnectionResponseGetDispositionFilenameTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider dispositionFilenameProvider

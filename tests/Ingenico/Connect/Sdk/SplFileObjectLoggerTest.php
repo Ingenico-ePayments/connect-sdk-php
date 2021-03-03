@@ -7,7 +7,7 @@ use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
 /**
  * @group logging
  */
-class SplFileObjectLoggerTest extends \PHPUnit_Framework_TestCase
+class SplFileObjectLoggerTest extends \PHPUnit\Framework\TestCase
 {
     public function testLog()
     {

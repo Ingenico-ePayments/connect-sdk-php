@@ -9,7 +9,7 @@ use Ingenico\Connect\Sdk\ResponseFactory;
 /**
  * @group webhooks
  */
-class WebhooksHelperTest extends \PHPUnit_Framework_TestCase
+class WebhooksHelperTest extends \PHPUnit\Framework\TestCase
 {
     const SIGNATURE_HEADER = 'X-GCS-Signature';
     const SIGNATURE = '2S7doBj/GnJnacIjSJzr5fxGM5xmfQyFAwxv1I53ZEk=';

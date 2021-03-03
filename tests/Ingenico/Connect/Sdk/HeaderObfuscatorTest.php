@@ -4,7 +4,7 @@ namespace Ingenico\Connect\Sdk;
 /**
  * @group obfuscation
  */
-class HeaderObfuscatorTest extends \PHPUnit_Framework_TestCase
+class HeaderObfuscatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider headerObfuscatorProvider

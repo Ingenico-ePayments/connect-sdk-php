@@ -44,6 +44,11 @@ class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethod
     public $recurringPaymentSequenceIndicator = null;
 
     /**
+     * @var bool
+     */
+    public $requiresApproval = null;
+
+    /**
      * @var string
      */
     public $token = null;
@@ -76,6 +81,9 @@ class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethod
         }
         if (!is_null($this->recurringPaymentSequenceIndicator)) {
             $object->recurringPaymentSequenceIndicator = $this->recurringPaymentSequenceIndicator;
+        }
+        if (!is_null($this->requiresApproval)) {
+            $object->requiresApproval = $this->requiresApproval;
         }
         if (!is_null($this->token)) {
             $object->token = $this->token;
@@ -119,6 +127,9 @@ class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethod
         }
         if (property_exists($object, 'recurringPaymentSequenceIndicator')) {
             $this->recurringPaymentSequenceIndicator = $object->recurringPaymentSequenceIndicator;
+        }
+        if (property_exists($object, 'requiresApproval')) {
+            $this->requiresApproval = $object->requiresApproval;
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;

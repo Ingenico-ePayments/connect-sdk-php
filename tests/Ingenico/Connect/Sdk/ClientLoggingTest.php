@@ -4,7 +4,7 @@ namespace Ingenico\Connect\Sdk;
 /**
  * @group logging
  */
-class ClientLoggingTest extends \PHPUnit_Framework_TestCase
+class ClientLoggingTest extends \PHPUnit\Framework\TestCase
 {
     public function testEnableLoggingCascade()
     {

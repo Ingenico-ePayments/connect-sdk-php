@@ -4,7 +4,7 @@ namespace Ingenico\Connect\Sdk;
 /**
  * @group obfuscation
  */
-class CommunicatorLoggerHelperTest extends \PHPUnit_Framework_TestCase
+class CommunicatorLoggerHelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider uriProvider
