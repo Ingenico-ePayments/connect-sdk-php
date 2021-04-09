@@ -27,6 +27,11 @@ class PaymentContext extends DataObject
     /**
      * @var bool
      */
+    public $isInstallments = null;
+
+    /**
+     * @var bool
+     */
     public $isRecurring = null;
 
     /**
@@ -40,6 +45,9 @@ class PaymentContext extends DataObject
         }
         if (!is_null($this->countryCode)) {
             $object->countryCode = $this->countryCode;
+        }
+        if (!is_null($this->isInstallments)) {
+            $object->isInstallments = $this->isInstallments;
         }
         if (!is_null($this->isRecurring)) {
             $object->isRecurring = $this->isRecurring;
@@ -64,6 +72,9 @@ class PaymentContext extends DataObject
         }
         if (property_exists($object, 'countryCode')) {
             $this->countryCode = $object->countryCode;
+        }
+        if (property_exists($object, 'isInstallments')) {
+            $this->isInstallments = $object->isInstallments;
         }
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;
