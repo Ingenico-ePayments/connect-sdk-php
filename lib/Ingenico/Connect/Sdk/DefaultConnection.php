@@ -1,4 +1,5 @@
 <?php
+
 namespace Ingenico\Connect\Sdk;
 
 use Exception;
@@ -22,6 +23,9 @@ class DefaultConnection implements Connection
     /** @var CommunicatorLoggerHelper|null */
     private $communicatorLoggerHelper = null;
 
+    /** @var TimeoutConfiguration|null */
+    protected $timeoutConfiguration = null;
+
     /**
      *
      */
@@ -40,7 +44,7 @@ class DefaultConnection implements Connection
      * @param ProxyConfiguration|null $proxyConfiguration
      */
     public function get($requestUri, $requestHeaders, callable $responseHandler,
-        ProxyConfiguration $proxyConfiguration = null)
+                        ProxyConfiguration $proxyConfiguration = null)
     {
         $requestId = UuidGenerator::generatedUuid();
         $this->logRequest($requestId, 'GET', $requestUri, $requestHeaders, '');
@@ -62,7 +66,7 @@ class DefaultConnection implements Connection
      * @param ProxyConfiguration|null $proxyConfiguration
      */
     public function delete($requestUri, $requestHeaders, callable $responseHandler,
-        ProxyConfiguration $proxyConfiguration = null)
+                           ProxyConfiguration $proxyConfiguration = null)
     {
         $requestId = UuidGenerator::generatedUuid();
         $this->logRequest($requestId, 'DELETE', $requestUri, $requestHeaders, '');
@@ -85,7 +89,7 @@ class DefaultConnection implements Connection
      * @param ProxyConfiguration|null $proxyConfiguration
      */
     public function post($requestUri, $requestHeaders, $body, callable $responseHandler,
-        ProxyConfiguration $proxyConfiguration = null)
+                         ProxyConfiguration $proxyConfiguration = null)
     {
         $requestId = UuidGenerator::generatedUuid();
         $bodyToLog = is_string($body) ? $body : '<binary content>';
@@ -109,7 +113,7 @@ class DefaultConnection implements Connection
      * @param ProxyConfiguration|null $proxyConfiguration
      */
     public function put($requestUri, $requestHeaders, $body, callable $responseHandler,
-        ProxyConfiguration $proxyConfiguration = null)
+                        ProxyConfiguration $proxyConfiguration = null)
     {
         $requestId = UuidGenerator::generatedUuid();
         $bodyToLog = is_string($body) ? $body : '<binary content>';
@@ -142,6 +146,19 @@ class DefaultConnection implements Connection
     }
 
     /**
+     * @param TimeoutConfiguration $timeoutConfiguration
+     */
+    public function setTimeoutConfiguration(TimeoutConfiguration $timeoutConfiguration)
+    {
+        $this->timeoutConfiguration = $timeoutConfiguration;
+    }
+
+    public function disableTimeoutConfiguration()
+    {
+        $this->timeoutConfiguration = null;
+    }
+
+    /**
      * @param string $httpMethod
      * @param string $requestUri
      * @param string[] $requestHeaders
@@ -157,7 +174,8 @@ class DefaultConnection implements Connection
         $body,
         callable $responseHandler,
         ProxyConfiguration $proxyConfiguration = null
-    ) {
+    )
+    {
         if (!in_array($httpMethod, array('GET', 'DELETE', 'POST', 'PUT'))) {
             throw new UnexpectedValueException(sprintf('Http method \'%s\' is not supported', $httpMethod));
         }
@@ -183,7 +201,8 @@ class DefaultConnection implements Connection
      * @param resource $curlHandle
      * @throws Exception
      */
-    private function executeCurlHandleShared($multiHandle, $curlHandle) {
+    private function executeCurlHandleShared($multiHandle, $curlHandle)
+    {
         $running = null;
         do {
             $status = curl_multi_exec($multiHandle, $running);
@@ -275,7 +294,8 @@ class DefaultConnection implements Connection
         $requestHeaders,
         $body,
         ProxyConfiguration $proxyConfiguration = null
-    ) {
+    )
+    {
         if (!is_array($requestHeaders)) {
             throw new UnexpectedValueException('Invalid request headers; expected array');
         }
@@ -321,6 +341,14 @@ class DefaultConnection implements Connection
                 curl_setopt($curlHandle, CURLOPT_PROXYUSERPWD, $curlProxyUserPwd);
             }
         }
+        if (!is_null($this->timeoutConfiguration)) {
+            if ($this->timeoutConfiguration->getConnectTimeout() > 0) {
+                curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, $this->timeoutConfiguration->getConnectTimeout());
+            }
+            if ($this->timeoutConfiguration->getTimeout() > 0) {
+                curl_setopt($curlHandle, CURLOPT_TIMEOUT, $this->timeoutConfiguration->getTimeout());
+            }
+        }
     }
 
     /**
@@ -342,7 +370,8 @@ class DefaultConnection implements Connection
     /**
      * @return bool
      */
-    private function isBinaryResponse($headerBuilder) {
+    private function isBinaryResponse($headerBuilder)
+    {
         $contentType = $headerBuilder->getContentType();
         return $contentType
             // does not starts with text/
