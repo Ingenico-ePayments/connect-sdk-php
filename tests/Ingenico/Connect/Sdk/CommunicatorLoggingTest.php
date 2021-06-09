@@ -2,7 +2,6 @@
 namespace Ingenico\Connect\Sdk;
 
 use stdClass;
-use Exception;
 use ErrorException;
 use ReflectionMethod;
 use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;

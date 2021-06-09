@@ -1,7 +1,7 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-use \UnexpectedValueException;
+use UnexpectedValueException;
 
 /**
  * Class UploadableFile

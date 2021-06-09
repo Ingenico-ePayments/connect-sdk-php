@@ -15,6 +15,7 @@ class SdkDataInput extends DataObject
 {
     /**
      * @var string
+     * @deprecated No replacement
      */
     public $deviceInfo = null;
 

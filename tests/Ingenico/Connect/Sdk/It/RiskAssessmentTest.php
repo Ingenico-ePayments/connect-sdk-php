@@ -3,19 +3,12 @@ namespace Ingenico\Connect\Sdk\It;
 
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
-use Ingenico\Connect\Sdk\Domain\Definitions\AdditionalOrderInputAirlineData;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
-use Ingenico\Connect\Sdk\Domain\Definitions\AirlineData;
-use Ingenico\Connect\Sdk\Domain\Definitions\AirlineFlightLeg;
 use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
 use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountBban;
-use Ingenico\Connect\Sdk\Domain\Definitions\Card;
-use Ingenico\Connect\Sdk\Domain\Definitions\ResultDoRiskAssessment;
 use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\CustomerRiskAssessment;
 use Ingenico\Connect\Sdk\Domain\Riskassessments\Definitions\OrderRiskAssessment;
 use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentBankAccount;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentCard;
-use Ingenico\Connect\Sdk\Domain\Riskassessments\RiskAssessmentResponse;
 
 /**
  * @group integration
@@ -56,7 +49,6 @@ class RiskAssessmentTest extends ClientTestCase
 
         $riskAssessmentBankAccount->order = $riskAssessmentOrder;
 
-        /** @var RiskAssessmentResponse $response */
         $response = $client->merchant($merchantId)->riskassessments()->bankaccounts($riskAssessmentBankAccount);
         $this->assertTrue(count($response->results) > 0);
 

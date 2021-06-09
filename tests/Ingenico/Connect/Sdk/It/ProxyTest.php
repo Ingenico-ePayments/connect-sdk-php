@@ -3,10 +3,7 @@ namespace Ingenico\Connect\Sdk\It;
 
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
-use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountBban;
-use Ingenico\Connect\Sdk\Domain\Services\BankDetailsRequest;
 use Ingenico\Connect\Sdk\Domain\Services\ConvertAmount;
-use Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsRequest;
 use Ingenico\Connect\Sdk\Merchant\Services\ConvertAmountParams;
 
 /**

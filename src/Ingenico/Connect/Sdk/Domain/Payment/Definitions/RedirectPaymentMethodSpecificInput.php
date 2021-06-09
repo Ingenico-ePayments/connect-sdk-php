@@ -18,6 +18,11 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
     public $isRecurring = null;
 
     /**
+     * @var RedirectPaymentProduct4101SpecificInput
+     */
+    public $paymentProduct4101SpecificInput = null;
+
+    /**
      * @var RedirectPaymentProduct809SpecificInput
      */
     public $paymentProduct809SpecificInput = null;
@@ -72,6 +77,9 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
         if (!is_null($this->isRecurring)) {
             $object->isRecurring = $this->isRecurring;
         }
+        if (!is_null($this->paymentProduct4101SpecificInput)) {
+            $object->paymentProduct4101SpecificInput = $this->paymentProduct4101SpecificInput->toObject();
+        }
         if (!is_null($this->paymentProduct809SpecificInput)) {
             $object->paymentProduct809SpecificInput = $this->paymentProduct809SpecificInput->toObject();
         }
@@ -112,6 +120,13 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
         parent::fromObject($object);
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;
+        }
+        if (property_exists($object, 'paymentProduct4101SpecificInput')) {
+            if (!is_object($object->paymentProduct4101SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct4101SpecificInput, true) . '\' is not an object');
+            }
+            $value = new RedirectPaymentProduct4101SpecificInput();
+            $this->paymentProduct4101SpecificInput = $value->fromObject($object->paymentProduct4101SpecificInput);
         }
         if (property_exists($object, 'paymentProduct809SpecificInput')) {
             if (!is_object($object->paymentProduct809SpecificInput)) {

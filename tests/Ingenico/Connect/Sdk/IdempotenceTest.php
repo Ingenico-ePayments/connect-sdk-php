@@ -9,7 +9,7 @@ class IdempotenceTest extends TestCase
         $requestHeaderGenerator = new RequestHeaderGenerator(
             $this->getCommunicatorConfiguration(),
             'GET',
-            'http://example.com',
+            'https://example.com',
             '',
             $callContext
         );

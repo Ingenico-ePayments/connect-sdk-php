@@ -1,23 +1,10 @@
 <?php
 namespace Ingenico\Connect\Sdk;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\Address;
-use Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney;
-use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
-use Ingenico\Connect\Sdk\Domain\Definitions\Card;
 use Ingenico\Connect\Sdk\Domain\Errors\ErrorResponse;
-use Ingenico\Connect\Sdk\Domain\Payment\CreatePaymentRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\PaymentErrorResponse;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CreatePaymentResult;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Customer;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PersonalInformation;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PersonalName;
-use Ingenico\Connect\Sdk\Domain\Payout\CreatePayoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payout\PayoutErrorResponse;
-use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutCustomer;
-use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutReferences;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutResult;
 use Ingenico\Connect\Sdk\Domain\Refund\RefundErrorResponse;
 use Ingenico\Connect\Sdk\Domain\Refund\Definitions\RefundResult;
@@ -26,7 +13,7 @@ use Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsRequest;
 /**
  * @group exceptions
  */
-class Client_ExceptionTest extends ClientTestCase
+class ExceptionTest extends ClientTestCase
 {
     public function testExceptionWithoutErrors()
     {

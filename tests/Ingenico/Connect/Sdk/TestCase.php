@@ -26,9 +26,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      *
      */
-    public function __construct()
+    public function __construct($name = null, array $data = array(), $dataName = '')
     {
-        parent::__construct();
+        parent::__construct($name, $data, $dataName);
         $this->configFilePath = dirname(__FILE__) . '/../../../config.json';
     }
 

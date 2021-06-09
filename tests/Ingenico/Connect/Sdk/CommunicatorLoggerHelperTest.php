@@ -30,18 +30,18 @@ class CommunicatorLoggerHelperTest extends \PHPUnit\Framework\TestCase
     {
         return array(
             array(
-                'https://api-sandbox.globalcollect.com/v1/20000/services/testconnection',
-                'https://api-sandbox.globalcollect.com',
+                'https://eu.sandbox.api-ingenico.com/v1/20000/services/testconnection',
+                'https://eu.sandbox.api-ingenico.com',
                 '/v1/20000/services/testconnection',
             ),
             array(
-                'https://api-sandbox.globalcollect.com/v1/20000/services/convert/amount?source=EUR&target=USD&amount=1000',
-                'https://api-sandbox.globalcollect.com',
+                'https://eu.sandbox.api-ingenico.com/v1/20000/services/convert/amount?source=EUR&target=USD&amount=1000',
+                'https://eu.sandbox.api-ingenico.com',
                 '/v1/20000/services/convert/amount?source=EUR&target=USD&amount=1000',
             ),
             array(
-                'https://api-sandbox.globalcollect.com',
-                'https://api-sandbox.globalcollect.com',
+                'https://eu.sandbox.api-ingenico.com',
+                'https://eu.sandbox.api-ingenico.com',
                 ''
             ),
             array(

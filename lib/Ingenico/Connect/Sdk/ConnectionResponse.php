@@ -9,7 +9,7 @@ namespace Ingenico\Connect\Sdk;
 interface ConnectionResponse
 {
     /**
-     * @return string
+     * @return int
      */
     public function getHttpStatusCode();
 

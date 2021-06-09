@@ -23,8 +23,8 @@ class MultipartFormDataTest extends TestCase
 
         $response = $communicator->post($responseClassMap, '/post', '', $multipart, null, null);
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPostWithMultipartDataObjectWithResponse()
@@ -43,8 +43,8 @@ class MultipartFormDataTest extends TestCase
 
         $response = $communicator->post($responseClassMap, '/post', '', new MultipartFormDataWrapper($multipart), null, null);
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPostWithMultipartFormDataObjectWithCallable()
@@ -71,8 +71,8 @@ class MultipartFormDataTest extends TestCase
         $response = new HttpBinResponse();
         $response->fromJson($responseBuilder->getResponse()->getBody());
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPostWithMultipartDataObjectWithCallable()
@@ -99,8 +99,8 @@ class MultipartFormDataTest extends TestCase
         $response = new HttpBinResponse();
         $response->fromJson($responseBuilder->getResponse()->getBody());
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPutWithMultipartFormDataObjectWithResponse()
@@ -119,8 +119,8 @@ class MultipartFormDataTest extends TestCase
 
         $response = $communicator->put($responseClassMap, '/put', '', $multipart, null, null);
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPutWithMultipartDataObjectWithResponse()
@@ -139,8 +139,8 @@ class MultipartFormDataTest extends TestCase
 
         $response = $communicator->put($responseClassMap, '/put', '', new MultipartFormDataWrapper($multipart), null, null);
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPutWithMultipartFormDataObjectWithCallable()
@@ -167,8 +167,8 @@ class MultipartFormDataTest extends TestCase
         $response = new HttpBinResponse();
         $response->fromJson($responseBuilder->getResponse()->getBody());
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 
     public function testMultipartFormDataUploadPutWithMultipartDataObjectWithCallable()
@@ -195,8 +195,8 @@ class MultipartFormDataTest extends TestCase
         $response = new HttpBinResponse();
         $response->fromJson($responseBuilder->getResponse()->getBody());
 
-        $this->assertEquals($response->form->value, 'Hello World');
-        $this->assertEquals($response->files->file, 'file-content');
+        $this->assertEquals('Hello World', $response->form->value);
+        $this->assertEquals('file-content', $response->files->file);
     }
 }
 

@@ -2,17 +2,20 @@
     "name": "ingenico-epayments/connect-sdk-php",
     "type": "library",
     "description": "PHP SDK to communicate with the Ingenico ePayments platform server-to-server API",
-    "homepage": "http://www.ingenico.com/epayments/",
+    "homepage": "https://www.ingenico.com/epayments/",
     "keywords": ["SDK"],
     "license": "MIT",
     "authors": [
         {
             "name": "Ingenico ePayments",
-            "homepage": "http://www.ingenico.com/epayments/"
+            "homepage": "https://www.ingenico.com/epayments/"
         }
     ],
     "require": {
         "php": ">=5.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
         "robtimus/multipart": "~1.0"
     },
     "require-dev": {

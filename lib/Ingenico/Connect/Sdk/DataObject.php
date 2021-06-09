@@ -42,25 +42,18 @@ abstract class DataObject
         switch (json_last_error()) {
             case JSON_ERROR_NONE:
                 return 'No errors';
-                break;
             case JSON_ERROR_DEPTH:
                 return 'Maximum stack depth exceeded';
-                break;
             case JSON_ERROR_STATE_MISMATCH:
                 return 'Underflow or the modes mismatch';
-                break;
             case JSON_ERROR_CTRL_CHAR:
                 return 'Unexpected control character found';
-                break;
             case JSON_ERROR_SYNTAX:
                 return 'Syntax error. Malformed JSON';
-                break;
             case JSON_ERROR_UTF8:
                 return 'Malformed UTF-8 characters. Incorrect encoding';
-                break;
             default:
                 return 'Unknown error';
-                break;
         }
     }
 

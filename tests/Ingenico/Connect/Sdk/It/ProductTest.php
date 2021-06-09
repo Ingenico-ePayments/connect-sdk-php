@@ -4,11 +4,9 @@ namespace Ingenico\Connect\Sdk\It;
 use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
 use Ingenico\Connect\Sdk\Domain\Product\Directory;
-use Ingenico\Connect\Sdk\Domain\Product\PaymentProductResponse;
 use Ingenico\Connect\Sdk\Domain\Product\PaymentProducts;
 use Ingenico\Connect\Sdk\Merchant\Products\DirectoryParams;
 use Ingenico\Connect\Sdk\Merchant\Products\FindProductsParams;
-use Ingenico\Connect\Sdk\Merchant\Products\GetProductsParams;
 
 /**
  * @group integration

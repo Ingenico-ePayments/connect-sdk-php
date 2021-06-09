@@ -22,6 +22,22 @@ class DefaultConnection implements Connection
     /** @var CommunicatorLoggerHelper|null */
     private $communicatorLoggerHelper = null;
 
+    /** @var int */
+    private $connectTimeout;
+
+    /** @var int */
+    private $readTimeout;
+
+    /**
+     * @param int $connectTimeout The connect timeout, in seconds. Ignored if not larger than 0.
+     * @param int $readTimeout The read timeout, in seconds. Ignored if not larger than 0.
+     */
+    public function __construct($connectTimeout = -1, $readTimeout = -1)
+    {
+        $this->connectTimeout = $connectTimeout;
+        $this->readTimeout = $readTimeout;
+    }
+
     /**
      *
      */
@@ -157,7 +173,8 @@ class DefaultConnection implements Connection
         $body,
         callable $responseHandler,
         ProxyConfiguration $proxyConfiguration = null
-    ) {
+    )
+    {
         if (!in_array($httpMethod, array('GET', 'DELETE', 'POST', 'PUT'))) {
             throw new UnexpectedValueException(sprintf('Http method \'%s\' is not supported', $httpMethod));
         }
@@ -173,7 +190,7 @@ class DefaultConnection implements Connection
     protected function getCurlHandle()
     {
         if (!$curlHandle = curl_init()) {
-            throw new ErrorException(sprintf('Cannot initialize cUrl curlHandle'));
+            throw new ErrorException('Cannot initialize cUrl curlHandle');
         }
         return $curlHandle;
     }
@@ -183,7 +200,8 @@ class DefaultConnection implements Connection
      * @param resource $curlHandle
      * @throws Exception
      */
-    private function executeCurlHandleShared($multiHandle, $curlHandle) {
+    private function executeCurlHandleShared($multiHandle, $curlHandle)
+    {
         $running = null;
         do {
             $status = curl_multi_exec($multiHandle, $running);
@@ -275,7 +293,8 @@ class DefaultConnection implements Connection
         $requestHeaders,
         $body,
         ProxyConfiguration $proxyConfiguration = null
-    ) {
+    )
+    {
         if (!is_array($requestHeaders)) {
             throw new UnexpectedValueException('Invalid request headers; expected array');
         }
@@ -283,6 +302,14 @@ class DefaultConnection implements Connection
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_CUSTOMREQUEST, $httpMethod);
         curl_setopt($curlHandle, CURLOPT_URL, $requestUri);
+
+        if ($this->connectTimeout > 0) {
+            curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
+        }
+        if ($this->readTimeout > 0) {
+            curl_setopt($curlHandle, CURLOPT_TIMEOUT, $this->readTimeout);
+        }
+
         if (in_array($httpMethod, array('PUT', 'POST')) && $body) {
             if (is_string($body)) {
                 curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $body);
@@ -307,10 +334,12 @@ class DefaultConnection implements Connection
                 throw new UnexpectedValueException('Unsupported body type: ' . $type);
             }
         }
+
         if (count($requestHeaders) > 0) {
             $httpHeaderHelper = new HttpHeaderHelper();
             curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $httpHeaderHelper->generateRawHeaders($requestHeaders));
         }
+
         if (!is_null($proxyConfiguration)) {
             $curlProxy = $proxyConfiguration->getCurlProxy();
             if (!empty($curlProxy)) {
@@ -333,7 +362,7 @@ class DefaultConnection implements Connection
             $multiHandle = curl_multi_init();
             if ($multiHandle === false) {
                 throw new Exception('Failed to initialize cURL multi curlHandle');
-            };
+            }
             $this->multiHandle = $multiHandle;
         }
         return $this->multiHandle;
@@ -342,7 +371,8 @@ class DefaultConnection implements Connection
     /**
      * @return bool
      */
-    private function isBinaryResponse($headerBuilder) {
+    private function isBinaryResponse($headerBuilder)
+    {
         $contentType = $headerBuilder->getContentType();
         return $contentType
             // does not starts with text/

@@ -1,31 +1,13 @@
 <?php
 namespace Ingenico\Connect\Sdk\It;
 
-use Ingenico\Connect\Sdk\ApiException;
 use Ingenico\Connect\Sdk\ClientTestCase;
 use Ingenico\Connect\Sdk\Domain\Definitions\Address;
-use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountBban;
-use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
 use Ingenico\Connect\Sdk\Domain\Definitions\CardWithoutCvv;
-use Ingenico\Connect\Sdk\Domain\Definitions\CompanyInformation;
-use Ingenico\Connect\Sdk\Domain\Payment\Definitions\PersonalInformation;
-use Ingenico\Connect\Sdk\Domain\Token\ApproveTokenRequest;
 use Ingenico\Connect\Sdk\Domain\Token\CreateTokenRequest;
-use Ingenico\Connect\Sdk\Domain\Token\CreateTokenResponse;
 use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenCard;
 use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenCardData;
-use Ingenico\Connect\Sdk\Domain\Token\UpdateTokenRequest;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\ContactDetailsToken;
 use Ingenico\Connect\Sdk\Domain\Token\Definitions\CustomerToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\CustomerTokenWithContactDetails;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\Debtor;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateNonSepaDirectDebit;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\MandateSepaDirectDebit;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\PersonalInformationToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\PersonalNameToken;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenNonSepaDirectDebit;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenNonSepaDirectDebitPaymentProduct705SpecificData;
-use Ingenico\Connect\Sdk\Domain\Token\Definitions\TokenSepaDirectDebitWithoutCreditor;
 use Ingenico\Connect\Sdk\Merchant\Tokens\DeleteTokenParams;
 
 /**
