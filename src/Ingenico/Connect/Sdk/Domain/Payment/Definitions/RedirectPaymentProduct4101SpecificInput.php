@@ -21,6 +21,16 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
     /**
      * @var string
      */
+    public $merchantName = null;
+
+    /**
+     * @var string
+     */
+    public $transactionNote = null;
+
+    /**
+     * @var string
+     */
     public $vpa = null;
 
     /**
@@ -31,6 +41,12 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
         $object = parent::toObject();
         if (!is_null($this->integrationType)) {
             $object->integrationType = $this->integrationType;
+        }
+        if (!is_null($this->merchantName)) {
+            $object->merchantName = $this->merchantName;
+        }
+        if (!is_null($this->transactionNote)) {
+            $object->transactionNote = $this->transactionNote;
         }
         if (!is_null($this->vpa)) {
             $object->vpa = $this->vpa;
@@ -48,6 +64,12 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'integrationType')) {
             $this->integrationType = $object->integrationType;
+        }
+        if (property_exists($object, 'merchantName')) {
+            $this->merchantName = $object->merchantName;
+        }
+        if (property_exists($object, 'transactionNote')) {
+            $this->transactionNote = $object->transactionNote;
         }
         if (property_exists($object, 'vpa')) {
             $this->vpa = $object->vpa;
