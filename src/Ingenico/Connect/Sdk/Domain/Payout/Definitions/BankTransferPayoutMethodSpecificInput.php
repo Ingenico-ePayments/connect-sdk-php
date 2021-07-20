@@ -26,6 +26,7 @@ class BankTransferPayoutMethodSpecificInput extends AbstractPayoutMethodSpecific
 
     /**
      * @var PayoutCustomer
+     * @deprecated Moved to PayoutDetails
      */
     public $customer = null;
 

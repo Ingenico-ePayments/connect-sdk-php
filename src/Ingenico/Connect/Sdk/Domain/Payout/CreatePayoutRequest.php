@@ -12,6 +12,7 @@ use Ingenico\Connect\Sdk\Domain\Definitions\BankAccountIban;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\BankTransferPayoutMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\CardPayoutMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutCustomer;
+use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutDetails;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutReferences;
 use UnexpectedValueException;
 
@@ -22,6 +23,7 @@ class CreatePayoutRequest extends DataObject
 {
     /**
      * @var AmountOfMoney
+     * @deprecated Moved to PayoutDetails
      */
     public $amountOfMoney = null;
 
@@ -49,7 +51,7 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var PayoutCustomer
-     * @deprecated Moved to BankTransferPayoutMethodSpecificInput
+     * @deprecated Moved to PayoutDetails
      */
     public $customer = null;
 
@@ -60,6 +62,11 @@ class CreatePayoutRequest extends DataObject
     public $payoutDate = null;
 
     /**
+     * @var PayoutDetails
+     */
+    public $payoutDetails = null;
+
+    /**
      * @var string
      * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
@@ -67,6 +74,7 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @var PayoutReferences
+     * @deprecated Moved to PayoutDetails
      */
     public $references = null;
 
@@ -102,6 +110,9 @@ class CreatePayoutRequest extends DataObject
         }
         if (!is_null($this->payoutDate)) {
             $object->payoutDate = $this->payoutDate;
+        }
+        if (!is_null($this->payoutDetails)) {
+            $object->payoutDetails = $this->payoutDetails->toObject();
         }
         if (!is_null($this->payoutText)) {
             $object->payoutText = $this->payoutText;
@@ -167,6 +178,13 @@ class CreatePayoutRequest extends DataObject
         }
         if (property_exists($object, 'payoutDate')) {
             $this->payoutDate = $object->payoutDate;
+        }
+        if (property_exists($object, 'payoutDetails')) {
+            if (!is_object($object->payoutDetails)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->payoutDetails, true) . '\' is not an object');
+            }
+            $value = new PayoutDetails();
+            $this->payoutDetails = $value->fromObject($object->payoutDetails);
         }
         if (property_exists($object, 'payoutText')) {
             $this->payoutText = $object->payoutText;

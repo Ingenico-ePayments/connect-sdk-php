@@ -24,6 +24,11 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
     public $paymentProductId = null;
 
     /**
+     * @var PayoutRecipient
+     */
+    public $recipient = null;
+
+    /**
      * @var string
      */
     public $token = null;
@@ -39,6 +44,9 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
         }
         if (!is_null($this->paymentProductId)) {
             $object->paymentProductId = $this->paymentProductId;
+        }
+        if (!is_null($this->recipient)) {
+            $object->recipient = $this->recipient->toObject();
         }
         if (!is_null($this->token)) {
             $object->token = $this->token;
@@ -63,6 +71,13 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
         }
         if (property_exists($object, 'paymentProductId')) {
             $this->paymentProductId = $object->paymentProductId;
+        }
+        if (property_exists($object, 'recipient')) {
+            if (!is_object($object->recipient)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->recipient, true) . '\' is not an object');
+            }
+            $value = new PayoutRecipient();
+            $this->recipient = $value->fromObject($object->recipient);
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;
