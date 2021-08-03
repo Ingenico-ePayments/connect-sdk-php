@@ -16,22 +16,17 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
     /**
      * @var string
      */
+    public $displayName = null;
+
+    /**
+     * @var string
+     */
     public $integrationType = null;
 
     /**
      * @var string
      */
-    public $merchantName = null;
-
-    /**
-     * @var string
-     */
-    public $transactionNote = null;
-
-    /**
-     * @var string
-     */
-    public $vpa = null;
+    public $virtualPaymentAddress = null;
 
     /**
      * @return object
@@ -39,17 +34,14 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->displayName)) {
+            $object->displayName = $this->displayName;
+        }
         if (!is_null($this->integrationType)) {
             $object->integrationType = $this->integrationType;
         }
-        if (!is_null($this->merchantName)) {
-            $object->merchantName = $this->merchantName;
-        }
-        if (!is_null($this->transactionNote)) {
-            $object->transactionNote = $this->transactionNote;
-        }
-        if (!is_null($this->vpa)) {
-            $object->vpa = $this->vpa;
+        if (!is_null($this->virtualPaymentAddress)) {
+            $object->virtualPaymentAddress = $this->virtualPaymentAddress;
         }
         return $object;
     }
@@ -62,17 +54,14 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'displayName')) {
+            $this->displayName = $object->displayName;
+        }
         if (property_exists($object, 'integrationType')) {
             $this->integrationType = $object->integrationType;
         }
-        if (property_exists($object, 'merchantName')) {
-            $this->merchantName = $object->merchantName;
-        }
-        if (property_exists($object, 'transactionNote')) {
-            $this->transactionNote = $object->transactionNote;
-        }
-        if (property_exists($object, 'vpa')) {
-            $this->vpa = $object->vpa;
+        if (property_exists($object, 'virtualPaymentAddress')) {
+            $this->virtualPaymentAddress = $object->virtualPaymentAddress;
         }
         return $this;
     }
