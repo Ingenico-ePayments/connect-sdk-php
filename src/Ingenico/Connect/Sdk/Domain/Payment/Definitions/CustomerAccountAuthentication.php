@@ -16,6 +16,11 @@ class CustomerAccountAuthentication extends DataObject
     /**
      * @var string
      */
+    public $data = null;
+
+    /**
+     * @var string
+     */
     public $method = null;
 
     /**
@@ -29,6 +34,9 @@ class CustomerAccountAuthentication extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->data)) {
+            $object->data = $this->data;
+        }
         if (!is_null($this->method)) {
             $object->method = $this->method;
         }
@@ -46,6 +54,9 @@ class CustomerAccountAuthentication extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'data')) {
+            $this->data = $object->data;
+        }
         if (property_exists($object, 'method')) {
             $this->method = $object->method;
         }

@@ -55,6 +55,11 @@ class AbstractThreeDSecure extends DataObject
     public $skipAuthentication = null;
 
     /**
+     * @var string
+     */
+    public $transactionRiskLevel = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -83,6 +88,9 @@ class AbstractThreeDSecure extends DataObject
         }
         if (!is_null($this->skipAuthentication)) {
             $object->skipAuthentication = $this->skipAuthentication;
+        }
+        if (!is_null($this->transactionRiskLevel)) {
+            $object->transactionRiskLevel = $this->transactionRiskLevel;
         }
         return $object;
     }
@@ -130,6 +138,9 @@ class AbstractThreeDSecure extends DataObject
         }
         if (property_exists($object, 'skipAuthentication')) {
             $this->skipAuthentication = $object->skipAuthentication;
+        }
+        if (property_exists($object, 'transactionRiskLevel')) {
+            $this->transactionRiskLevel = $object->transactionRiskLevel;
         }
         return $this;
     }
