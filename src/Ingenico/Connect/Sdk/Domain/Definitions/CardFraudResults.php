@@ -28,6 +28,11 @@ class CardFraudResults extends FraudResults
     public $fraugster = null;
 
     /**
+     * @var MicrosoftFraudResults
+     */
+    public $microsoftFraudProtection = null;
+
+    /**
      * @var FraudResultsRetailDecisions
      */
     public $retailDecisions = null;
@@ -46,6 +51,9 @@ class CardFraudResults extends FraudResults
         }
         if (!is_null($this->fraugster)) {
             $object->fraugster = $this->fraugster->toObject();
+        }
+        if (!is_null($this->microsoftFraudProtection)) {
+            $object->microsoftFraudProtection = $this->microsoftFraudProtection->toObject();
         }
         if (!is_null($this->retailDecisions)) {
             $object->retailDecisions = $this->retailDecisions->toObject();
@@ -73,6 +81,13 @@ class CardFraudResults extends FraudResults
             }
             $value = new FraugsterResults();
             $this->fraugster = $value->fromObject($object->fraugster);
+        }
+        if (property_exists($object, 'microsoftFraudProtection')) {
+            if (!is_object($object->microsoftFraudProtection)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->microsoftFraudProtection, true) . '\' is not an object');
+            }
+            $value = new MicrosoftFraudResults();
+            $this->microsoftFraudProtection = $value->fromObject($object->microsoftFraudProtection);
         }
         if (property_exists($object, 'retailDecisions')) {
             if (!is_object($object->retailDecisions)) {

@@ -83,4 +83,33 @@ class Hostedcheckouts extends Resource
             $callContext
         );
     }
+
+    /**
+     * Resource /{merchantId}/hostedcheckouts/{hostedCheckoutId} - Delete hosted checkout
+     *
+     * @param string $hostedCheckoutId
+     * @param CallContext $callContext
+     * @return null
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/hostedcheckouts/delete.html Delete hosted checkout
+     */
+    public function delete($hostedCheckoutId, CallContext $callContext = null)
+    {
+        $this->context['hostedCheckoutId'] = $hostedCheckoutId;
+        $responseClassMap = new ResponseClassMap();
+        return $this->getCommunicator()->delete(
+            $responseClassMap,
+            $this->instantiateUri('/v1/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
+        );
+    }
 }
