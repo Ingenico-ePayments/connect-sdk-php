@@ -18,6 +18,11 @@ class Card extends CardWithoutCvv
     public $cvv = null;
 
     /**
+     * @var string
+     */
+    public $partialPin = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -25,6 +30,9 @@ class Card extends CardWithoutCvv
         $object = parent::toObject();
         if (!is_null($this->cvv)) {
             $object->cvv = $this->cvv;
+        }
+        if (!is_null($this->partialPin)) {
+            $object->partialPin = $this->partialPin;
         }
         return $object;
     }
@@ -39,6 +47,9 @@ class Card extends CardWithoutCvv
         parent::fromObject($object);
         if (property_exists($object, 'cvv')) {
             $this->cvv = $object->cvv;
+        }
+        if (property_exists($object, 'partialPin')) {
+            $this->partialPin = $object->partialPin;
         }
         return $this;
     }
