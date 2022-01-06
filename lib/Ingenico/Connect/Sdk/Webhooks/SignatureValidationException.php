@@ -17,6 +17,6 @@ class SignatureValidationException extends RuntimeException
      */
     public function __construct($message = null, $previous = null)
     {
-        parent::__construct($message, null, $previous);
+        parent::__construct($message, 0, $previous);
     }
 }

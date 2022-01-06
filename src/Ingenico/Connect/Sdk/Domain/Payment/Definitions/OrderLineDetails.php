@@ -51,6 +51,11 @@ class OrderLineDetails extends DataObject
     /**
      * @var string
      */
+    public $productSku = null;
+
+    /**
+     * @var string
+     */
     public $productType = null;
 
     /**
@@ -95,6 +100,9 @@ class OrderLineDetails extends DataObject
         if (!is_null($this->productPrice)) {
             $object->productPrice = $this->productPrice;
         }
+        if (!is_null($this->productSku)) {
+            $object->productSku = $this->productSku;
+        }
         if (!is_null($this->productType)) {
             $object->productType = $this->productType;
         }
@@ -138,6 +146,9 @@ class OrderLineDetails extends DataObject
         }
         if (property_exists($object, 'productPrice')) {
             $this->productPrice = $object->productPrice;
+        }
+        if (property_exists($object, 'productSku')) {
+            $this->productSku = $object->productSku;
         }
         if (property_exists($object, 'productType')) {
             $this->productType = $object->productType;

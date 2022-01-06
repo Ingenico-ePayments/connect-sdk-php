@@ -256,7 +256,9 @@ class CommunicatorLoggingTest extends TestCase
      */
     protected function getMockCommunicatorConfiguration()
     {
-        return $this->getMockBuilder('\Ingenico\Connect\Sdk\CommunicatorConfiguration')->disableOriginalConstructor()->getMock();
+        $configuration = $this->getMockBuilder('\Ingenico\Connect\Sdk\CommunicatorConfiguration')->disableOriginalConstructor()->getMock();
+        $configuration->method('getApiSecret')->willReturn('foo');
+        return $configuration;
     }
 
     /**
