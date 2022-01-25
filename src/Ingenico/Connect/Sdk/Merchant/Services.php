@@ -14,6 +14,7 @@ use Ingenico\Connect\Sdk\Domain\Services\ConvertAmount;
 use Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsRequest;
 use Ingenico\Connect\Sdk\Domain\Services\GetIINDetailsResponse;
 use Ingenico\Connect\Sdk\Domain\Services\GetPrivacyPolicyResponse;
+use Ingenico\Connect\Sdk\Domain\Services\SettlementDetails;
 use Ingenico\Connect\Sdk\Domain\Services\TestConnection;
 use Ingenico\Connect\Sdk\GlobalCollectException;
 use Ingenico\Connect\Sdk\IdempotenceException;
@@ -170,6 +171,36 @@ class Services extends Resource
         return $this->getCommunicator()->get(
             $responseClassMap,
             $this->instantiateUri('/v1/{merchantId}/services/testconnection'),
+            $this->getClientMetaInfo(),
+            null,
+            $callContext
+        );
+    }
+
+    /**
+     * Resource /{merchantId}/services/settlementdetails/{paymentId} - Get Settlement details
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return SettlementDetails
+     *
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws IdempotenceException
+     * @throws ReferenceException
+     * @throws GlobalCollectException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/services/settlementdetails.html Get Settlement details
+     */
+    public function settlementdetails($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\Domain\Services\SettlementDetails';
+        return $this->getCommunicator()->get(
+            $responseClassMap,
+            $this->instantiateUri('/v1/{merchantId}/services/settlementdetails/{paymentId}'),
             $this->getClientMetaInfo(),
             null,
             $callContext
