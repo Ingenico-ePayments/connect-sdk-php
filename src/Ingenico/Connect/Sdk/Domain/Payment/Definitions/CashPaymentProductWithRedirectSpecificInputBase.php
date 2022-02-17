@@ -11,7 +11,7 @@ use UnexpectedValueException;
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class CashPaymentProduct1508SpecificInput extends DataObject
+class CashPaymentProductWithRedirectSpecificInputBase extends DataObject
 {
     /**
      * @var string

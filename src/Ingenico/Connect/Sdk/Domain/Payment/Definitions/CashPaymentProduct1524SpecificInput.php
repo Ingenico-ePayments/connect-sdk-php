@@ -5,28 +5,19 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\DataObject;
 use UnexpectedValueException;
 
 /**
  * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class CashPaymentProduct1524SpecificInput extends DataObject
+class CashPaymentProduct1524SpecificInput extends CashPaymentProductWithRedirectSpecificInputBase
 {
-    /**
-     * @var string
-     */
-    public $returnUrl = null;
-
     /**
      * @return object
      */
     public function toObject()
     {
         $object = parent::toObject();
-        if (!is_null($this->returnUrl)) {
-            $object->returnUrl = $this->returnUrl;
-        }
         return $object;
     }
 
@@ -38,9 +29,6 @@ class CashPaymentProduct1524SpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'returnUrl')) {
-            $this->returnUrl = $object->returnUrl;
-        }
         return $this;
     }
 }

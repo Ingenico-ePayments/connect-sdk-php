@@ -25,6 +25,11 @@ class Installments extends DataObject
     public $frequencyOfInstallments = null;
 
     /**
+     * @var int
+     */
+    public $installmentPlanCode = null;
+
+    /**
      * @var string
      */
     public $interestRate = null;
@@ -45,6 +50,9 @@ class Installments extends DataObject
         }
         if (!is_null($this->frequencyOfInstallments)) {
             $object->frequencyOfInstallments = $this->frequencyOfInstallments;
+        }
+        if (!is_null($this->installmentPlanCode)) {
+            $object->installmentPlanCode = $this->installmentPlanCode;
         }
         if (!is_null($this->interestRate)) {
             $object->interestRate = $this->interestRate;
@@ -72,6 +80,9 @@ class Installments extends DataObject
         }
         if (property_exists($object, 'frequencyOfInstallments')) {
             $this->frequencyOfInstallments = $object->frequencyOfInstallments;
+        }
+        if (property_exists($object, 'installmentPlanCode')) {
+            $this->installmentPlanCode = $object->installmentPlanCode;
         }
         if (property_exists($object, 'interestRate')) {
             $this->interestRate = $object->interestRate;
