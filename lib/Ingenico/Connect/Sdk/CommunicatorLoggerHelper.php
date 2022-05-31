@@ -89,6 +89,22 @@ class CommunicatorLoggerHelper
     }
 
     /**
+     * @param BodyObfuscator $bodyObfuscator
+     */
+    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator)
+    {
+        $this->getHttpObfuscator()->setBodyObfuscator($bodyObfuscator);
+    }
+
+    /**
+     * @param HeaderObfuscator $headerObfuscator
+     */
+    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator)
+    {
+        $this->getHttpObfuscator()->setHeaderObfuscator($headerObfuscator);
+    }
+
+    /**
      * @param string $requestUri
      * @return string
      */

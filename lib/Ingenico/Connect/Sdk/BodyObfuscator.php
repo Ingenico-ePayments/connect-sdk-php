@@ -15,6 +15,9 @@ class BodyObfuscator
     /** @var  ValueObfuscator */
     protected $valueObfuscator;
 
+    /** @var array<string, callable> */
+    private $customRules = array();
+
     public function __construct()
     {
         $this->valueObfuscator = new ValueObfuscator();
@@ -80,7 +83,11 @@ class BodyObfuscator
         if (!is_scalar($value)) {
             throw new UnexpectedValueException('scalar value expected');
         }
-        switch (mb_strtolower(strval($key), 'UTF-8')) {
+        $lowerKey = mb_strtolower(strval($key), 'UTF-8');
+        if (isset($this->customRules[$lowerKey])) {
+            return call_user_func($this->customRules[$lowerKey], $value, $this->valueObfuscator);
+        }
+        switch ($lowerKey) {
             case 'keyid':
             case 'secretkey':
             case 'publickey':
@@ -104,5 +111,15 @@ class BodyObfuscator
             default:
                 return $value;
         }
+    }
+
+    /**
+     * @param $propertyName
+     * @param callable $customRule
+     */
+    public function setCustomRule($propertyName, callable $customRule)
+    {
+        $lowerName = mb_strtolower(strval($propertyName), 'UTF-8');
+        $this->customRules[$lowerName] = $customRule;
     }
 }

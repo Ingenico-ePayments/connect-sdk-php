@@ -446,4 +446,20 @@ class DefaultConnection implements Connection
         }
         return $this->communicatorLoggerHelper;
     }
+
+    /**
+     * @param BodyObfuscator $bodyObfuscator
+     */
+    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator)
+    {
+        $this->getCommunicatorLoggerHelper()->setBodyObfuscator($bodyObfuscator);
+    }
+
+    /**
+     * @param HeaderObfuscator $headerObfuscator
+     */
+    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator)
+    {
+        $this->getCommunicatorLoggerHelper()->setHeaderObfuscator($headerObfuscator);
+    }
 }

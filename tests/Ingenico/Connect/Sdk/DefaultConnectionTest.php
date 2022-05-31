@@ -16,6 +16,8 @@ class DefaultConnectionTest extends TestCase
     {
         parent::setUp();
         $this->connection = new DefaultConnection();
+        $this->connection->setBodyObfuscator(new BodyObfuscator());
+        $this->connection->setHeaderObfuscator(new HeaderObfuscator());
     }
 
     public function test404WithBareApiEndpoint()

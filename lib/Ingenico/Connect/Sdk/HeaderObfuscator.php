@@ -11,6 +11,9 @@ class HeaderObfuscator
     /** @var ValueObfuscator */
     protected $valueObfuscator;
 
+    /** @var array<string, callable> */
+    private $customRules = array();
+
     public function __construct()
     {
         $this->valueObfuscator = new ValueObfuscator();
@@ -35,7 +38,11 @@ class HeaderObfuscator
      */
     protected function obfuscateHeaderValue($key, $value)
     {
-        switch (mb_strtolower(strval($key), 'UTF-8')) {
+        $lowerKey = mb_strtolower(strval($key), 'UTF-8');
+        if (isset($this->customRules[$lowerKey])) {
+            return $this->replaceHeaderValueWithCustomRule($value, $this->customRules[$lowerKey]);
+        }
+        switch ($lowerKey) {
             case 'authorization':
             case 'www-authenticate':
             case 'proxy-authenticate':
@@ -60,5 +67,31 @@ class HeaderObfuscator
         } else {
             return $this->valueObfuscator->obfuscateFixedLength($numberOfCharacters);
         }
+    }
+
+    /**
+     * @param $value
+     * @param callable $customRule
+     * @return array|string
+     */
+    protected function replaceHeaderValueWithCustomRule($value, callable $customRule)
+    {
+        if (is_array($value)) {
+            return array_map(function ($v) use ($customRule) {
+                return call_user_func($customRule, $v, $this->valueObfuscator);
+            }, $value);
+        } else {
+            return call_user_func($customRule, $value, $this->valueObfuscator);
+        }
+    }
+
+    /**
+     * @param $headerName
+     * @param callable $customRule
+     */
+    public function setCustomRule($headerName, callable $customRule)
+    {
+        $lowerName = mb_strtolower(strval($headerName), 'UTF-8');
+        $this->customRules[$lowerName] = $customRule;
     }
 }

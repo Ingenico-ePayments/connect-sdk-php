@@ -27,6 +27,22 @@ class HttpObfuscator
     }
 
     /**
+     * @param BodyObfuscator $bodyObfuscator
+     */
+    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator)
+    {
+        $this->bodyObfuscator = $bodyObfuscator;
+    }
+
+    /**
+     * @param HeaderObfuscator $headerObfuscator
+     */
+    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator)
+    {
+        $this->headerObfuscator = $headerObfuscator;
+    }
+
+    /**
      * @param string $requestMethod
      * @param string $relativeRequestUri
      * @param array $requestHeaders
