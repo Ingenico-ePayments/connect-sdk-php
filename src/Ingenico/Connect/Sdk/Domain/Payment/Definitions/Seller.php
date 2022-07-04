@@ -32,6 +32,11 @@ class Seller extends DataObject
     /**
      * @var string
      */
+    public $externalReferenceId = null;
+
+    /**
+     * @var string
+     */
     public $geocode = null;
 
     /**
@@ -57,6 +62,11 @@ class Seller extends DataObject
     /**
      * @var string
      */
+    public $phoneNumber = null;
+
+    /**
+     * @var string
+     */
     public $type = null;
 
     /**
@@ -74,6 +84,9 @@ class Seller extends DataObject
         if (!is_null($this->description)) {
             $object->description = $this->description;
         }
+        if (!is_null($this->externalReferenceId)) {
+            $object->externalReferenceId = $this->externalReferenceId;
+        }
         if (!is_null($this->geocode)) {
             $object->geocode = $this->geocode;
         }
@@ -88,6 +101,9 @@ class Seller extends DataObject
         }
         if (!is_null($this->name)) {
             $object->name = $this->name;
+        }
+        if (!is_null($this->phoneNumber)) {
+            $object->phoneNumber = $this->phoneNumber;
         }
         if (!is_null($this->type)) {
             $object->type = $this->type;
@@ -116,6 +132,9 @@ class Seller extends DataObject
         if (property_exists($object, 'description')) {
             $this->description = $object->description;
         }
+        if (property_exists($object, 'externalReferenceId')) {
+            $this->externalReferenceId = $object->externalReferenceId;
+        }
         if (property_exists($object, 'geocode')) {
             $this->geocode = $object->geocode;
         }
@@ -130,6 +149,9 @@ class Seller extends DataObject
         }
         if (property_exists($object, 'name')) {
             $this->name = $object->name;
+        }
+        if (property_exists($object, 'phoneNumber')) {
+            $this->phoneNumber = $object->phoneNumber;
         }
         if (property_exists($object, 'type')) {
             $this->type = $object->type;

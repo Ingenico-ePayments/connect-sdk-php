@@ -126,6 +126,11 @@ class PaymentProduct extends DataObject
     /**
      * @var bool
      */
+    public $supportsMandates = null;
+
+    /**
+     * @var bool
+     */
     public $usesRedirectionTo3rdParty = null;
 
     /**
@@ -209,6 +214,9 @@ class PaymentProduct extends DataObject
         }
         if (!is_null($this->paymentProductGroup)) {
             $object->paymentProductGroup = $this->paymentProductGroup;
+        }
+        if (!is_null($this->supportsMandates)) {
+            $object->supportsMandates = $this->supportsMandates;
         }
         if (!is_null($this->usesRedirectionTo3rdParty)) {
             $object->usesRedirectionTo3rdParty = $this->usesRedirectionTo3rdParty;
@@ -323,6 +331,9 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'paymentProductGroup')) {
             $this->paymentProductGroup = $object->paymentProductGroup;
+        }
+        if (property_exists($object, 'supportsMandates')) {
+            $this->supportsMandates = $object->supportsMandates;
         }
         if (property_exists($object, 'usesRedirectionTo3rdParty')) {
             $this->usesRedirectionTo3rdParty = $object->usesRedirectionTo3rdParty;
