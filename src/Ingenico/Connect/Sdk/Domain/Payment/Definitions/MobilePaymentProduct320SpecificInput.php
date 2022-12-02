@@ -14,6 +14,11 @@ use UnexpectedValueException;
 class MobilePaymentProduct320SpecificInput extends DataObject
 {
     /**
+     * @var string
+     */
+    public $cardholderName = null;
+
+    /**
      * @var GPayThreeDSecure
      */
     public $threeDSecure = null;
@@ -24,6 +29,9 @@ class MobilePaymentProduct320SpecificInput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->cardholderName)) {
+            $object->cardholderName = $this->cardholderName;
+        }
         if (!is_null($this->threeDSecure)) {
             $object->threeDSecure = $this->threeDSecure->toObject();
         }
@@ -38,6 +46,9 @@ class MobilePaymentProduct320SpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'cardholderName')) {
+            $this->cardholderName = $object->cardholderName;
+        }
         if (property_exists($object, 'threeDSecure')) {
             if (!is_object($object->threeDSecure)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->threeDSecure, true) . '\' is not an object');

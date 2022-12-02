@@ -16,6 +16,11 @@ class Merchant extends DataObject
     /**
      * @var string
      */
+    public $configurationId = null;
+
+    /**
+     * @var string
+     */
     public $contactWebsiteUrl = null;
 
     /**
@@ -34,6 +39,9 @@ class Merchant extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->configurationId)) {
+            $object->configurationId = $this->configurationId;
+        }
         if (!is_null($this->contactWebsiteUrl)) {
             $object->contactWebsiteUrl = $this->contactWebsiteUrl;
         }
@@ -54,6 +62,9 @@ class Merchant extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'configurationId')) {
+            $this->configurationId = $object->configurationId;
+        }
         if (property_exists($object, 'contactWebsiteUrl')) {
             $this->contactWebsiteUrl = $object->contactWebsiteUrl;
         }

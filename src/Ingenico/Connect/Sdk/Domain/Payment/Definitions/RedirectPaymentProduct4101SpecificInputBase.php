@@ -3,19 +3,19 @@
  * This class was auto-generated from the API references found at
  * https://epayments-api.developer-ingenico.com/s2sapi/v1/
  */
-namespace Ingenico\Connect\Sdk\Domain\Definitions;
+namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
 use UnexpectedValueException;
 
 /**
- * @package Ingenico\Connect\Sdk\Domain\Definitions
+ * @package Ingenico\Connect\Sdk\Domain\Payment\Definitions
  */
-class CardWithoutCvv extends CardEssentials
+class RedirectPaymentProduct4101SpecificInputBase extends AbstractRedirectPaymentProduct4101SpecificInput
 {
     /**
      * @var string
      */
-    public $issueNumber = null;
+    public $displayName = null;
 
     /**
      * @return object
@@ -23,8 +23,8 @@ class CardWithoutCvv extends CardEssentials
     public function toObject()
     {
         $object = parent::toObject();
-        if (!is_null($this->issueNumber)) {
-            $object->issueNumber = $this->issueNumber;
+        if (!is_null($this->displayName)) {
+            $object->displayName = $this->displayName;
         }
         return $object;
     }
@@ -37,8 +37,8 @@ class CardWithoutCvv extends CardEssentials
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'issueNumber')) {
-            $this->issueNumber = $object->issueNumber;
+        if (property_exists($object, 'displayName')) {
+            $this->displayName = $object->displayName;
         }
         return $this;
     }

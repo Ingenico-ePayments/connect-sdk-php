@@ -21,6 +21,11 @@ class CardEssentials extends DataObject
     /**
      * @var string
      */
+    public $cardholderName = null;
+
+    /**
+     * @var string
+     */
     public $expiryDate = null;
 
     /**
@@ -31,6 +36,9 @@ class CardEssentials extends DataObject
         $object = parent::toObject();
         if (!is_null($this->cardNumber)) {
             $object->cardNumber = $this->cardNumber;
+        }
+        if (!is_null($this->cardholderName)) {
+            $object->cardholderName = $this->cardholderName;
         }
         if (!is_null($this->expiryDate)) {
             $object->expiryDate = $this->expiryDate;
@@ -48,6 +56,9 @@ class CardEssentials extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'cardNumber')) {
             $this->cardNumber = $object->cardNumber;
+        }
+        if (property_exists($object, 'cardholderName')) {
+            $this->cardholderName = $object->cardholderName;
         }
         if (property_exists($object, 'expiryDate')) {
             $this->expiryDate = $object->expiryDate;
