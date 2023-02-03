@@ -26,7 +26,7 @@ class BodyObfuscator
     /**
      * @param string $contentType
      * @param string $body
-     * @return mixed
+     * @return string
      */
     public function obfuscateBody($contentType, $body)
     {

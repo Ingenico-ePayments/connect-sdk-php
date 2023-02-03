@@ -3,6 +3,7 @@ namespace Ingenico\Connect\Sdk\Webhooks;
 
 use Ingenico\Connect\Sdk\Client;
 use Ingenico\Connect\Sdk\ConnectionResponse;
+use Ingenico\Connect\Sdk\Domain\Webhooks\WebhooksEvent;
 use Ingenico\Connect\Sdk\ResponseClassMap;
 use Ingenico\Connect\Sdk\ResponseFactory;
 
@@ -258,6 +259,7 @@ class ApiVersionMismatchTestingResponseFactory extends ResponseFactory
         ConnectionResponse $response,
         ResponseClassMap $responseClassMap
     ) {
+        /** @var WebhooksEvent $event */
         $event = parent::createResponse($response, $responseClassMap);
         $event->apiVersion = 'v0';
         return $event;

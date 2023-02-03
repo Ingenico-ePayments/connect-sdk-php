@@ -10,6 +10,7 @@ class TestingConnection extends DefaultConnection
 
     function __construct(ConnectionResponse $response = null, Exception $exception = null)
     {
+        parent::__construct();
         $this->response = $response;
         $this->exception = $exception;
     }

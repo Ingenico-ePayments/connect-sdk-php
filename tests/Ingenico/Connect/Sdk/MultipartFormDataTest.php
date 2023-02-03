@@ -21,6 +21,7 @@ class MultipartFormDataTest extends TestCase
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\HttpBinResponse';
 
+        /** @var HttpBinResponse $response */
         $response = $communicator->post($responseClassMap, '/post', '', $multipart, null, null);
 
         $this->assertEquals('Hello World', $response->form->value);
@@ -41,6 +42,7 @@ class MultipartFormDataTest extends TestCase
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\HttpBinResponse';
 
+        /** @var HttpBinResponse $response */
         $response = $communicator->post($responseClassMap, '/post', '', new MultipartFormDataWrapper($multipart), null, null);
 
         $this->assertEquals('Hello World', $response->form->value);
@@ -117,6 +119,7 @@ class MultipartFormDataTest extends TestCase
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\HttpBinResponse';
 
+        /** @var HttpBinResponse $response */
         $response = $communicator->put($responseClassMap, '/put', '', $multipart, null, null);
 
         $this->assertEquals('Hello World', $response->form->value);
@@ -137,6 +140,7 @@ class MultipartFormDataTest extends TestCase
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Ingenico\Connect\Sdk\HttpBinResponse';
 
+        /** @var HttpBinResponse $response */
         $response = $communicator->put($responseClassMap, '/put', '', new MultipartFormDataWrapper($multipart), null, null);
 
         $this->assertEquals('Hello World', $response->form->value);

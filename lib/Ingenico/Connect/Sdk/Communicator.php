@@ -531,7 +531,7 @@ class Communicator
     }
 
     /**
-     * @param CommunicatorConfiguration
+     * @param CommunicatorConfiguration $communicatorConfiguration
      * @return Communicator
      */
     public function setCommunicatorConfiguration(CommunicatorConfiguration $communicatorConfiguration)

@@ -38,7 +38,7 @@ class SplFileObjectLogger implements CommunicatorLogger
     /** @inheritdoc */
     public function logException($message, Exception $exception)
     {
-        $this->splFileObject->fwrite($this->getDatePrefix() . $message . PHP_EOL . (string) $exception . PHP_EOL);
+        $this->splFileObject->fwrite($this->getDatePrefix() . $message . PHP_EOL . $exception . PHP_EOL);
     }
 
     /** @return string */

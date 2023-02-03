@@ -30,6 +30,6 @@ class ResourceLoggerTest extends \PHPUnit\Framework\TestCase
         // 25 is length of DATE_ATOM
         fseek($temp, 26);
         $content = fread($temp, 4096);
-        $this->assertEquals($message . PHP_EOL . (string) $exception . PHP_EOL, $content);
+        $this->assertEquals($message . PHP_EOL . $exception . PHP_EOL, $content);
     }
 }

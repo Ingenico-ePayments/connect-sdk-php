@@ -32,7 +32,7 @@ class ResponseFactory
     /**
      * @param ConnectionResponse $response
      * @param ResponseClassMap $responseClassMap
-     * @return DataObject
+     * @return DataObject|null
      */
     protected function getResponseObject(
         ConnectionResponse $response,

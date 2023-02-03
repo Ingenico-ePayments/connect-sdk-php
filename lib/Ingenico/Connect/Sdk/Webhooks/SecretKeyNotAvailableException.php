@@ -16,7 +16,7 @@ class SecretKeyNotAvailableException extends SignatureValidationException
     /**
      * @param string $keyId
      * @param string $message
-     * @param Exception @previous
+     * @param Exception $previous
      */
     public function __construct($keyId, $message = null, $previous = null)
     {

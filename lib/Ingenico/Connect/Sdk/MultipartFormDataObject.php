@@ -64,7 +64,7 @@ class MultipartFormDataObject
 
     /**
      * @param string $parameterName
-     * @param string value
+     * @param string $value
      */
     public function addValue($parameterName, $value)
     {
@@ -88,9 +88,6 @@ class MultipartFormDataObject
     {
         if (is_null($parameterName) || strlen(trim($parameterName)) == 0) {
             throw new UnexpectedValueException("boundary is required");
-        }
-        if (is_null($file)) {
-            throw new UnexpectedValueException("file is required");
         }
         if (array_key_exists($parameterName, $this->values) || array_key_exists($parameterName, $this->files)) {
             throw new UnexpectedValueException('Duplicate parameter name: ' . $parameterName);

@@ -227,7 +227,7 @@ class DefaultConnection implements Connection
     /**
      * @param resource $curlHandle
      * @param callable $responseHandler
-     * @return DefaultConnectionResponse|null
+     * @return ConnectionResponse|null
      * @throws Exception
      */
     private function executeCurlHandle($curlHandle, callable $responseHandler)

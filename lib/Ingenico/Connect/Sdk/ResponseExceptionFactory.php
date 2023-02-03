@@ -19,14 +19,7 @@ class ResponseExceptionFactory
      * @param $httpStatusCode
      * @param DataObject $errorObject
      * @param CallContext $callContext
-     * @return DeclinedPaymentException
-     *       | DeclinedPayoutException
-     *       | DeclinedRefundException
-     *       | ValidationException
-     *       | AuthorizationException
-     *       | ReferenceException
-     *       | GlobalCollectException
-     *       | ApiException
+     * @return ResponseException
      */
     public function createException(
         $httpStatusCode,

@@ -43,7 +43,7 @@ class Resource
     /**
      * Returns the client headers with this resource.
      *
-     * @return array
+     * @return string
      */
     protected function getClientMetaInfo()
     {

@@ -93,7 +93,7 @@ class DefaultConnectionResponse implements ConnectionResponse
         }
         if (preg_match('/(?i)(?:^|;)\s*fileName\s*=\s*(.*?)\s*(?:;|$)/', $headerValue, $matches)) {
             $filename = $matches[1];
-            return static::trimQuotes($filename);
+            return self::trimQuotes($filename);
         }
         return null;
     }

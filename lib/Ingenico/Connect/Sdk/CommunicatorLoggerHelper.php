@@ -29,19 +29,17 @@ class CommunicatorLoggerHelper
         array $requestHeaders,
         $requestBody = ''
     ) {
-        if ($communicatorLogger) {
-            $communicatorLogger->log(sprintf(
-                "Outgoing request to %s (requestId='%s')\n%s",
-                $this->getEndpoint($requestUri),
-                $requestId,
-                $this->getHttpObfuscator()->getRawObfuscatedRequest(
-                    $requestMethod,
-                    $this->getRelativeUriPathWithRequestParameters($requestUri),
-                    $requestHeaders,
-                    $requestBody
-                )
-            ));
-        }
+        $communicatorLogger->log(sprintf(
+            "Outgoing request to %s (requestId='%s')\n%s",
+            $this->getEndpoint($requestUri),
+            $requestId,
+            $this->getHttpObfuscator()->getRawObfuscatedRequest(
+                $requestMethod,
+                $this->getRelativeUriPathWithRequestParameters($requestUri),
+                $requestHeaders,
+                $requestBody
+            )
+        ));
     }
 
     /**
@@ -52,14 +50,12 @@ class CommunicatorLoggerHelper
      */
     public function logResponse(CommunicatorLogger $communicatorLogger, $requestId, $requestUri, ConnectionResponse $response)
     {
-        if ($communicatorLogger) {
-            $communicatorLogger->log(sprintf(
-                "Incoming response from %s (requestId='%s')\n%s",
-                $this->getEndpoint($requestUri),
-                $requestId,
-                $this->getHttpObfuscator()->getRawObfuscatedResponse($response)
-            ));
-        }
+        $communicatorLogger->log(sprintf(
+            "Incoming response from %s (requestId='%s')\n%s",
+            $this->getEndpoint($requestUri),
+            $requestId,
+            $this->getHttpObfuscator()->getRawObfuscatedResponse($response)
+        ));
     }
 
     /**
@@ -70,13 +66,11 @@ class CommunicatorLoggerHelper
      */
     public function logException(CommunicatorLogger $communicatorLogger, $requestId, $requestUri, Exception $exception)
     {
-        if ($communicatorLogger) {
-            $communicatorLogger->logException(sprintf(
-                "Error occurred while executing request to %s (requestId='%s')",
-                $this->getEndpoint($requestUri),
-                $requestId
-            ), $exception);
-        }
+        $communicatorLogger->logException(sprintf(
+            "Error occurred while executing request to %s (requestId='%s')",
+            $this->getEndpoint($requestUri),
+            $requestId
+        ), $exception);
     }
 
     /** @return HttpObfuscator */
@@ -111,7 +105,7 @@ class CommunicatorLoggerHelper
     public function getEndpoint($requestUri)
     {
         $index = strpos($requestUri, '://');
-        if ($index != FALSE) {
+        if ($index !== FALSE) {
             $index = strpos($requestUri, '/', $index + 3);
             // $index === FALSE means there's no / after the host; there is no relative URI
             return $index !== FALSE ? substr($requestUri, 0, $index) : $requestUri;

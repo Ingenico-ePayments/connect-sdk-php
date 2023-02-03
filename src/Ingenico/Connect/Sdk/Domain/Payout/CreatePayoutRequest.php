@@ -13,6 +13,7 @@ use Ingenico\Connect\Sdk\Domain\Payout\Definitions\BankTransferPayoutMethodSpeci
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\CardPayoutMethodSpecificInput;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutCustomer;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutDetails;
+use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutMerchant;
 use Ingenico\Connect\Sdk\Domain\Payout\Definitions\PayoutReferences;
 use UnexpectedValueException;
 
@@ -54,6 +55,11 @@ class CreatePayoutRequest extends DataObject
      * @deprecated Moved to PayoutDetails
      */
     public $customer = null;
+
+    /**
+     * @var PayoutMerchant
+     */
+    public $merchant = null;
 
     /**
      * @var string
@@ -107,6 +113,9 @@ class CreatePayoutRequest extends DataObject
         }
         if (!is_null($this->customer)) {
             $object->customer = $this->customer->toObject();
+        }
+        if (!is_null($this->merchant)) {
+            $object->merchant = $this->merchant->toObject();
         }
         if (!is_null($this->payoutDate)) {
             $object->payoutDate = $this->payoutDate;
@@ -175,6 +184,13 @@ class CreatePayoutRequest extends DataObject
             }
             $value = new PayoutCustomer();
             $this->customer = $value->fromObject($object->customer);
+        }
+        if (property_exists($object, 'merchant')) {
+            if (!is_object($object->merchant)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->merchant, true) . '\' is not an object');
+            }
+            $value = new PayoutMerchant();
+            $this->merchant = $value->fromObject($object->merchant);
         }
         if (property_exists($object, 'payoutDate')) {
             $this->payoutDate = $object->payoutDate;

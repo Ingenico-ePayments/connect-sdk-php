@@ -13,7 +13,7 @@ class SignatureValidationException extends RuntimeException
 {
     /**
      * @param string $message
-     * @param Exception @previous
+     * @param Exception $previous
      */
     public function __construct($message = null, $previous = null)
     {
