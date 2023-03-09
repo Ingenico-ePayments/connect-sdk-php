@@ -202,7 +202,6 @@ class DefaultConnection implements Connection
      */
     private function executeCurlHandleShared($multiHandle, $curlHandle)
     {
-        $running = null;
         do {
             $status = curl_multi_exec($multiHandle, $running);
             if ($status > CURLM_OK) {

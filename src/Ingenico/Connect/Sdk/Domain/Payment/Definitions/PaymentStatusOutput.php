@@ -24,6 +24,11 @@ class PaymentStatusOutput extends OrderStatusOutput
     public $isRefundable = null;
 
     /**
+     * @var bool
+     */
+    public $isRetriable = null;
+
+    /**
      * @var string
      */
     public $threeDSecureStatus = null;
@@ -39,6 +44,9 @@ class PaymentStatusOutput extends OrderStatusOutput
         }
         if (!is_null($this->isRefundable)) {
             $object->isRefundable = $this->isRefundable;
+        }
+        if (!is_null($this->isRetriable)) {
+            $object->isRetriable = $this->isRetriable;
         }
         if (!is_null($this->threeDSecureStatus)) {
             $object->threeDSecureStatus = $this->threeDSecureStatus;
@@ -59,6 +67,9 @@ class PaymentStatusOutput extends OrderStatusOutput
         }
         if (property_exists($object, 'isRefundable')) {
             $this->isRefundable = $object->isRefundable;
+        }
+        if (property_exists($object, 'isRetriable')) {
+            $this->isRetriable = $object->isRetriable;
         }
         if (property_exists($object, 'threeDSecureStatus')) {
             $this->threeDSecureStatus = $object->threeDSecureStatus;
