@@ -50,6 +50,11 @@ class Seller extends DataObject
     public $invoiceNumber = null;
 
     /**
+     * @var bool
+     */
+    public $isForeignRetailer = null;
+
+    /**
      * @var string
      */
     public $mcc = null;
@@ -95,6 +100,9 @@ class Seller extends DataObject
         }
         if (!is_null($this->invoiceNumber)) {
             $object->invoiceNumber = $this->invoiceNumber;
+        }
+        if (!is_null($this->isForeignRetailer)) {
+            $object->isForeignRetailer = $this->isForeignRetailer;
         }
         if (!is_null($this->mcc)) {
             $object->mcc = $this->mcc;
@@ -143,6 +151,9 @@ class Seller extends DataObject
         }
         if (property_exists($object, 'invoiceNumber')) {
             $this->invoiceNumber = $object->invoiceNumber;
+        }
+        if (property_exists($object, 'isForeignRetailer')) {
+            $this->isForeignRetailer = $object->isForeignRetailer;
         }
         if (property_exists($object, 'mcc')) {
             $this->mcc = $object->mcc;
