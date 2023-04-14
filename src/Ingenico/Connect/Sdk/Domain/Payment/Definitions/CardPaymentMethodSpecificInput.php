@@ -35,6 +35,11 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
     public $merchantInitiatedReasonIndicator = null;
 
     /**
+     * @var SchemeTokenData
+     */
+    public $networkTokenData = null;
+
+    /**
      * @var string
      * @deprecated Use threeDSecure.redirectionData.returnUrl instead
      */
@@ -62,6 +67,9 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
         }
         if (!is_null($this->merchantInitiatedReasonIndicator)) {
             $object->merchantInitiatedReasonIndicator = $this->merchantInitiatedReasonIndicator;
+        }
+        if (!is_null($this->networkTokenData)) {
+            $object->networkTokenData = $this->networkTokenData->toObject();
         }
         if (!is_null($this->returnUrl)) {
             $object->returnUrl = $this->returnUrl;
@@ -99,6 +107,13 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
         }
         if (property_exists($object, 'merchantInitiatedReasonIndicator')) {
             $this->merchantInitiatedReasonIndicator = $object->merchantInitiatedReasonIndicator;
+        }
+        if (property_exists($object, 'networkTokenData')) {
+            if (!is_object($object->networkTokenData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->networkTokenData, true) . '\' is not an object');
+            }
+            $value = new SchemeTokenData();
+            $this->networkTokenData = $value->fromObject($object->networkTokenData);
         }
         if (property_exists($object, 'returnUrl')) {
             $this->returnUrl = $object->returnUrl;
