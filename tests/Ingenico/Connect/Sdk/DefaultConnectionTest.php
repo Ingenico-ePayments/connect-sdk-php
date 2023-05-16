@@ -134,7 +134,7 @@ class DefaultConnectionTest extends TestCase
             $responseBuilder->setHttpStatusCode($httpStatusCode);
             $responseBuilder->setHeaders($headers);
         };
-        $this->connection->get('http://httpbin.org/delay/' . $delay, [], $responseHandler);
+        $this->connection->get($this->getHttpBinUrl() .  '/delay/' . $delay, [], $responseHandler);
         $this->assertEquals(200, $responseBuilder->getResponse()->getHttpStatusCode());
     }
 

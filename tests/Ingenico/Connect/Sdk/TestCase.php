@@ -105,6 +105,19 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * @return string
+     * @throws Exception
+     */
+    protected function getHttpBinUrl()
+    {
+        $httpBinUrl = $this->getJsonValuesStore()->getValue('httpbin_url', false);
+        if (!$httpBinUrl) {
+            $httpBinUrl = 'http://httpbin.org';
+        }
+        return $httpBinUrl;
+    }
+
+    /**
      * @return JsonValuesStore
      */
     protected function getJsonValuesStore()

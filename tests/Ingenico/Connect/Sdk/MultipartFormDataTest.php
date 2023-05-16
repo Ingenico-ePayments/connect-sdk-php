@@ -11,7 +11,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -32,7 +32,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -53,7 +53,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -81,7 +81,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -109,7 +109,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -130,7 +130,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -151,7 +151,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();
@@ -179,7 +179,7 @@ class MultipartFormDataTest extends TestCase
     {
         $connection = new DefaultConnection();
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
-        $communicatorConfiguration->setApiEndpoint('http://httpbin.org');
+        $communicatorConfiguration->setApiEndpoint($this->getHttpBinUrl());
         $communicator = new Communicator($connection, $communicatorConfiguration);
 
         $multipart = new MultipartFormDataObject();

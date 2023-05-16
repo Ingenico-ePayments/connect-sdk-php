@@ -75,6 +75,11 @@ class AirlineData extends DataObject
     public $name = null;
 
     /**
+     * @var int
+     */
+    public $numberInParty = null;
+
+    /**
      * @var string
      */
     public $passengerName = null;
@@ -181,6 +186,9 @@ class AirlineData extends DataObject
         if (!is_null($this->name)) {
             $object->name = $this->name;
         }
+        if (!is_null($this->numberInParty)) {
+            $object->numberInParty = $this->numberInParty;
+        }
         if (!is_null($this->passengerName)) {
             $object->passengerName = $this->passengerName;
         }
@@ -275,6 +283,9 @@ class AirlineData extends DataObject
         }
         if (property_exists($object, 'name')) {
             $this->name = $object->name;
+        }
+        if (property_exists($object, 'numberInParty')) {
+            $this->numberInParty = $object->numberInParty;
         }
         if (property_exists($object, 'passengerName')) {
             $this->passengerName = $object->passengerName;

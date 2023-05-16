@@ -6,5 +6,6 @@
     "proxy_host":     "HOST_OR_EMPTY",
     "proxy_port":     "PORT_OR_EMPTY",
     "proxy_username": "USERNAME_OR_EMPTY",
-    "proxy_password": "PASSWORD_OR_EMPTY"
+    "proxy_password": "PASSWORD_OR_EMPTY",
+    "httpbin_url":    "http://httpbin.org"
 }
