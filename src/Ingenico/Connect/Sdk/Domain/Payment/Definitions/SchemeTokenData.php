@@ -16,6 +16,11 @@ class SchemeTokenData extends DataObject
     /**
      * @var string
      */
+    public $cardholderName = null;
+
+    /**
+     * @var string
+     */
     public $cryptogram = null;
 
     /**
@@ -39,6 +44,9 @@ class SchemeTokenData extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->cardholderName)) {
+            $object->cardholderName = $this->cardholderName;
+        }
         if (!is_null($this->cryptogram)) {
             $object->cryptogram = $this->cryptogram;
         }
@@ -62,6 +70,9 @@ class SchemeTokenData extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'cardholderName')) {
+            $this->cardholderName = $object->cardholderName;
+        }
         if (property_exists($object, 'cryptogram')) {
             $this->cryptogram = $object->cryptogram;
         }

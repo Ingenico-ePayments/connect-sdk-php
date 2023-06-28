@@ -36,6 +36,11 @@ class PaymentReferences extends DataObject
     /**
      * @var string
      */
+    public $providerMerchantId = null;
+
+    /**
+     * @var string
+     */
     public $providerReference = null;
 
     /**
@@ -60,6 +65,9 @@ class PaymentReferences extends DataObject
         }
         if (!is_null($this->providerId)) {
             $object->providerId = $this->providerId;
+        }
+        if (!is_null($this->providerMerchantId)) {
+            $object->providerMerchantId = $this->providerMerchantId;
         }
         if (!is_null($this->providerReference)) {
             $object->providerReference = $this->providerReference;
@@ -89,6 +97,9 @@ class PaymentReferences extends DataObject
         }
         if (property_exists($object, 'providerId')) {
             $this->providerId = $object->providerId;
+        }
+        if (property_exists($object, 'providerMerchantId')) {
+            $this->providerMerchantId = $object->providerMerchantId;
         }
         if (property_exists($object, 'providerReference')) {
             $this->providerReference = $object->providerReference;

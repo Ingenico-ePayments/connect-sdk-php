@@ -15,6 +15,11 @@ class PaymentCreationOutput extends PaymentCreationReferences
     /**
      * @var bool
      */
+    public $isCheckedRememberMe = null;
+
+    /**
+     * @var bool
+     */
     public $isNewToken = null;
 
     /**
@@ -33,6 +38,9 @@ class PaymentCreationOutput extends PaymentCreationReferences
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->isCheckedRememberMe)) {
+            $object->isCheckedRememberMe = $this->isCheckedRememberMe;
+        }
         if (!is_null($this->isNewToken)) {
             $object->isNewToken = $this->isNewToken;
         }
@@ -53,6 +61,9 @@ class PaymentCreationOutput extends PaymentCreationReferences
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'isCheckedRememberMe')) {
+            $this->isCheckedRememberMe = $object->isCheckedRememberMe;
+        }
         if (property_exists($object, 'isNewToken')) {
             $this->isNewToken = $object->isNewToken;
         }

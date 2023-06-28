@@ -1,0 +1,56 @@
+name: API docs
+
+on:
+  push:
+    tags: ['[0-9]+.[0-9]+*']
+
+permissions:
+  contents: write
+
+jobs:
+  api-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: code
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '5.6'
+      - name: Install apigen
+        run: composer global require apigen/apigen
+      - name: Build API docs
+        run: apigen generate -s lib,src -d docs --deprecated --no-source-code  --title 'Ingenico Connect PHP SDK'
+        working-directory: code
+      - name: Checkout pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: pages
+      - name: Deploy pages
+        run: |
+          SDK_VERSION_FOLDER=`echo "$SDK_VERSION" | awk --field-separator '.' '{print $1".x";}'`
+
+          # Create .nojekyll if it doesn't exist yet
+          touch .nojekyll
+
+          mkdir -p "apidoc/$SDK_VERSION_FOLDER"
+          rsync --quiet --archive --checksum --delete --exclude .git ../code/docs/ "apidoc/$SDK_VERSION_FOLDER/"
+          if [ -e apidoc/latest ]; then rm -r apidoc/latest; fi
+          pushd apidoc && ln -s "$SDK_VERSION_FOLDER" latest && popd
+
+          git config user.email "$USER_EMAIL"
+          git config user.name "$USER_NAME"
+          git add --all .
+          # Only commit when there are changes
+          git diff --quiet && git diff --staged --quiet || git commit --message "Generated API docs for version ${SDK_VERSION}"
+          git push
+        shell: bash
+        working-directory: pages
+        env:
+          SDK_VERSION: ${{ github.ref_name }}
+          USER_EMAIL: ${{ github.event.pusher.email }}
+          USER_NAME: ${{ github.event.pusher.name }}

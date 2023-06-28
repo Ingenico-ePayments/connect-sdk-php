@@ -21,6 +21,11 @@ class CreatedPaymentOutput extends DataObject
     public $displayedData = null;
 
     /**
+     * @var bool
+     */
+    public $isCheckedRememberMe = null;
+
+    /**
      * @var Payment
      */
     public $payment = null;
@@ -55,6 +60,9 @@ class CreatedPaymentOutput extends DataObject
         if (!is_null($this->displayedData)) {
             $object->displayedData = $this->displayedData->toObject();
         }
+        if (!is_null($this->isCheckedRememberMe)) {
+            $object->isCheckedRememberMe = $this->isCheckedRememberMe;
+        }
         if (!is_null($this->payment)) {
             $object->payment = $this->payment->toObject();
         }
@@ -87,6 +95,9 @@ class CreatedPaymentOutput extends DataObject
             }
             $value = new DisplayedData();
             $this->displayedData = $value->fromObject($object->displayedData);
+        }
+        if (property_exists($object, 'isCheckedRememberMe')) {
+            $this->isCheckedRememberMe = $object->isCheckedRememberMe;
         }
         if (property_exists($object, 'payment')) {
             if (!is_object($object->payment)) {
