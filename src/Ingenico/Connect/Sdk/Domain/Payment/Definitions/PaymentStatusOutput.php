@@ -5,7 +5,6 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
-use Ingenico\Connect\Sdk\Domain\Definitions\KeyValuePair;
 use Ingenico\Connect\Sdk\Domain\Definitions\OrderStatusOutput;
 use UnexpectedValueException;
 
@@ -25,16 +24,6 @@ class PaymentStatusOutput extends OrderStatusOutput
     public $isRefundable = null;
 
     /**
-     * @var bool
-     */
-    public $isRetriable = null;
-
-    /**
-     * @var KeyValuePair[]
-     */
-    public $providerRawOutput = null;
-
-    /**
      * @var string
      */
     public $threeDSecureStatus = null;
@@ -50,17 +39,6 @@ class PaymentStatusOutput extends OrderStatusOutput
         }
         if (!is_null($this->isRefundable)) {
             $object->isRefundable = $this->isRefundable;
-        }
-        if (!is_null($this->isRetriable)) {
-            $object->isRetriable = $this->isRetriable;
-        }
-        if (!is_null($this->providerRawOutput)) {
-            $object->providerRawOutput = [];
-            foreach ($this->providerRawOutput as $element) {
-                if (!is_null($element)) {
-                    $object->providerRawOutput[] = $element->toObject();
-                }
-            }
         }
         if (!is_null($this->threeDSecureStatus)) {
             $object->threeDSecureStatus = $this->threeDSecureStatus;
@@ -81,19 +59,6 @@ class PaymentStatusOutput extends OrderStatusOutput
         }
         if (property_exists($object, 'isRefundable')) {
             $this->isRefundable = $object->isRefundable;
-        }
-        if (property_exists($object, 'isRetriable')) {
-            $this->isRetriable = $object->isRetriable;
-        }
-        if (property_exists($object, 'providerRawOutput')) {
-            if (!is_array($object->providerRawOutput) && !is_object($object->providerRawOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->providerRawOutput, true) . '\' is not an array or object');
-            }
-            $this->providerRawOutput = [];
-            foreach ($object->providerRawOutput as $element) {
-                $value = new KeyValuePair();
-                $this->providerRawOutput[] = $value->fromObject($element);
-            }
         }
         if (property_exists($object, 'threeDSecureStatus')) {
             $this->threeDSecureStatus = $object->threeDSecureStatus;

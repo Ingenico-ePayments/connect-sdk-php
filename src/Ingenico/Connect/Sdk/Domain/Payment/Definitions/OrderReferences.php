@@ -34,6 +34,16 @@ class OrderReferences extends DataObject
     public $merchantReference = null;
 
     /**
+     * @var string
+     */
+    public $providerId = null;
+
+    /**
+     * @var string
+     */
+    public $providerMerchantId = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -50,6 +60,12 @@ class OrderReferences extends DataObject
         }
         if (!is_null($this->merchantReference)) {
             $object->merchantReference = $this->merchantReference;
+        }
+        if (!is_null($this->providerId)) {
+            $object->providerId = $this->providerId;
+        }
+        if (!is_null($this->providerMerchantId)) {
+            $object->providerMerchantId = $this->providerMerchantId;
         }
         return $object;
     }
@@ -77,6 +93,12 @@ class OrderReferences extends DataObject
         }
         if (property_exists($object, 'merchantReference')) {
             $this->merchantReference = $object->merchantReference;
+        }
+        if (property_exists($object, 'providerId')) {
+            $this->providerId = $object->providerId;
+        }
+        if (property_exists($object, 'providerMerchantId')) {
+            $this->providerMerchantId = $object->providerMerchantId;
         }
         return $this;
     }

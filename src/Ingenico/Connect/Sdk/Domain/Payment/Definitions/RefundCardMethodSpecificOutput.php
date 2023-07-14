@@ -13,11 +13,19 @@ use UnexpectedValueException;
 class RefundCardMethodSpecificOutput extends RefundMethodSpecificOutput
 {
     /**
+     * @var string
+     */
+    public $authorisationCode = null;
+
+    /**
      * @return object
      */
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->authorisationCode)) {
+            $object->authorisationCode = $this->authorisationCode;
+        }
         return $object;
     }
 
@@ -29,6 +37,9 @@ class RefundCardMethodSpecificOutput extends RefundMethodSpecificOutput
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'authorisationCode')) {
+            $this->authorisationCode = $object->authorisationCode;
+        }
         return $this;
     }
 }
