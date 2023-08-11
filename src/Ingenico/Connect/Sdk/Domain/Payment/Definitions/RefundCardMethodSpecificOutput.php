@@ -5,6 +5,7 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
+use Ingenico\Connect\Sdk\Domain\Definitions\CardEssentials;
 use UnexpectedValueException;
 
 /**
@@ -18,6 +19,11 @@ class RefundCardMethodSpecificOutput extends RefundMethodSpecificOutput
     public $authorisationCode = null;
 
     /**
+     * @var CardEssentials
+     */
+    public $card = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -25,6 +31,9 @@ class RefundCardMethodSpecificOutput extends RefundMethodSpecificOutput
         $object = parent::toObject();
         if (!is_null($this->authorisationCode)) {
             $object->authorisationCode = $this->authorisationCode;
+        }
+        if (!is_null($this->card)) {
+            $object->card = $this->card->toObject();
         }
         return $object;
     }
@@ -39,6 +48,13 @@ class RefundCardMethodSpecificOutput extends RefundMethodSpecificOutput
         parent::fromObject($object);
         if (property_exists($object, 'authorisationCode')) {
             $this->authorisationCode = $object->authorisationCode;
+        }
+        if (property_exists($object, 'card')) {
+            if (!is_object($object->card)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->card, true) . '\' is not an object');
+            }
+            $value = new CardEssentials();
+            $this->card = $value->fromObject($object->card);
         }
         return $this;
     }
