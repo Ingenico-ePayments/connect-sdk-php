@@ -20,6 +20,11 @@ class Installments extends DataObject
     public $amountOfMoneyPerInstallment = null;
 
     /**
+     * @var AmountOfMoney
+     */
+    public $amountOfMoneyTotal = null;
+
+    /**
      * @var string
      */
     public $frequencyOfInstallments = null;
@@ -47,6 +52,9 @@ class Installments extends DataObject
         $object = parent::toObject();
         if (!is_null($this->amountOfMoneyPerInstallment)) {
             $object->amountOfMoneyPerInstallment = $this->amountOfMoneyPerInstallment->toObject();
+        }
+        if (!is_null($this->amountOfMoneyTotal)) {
+            $object->amountOfMoneyTotal = $this->amountOfMoneyTotal->toObject();
         }
         if (!is_null($this->frequencyOfInstallments)) {
             $object->frequencyOfInstallments = $this->frequencyOfInstallments;
@@ -77,6 +85,13 @@ class Installments extends DataObject
             }
             $value = new AmountOfMoney();
             $this->amountOfMoneyPerInstallment = $value->fromObject($object->amountOfMoneyPerInstallment);
+        }
+        if (property_exists($object, 'amountOfMoneyTotal')) {
+            if (!is_object($object->amountOfMoneyTotal)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->amountOfMoneyTotal, true) . '\' is not an object');
+            }
+            $value = new AmountOfMoney();
+            $this->amountOfMoneyTotal = $value->fromObject($object->amountOfMoneyTotal);
         }
         if (property_exists($object, 'frequencyOfInstallments')) {
             $this->frequencyOfInstallments = $object->frequencyOfInstallments;

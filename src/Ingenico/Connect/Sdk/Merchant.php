@@ -10,6 +10,7 @@ use Ingenico\Connect\Sdk\Merchant\Disputes;
 use Ingenico\Connect\Sdk\Merchant\Files;
 use Ingenico\Connect\Sdk\Merchant\Hostedcheckouts;
 use Ingenico\Connect\Sdk\Merchant\Hostedmandatemanagements;
+use Ingenico\Connect\Sdk\Merchant\Installments;
 use Ingenico\Connect\Sdk\Merchant\Mandates;
 use Ingenico\Connect\Sdk\Merchant\Payments;
 use Ingenico\Connect\Sdk\Merchant\Payouts;
@@ -161,6 +162,16 @@ class Merchant extends Resource
     public function sessions()
     {
         return new Sessions($this, $this->context);
+    }
+
+    /**
+     * Resource /{merchantId}/installments
+     *
+     * @return Installments
+     */
+    public function installments()
+    {
+        return new Installments($this, $this->context);
     }
 
     /**

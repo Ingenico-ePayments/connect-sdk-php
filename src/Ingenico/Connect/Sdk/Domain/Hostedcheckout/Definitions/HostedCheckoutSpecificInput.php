@@ -29,6 +29,11 @@ class HostedCheckoutSpecificInput extends DataObject
     public $paymentProductFilters = null;
 
     /**
+     * @var RecurringPaymentsData
+     */
+    public $recurringPaymentsData = null;
+
+    /**
      * @var bool
      */
     public $returnCancelState = null;
@@ -73,6 +78,9 @@ class HostedCheckoutSpecificInput extends DataObject
         if (!is_null($this->paymentProductFilters)) {
             $object->paymentProductFilters = $this->paymentProductFilters->toObject();
         }
+        if (!is_null($this->recurringPaymentsData)) {
+            $object->recurringPaymentsData = $this->recurringPaymentsData->toObject();
+        }
         if (!is_null($this->returnCancelState)) {
             $object->returnCancelState = $this->returnCancelState;
         }
@@ -114,6 +122,13 @@ class HostedCheckoutSpecificInput extends DataObject
             }
             $value = new PaymentProductFiltersHostedCheckout();
             $this->paymentProductFilters = $value->fromObject($object->paymentProductFilters);
+        }
+        if (property_exists($object, 'recurringPaymentsData')) {
+            if (!is_object($object->recurringPaymentsData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->recurringPaymentsData, true) . '\' is not an object');
+            }
+            $value = new RecurringPaymentsData();
+            $this->recurringPaymentsData = $value->fromObject($object->recurringPaymentsData);
         }
         if (property_exists($object, 'returnCancelState')) {
             $this->returnCancelState = $object->returnCancelState;
