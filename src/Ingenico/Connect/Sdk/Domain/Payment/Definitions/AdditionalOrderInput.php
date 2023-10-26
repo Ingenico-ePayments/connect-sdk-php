@@ -16,6 +16,11 @@ use UnexpectedValueException;
 class AdditionalOrderInput extends DataObject
 {
     /**
+     * @var AccountFundingRecipient
+     */
+    public $accountFundingRecipient = null;
+
+    /**
      * @var AirlineData
      */
     public $airlineData = null;
@@ -33,6 +38,7 @@ class AdditionalOrderInput extends DataObject
 
     /**
      * @var LoanRecipient
+     * @deprecated No replacement
      */
     public $loanRecipient = null;
 
@@ -63,6 +69,9 @@ class AdditionalOrderInput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->accountFundingRecipient)) {
+            $object->accountFundingRecipient = $this->accountFundingRecipient->toObject();
+        }
         if (!is_null($this->airlineData)) {
             $object->airlineData = $this->airlineData->toObject();
         }
@@ -98,6 +107,13 @@ class AdditionalOrderInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'accountFundingRecipient')) {
+            if (!is_object($object->accountFundingRecipient)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->accountFundingRecipient, true) . '\' is not an object');
+            }
+            $value = new AccountFundingRecipient();
+            $this->accountFundingRecipient = $value->fromObject($object->accountFundingRecipient);
+        }
         if (property_exists($object, 'airlineData')) {
             if (!is_object($object->airlineData)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->airlineData, true) . '\' is not an object');

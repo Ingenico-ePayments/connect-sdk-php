@@ -24,6 +24,11 @@ class PersonalInformation extends DataObject
     public $gender = null;
 
     /**
+     * @var PersonalIdentification
+     */
+    public $identification = null;
+
+    /**
      * @var PersonalName
      */
     public $name = null;
@@ -39,6 +44,9 @@ class PersonalInformation extends DataObject
         }
         if (!is_null($this->gender)) {
             $object->gender = $this->gender;
+        }
+        if (!is_null($this->identification)) {
+            $object->identification = $this->identification->toObject();
         }
         if (!is_null($this->name)) {
             $object->name = $this->name->toObject();
@@ -59,6 +67,13 @@ class PersonalInformation extends DataObject
         }
         if (property_exists($object, 'gender')) {
             $this->gender = $object->gender;
+        }
+        if (property_exists($object, 'identification')) {
+            if (!is_object($object->identification)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->identification, true) . '\' is not an object');
+            }
+            $value = new PersonalIdentification();
+            $this->identification = $value->fromObject($object->identification);
         }
         if (property_exists($object, 'name')) {
             if (!is_object($object->name)) {

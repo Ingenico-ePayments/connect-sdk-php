@@ -16,6 +16,11 @@ class OrderTypeInformation extends DataObject
     /**
      * @var string
      */
+    public $fundingType = null;
+
+    /**
+     * @var string
+     */
     public $purchaseType = null;
 
     /**
@@ -34,6 +39,9 @@ class OrderTypeInformation extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->fundingType)) {
+            $object->fundingType = $this->fundingType;
+        }
         if (!is_null($this->purchaseType)) {
             $object->purchaseType = $this->purchaseType;
         }
@@ -54,6 +62,9 @@ class OrderTypeInformation extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'fundingType')) {
+            $this->fundingType = $object->fundingType;
+        }
         if (property_exists($object, 'purchaseType')) {
             $this->purchaseType = $object->purchaseType;
         }

@@ -47,6 +47,11 @@ class Customer extends CustomerBase
     /**
      * @var bool
      */
+    public $isCompany = null;
+
+    /**
+     * @var bool
+     */
     public $isPreviousCustomer = null;
 
     /**
@@ -88,6 +93,9 @@ class Customer extends CustomerBase
         }
         if (!is_null($this->fiscalNumber)) {
             $object->fiscalNumber = $this->fiscalNumber;
+        }
+        if (!is_null($this->isCompany)) {
+            $object->isCompany = $this->isCompany;
         }
         if (!is_null($this->isPreviousCustomer)) {
             $object->isPreviousCustomer = $this->isPreviousCustomer;
@@ -145,6 +153,9 @@ class Customer extends CustomerBase
         }
         if (property_exists($object, 'fiscalNumber')) {
             $this->fiscalNumber = $object->fiscalNumber;
+        }
+        if (property_exists($object, 'isCompany')) {
+            $this->isCompany = $object->isCompany;
         }
         if (property_exists($object, 'isPreviousCustomer')) {
             $this->isPreviousCustomer = $object->isPreviousCustomer;
