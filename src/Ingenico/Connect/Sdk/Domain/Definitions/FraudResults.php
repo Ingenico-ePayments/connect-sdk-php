@@ -24,6 +24,11 @@ class FraudResults extends DataObject
     public $inAuth = null;
 
     /**
+     * @var MicrosoftFraudResults
+     */
+    public $microsoftFraudProtection = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -34,6 +39,9 @@ class FraudResults extends DataObject
         }
         if (!is_null($this->inAuth)) {
             $object->inAuth = $this->inAuth->toObject();
+        }
+        if (!is_null($this->microsoftFraudProtection)) {
+            $object->microsoftFraudProtection = $this->microsoftFraudProtection->toObject();
         }
         return $object;
     }
@@ -55,6 +63,13 @@ class FraudResults extends DataObject
             }
             $value = new InAuth();
             $this->inAuth = $value->fromObject($object->inAuth);
+        }
+        if (property_exists($object, 'microsoftFraudProtection')) {
+            if (!is_object($object->microsoftFraudProtection)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->microsoftFraudProtection, true) . '\' is not an object');
+            }
+            $value = new MicrosoftFraudResults();
+            $this->microsoftFraudProtection = $value->fromObject($object->microsoftFraudProtection);
         }
         return $this;
     }

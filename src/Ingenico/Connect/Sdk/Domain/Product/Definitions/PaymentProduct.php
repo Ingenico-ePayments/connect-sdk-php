@@ -81,6 +81,11 @@ class PaymentProduct extends DataObject
     /**
      * @var bool
      */
+    public $isAuthenticationSupported = null;
+
+    /**
+     * @var bool
+     */
     public $isJavaScriptRequired = null;
 
     /**
@@ -188,6 +193,9 @@ class PaymentProduct extends DataObject
         if (!is_null($this->id)) {
             $object->id = $this->id;
         }
+        if (!is_null($this->isAuthenticationSupported)) {
+            $object->isAuthenticationSupported = $this->isAuthenticationSupported;
+        }
         if (!is_null($this->isJavaScriptRequired)) {
             $object->isJavaScriptRequired = $this->isJavaScriptRequired;
         }
@@ -292,6 +300,9 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'id')) {
             $this->id = $object->id;
+        }
+        if (property_exists($object, 'isAuthenticationSupported')) {
+            $this->isAuthenticationSupported = $object->isAuthenticationSupported;
         }
         if (property_exists($object, 'isJavaScriptRequired')) {
             $this->isJavaScriptRequired = $object->isJavaScriptRequired;

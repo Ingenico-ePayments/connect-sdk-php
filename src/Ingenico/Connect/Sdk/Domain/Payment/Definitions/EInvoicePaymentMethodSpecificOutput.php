@@ -5,6 +5,7 @@
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
+use Ingenico\Connect\Sdk\Domain\Definitions\FraudResults;
 use UnexpectedValueException;
 
 /**
@@ -12,6 +13,11 @@ use UnexpectedValueException;
  */
 class EInvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
+    /**
+     * @var FraudResults
+     */
+    public $fraudResults = null;
+
     /**
      * @var EInvoicePaymentProduct9000SpecificOutput
      */
@@ -23,6 +29,9 @@ class EInvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->fraudResults)) {
+            $object->fraudResults = $this->fraudResults->toObject();
+        }
         if (!is_null($this->paymentProduct9000SpecificOutput)) {
             $object->paymentProduct9000SpecificOutput = $this->paymentProduct9000SpecificOutput->toObject();
         }
@@ -37,6 +46,13 @@ class EInvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'fraudResults')) {
+            if (!is_object($object->fraudResults)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->fraudResults, true) . '\' is not an object');
+            }
+            $value = new FraudResults();
+            $this->fraudResults = $value->fromObject($object->fraudResults);
+        }
         if (property_exists($object, 'paymentProduct9000SpecificOutput')) {
             if (!is_object($object->paymentProduct9000SpecificOutput)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct9000SpecificOutput, true) . '\' is not an object');

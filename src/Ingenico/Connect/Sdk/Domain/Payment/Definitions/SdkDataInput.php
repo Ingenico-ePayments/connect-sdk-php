@@ -14,12 +14,6 @@ use UnexpectedValueException;
 class SdkDataInput extends DataObject
 {
     /**
-     * @var string
-     * @deprecated No replacement
-     */
-    public $deviceInfo = null;
-
-    /**
      * @var DeviceRenderOptions
      */
     public $deviceRenderOptions = null;
@@ -60,9 +54,6 @@ class SdkDataInput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
-        if (!is_null($this->deviceInfo)) {
-            $object->deviceInfo = $this->deviceInfo;
-        }
         if (!is_null($this->deviceRenderOptions)) {
             $object->deviceRenderOptions = $this->deviceRenderOptions->toObject();
         }
@@ -95,9 +86,6 @@ class SdkDataInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'deviceInfo')) {
-            $this->deviceInfo = $object->deviceInfo;
-        }
         if (property_exists($object, 'deviceRenderOptions')) {
             if (!is_object($object->deviceRenderOptions)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->deviceRenderOptions, true) . '\' is not an object');
