@@ -547,7 +547,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code>get( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>get( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -568,6 +568,8 @@
 					<dt><var>$requestParameters</var></dt>
 					<dd></dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -598,7 +600,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getWithBinaryResponse">#</a>
-		<code>getWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>getWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -621,6 +623,8 @@
 					<dt><var>$bodyHandler</var></dt>
 					<dd>Callable accepting a response body chunk and the response headers</dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -647,7 +651,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code>delete( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>delete( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -668,6 +672,8 @@
 					<dt><var>$requestParameters</var></dt>
 					<dd></dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -698,7 +704,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteWithBinaryResponse">#</a>
-		<code>deleteWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>deleteWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -721,6 +727,8 @@
 					<dt><var>$bodyHandler</var></dt>
 					<dd>Callable accepting a response body chunk and the response headers</dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -747,7 +755,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_post">#</a>
-		<code>post( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>post( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -770,6 +778,8 @@
 					<dt><var>$requestParameters</var></dt>
 					<dd></dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -800,7 +810,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_postWithBinaryResponse">#</a>
-		<code>postWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>postWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -825,6 +835,8 @@
 					<dt><var>$bodyHandler</var></dt>
 					<dd>Callable accepting a response body chunk and the response headers</dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -851,7 +863,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_put">#</a>
-		<code>put( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>put( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -874,6 +886,8 @@
 					<dt><var>$requestParameters</var></dt>
 					<dd></dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -904,7 +918,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_putWithBinaryResponse">#</a>
-		<code>putWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code>putWithBinaryResponse( <span><code><a href="class-Ingenico.Connect.Sdk.ResponseClassMap.html">Ingenico\Connect\Sdk\ResponseClassMap</a></code> <var>$responseClassMap</var></span>, <span>string <var>$relativeUriPath</var></span>, <span>string <var>$clientMetaInfo</var> = <span class="php-quote">''</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.DataObject.html">Ingenico\Connect\Sdk\DataObject</a></code>|<code><a href="class-Ingenico.Connect.Sdk.MultipartDataObject.html">Ingenico\Connect\Sdk\MultipartDataObject</a></code>|null <var>$requestBodyObject</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.RequestObject.html">Ingenico\Connect\Sdk\RequestObject</a></code> <var>$requestParameters</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$bodyHandler</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.CallContext.html">Ingenico\Connect\Sdk\CallContext</a></code> <var>$callContext</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-Ingenico.Connect.Sdk.ResponseExceptionFactory.html">Ingenico\Connect\Sdk\ResponseExceptionFactory</a></code> <var>$responseExceptionFactory</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -929,6 +943,8 @@
 					<dt><var>$bodyHandler</var></dt>
 					<dd>Callable accepting a response body chunk and the response headers</dd>
 					<dt><var>$callContext</var></dt>
+					<dd></dd>
+					<dt><var>$responseExceptionFactory</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -1376,6 +1392,6 @@
 </div>
 </div>
 <script src="resources/combined.js?496e8d265118a3503abfcc3c98a8d118d6100636"></script>
-<script src="elementlist.js?85c40f8ee1c8c94a1dd2e7b1a94f69dffd53d0b6"></script>
+<script src="elementlist.js?dcb4ea9f34b9398d23285cdbc39e91fa393a8e5a"></script>
 </body>
 </html>
