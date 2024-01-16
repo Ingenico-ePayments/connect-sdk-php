@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://epayments-api.developer-ingenico.com/s2sapi/v1/
+ * https://epayments-api.developer-ingenico.com/
  */
 namespace Ingenico\Connect\Sdk\Domain\Payment\Definitions;
 
@@ -13,6 +13,11 @@ use UnexpectedValueException;
  */
 class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
+    /**
+     * @var string
+     */
+    public $acquirerPromotionCode = null;
+
     /**
      * @var string
      */
@@ -92,6 +97,9 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->acquirerPromotionCode)) {
+            $object->acquirerPromotionCode = $this->acquirerPromotionCode;
+        }
         if (!is_null($this->authorizationMode)) {
             $object->authorizationMode = $this->authorizationMode;
         }
@@ -145,6 +153,9 @@ class AbstractCardPaymentMethodSpecificInput extends AbstractPaymentMethodSpecif
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'acquirerPromotionCode')) {
+            $this->acquirerPromotionCode = $object->acquirerPromotionCode;
+        }
         if (property_exists($object, 'authorizationMode')) {
             $this->authorizationMode = $object->authorizationMode;
         }

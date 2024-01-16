@@ -1,7 +1,7 @@
 <?php
 /*
  * This class was auto-generated from the API references found at
- * https://epayments-api.developer-ingenico.com/s2sapi/v1/
+ * https://epayments-api.developer-ingenico.com/
  */
 namespace Ingenico\Connect\Sdk\Merchant;
 
@@ -24,7 +24,7 @@ use Ingenico\Connect\Sdk\ValidationException;
 class Installments extends Resource
 {
     /**
-     * Resource /{merchantId}/installments/getInstallmentsInfo - Get Installment Info
+     * Resource /{merchantId}/installments/getInstallmentsInfo - Get installment information
      *
      * @param GetInstallmentRequest $body
      * @param CallContext $callContext
@@ -37,7 +37,7 @@ class Installments extends Resource
      * @throws GlobalCollectException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/installments/getInstallmentsInfo.html Get Installment Info
+     * @link https://epayments-api.developer-ingenico.com/s2sapi/v1/en_US/php/installments/getInstallmentsInfo.html Get installment information
      */
     public function getInstallmentsInfo(GetInstallmentRequest $body, CallContext $callContext = null)
     {

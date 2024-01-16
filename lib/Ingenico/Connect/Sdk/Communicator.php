@@ -59,6 +59,7 @@ class Communicator
      * @param string $clientMetaInfo
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @return DataObject
      * @throws Exception
      */
@@ -67,7 +68,8 @@ class Communicator
         $relativeUriPath,
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -93,7 +95,10 @@ class Communicator
             $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
         $httpStatusCode = $connectionResponse->getHttpStatusCode();
         if ($httpStatusCode >= 400) {
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
         return $response;
     }
@@ -105,6 +110,7 @@ class Communicator
      * @param RequestObject|null $requestParameters
      * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @throws Exception
      */
     public function getWithBinaryResponse(
@@ -113,7 +119,8 @@ class Communicator
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
         callable $bodyHandler = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -143,7 +150,10 @@ class Communicator
         if ($httpStatusCode >= 400) {
             $response =
                 $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
     }
 
@@ -153,6 +163,7 @@ class Communicator
      * @param string $clientMetaInfo
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @return DataObject
      * @throws Exception
      */
@@ -161,7 +172,8 @@ class Communicator
         $relativeUriPath,
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -187,7 +199,10 @@ class Communicator
             $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
         $httpStatusCode = $connectionResponse->getHttpStatusCode();
         if ($httpStatusCode >= 400) {
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
         return $response;
     }
@@ -199,6 +214,7 @@ class Communicator
      * @param RequestObject|null $requestParameters
      * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @throws Exception
      */
     public function deleteWithBinaryResponse(
@@ -207,7 +223,8 @@ class Communicator
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
         callable $bodyHandler = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -237,7 +254,10 @@ class Communicator
         if ($httpStatusCode >= 400) {
             $response =
                 $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
     }
 
@@ -248,6 +268,7 @@ class Communicator
      * @param DataObject|MultipartDataObject|null $requestBodyObject
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @return DataObject
      * @throws Exception
      */
@@ -257,7 +278,8 @@ class Communicator
         $clientMetaInfo = '',
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -297,7 +319,10 @@ class Communicator
             $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
         $httpStatusCode = $connectionResponse->getHttpStatusCode();
         if ($httpStatusCode >= 400) {
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
         return $response;
     }
@@ -310,6 +335,7 @@ class Communicator
      * @param RequestObject|null $requestParameters
      * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @throws Exception
      */
     public function postWithBinaryResponse(
@@ -319,7 +345,8 @@ class Communicator
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
         callable $bodyHandler = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -363,7 +390,10 @@ class Communicator
         if ($httpStatusCode >= 400) {
             $response =
                 $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
     }
 
@@ -374,6 +404,7 @@ class Communicator
      * @param DataObject|MultipartDataObject|null $requestBodyObject
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @return DataObject
      * @throws Exception
      */
@@ -383,7 +414,8 @@ class Communicator
         $clientMetaInfo = '',
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -423,7 +455,10 @@ class Communicator
             $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
         $httpStatusCode = $connectionResponse->getHttpStatusCode();
         if ($httpStatusCode >= 400) {
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
         return $response;
     }
@@ -436,6 +471,7 @@ class Communicator
      * @param RequestObject|null $requestParameters
      * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
      * @param CallContext $callContext
+     * @param ResponseExceptionFactory|null $responseExceptionFactory
      * @throws Exception
      */
     public function putWithBinaryResponse(
@@ -445,7 +481,8 @@ class Communicator
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
         callable $bodyHandler = null,
-        CallContext $callContext = null
+        CallContext $callContext = null,
+        ResponseExceptionFactory $responseExceptionFactory = null
     ) {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
@@ -489,7 +526,10 @@ class Communicator
         if ($httpStatusCode >= 400) {
             $response =
                 $this->getResponseFactory()->createResponse($connectionResponse, $responseClassMap);
-            throw $this->getResponseExceptionFactory()->createException($httpStatusCode, $response, $callContext);
+            if (is_null($responseExceptionFactory)) {
+                $responseExceptionFactory = $this->getResponseExceptionFactory();
+            }
+            throw $responseExceptionFactory->createException($httpStatusCode, $response, $callContext);
         }
     }
 
