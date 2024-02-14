@@ -41,6 +41,11 @@ class GetProductgroupParams extends RequestObject
     public $isRecurring;
 
     /**
+     * @var bool
+     */
+    public $isInstallments;
+
+    /**
      * @var string[]
      */
     public $hide;
